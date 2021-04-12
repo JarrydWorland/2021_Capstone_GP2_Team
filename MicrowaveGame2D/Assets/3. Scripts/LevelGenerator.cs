@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEditor;
 using static Direction;
 using DirectionExtensions;
 using GameObjectExtensions;
@@ -9,7 +10,19 @@ using GameObjectExtensions;
 public class LevelGenerator : MonoBehaviour
 {
 	public GameObject StartingRoom;
-	public List<GameObject> Rooms;
+	private IEnumerable<GameObject> RoomsCache = null;
+	private IEnumerable<GameObject> Rooms
+	{
+		// find all room prefabs and store them in RoomsCache since the value
+		// wont change and searching could be slow. currently to further speed
+		// up the search it only looks in "Assets/2. Prefabs/Rooms" but it can
+		// changed to look through all prefabs in the project by calling
+		// AssetDatabase.FindAssets("") instead.
+		get => RoomsCache ??= AssetDatabase.FindAssets("", new string[]{"Assets/2. Prefabs/Rooms"})
+			.Select(guid => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid)))
+			.Where(prefab => prefab != null)
+			.Where(prefab => prefab.GetComponent<Room>() != null);
+	}
 
 	private Tuple<Room,Doorway> RandomRoomConnectableTo(Doorway doorway) => Rooms
 		.Select(obj => obj.GetComponent<Room>())

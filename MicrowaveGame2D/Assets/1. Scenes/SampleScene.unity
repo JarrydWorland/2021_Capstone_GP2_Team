@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -238,6 +238,10 @@ MonoBehaviour:
   StartingRoom: {fileID: 7311431439136499660, guid: a22a7cdc930145348abe3018aae1adaf, type: 3}
   Rooms:
   - {fileID: 7311431439136499660, guid: a22a7cdc930145348abe3018aae1adaf, type: 3}
+  - {fileID: 7311431439136499660, guid: d117875f66e041f48b6025dd4f4a1776, type: 3}
+  - {fileID: 7311431439136499660, guid: 9261fd0ca17c0324da9910e9ca65e4f3, type: 3}
+  - {fileID: 7311431439136499660, guid: bf75a6e24c27182498446b24d290f2b4, type: 3}
+  - {fileID: 7311431439136499660, guid: 88f616ef1e3dd5649953f759e785b10a, type: 3}
   - {fileID: 8074383978668244545, guid: 05e0ee4c30be278459ba14d2ec299ba1, type: 3}
 --- !u!4 &888571589
 Transform:
