@@ -2,7 +2,7 @@
 
 public class Door : MonoBehaviour
 {
-    public DoorDirection Direction;
+    public DoorDirection direction;
     public Door ConnectingDoor { get; private set; }
 
     public static void Connect(Door left, Door right)

@@ -3,26 +3,38 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-    public GameObject StartingRoomPrefab;
-    public int Depth;
+    public GameObject startingRoomPrefab;
+    public int depth;
+
+    public Room CurrentRoom { get; private set; }
 
     private IEnumerable<GameObject> _roomPrefabs;
+
+    public static LevelManager Instance => FindObjectOfType<LevelManager>();
 
     private void Start()
     {
         // Get all room prefabs from the "Assets/Prefabs/Rooms" directory.
-        _roomPrefabs = AssetDatabase
-            .FindAssets("", new[] { "Assets/Prefabs/Rooms" })
+        _roomPrefabs = AssetDatabase.FindAssets("", new[] { "Assets/Prefabs/Rooms" })
             .Select(x => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(x)))
             .Where(x => x != null && x.GetComponent<Room>() != null);
 
         // Instantiate the starting room inside of the level object.
-        GameObject startingRoomObject = Instantiate(StartingRoomPrefab, transform, true);
-        Room startingRoom = startingRoomObject.GetComponent<Room>();
+        GameObject startingRoomObject = Instantiate(startingRoomPrefab, transform, true);
+        CurrentRoom = startingRoomObject.GetComponent<Room>();
 
-        SpawnRooms(startingRoom, Depth);
+        SpawnRooms(CurrentRoom, depth);
+    }
+
+    public void ChangeRoom(Door door)
+    {
+        Room newRoom = door.ConnectingDoor.GetComponentInParent<Room>();
+        CurrentRoom = newRoom;
+
+        Camera.current.transform.position =
+            new Vector3(newRoom.transform.position.x, newRoom.transform.position.y, -10);
     }
 
     /// <summary>
@@ -33,7 +45,7 @@ public class Level : MonoBehaviour
     /// <returns></returns>
     private GameObject GetRandomOppositeDoorPrefab(Door door, bool deadEndsOnly = false)
     {
-        DoorDirection opposite = door.Direction.Opposite();
+        DoorDirection opposite = door.direction.Opposite();
         List<GameObject> viableDoorObjects = new List<GameObject>();
 
         foreach (GameObject roomPrefab in _roomPrefabs)
@@ -44,7 +56,7 @@ public class Level : MonoBehaviour
             {
                 // If the door is opposite to the given door
                 // (and optionally a single door room when deadEndsOnly is true), add it to the viable door list.
-                if (oppositeDoor.Direction == opposite &&
+                if (oppositeDoor.direction == opposite &&
                     (!deadEndsOnly || roomPrefab.GetComponent<Room>().Doors.Count() == 1))
                 {
                     viableDoorObjects.Add(oppositeDoor.gameObject);
