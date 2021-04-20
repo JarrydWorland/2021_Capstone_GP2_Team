@@ -1,5 +1,5 @@
 using UnityEngine;
-using static DoorDirection;
+using Level;
 
 namespace Player
 {
@@ -28,15 +28,8 @@ namespace Player
             Door door = other.gameObject.GetComponent<Door>();
             LevelManager.Instance.ChangeRoom(door);
 
-            Vector3 otherDoor = door.ConnectingDoor.transform.position;
-
-            otherDoor += 1.25f * door.direction switch
-            {
-                North => Vector3.up,
-                East => Vector3.right,
-                South => Vector3.down,
-                West => Vector3.left
-            };
+            Vector2 otherDoor = door.ConnectingDoor.transform.position;
+            otherDoor += 1.25f * door.direction.ToVector2();
 
             transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
         }
