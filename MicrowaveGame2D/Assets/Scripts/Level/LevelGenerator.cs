@@ -57,24 +57,7 @@ namespace Level
         private static GameObject FindRandomPrefab(Dictionary<Vector2Int, Room> grid, Vector2Int position,
             bool deadEndsOnly)
         {
-            // TODO: Temporary solution. Make this not as hardcoded :)
-            List<DoorDirection> requiredDirections = new List<DoorDirection>();
-
-            if (grid.ContainsKey(position + Vector2Int.up) &&
-                grid[position + Vector2Int.up].Directions.Contains(DoorDirection.South))
-                requiredDirections.Add(DoorDirection.North);
-
-            if (grid.ContainsKey(position + Vector2Int.right) &&
-                grid[position + Vector2Int.right].Directions.Contains(DoorDirection.West))
-                requiredDirections.Add(DoorDirection.East);
-
-            if (grid.ContainsKey(position + Vector2Int.down) &&
-                grid[position + Vector2Int.down].Directions.Contains(DoorDirection.North))
-                requiredDirections.Add(DoorDirection.South);
-
-            if (grid.ContainsKey(position + Vector2Int.left) &&
-                grid[position + Vector2Int.left].Directions.Contains(DoorDirection.East))
-                requiredDirections.Add(DoorDirection.West);
+            IEnumerable<DoorDirection> requiredDirections = FindRequiredDirections(grid, position);
 
             Debug.Log("Finding prefab with required directions " +
                       (requiredDirections.Contains(DoorDirection.North) ? "N" : "") +
@@ -95,12 +78,29 @@ namespace Level
                 viablePrefabs = viablePrefabs.Where(prefab =>
                         new HashSet<DoorDirection>(prefab.GetComponent<Room>().Directions)
                             .SetEquals(requiredDirections))
-                    .ToList();
+                    	.ToList();
             }
 
             Debug.Log(deadEndsOnly);
 
             return viablePrefabs[Random.Range(0, viablePrefabs.Count)];
         }
+
+		private static IEnumerable<DoorDirection> FindRequiredDirections(Dictionary<Vector2Int, Room> grid, Vector2Int position)
+		{
+			DoorDirection[] directions =
+			{
+				DoorDirection.North,
+				DoorDirection.East,
+				DoorDirection.South,
+				DoorDirection.West
+			};
+
+			return directions.Where(direction => {
+				Vector2Int positionInDirection = position + direction.ToVector2Int();
+				return grid.ContainsKey(positionInDirection)
+					&& grid[positionInDirection].Directions.Contains(direction.Opposite());
+			});
+		}
     }
 }
