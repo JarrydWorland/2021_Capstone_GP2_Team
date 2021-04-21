@@ -1,7 +1,0 @@
-namespace Level
-{
-	class RoomGrid
-	{
-
-	}
-}

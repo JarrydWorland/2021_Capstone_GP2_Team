@@ -36,5 +36,17 @@ namespace Level
 				_ => throw new InvalidOperationException("Invalid DoorDirection enum!")
 			};
 		}
+
+		public static Vector2Int ToVector2Int(this DoorDirection direction)
+		{
+			return direction switch
+			{
+				DoorDirection.North => Vector2Int.up,
+				DoorDirection.East => Vector2Int.right,
+				DoorDirection.South => Vector2Int.down,
+				DoorDirection.West => Vector2Int.left,
+				_ => throw new InvalidOperationException("Invalid DoorDirection enum!")
+			};
+		}
 	}
 }
