@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b117eebf8701cb34a84486f3031f118b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 430830215}
-  speed: 5
+  RigidBody: {fileID: 430830215}
+  Speed: 5
 --- !u!114 &430830217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,5 +426,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161a90d0492e2294abd50222b2fcf26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingRoomPrefab: {fileID: 4062866638233905178, guid: 7247e21e783504b4da5eadce34f7d185, type: 3}
-  depth: 3
+  StartingRoomPrefab: {fileID: 4062866638233905178, guid: 7247e21e783504b4da5eadce34f7d185, type: 3}
+  Depth: 5

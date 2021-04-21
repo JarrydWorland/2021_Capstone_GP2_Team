@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd9f621fe4a444a90389d70be8c7757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  Direction: 2

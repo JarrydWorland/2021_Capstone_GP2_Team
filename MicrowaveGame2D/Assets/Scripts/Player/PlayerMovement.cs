@@ -5,8 +5,8 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public Rigidbody2D rigidBody;
-        public float speed = 5.0f;
+        public Rigidbody2D RigidBody;
+        public float Speed = 5.0f;
 
         private Vector2 _velocity;
 
@@ -20,7 +20,7 @@ namespace Player
         // Update not based on frame
         void FixedUpdate()
         {
-            rigidBody.MovePosition(rigidBody.position + _velocity * (speed * Time.fixedDeltaTime));
+            RigidBody.MovePosition(RigidBody.position + _velocity * (Speed * Time.fixedDeltaTime));
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +29,7 @@ namespace Player
             LevelManager.Instance.ChangeRoom(door);
 
             Vector2 otherDoor = door.ConnectingDoor.transform.position;
-            otherDoor += 1.25f * door.direction.ToVector2();
+            otherDoor += 1.25f * door.Direction.ToVector2();
 
             transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
         }
