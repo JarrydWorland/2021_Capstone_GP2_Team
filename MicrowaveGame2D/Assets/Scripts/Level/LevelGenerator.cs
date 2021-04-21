@@ -67,21 +67,28 @@ namespace Level
 
             List<GameObject> viablePrefabs = _roomPrefabs.ToList();
 
+			// filter prefabs for ones matching required directions
             foreach (DoorDirection direction in requiredDirections)
             {
                 viablePrefabs = viablePrefabs
-                    .Where(prefab => prefab.GetComponent<Room>().Directions.Contains(direction)).ToList();
+                    .Where(prefab => prefab.GetComponent<Room>().Directions.Contains(direction))
+					.ToList();
             }
-
             if (deadEndsOnly)
             {
-                viablePrefabs = viablePrefabs.Where(prefab =>
-                        new HashSet<DoorDirection>(prefab.GetComponent<Room>().Directions)
-                            .SetEquals(requiredDirections))
-                    	.ToList();
+                viablePrefabs = viablePrefabs
+					.Where(prefab => new HashSet<DoorDirection>(prefab.GetComponent<Room>().Directions).SetEquals(requiredDirections))
+                    .ToList();
             }
 
-            Debug.Log(deadEndsOnly);
+			// ensure that any non-required doors in the prefab have empty space in front of them
+			viablePrefabs = viablePrefabs
+				.Where(prefab => {
+					Room room = prefab.GetComponent<Room>();
+					IEnumerable<Door> nonRequiredDoors = room.Doors.Where(door => !requiredDirections.Contains(door.Direction));
+					return !nonRequiredDoors.Any(nonRequiredDoor => grid.ContainsKey(position + nonRequiredDoor.Direction.ToVector2Int()));
+				})
+				.ToList();
 
             return viablePrefabs[Random.Range(0, viablePrefabs.Count)];
         }
