@@ -11,12 +11,22 @@ namespace Level
 
         public Vector2Int Position { get; private set; }
 
-        public static Room Make(GameObject original, Transform parent, Vector2Int coordinates)
+		public bool HasDoorFacing(DoorDirection direction)
+		{
+			return Doors.Any(door => door.Direction == direction);
+		}
+
+		public Door GetDoorFacing(DoorDirection direction)
+		{
+			return Doors.FirstOrDefault(door => door.Direction == direction);
+		}
+
+        public static Room Make(GameObject original, Transform parent, Vector2Int position)
         {
             GameObject gameObject = Instantiate(original, parent, true);
 
             Room room = gameObject.GetComponent<Room>();
-            room.Position = coordinates;
+            room.Position = position;
 
             return room;
         }
