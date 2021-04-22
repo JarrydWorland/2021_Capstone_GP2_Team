@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Level
 {
-    public class Room : MonoBehaviour
-    {
-        public IEnumerable<Door> Doors => GetComponentsInChildren<Door>(true);
-        public IEnumerable<DoorDirection> Directions => Doors.Select(door => door.Direction);
+	public class Room : MonoBehaviour
+	{
+		public IEnumerable<Door> Doors => GetComponentsInChildren<Door>(true);
+		public IEnumerable<DoorDirection> Directions => Doors.Select(door => door.Direction);
 
-        public Vector2Int Position { get; private set; }
+		public Vector2Int Position { get; private set; }
 
 		public bool HasDoorFacing(DoorDirection direction)
 		{
@@ -21,14 +21,14 @@ namespace Level
 			return Doors.FirstOrDefault(door => door.Direction == direction);
 		}
 
-        public static Room Make(GameObject original, Transform parent, Vector2Int position)
-        {
-            GameObject gameObject = Instantiate(original, parent, true);
+		public static Room Make(GameObject original, Transform parent, Vector2Int position)
+		{
+			GameObject gameObject = Instantiate(original, parent, true);
 
-            Room room = gameObject.GetComponent<Room>();
-            room.Position = position;
+			Room room = gameObject.GetComponent<Room>();
+			room.Position = position;
 
-            return room;
-        }
-    }
+			return room;
+		}
+	}
 }

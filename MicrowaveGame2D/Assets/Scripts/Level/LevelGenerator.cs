@@ -5,52 +5,52 @@ using System.Linq;
 
 namespace Level
 {
-    public static class LevelGenerator
-    {
+	public static class LevelGenerator
+	{
 		/*=======================*/
 		/* private static fields */
 		/*=======================*/
 
-        private static IEnumerable<GameObject> _roomPrefabs = AssetDatabase
-            .FindAssets("", new[] { "Assets/Prefabs/Rooms" })
-            .Select(guid => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid)))
-            .Where(roomPrefab => roomPrefab?.GetComponent<Room>() != null);
+		private static IEnumerable<GameObject> _roomPrefabs = AssetDatabase
+			.FindAssets("", new[] { "Assets/Prefabs/Rooms" })
+			.Select(guid => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid)))
+			.Where(roomPrefab => roomPrefab?.GetComponent<Room>() != null);
 
 		/*=======================*/
 		/* public static methods */
 		/*=======================*/
 
-        public static Room GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth)
-        {
+		public static Room GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth)
+		{
 			RoomGrid grid = new RoomGrid();
 			Vector2Int centre = new Vector2Int(0, 0);
 			Room startingRoom = Room.Make(startingRoomPrefab, parent, centre);
 			grid.Add(startingRoom);
 			SpawnChildRooms(startingRoom, parent, grid, depth);
 			return startingRoom;
-        }
+		}
 
 		/*========================*/
 		/* private static methods */
 		/*========================*/
 
-        private static void SpawnChildRooms(Room room, Transform parent, RoomGrid grid, int depth)
-        {
+		private static void SpawnChildRooms(Room room, Transform parent, RoomGrid grid, int depth)
+		{
 			bool enclosedPrefabRequired = depth == 1;
 			bool DoorIsNotConnected(Door door) => door.ConnectingDoor == null;
-            foreach (Door currentDoor in room.Doors.Where(DoorIsNotConnected))
-            {
+			foreach (Door currentDoor in room.Doors.Where(DoorIsNotConnected))
+			{
 				// find room prefab
-                Vector2Int newPosition = room.Position + currentDoor.Direction.ToVector2Int();
-                GameObject newRoomPrefab = grid.FindRandomPrefabFor(newPosition, enclosedPrefabRequired);
+				Vector2Int newPosition = room.Position + currentDoor.Direction.ToVector2Int();
+				GameObject newRoomPrefab = grid.FindRandomPrefabFor(newPosition, enclosedPrefabRequired);
 
 				// create room using prefab
-                Room newRoom = Room.Make(newRoomPrefab, parent, newPosition);
-                grid.Add(newRoom);
+				Room newRoom = Room.Make(newRoomPrefab, parent, newPosition);
+				grid.Add(newRoom);
 
 				// position room in scene
 				int roomPlacementDistance = 25;
-                newRoom.transform.position = new Vector3
+				newRoom.transform.position = new Vector3
 				{
 					x = newPosition.x * roomPlacementDistance,
 					y = newPosition.y * roomPlacementDistance / 2,
@@ -58,9 +58,9 @@ namespace Level
 				};
 
 				// recursively spawn child-rooms
-                SpawnChildRooms(newRoom, parent, grid, depth - 1);
-            }
-        }
+				SpawnChildRooms(newRoom, parent, grid, depth - 1);
+			}
+		}
 
 		/*=================*/
 		/* private classes */
@@ -127,8 +127,8 @@ namespace Level
 				Room room = _grid[position];
 				HashSet<DoorDirection> requiredDirections = FindRequiredDirectionsFor(position);
 
-                foreach (Door door in room.Doors)
-                {
+				foreach (Door door in room.Doors)
+				{
 					if (requiredDirections.Contains(door.Direction))
 					{
 						Vector2Int neighbouringPosition = position + door.Direction.ToVector2Int();
@@ -136,7 +136,7 @@ namespace Level
 						Door neighbouringDoor = neighbouringRoom.GetDoorFacing(door.Direction.Opposite());
 						Door.Connect(door, neighbouringDoor);
 					}
-                }
+				}
 			}
 
 			private HashSet<DoorDirection> FindRequiredDirectionsFor(Vector2Int position)
@@ -164,5 +164,5 @@ namespace Level
 				return !_grid.ContainsKey(position + direction.ToVector2Int());
 			}
 		}
-    }
+	}
 }
