@@ -75,3 +75,9 @@ crashlytics-build.properties
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Visual Studio
+.vsconfig
+
+# Vim
+*.swp
