@@ -25,13 +25,16 @@ namespace Player
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			Door door = other.gameObject.GetComponent<Door>();
-			LevelManager.Instance.ChangeRoom(door);
+			if (other.GetComponent<Door>() != null)
+			{
+				Door door = other.gameObject.GetComponent<Door>();
+				LevelManager.Instance.ChangeRoom(door);
 
-			Vector2 otherDoor = door.ConnectingDoor.transform.position;
-			otherDoor += 1.25f * door.Direction.ToVector2();
+				Vector2 otherDoor = door.ConnectingDoor.transform.position;
+				otherDoor += 1.25f * door.Direction.ToVector2();
 
-			transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
+				transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
+			}
 		}
 	}
 }
