@@ -1,6 +1,7 @@
 using UnityEngine;
 using Level;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace Player
 {
@@ -8,6 +9,10 @@ namespace Player
 	{
 		public Rigidbody2D RigidBody;
 		public float Speed = 5.0f;
+		private float _maxSpeed = 20.0f;
+		private float _minSpeed = 5.0f;
+		private float _increaseSpeed = 5.0f;
+		private float _decreaseSpeed = 5.0f;
 
 		private Vector2 _velocity;
 
@@ -15,6 +20,28 @@ namespace Player
 		{
 			RigidBody.MovePosition(RigidBody.position + _velocity * (Speed * Time.fixedDeltaTime));
 		}
+
+		public void check()
+		{
+			if (Speed > _maxSpeed)
+			{
+				Speed = _maxSpeed;
+			}
+			if (Speed < _minSpeed)
+			{
+				Speed = _minSpeed;
+			}
+		}
+
+		public IEnumerator SpeedTimer()
+		{
+			check();
+			Speed += _increaseSpeed;
+			yield return new WaitForSecondsRealtime(5.0f);
+			Speed -= _decreaseSpeed;
+			check();
+		}
+
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
