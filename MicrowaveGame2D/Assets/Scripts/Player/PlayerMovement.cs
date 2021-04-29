@@ -1,5 +1,6 @@
 using UnityEngine;
 using Level;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -10,15 +11,7 @@ namespace Player
 
 		private Vector2 _velocity;
 
-		//Update called once /frame, based on frame
-		void Update()
-		{
-			_velocity.x = Input.GetAxisRaw("Horizontal");
-			_velocity.y = Input.GetAxisRaw("Vertical");
-		}
-
-		// Update not based on frame
-		void FixedUpdate()
+		private void FixedUpdate()
 		{
 			RigidBody.MovePosition(RigidBody.position + _velocity * (Speed * Time.fixedDeltaTime));
 		}
@@ -35,6 +28,11 @@ namespace Player
 
 				transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
 			}
+		}
+
+		public void OnMove(InputAction.CallbackContext context)
+		{
+			_velocity = context.ReadValue<Vector2>();
 		}
 	}
 }
