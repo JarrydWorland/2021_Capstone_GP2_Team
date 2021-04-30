@@ -3,8 +3,6 @@ using Player;
 
 public class PowerUpSpeed : MonoBehaviour
 {
-    public float inc = 20.0f;
-
     public void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.GetComponent<PlayerMovement>() != null)
@@ -14,8 +12,7 @@ public class PowerUpSpeed : MonoBehaviour
 
             if (pScript)
             {
-                pScript.Speed += inc;
-                Destroy(gameObject);
+                StartCoroutine(pScript.SpeedTimer());
             }
         }
     }
