@@ -1,7 +1,7 @@
 using UnityEngine;
 using Player;
 
-public class PowerUpSpeed : MonoBehaviour
+public class OilSpill : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D hit)
     {

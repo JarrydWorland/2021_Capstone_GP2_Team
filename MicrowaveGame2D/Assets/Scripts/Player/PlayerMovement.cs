@@ -2,44 +2,52 @@ using UnityEngine;
 using Level;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 
 namespace Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
 		public Rigidbody2D RigidBody;
-		public float Speed = 5.0f;
+		private float _speed = 5.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
+		private float _maxVelocity = 20.0f;
+		private float _minVelocity = 5.0f;
 		private float _increaseSpeed = 5.0f;
 		private float _decreaseSpeed = 5.0f;
 
 		private Vector2 _velocity;
 
-		private void FixedUpdate()
+		public float Speed
+        {
+			get => _speed;
+			set
+            {
+				_speed.Clamp(_minSpeed, _maxSpeed);
+			}
+        }
+
+		public Vector2 Velocity
 		{
-			RigidBody.MovePosition(RigidBody.position + _velocity * (Speed * Time.fixedDeltaTime));
+			get => _velocity;
+            set
+            {
+				_velocity.x = value.x.Clamp(_minVelocity, _maxVelocity);
+				_velocity.y = value.y.Clamp(_minVelocity, _maxVelocity);
+			}
 		}
 
-		public void check()
+		private void FixedUpdate()
 		{
-			if (Speed > _maxSpeed)
-			{
-				Speed = _maxSpeed;
-			}
-			if (Speed < _minSpeed)
-			{
-				Speed = _minSpeed;
-			}
+			RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
 		}
 
 		public IEnumerator SpeedTimer()
 		{
-			check();
 			Speed += _increaseSpeed;
 			yield return new WaitForSecondsRealtime(5.0f);
 			Speed -= _decreaseSpeed;
-			check();
 		}
 
 
@@ -55,6 +63,7 @@ namespace Player
 
 				transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
 			}
+
 		}
 
 		public void OnMove(InputAction.CallbackContext context)
