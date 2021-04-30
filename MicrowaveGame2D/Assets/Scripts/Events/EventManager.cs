@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Events
 {
-    public static class EventHandler
+    public static class EventManager
     {
         private static readonly Dictionary<Type, object> Handlers = new Dictionary<Type, object>();
         private static EventId _counter = 0;
