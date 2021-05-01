@@ -1,6 +1,6 @@
 ﻿namespace Events
 {
-    public readonly struct EventId
+    public readonly struct EventId<T>
     {
         private readonly ulong _value;
 
@@ -9,7 +9,7 @@
             _value = value;
         }
 
-        public static implicit operator EventId(ulong value) => new EventId(value);
-        public static implicit operator ulong(EventId value) => value._value;
+        public static implicit operator EventId<T>(ulong value) => new EventId<T>(value);
+        public static implicit operator ulong(EventId<T> value) => value._value;
     }
 }
