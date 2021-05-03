@@ -6,7 +6,7 @@ namespace Events
     public static class EventManager
     {
         private static readonly Dictionary<Type, object> Handlers = new Dictionary<Type, object>();
-        private static EventId _counter = 0;
+        private static ulong _counter;
 
 
         /// <summary>
@@ -15,11 +15,11 @@ namespace Events
         /// <param name="handler">The handler to be registered.</param>
         /// <typeparam name="T">The event type of the handler.</typeparam>
         /// <returns>The event ID of the new handler.</returns>
-        public static EventId Register<T>(Action<T> handler) where T : EventArgs
+        public static EventId<T> Register<T>(Action<T> handler) where T : EventArgs
         {
             List<Handler<T>> handlers = GetHandlersFromType<T>();
 
-            EventId eventId = _counter++;
+            EventId<T> eventId = _counter++;
 
             handlers.Add(new Handler<T>
             {
@@ -35,7 +35,7 @@ namespace Events
         /// </summary>
         /// <param name="eventId">The event ID of the handler.</param>
         /// <typeparam name="T">The event type of the handler.</typeparam>
-        public static void Unregister<T>(EventId eventId) where T : EventArgs
+        public static void Unregister<T>(EventId<T> eventId) where T : EventArgs
         {
             List<Handler<T>> handlers = GetHandlersFromType<T>();
             int index = handlers.FindIndex(x => x.EventId == eventId);
@@ -69,7 +69,7 @@ namespace Events
 
         private struct Handler<T> where T : EventArgs
         {
-            public EventId EventId;
+            public EventId<T> EventId;
             public Action<T> Action;
         }
     }
