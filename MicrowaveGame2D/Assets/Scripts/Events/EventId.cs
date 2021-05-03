@@ -1,6 +1,8 @@
-﻿namespace Events
+﻿using System;
+
+namespace Events
 {
-    public readonly struct EventId<T>
+    public readonly struct EventId<T> where T : EventArgs
     {
         private readonly ulong _value;
 
