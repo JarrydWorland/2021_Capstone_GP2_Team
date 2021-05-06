@@ -5,7 +5,7 @@ using Player;
 public class AcidSpill : MonoBehaviour
 {
     //Acid does greater Damage on first hit.
-    private float _damage = 0.4f;
+    //private float _damage = 0.4f;
 
     public void OnTriggerEnter2D(Collider2D hit)
     {

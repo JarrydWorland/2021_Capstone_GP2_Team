@@ -51,6 +51,13 @@ namespace Player
 			_speed -= _decreaseSpeed;
 		}
 
+		public IEnumerator FastTimer()
+		{
+			_speed += _increaseSpeed;
+			yield return new WaitForSecondsRealtime(1.0f);
+			_speed -= _decreaseSpeed;
+		}
+
 		public IEnumerator SlowTimer()
 		{
 			_speed -= _decreaseSpeed;
@@ -61,9 +68,16 @@ namespace Player
 		public IEnumerator MeltTimer()
 		{
 			_speed -= _decreaseSpeed;
-			//Health.value -= _meltDamage * Time.deltaTme; Will decrease health by 0.2f.
+			//Health.Value -= _meltDamage * Time.deltaTme; Will decrease health by 0.2f.
 			yield return new WaitForSecondsRealtime(5.0f);
 			_speed += _increaseSpeed;
+		}
+
+		public IEnumerator CrushTimer()
+		{
+			yield return new WaitForSecondsRealtime(7.0f);
+			_speed -= _decreaseSpeed; // effect for now.
+			//Health.Value -= Health.Value; Will eliminate player.
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
