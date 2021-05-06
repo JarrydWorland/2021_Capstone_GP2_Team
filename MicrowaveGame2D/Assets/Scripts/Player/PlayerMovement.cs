@@ -9,13 +9,14 @@ namespace Player
 	public class PlayerMovement : MonoBehaviour
 	{
 		public Rigidbody2D RigidBody;
-		private float _speed = 5.0f;
+		private float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		private float _maxVelocity = 20.0f;
 		private float _minVelocity = 5.0f;
 		private float _increaseSpeed = 5.0f;
 		private float _decreaseSpeed = 5.0f;
+		//private float _meltDamage = 0.2f;
 
 		private Vector2 _velocity;
 
@@ -48,6 +49,21 @@ namespace Player
 			_speed += _increaseSpeed;
 			yield return new WaitForSecondsRealtime(5.0f);
 			_speed -= _decreaseSpeed;
+		}
+
+		public IEnumerator SlowTimer()
+		{
+			_speed -= _decreaseSpeed;
+			yield return new WaitForSecondsRealtime(5.0f);
+			_speed += _increaseSpeed;
+		}
+
+		public IEnumerator MeltTimer()
+		{
+			_speed -= _decreaseSpeed;
+			//Health.value -= _meltDamage * Time.deltaTme; Will decrease health by 0.2f.
+			yield return new WaitForSecondsRealtime(5.0f);
+			_speed += _increaseSpeed;
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)

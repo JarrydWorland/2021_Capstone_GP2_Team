@@ -1,9 +1,11 @@
 using UnityEngine;
 using Player;
 
-//Temporary Code, will ventually kill all entities
-public class KillEntities : MonoBehaviour
+//Damage Entitis once, and Decreases Speed.
+public class Nails : MonoBehaviour
 {
+    private float _damage = 0.2f;
+
     public void OnTriggerEnter2D(Collider2D hit)
     {
         float Health = GetComponent<Health>().Value;
@@ -12,10 +14,10 @@ public class KillEntities : MonoBehaviour
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
 
-            //Will eventually be upgraded to also interact with enemy entities
             if (pScript)
             {
-                Health -= Health;
+                Health -= _damage;
+                StartCoroutine(pScript.SlowTimer());
             }
         }
     }

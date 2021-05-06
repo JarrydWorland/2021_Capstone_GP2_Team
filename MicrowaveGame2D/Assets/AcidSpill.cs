@@ -1,21 +1,24 @@
 using UnityEngine;
 using Player;
 
-//Temporary Code, will ventually kill all entities
-public class KillEntities : MonoBehaviour
+//Damage Entitis once, and Decreases Speed.
+public class AcidSpill : MonoBehaviour
 {
+    //Acid does greater Damage on first hit.
+    private float _damage = 0.4f;
+
     public void OnTriggerEnter2D(Collider2D hit)
     {
-        float Health = GetComponent<Health>().Value;
+        //float Health = GetComponent<Health>().Value;
         if (hit.GetComponent<PlayerMovement>() != null)
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
 
-            //Will eventually be upgraded to also interact with enemy entities
             if (pScript)
             {
-                Health -= Health;
+                //Health -= _damage;
+                StartCoroutine(pScript.MeltTimer());
             }
         }
     }
