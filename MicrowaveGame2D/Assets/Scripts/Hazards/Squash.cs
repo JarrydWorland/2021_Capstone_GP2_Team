@@ -10,7 +10,7 @@ public class Squash : MonoBehaviour
     public IEnumerator Damage()
     {
         float Health = GetComponent<Health>().Value;
-        yield return new WaitForSecondsRealtime(10.0f);
+        yield return new WaitForSecondsRealtime(0.5f);
         Health -= _damage;
     }
 

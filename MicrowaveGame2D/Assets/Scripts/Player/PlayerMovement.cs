@@ -51,13 +51,6 @@ namespace Player
 			_speed -= _decreaseSpeed;
 		}
 
-		public IEnumerator FastTimer()
-		{
-			_speed += _increaseSpeed;
-			yield return new WaitForSecondsRealtime(1.0f);
-			_speed -= _decreaseSpeed;
-		}
-
 		public IEnumerator SlowTimer()
 		{
 			_speed -= _decreaseSpeed;
