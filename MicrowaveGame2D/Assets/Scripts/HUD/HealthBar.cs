@@ -83,7 +83,7 @@ public class HealthBar : MonoBehaviour
 
 		// sprite
 		SpriteRenderer sprite = heart.AddComponent<SpriteRenderer>();
-		sprite.sprite = Resources.Load<Sprite>("HUD/FullHeart");
+		sprite.sprite = _fullHeart;
 
 		// transform
 		heart.transform.SetParent(transform, false);
