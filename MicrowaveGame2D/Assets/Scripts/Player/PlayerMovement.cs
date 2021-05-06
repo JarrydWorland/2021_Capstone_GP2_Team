@@ -45,11 +45,10 @@ namespace Player
 
 		public IEnumerator SpeedTimer()
 		{
-			Speed += _increaseSpeed;
+			_speed += _increaseSpeed;
 			yield return new WaitForSecondsRealtime(5.0f);
-			Speed -= _decreaseSpeed;
+			_speed -= _decreaseSpeed;
 		}
-
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{

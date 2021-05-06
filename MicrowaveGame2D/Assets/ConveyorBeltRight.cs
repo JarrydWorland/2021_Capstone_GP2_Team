@@ -18,8 +18,9 @@ public class ConveyorBelt_Right : MonoBehaviour
             if (pScript)
             {
                 //update the position
-                pScript.Velocity = transform.right * pScript.Speed;
-            }  
+                pScript.transform.position += Vector3.right * pScript.Speed;
+            }
         }
     }
 }
+
