@@ -1,5 +1,6 @@
 using UnityEngine;
 using Player;
+using System.Collections;
 
 public class KillPlayerLong : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class KillPlayerLong : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
+            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
-                StartCoroutine(pScript.CrushTimer());
+                StartCoroutine(CrushTimer());
+                IEnumerator CrushTimer()
+                {
+                    yield return new WaitForSecondsRealtime(7.0f);
+                    health -= health;
+                }
             }
         }
     }

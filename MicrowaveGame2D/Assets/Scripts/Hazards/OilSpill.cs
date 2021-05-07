@@ -1,8 +1,11 @@
 using UnityEngine;
 using Player;
+using System.Collections;
 
 public class OilSpill : MonoBehaviour
 {
+    private float _increaseSpeed = 5.0f;
+    private float _decreaseSpeed = 5.0f;
     public void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.GetComponent<PlayerMovement>() != null)
@@ -12,7 +15,13 @@ public class OilSpill : MonoBehaviour
 
             if (pScript)
             {
-                StartCoroutine(pScript.SpeedTimer());
+                StartCoroutine(SpeedTimer());
+                IEnumerator SpeedTimer()
+                {
+                    pScript.Speed += _increaseSpeed;
+                    yield return new WaitForSecondsRealtime(5.0f);
+                    pScript.Speed -= _decreaseSpeed;
+                }
             }
         }
     }

@@ -9,14 +9,11 @@ namespace Player
 	public class PlayerMovement : MonoBehaviour
 	{
 		public Rigidbody2D RigidBody;
-		private float _speed = 10.0f;
+		public float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		private float _maxVelocity = 20.0f;
 		private float _minVelocity = 5.0f;
-		private float _increaseSpeed = 5.0f;
-		private float _decreaseSpeed = 5.0f;
-		//private float _meltDamage = 0.2f;
 
 		private Vector2 _velocity;
 
@@ -25,7 +22,7 @@ namespace Player
 			get => _speed;
 			set
             {
-				_speed.Clamp(_minSpeed, _maxSpeed);
+				_speed = value.Clamp(_minSpeed, _maxSpeed);
 			}
         }
 
@@ -42,35 +39,6 @@ namespace Player
 		private void FixedUpdate()
 		{
 			RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
-		}
-
-		public IEnumerator SpeedTimer()
-		{
-			_speed += _increaseSpeed;
-			yield return new WaitForSecondsRealtime(5.0f);
-			_speed -= _decreaseSpeed;
-		}
-
-		public IEnumerator SlowTimer()
-		{
-			_speed -= _decreaseSpeed;
-			yield return new WaitForSecondsRealtime(5.0f);
-			_speed += _increaseSpeed;
-		}
-
-		public IEnumerator MeltTimer()
-		{
-			_speed -= _decreaseSpeed;
-			//Health.Value -= _meltDamage * Time.deltaTme; Will decrease health by 0.2f.
-			yield return new WaitForSecondsRealtime(5.0f);
-			_speed += _increaseSpeed;
-		}
-
-		public IEnumerator CrushTimer()
-		{
-			yield return new WaitForSecondsRealtime(7.0f);
-			_speed -= _decreaseSpeed; // effect for now.
-			//Health.Value -= Health.Value; Will eliminate player.
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)

@@ -7,24 +7,22 @@ public class Squash : MonoBehaviour
 {
     private float _damage = 0.3f;
 
-    public IEnumerator Damage()
-    {
-        float Health = GetComponent<Health>().Value;
-        yield return new WaitForSecondsRealtime(0.5f);
-        Health -= _damage;
-    }
-
     public void OnTriggerEnter2D(Collider2D hit)
     {
-        float Health = GetComponent<Health>().Value;
         if (hit.GetComponent<PlayerMovement>() != null)
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
+            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
                 StartCoroutine(Damage());
+                IEnumerator Damage()
+                {
+                    yield return new WaitForSecondsRealtime(0.5f);
+                    health -= _damage;
+                }
                 //Eventully will drop items here.
             }
         }
