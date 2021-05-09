@@ -13,7 +13,6 @@ namespace Player
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		private float _maxVelocity = 20.0f;
-		private float _minVelocity = 5.0f;
 		private float _increaseSpeed = 5.0f;
 		private float _decreaseSpeed = 5.0f;
 
@@ -33,8 +32,20 @@ namespace Player
 			get => _velocity;
             set
             {
-				_velocity.x = value.x.Clamp(_minVelocity, _maxVelocity);
-				_velocity.y = value.y.Clamp(_minVelocity, _maxVelocity);
+				_velocity.x = value.x;
+				_velocity.y = value.y;
+
+				foreach(Animator animator in GetComponentsInChildren<Animator>())
+				{
+					// only set animator velocity if its not zero so that idle
+					// knows the last facing direction
+					if (Math.Abs(Velocity.x) > 0 || Math.Abs(Velocity.y) > 0)
+					{
+						animator.SetFloat("VelocityX", Velocity.x);
+						animator.SetFloat("VelocityY", Velocity.y);
+					}
+					animator.SetFloat("Speed", Velocity.sqrMagnitude);
+				}
 			}
 		}
 
@@ -68,7 +79,7 @@ namespace Player
 
 		public void OnMove(InputAction.CallbackContext context)
 		{
-			_velocity = context.ReadValue<Vector2>();
+			Velocity = context.ReadValue<Vector2>();
 		}
 
 		// TODO: Temporary input events for debugging, remove here and from

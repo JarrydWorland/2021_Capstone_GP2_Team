@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -259,9 +259,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1475202826753235964, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475202826753235964, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.y
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475202826753235964, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7310790717952797162, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: MaxHealth
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632230504750587857, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632230504750587857, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.y
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632230504750587857, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725346057390535955, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725346057390535955, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.y
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725346057390535955, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8165595877299822449, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -348,6 +384,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8799025469217700878, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799025469217700878, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799025469217700878, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799025469217700878, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -430,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493892152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.5, y: 6.25, z: 1}
+  m_LocalPosition: {x: -12.5, y: 5.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 399585883}
