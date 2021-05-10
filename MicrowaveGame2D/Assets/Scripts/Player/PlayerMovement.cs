@@ -2,12 +2,16 @@ using UnityEngine;
 using Level;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System;
+using Player.Weapons;
 
 namespace Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
+		public GameObject WeaponPrefab;
+		private GameObject _weaponObject;
+		private BaseWeapon _weapon;
+
 		public Rigidbody2D RigidBody;
 		private float _speed = 5.0f;
 		private float _maxSpeed = 20.0f;
@@ -20,22 +24,26 @@ namespace Player
 		private Vector2 _velocity;
 
 		public float Speed
-        {
+		{
 			get => _speed;
-			set
-            {
-				_speed.Clamp(_minSpeed, _maxSpeed);
-			}
-        }
+			set { _speed.Clamp(_minSpeed, _maxSpeed); }
+		}
 
 		public Vector2 Velocity
 		{
 			get => _velocity;
-            set
-            {
+			set
+			{
 				_velocity.x = value.x.Clamp(_minVelocity, _maxVelocity);
 				_velocity.y = value.y.Clamp(_minVelocity, _maxVelocity);
 			}
+		}
+
+		private void Start()
+		{
+			_weaponObject = Instantiate(WeaponPrefab, transform, true);
+			_weaponObject.transform.position = transform.position;
+			_weapon = _weaponObject.GetComponent<BaseWeapon>();
 		}
 
 		private void FixedUpdate()
@@ -63,12 +71,17 @@ namespace Player
 
 				transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
 			}
-
 		}
 
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			_velocity = context.ReadValue<Vector2>();
+		}
+
+		public void OnShoot(InputAction.CallbackContext context)
+		{
+			if (context.performed) _weapon.Shoot();
+			else if (context.canceled) _weapon.Holster();
 		}
 
 		// TODO: Temporary input events for debugging, remove here and from
