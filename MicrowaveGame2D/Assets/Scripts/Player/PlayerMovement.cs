@@ -60,5 +60,26 @@ namespace Player
 		{
 			_velocity = context.ReadValue<Vector2>();
 		}
+
+		// TODO: Temporary input events for debugging, remove here and from
+		// input system.
+
+		public void OnHeal(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				GetComponent<Health>().Value += 4;
+				print("Pressed?");
+			}
+		}
+
+		public void OnDamage(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				GetComponent<Health>().Value -= 3;
+				print("Pressed?");
+			}
+		}
 	}
 }
