@@ -5,9 +5,8 @@ using System.Collections;
 
 public class ConveyorBeltLeft : MonoBehaviour
 {
-    public Vector2 toLeft;
 
-    //Move Entities to the right
+    //Move Entities Left
     public void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.GetComponent<PlayerMovement>() != null)
@@ -17,8 +16,8 @@ public class ConveyorBeltLeft : MonoBehaviour
 
             if (pScript)
             {
-                //update the position
-                pScript.transform.position -= Vector3.right * pScript.Speed;
+                //update the position to _target.position
+                pScript.transform.position = new Vector3(transform.position.x - 2, transform.position.y);
             }
         }
     }
