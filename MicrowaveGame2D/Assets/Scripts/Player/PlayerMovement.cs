@@ -2,38 +2,39 @@ using UnityEngine;
 using Level;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Player.Weapons;
 using System;
 
 namespace Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
+		public GameObject WeaponPrefab;
+		private GameObject _weaponObject;
+		private BaseWeapon _weapon;
+
 		public Rigidbody2D RigidBody;
-		private float _speed = 5.0f;
+		public float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		private float _maxVelocity = 20.0f;
-		private float _increaseSpeed = 5.0f;
-		private float _decreaseSpeed = 5.0f;
+		private float _minVelocity = 5.0f;
 
 		private Vector2 _velocity;
 
 		public float Speed
-        {
+		{
 			get => _speed;
-			set
-            {
-				_speed.Clamp(_minSpeed, _maxSpeed);
-			}
-        }
+			set { _speed = value.Clamp(_minSpeed, _maxSpeed); }
+		}
 
 		public Vector2 Velocity
 		{
 			get => _velocity;
             set
             {
-				_velocity.x = value.x;
-				_velocity.y = value.y;
+				_velocity.x = value.x; //.Clamp(_minVelocity, _maxVelocity);
+				_velocity.y = value.y; //.Clamp(_minVelocity, _maxVelocity);
 
 				foreach(Animator animator in GetComponentsInChildren<Animator>())
 				{
@@ -49,18 +50,17 @@ namespace Player
 			}
 		}
 
+		private void Start()
+		{
+			_weaponObject = Instantiate(WeaponPrefab, transform, true);
+			_weaponObject.transform.position = transform.position;
+			_weapon = _weaponObject.GetComponent<BaseWeapon>();
+		}
+
 		private void FixedUpdate()
 		{
 			RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
 		}
-
-		public IEnumerator SpeedTimer()
-		{
-			Speed += _increaseSpeed;
-			yield return new WaitForSecondsRealtime(5.0f);
-			Speed -= _decreaseSpeed;
-		}
-
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
@@ -74,12 +74,17 @@ namespace Player
 
 				transform.position = new Vector3(otherDoor.x, otherDoor.y, transform.position.z);
 			}
-
 		}
 
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			Velocity = context.ReadValue<Vector2>();
+		}
+
+		public void OnShoot(InputAction.CallbackContext context)
+		{
+			if (context.performed) _weapon.Shoot();
+			else if (context.canceled) _weapon.Holster();
 		}
 
 		// TODO: Temporary input events for debugging, remove here and from

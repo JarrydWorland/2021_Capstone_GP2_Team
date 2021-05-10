@@ -3,11 +3,10 @@ using Player;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class ConveyorBelt_Right : MonoBehaviour
+public class ConveyorBeltLeft : MonoBehaviour
 {
-    public Vector2 toRight;
 
-    //Move Entities to the right
+    //Move Entities Left
     public void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.GetComponent<PlayerMovement>() != null)
@@ -17,9 +16,9 @@ public class ConveyorBelt_Right : MonoBehaviour
 
             if (pScript)
             {
-                //update the position
-                pScript.Velocity = transform.right * pScript.Speed;
-            }  
+                //update the position to _target.position
+                pScript.transform.position = new Vector3(transform.position.x - 2, transform.position.y);
+            }
         }
     }
 }
