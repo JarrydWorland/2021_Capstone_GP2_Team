@@ -83,5 +83,26 @@ namespace Player
 			if (context.performed) _weapon.Shoot();
 			else if (context.canceled) _weapon.Holster();
 		}
+
+		// TODO: Temporary input events for debugging, remove here and from
+		// input system.
+
+		public void OnHeal(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				GetComponent<Health>().Value += 4;
+				print("Pressed?");
+			}
+		}
+
+		public void OnDamage(InputAction.CallbackContext context)
+		{
+			if (context.performed)
+			{
+				GetComponent<Health>().Value -= 3;
+				print("Pressed?");
+			}
+		}
 	}
 }

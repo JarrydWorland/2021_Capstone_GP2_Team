@@ -219,6 +219,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a1b05b23-88bf-4e69-93fe-1151be398f50
     m_ActionName: Menu/Cancel[/XInputControllerWindows/buttonEast,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4174239758579939034}
+        m_TargetAssemblyTypeName: Player.PlayerMovement, Assembly-CSharp
+        m_MethodName: OnHeal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 50a5b272-7990-4445-af33-19ac63321e9e
+    m_ActionName: Playing/Increase Health [Debug][/Keyboard/rightBracket]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4174239758579939034}
+        m_TargetAssemblyTypeName: Player.PlayerMovement, Assembly-CSharp
+        m_MethodName: OnDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2473a657-33b6-4146-a6a6-1247b86788c9
+    m_ActionName: Playing/Decrease Health [Debug][/Keyboard/leftBracket]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
@@ -236,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b117eebf8701cb34a84486f3031f118b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponPrefab: {fileID: 2403750978332644197, guid: 2b9cf33e3c0b742488b828994c4b1e83, type: 3}
   RigidBody: {fileID: 6277386136968629915}
-  WeaponPrefab: {fileID: 0}
 --- !u!114 &7310790717952797162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944590104f3ef534f92da163e638433d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 6

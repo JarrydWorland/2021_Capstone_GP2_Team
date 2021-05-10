@@ -52,6 +52,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Increase Health [Debug]",
+                    "type": "Button",
+                    "id": "50a5b272-7990-4445-af33-19ac63321e9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Decrease Health [Debug]",
+                    "type": "Button",
+                    "id": "2473a657-33b6-4146-a6a6-1247b86788c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -547,6 +563,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a561fc6d-fc48-41ae-b6ba-dabc09b04b15",
+                    "path": "<Keyboard>/rightBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Increase Health [Debug]",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e32e6f6-dc20-478d-af54-a6f6b71c6838",
+                    "path": "<Keyboard>/leftBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decrease Health [Debug]",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
