@@ -10,7 +10,6 @@ public class KillPlayerLong : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
-            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
@@ -18,7 +17,7 @@ public class KillPlayerLong : MonoBehaviour
                 IEnumerator CrushTimer()
                 {
                     yield return new WaitForSecondsRealtime(7.0f);
-                    health -= health;
+                    player.GetComponent<Health>().Value = 0;
                 }
             }
         }

@@ -5,7 +5,7 @@ using System.Collections;
 //Damage Entitis once, will eventually drop items.
 public class Squash : MonoBehaviour
 {
-    private float _damage = 0.3f;
+    private int _damage = 1;
 
     public void OnTriggerEnter2D(Collider2D hit)
     {
@@ -13,7 +13,6 @@ public class Squash : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
-            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
@@ -21,7 +20,7 @@ public class Squash : MonoBehaviour
                 IEnumerator Damage()
                 {
                     yield return new WaitForSecondsRealtime(0.5f);
-                    health -= _damage;
+                    player.GetComponent<Health>().Value -= _damage;
                 }
                 //Eventully will drop items here.
             }

@@ -15,13 +15,14 @@ public class SpawnFlameRight : MonoBehaviour
     {
         GameObject _flame = Instantiate(flame) as GameObject;
         _flame.transform.position = new Vector3(transform.position.x +1, transform.position.y);
+        Destroy(_flame, 2);
     }
 
     IEnumerator Up()
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(2.0f);
+            yield return new WaitForSecondsRealtime(3.0f);
             InstantiateFlame();
 
         }

@@ -5,8 +5,8 @@ using Player;
 
 public class FlameThrower : MonoBehaviour
 {
-    private float _damage = 0.2f;
-    private float _meltDamage = 0.1f;
+    private int _damage = 2;
+    private int _meltDamage = 1;
     private float _increaseSpeed = 5.0f;
     private float _decreaseSpeed = 5.0f;
     public void OnTriggerEnter2D(Collider2D hit)
@@ -15,20 +15,19 @@ public class FlameThrower : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
-            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
-                health -= _damage;
+                player.GetComponent<Health>().Value -= _damage;
                 StartCoroutine(MeltTimer());
                 IEnumerator MeltTimer()
                 {
                     pScript.Speed -= _decreaseSpeed;
-                    yield return new WaitForSecondsRealtime(1.0f);
-                    health -= _meltDamage;
-                    yield return new WaitForSecondsRealtime(1.0f);
-                    health -= _meltDamage;
-                    yield return new WaitForSecondsRealtime(1.0f);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        yield return new WaitForSecondsRealtime(1.0f);
+                        player.GetComponent<Health>().Value -= _meltDamage;
+                    }
                     pScript.Speed += _increaseSpeed;
                 }
             }

@@ -10,12 +10,11 @@ public class KillEntities : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
-            float health = player.GetComponent<Health>().Value;
 
             //Will eventually be upgraded to also interact with enemy entities
             if (pScript)
             {
-                health -= health;
+                player.GetComponent<Health>().Value = 0;
             }
         }
     }

@@ -7,8 +7,8 @@ using System;
 public class AcidSpill : MonoBehaviour
 {
     //Acid does greater Damage on first hit.
-    private float _damage = 0.4f;
-    private float _meltDamage = 0.2f;
+    private int _damage = 2;
+    private int _meltDamage = 3;
     private float _increaseSpeed = 5.0f;
     private float _decreaseSpeed = 5.0f;
 
@@ -18,19 +18,19 @@ public class AcidSpill : MonoBehaviour
         {
             GameObject player = hit.gameObject;
             PlayerMovement pScript = player.GetComponent<PlayerMovement>();
-            float health = player.GetComponent<Health>().Value;
 
             if (pScript)
             {
-                health -= _damage;
+                player.GetComponent<Health>().Value -= _damage;
                 StartCoroutine(MeltTimer());
                 IEnumerator MeltTimer()
                 {
                     pScript.Speed -= _decreaseSpeed;
-                    yield return new WaitForSecondsRealtime(1.0f);
-                    health -= _meltDamage;
-                    yield return new WaitForSecondsRealtime(1.0f);
-                    health -= _meltDamage;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        yield return new WaitForSecondsRealtime(1.0f);
+                        player.GetComponent<Health>().Value -= _meltDamage;
+                    }
                     yield return new WaitForSecondsRealtime(5.0f);
                     pScript.Speed += _increaseSpeed;
                 }
