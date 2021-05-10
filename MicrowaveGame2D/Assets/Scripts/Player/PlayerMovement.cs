@@ -13,21 +13,20 @@ namespace Player
 		private BaseWeapon _weapon;
 
 		public Rigidbody2D RigidBody;
-		private float _speed = 5.0f;
+		public float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		private float _maxVelocity = 20.0f;
 		private float _minVelocity = 5.0f;
-		private float _increaseSpeed = 5.0f;
-		private float _decreaseSpeed = 5.0f;
 
 		private Vector2 _velocity;
 
 		public float Speed
 		{
 			get => _speed;
-			set { _speed.Clamp(_minSpeed, _maxSpeed); }
-		}
+			set
+       { _speed = value.Clamp(_minSpeed, _maxSpeed);}
+    }
 
 		public Vector2 Velocity
 		{
@@ -50,14 +49,6 @@ namespace Player
 		{
 			RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
 		}
-
-		public IEnumerator SpeedTimer()
-		{
-			Speed += _increaseSpeed;
-			yield return new WaitForSecondsRealtime(5.0f);
-			Speed -= _decreaseSpeed;
-		}
-
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{

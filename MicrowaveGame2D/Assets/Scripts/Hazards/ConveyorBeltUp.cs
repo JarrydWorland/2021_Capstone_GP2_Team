@@ -1,8 +1,12 @@
 using UnityEngine;
 using Player;
+using UnityEngine.InputSystem;
+using System.Collections;
 
-public class OilSpill : MonoBehaviour
+public class ConveyorBeltUp : MonoBehaviour
 {
+
+    //Move Entities Above
     public void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.GetComponent<PlayerMovement>() != null)
@@ -12,7 +16,8 @@ public class OilSpill : MonoBehaviour
 
             if (pScript)
             {
-                StartCoroutine(pScript.SpeedTimer());
+                //update the position to _target.position
+                pScript.transform.position = new Vector3(transform.position.x, transform.position.y + 2);
             }
         }
     }
