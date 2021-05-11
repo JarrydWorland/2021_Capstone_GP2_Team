@@ -62,6 +62,22 @@ namespace Player
 			RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
 		}
 
+		private void Update()
+		{
+			// Get the direction the player is currently aiming in.
+			Vector2 mousePosition = Mouse.current.position.ReadValue();
+			Vector2 mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+			Vector2 direction = mousePositionInWorld - (Vector2)transform.position;
+			direction.Normalize();
+
+			foreach(Animator animator in GetComponentsInChildren<Animator>())
+			{
+				animator.SetFloat("AimingX", direction.x);
+				animator.SetFloat("AimingY", direction.y);
+			}
+
+		}
+
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			if (other.GetComponent<Door>() != null)
@@ -83,8 +99,22 @@ namespace Player
 
 		public void OnShoot(InputAction.CallbackContext context)
 		{
-			if (context.performed) _weapon.Shoot();
-			else if (context.canceled) _weapon.Holster();
+			if (context.performed) 
+			{
+				_weapon.Shoot();
+				foreach(Animator animator in GetComponentsInChildren<Animator>())
+				{
+					animator.SetTrigger("Aiming");
+				}
+			}
+			else if (context.canceled)
+			{
+				_weapon.Holster();
+				foreach(Animator animator in GetComponentsInChildren<Animator>())
+				{
+					animator.SetTrigger("Holster");
+				}
+			}
 		}
 
 		// TODO: Temporary input events for debugging, remove here and from
