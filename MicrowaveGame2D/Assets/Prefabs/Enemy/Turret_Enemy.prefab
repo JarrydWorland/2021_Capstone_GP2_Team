@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5755585971191928932}
   - component: {fileID: 2641343656169149214}
   - component: {fileID: 6501687495680098518}
+  - component: {fileID: 7001072163876105909}
   m_Layer: 0
   m_Name: Turret_Enemy
   m_TagString: Untagged
@@ -124,3 +125,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 2.46}
   m_EdgeRadius: 0
+--- !u!114 &7001072163876105909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463328042464237844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944590104f3ef534f92da163e638433d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 3

@@ -128,6 +128,11 @@ public class PreAlphaEnemy : MonoBehaviour
         }
     }
 
+    void TakeDamage(int damage)
+    {
+        GetComponent<Health>().Value -= damage;
+    }
+
     /*void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
