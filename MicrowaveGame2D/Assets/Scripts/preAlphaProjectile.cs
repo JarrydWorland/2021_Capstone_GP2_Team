@@ -1,104 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class preAlphaProjectile : MonoBehaviour
+public class PreAlphaProjectile : MonoBehaviour
 {
-    private Transform target;
+	[Tooltip("Speed the projectile will travel at in units per second")]
+	public float Speed = 10f;
 
-    public float speed = 70f;
-    public int damage = 1;
-    //public float explosionRadius = 0f;
-    //public GameObject impactEffect;
-    private Vector3 dir;
-    private Vector3 originPoint;
+	[Tooltip("Half-hearts of damage dealt to the target on impact")]
+	public int Damage = 1;
 
-    public void Seek(Transform _target)
-    {
-        target = _target;
-        dir = target.position - transform.position;
-    }
+	private GameObject _parent;
+	private Vector3 _origin;
+	private GameObject _target;
+	private Rigidbody2D _rigidbody;
+	private Vector2 _direction;
 
-    void start()
-    {
-        originPoint = transform.position;
-    }
+	public PreAlphaProjectile Init(GameObject parent, GameObject target)
+	{
+		_parent = parent;
+		_origin = parent.transform.position;
+		_target = target;
+		_direction = target.transform.position - transform.position;
+		_direction.Normalize();
+		return this;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+	private void Start()
+	{
+		_rigidbody = GetComponent<Rigidbody2D>();
+	}
 
-        float distanceThisFrame = speed * Time.deltaTime;
-        /*Vector3 distanceToPlayer = target.position - transform.position;;
-        if (distanceToPlayer.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-            return;
-        }*/
+	private void FixedUpdate()
+	{
+		Debug.Assert(_origin != null, "preAlphaProjectile was not initialized");
+		FixedUpdateMoveLogic();
+		FixedUpdateDespawnLogic();
+	}
 
-        if(GetComponent<BoxCollider2D>().IsTouching(target.GetComponent<BoxCollider2D>()))
-        {
-            HitTarget();
-        }
+	private void FixedUpdateMoveLogic()
+	{
+		Vector2 position = _rigidbody.position + _direction * (Speed * Time.fixedDeltaTime);
+		_rigidbody.MovePosition(position);
+	}
 
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        //transform.LookAt(target);
+	private void FixedUpdateDespawnLogic()
+	{
+		float distanceFromOrigin = (_origin - transform.position).sqrMagnitude;
+		if (distanceFromOrigin > 1000f)
+		{
+			Destroy(gameObject);
+		}
+	}
 
-        if((transform.position - originPoint).magnitude > 25f)
-        {
-            //Debug.Log((transform.position - originPoint).magnitude);
-            //Debug.Log("cleaned up");
-            Destroy(gameObject);
-        }
-    }
-
-    void HitTarget()
-    {
-        //Debug.Log("We hit something");
-        /*GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 2f);
-        if(explosionRadius > 0f)
-        {
-            Explode();
-        }
-        else
-        {*/
-            Damage(target);
-        //}
-        
-        Destroy(gameObject);
-    }
-    
-    void Damage(Transform enemy)
-    {
-        Health h = enemy.GetComponent<Health>();
-        if(h != null)
-        {
-            h.Value -= damage;
-        }
-        //Destroy(enemy.gameObject);
-    }
-
-    /*void Explode()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach(Collider collider in colliders)
-        {
-            if(collider.tag == "Enemy")
-            {
-                Damage(collider.transform);
-            }
-        }
-    }*/
-
-    /*void OnDrawGizmoSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    }*/
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject == _parent) return;
+		if (other.gameObject == _target)
+		{
+			other.GetComponent<Health>().Value -= Damage;
+		}
+		Destroy(gameObject);
+	}
 }

@@ -36,7 +36,7 @@ namespace Player.Weapons.Pistol
 			Vector2 direction = mousePositionInWorld - (Vector2) transform.parent.position;
 
 			// Create a bullet instance.
-			PistolBullet.Make(BulletPrefab, transform.position, Velocity, direction);
+			PistolBullet.Make(BulletPrefab, this, direction);
 		}
 
 		private void Update()
