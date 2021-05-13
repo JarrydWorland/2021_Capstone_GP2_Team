@@ -11,10 +11,7 @@ namespace Level
 		/* private static fields */
 		/*=======================*/
 
-		private static IEnumerable<GameObject> _roomPrefabs = AssetDatabase
-			.FindAssets("", new[] { "Assets/Prefabs/Rooms" })
-			.Select(guid => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid)))
-			.Where(roomPrefab => roomPrefab?.GetComponent<Room>() != null);
+		private static IEnumerable<GameObject> _roomPrefabs = Resources.LoadAll<GameObject>("Rooms").Where(roomPrefab => roomPrefab?.GetComponent<Room>() != null);
 
 		/*=======================*/
 		/* public static methods */

@@ -24,7 +24,7 @@ namespace Level
 		{
 			Vector3 start = _camera.transform.position;
 			Vector3 end = _cameraTargetPosition;
-			_camera.transform.position = Vector3.Lerp(start, end, 0.05f);
+			_camera.transform.position = Vector3.Lerp(start, end, 20 * Time.deltaTime);
 		}
 
 		public void ChangeRoom(Door door)
