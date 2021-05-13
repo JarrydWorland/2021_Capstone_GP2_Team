@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_UseFullKinematicContacts
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7310790717952797162, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: MaxHealth
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 8574193837115946451, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -332,7 +336,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 816790859}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -381,6 +386,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingRoomPrefab: {fileID: 8284593621937231616, guid: e96ed5f3b0ae8f248be75dd4786e39e3, type: 3}
   Depth: 5
+--- !u!1 &816790858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816790859}
+  - component: {fileID: 816790860}
+  m_Layer: 0
+  m_Name: Health Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816790859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816790858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14, y: 6, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 399585883}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816790860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816790858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7451d2e1ce4b37140b8d21e9177cd68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1772277298}
 --- !u!1001 &859570561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -552,3 +601,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30deb09095172364baa5ba605cf6f808, type: 3}
+--- !u!1 &1772277298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8574193837115946451, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+  m_PrefabInstance: {fileID: 26043917}
+  m_PrefabAsset: {fileID: 0}
