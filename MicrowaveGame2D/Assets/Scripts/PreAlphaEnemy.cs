@@ -49,6 +49,6 @@ public class PreAlphaEnemy : MonoBehaviour
 	private void Shoot()
 	{
 		GameObject bullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-		bullet.GetComponent<preAlphaProjectile>().Init(gameObject, _target);
+		bullet.GetComponent<PreAlphaProjectile>().Init(gameObject, _target);
 	}
 }
