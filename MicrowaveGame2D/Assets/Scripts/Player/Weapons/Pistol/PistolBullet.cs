@@ -8,10 +8,21 @@ namespace Player.Weapons.Pistol
 		private float _velocity;
 		private Vector3 _direction;
 
+
 		private void Update()
 		{
 			// Move the bullet in the given direction.
 			transform.position = transform.position + _direction * (_velocity * Time.deltaTime);
+		}
+
+		private void OnTriggerExit2D(Collider2D other)
+        {
+			// If the collision occured with the player, ignore it.
+			if (other.gameObject == _weapon.transform.parent.gameObject) return;
+
+			if (other.gameObject == GameObject.FindWithTag("Floor")) { Destroy(gameObject); }
+
+			if (other.gameObject == GameObject.FindWithTag("Wall")) { Destroy(gameObject); }
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
@@ -24,9 +35,11 @@ namespace Player.Weapons.Pistol
 
 			// If it has a health component, reduce it's health by the damage
 			// of the weapon the bullet was fired from.
-			if (health != null) health.Value -= _weapon.Damage;
-
-			Destroy(gameObject);
+			if (health != null)
+			{
+				health.Value -= _weapon.Damage;
+				Destroy(gameObject);
+			}
 		}
 
 		public static GameObject Make(GameObject bulletPrefab, BaseWeapon weapon, Vector2 direction)
