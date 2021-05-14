@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PreAlphaProjectile : MonoBehaviour
+public class preAlphaProjectile : MonoBehaviour
 {
 	[Tooltip("Speed the projectile will travel at in units per second")]
 	public float Speed = 10f;
@@ -14,7 +14,7 @@ public class PreAlphaProjectile : MonoBehaviour
 	private Rigidbody2D _rigidbody;
 	private Vector2 _direction;
 
-	public PreAlphaProjectile Init(GameObject parent, GameObject target)
+	public preAlphaProjectile Init(GameObject parent, GameObject target)
 	{
 		_parent = parent;
 		_origin = parent.transform.position;
