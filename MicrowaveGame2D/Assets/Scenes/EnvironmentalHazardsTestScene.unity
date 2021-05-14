@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4960198795522504774, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.x
+      value: 2.6928477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960198795522504774, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Size.y
+      value: 6.232955
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960198795522504774, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.08900875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960198795522504774, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.7054162
+      objectReference: {fileID: 0}
     - target: {fileID: 6277386136968629915, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -152,6 +168,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574193837115946451, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574193837115946451, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8799025469217700878, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
