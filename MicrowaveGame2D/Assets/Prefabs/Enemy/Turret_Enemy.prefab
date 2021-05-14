@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 93d5bdcc1ee4579489ff82c3e1e91f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 9063544965860727830, guid: 37ea237b875ce084ebe3dd26cf943820, type: 3}
-  fireRate: 0.25
+  FireRate: 1
 --- !u!61 &6501687495680098518
 BoxCollider2D:
   m_ObjectHideFlags: 0
