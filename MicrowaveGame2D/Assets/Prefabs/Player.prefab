@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 8165595877299822449}
   - component: {fileID: 4174239758579939034}
   - component: {fileID: 7310790717952797162}
+  - component: {fileID: 3925152552661984380}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -375,7 +376,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -437,11 +438,35 @@ MonoBehaviour:
     m_ActionId: 4bdd2eac-3e70-4bab-a53b-bb0f4001c0d7
     m_ActionName: Playing/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3925152552661984380}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUseItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b2beb362-04c7-4861-a388-5edc29f22910
     m_ActionName: Playing/Use Item[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonEast,/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3925152552661984380}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnItemInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fbb2f457-f943-46eb-b1c7-2a15b082a94f
     m_ActionName: Playing/Pickup / Drop Item[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/right,/Keyboard/shift,/Keyboard/1,/Keyboard/shift,/Keyboard/2,/Keyboard/shift,/Keyboard/3,/Keyboard/shift,/Keyboard/4]
   - m_PersistentCalls:
@@ -541,3 +566,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 6
+--- !u!114 &3925152552661984380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a0c99f716bb654a9143f2f0b2b730a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

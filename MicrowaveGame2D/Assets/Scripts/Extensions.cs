@@ -10,12 +10,14 @@ public static class Extensions
 		return source.ElementAt(index);
 	}
 
-	public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition, Func<TSource, bool> predicate)
+	public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition,
+		Func<TSource, bool> predicate)
 	{
 		return condition ? source.Where(predicate) : source;
 	}
 
-	public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition, Func<TSource, int, bool> predicate)
+	public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition,
+		Func<TSource, int, bool> predicate)
 	{
 		return condition ? source.Where(predicate) : source;
 	}
@@ -30,5 +32,17 @@ public static class Extensions
 		if (val.CompareTo(min) < 0) return min;
 		else if (val.CompareTo(max) > 0) return max;
 		else return val;
+	}
+
+	public static bool TryGetValue<T>(this T[] source, int index, out T? value) where T : struct
+	{
+		if (index >= 0 && index < source.Length)
+		{
+			value = source[index];
+			return true;
+		}
+
+		value = null;
+		return false;
 	}
 }
