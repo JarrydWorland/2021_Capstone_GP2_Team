@@ -26,7 +26,7 @@ public class AcidSpill : MonoBehaviour
                 IEnumerator MeltTimer()
                 {
                     pScript.Speed -= _decreaseSpeed;
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         yield return new WaitForSecondsRealtime(1.0f);
                         player.GetComponent<Health>().Value -= _meltDamage;
