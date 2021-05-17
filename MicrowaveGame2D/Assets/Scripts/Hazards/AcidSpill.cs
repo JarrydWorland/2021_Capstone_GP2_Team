@@ -7,8 +7,8 @@ using System;
 public class AcidSpill : MonoBehaviour
 {
     //Acid does greater Damage on first hit.
-    private int _damage = 2;
-    private int _meltDamage = 3;
+    private int _damage = 3;
+    private int _meltDamage = 2;
     private float _increaseSpeed = 5.0f;
     private float _decreaseSpeed = 5.0f;
 
