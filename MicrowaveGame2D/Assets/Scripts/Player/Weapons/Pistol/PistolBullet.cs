@@ -6,29 +6,51 @@ namespace Player.Weapons.Pistol
 	{
 		private BaseWeapon _weapon;
 		private float _velocity;
-		private Vector3 _direction;
+		private Vector2 _direction;
+		public Rigidbody2D RigidBody;
 
-
-		private void Update()
+		private void FixedUpdate()
 		{
+			//RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
 			// Move the bullet in the given direction.
-			transform.position = transform.position + _direction * (_velocity * Time.deltaTime);
+			RigidBody.MovePosition(RigidBody.position + _direction * (_velocity * Time.deltaTime));
 		}
 
-		private void OnTriggerExit2D(Collider2D other)
-        {
-			// If the collision occured with the player, ignore it.
-			if (other.gameObject == _weapon.transform.parent.gameObject) return;
+		//private void OnTriggerExit2D(Collider2D other)
+  //      {
+		//	// If the collision occured with the player, ignore it.
+		//	if (other.gameObject == _weapon.transform.parent.gameObject) return;
+		//	GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+		//	GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+		//	GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
 
-			if (other.gameObject == GameObject.FindWithTag("Floor")) { Destroy(gameObject); }
+		//	foreach (GameObject floor in floors)
+  //          {
+		//		if (other.gameObject == floor) { Destroy(gameObject); }
+		//	}
 
-			if (other.gameObject == GameObject.FindWithTag("Wall")) { Destroy(gameObject); }
-		}
+		//	foreach (GameObject wall in walls)
+		//	{
+		//		if (other.gameObject == wall) { Destroy(gameObject); }
+		//	}
+
+		//	foreach (GameObject door in doors)
+		//	{
+		//		if (other.gameObject == door) { Destroy(gameObject); }
+		//	}
+		//}
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			// If the collision occured with the player, ignore it.
 			if (other.gameObject == _weapon.transform.parent.gameObject) return;
+
+			GameObject[] collidables = GameObject.FindGameObjectsWithTag("Collidable");
+
+			foreach (GameObject collidable in collidables)
+			{
+				if (other.gameObject == collidable) { Destroy(gameObject); }
+			}
 
 			// Attempt to fetch the health component from the other object.
 			Health health = other.GetComponent<Health>();
