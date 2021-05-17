@@ -26,13 +26,13 @@ public class PreAlphaProjectile : MonoBehaviour
 	}
 
 	private void Start()
-	{
+    {
 		_rigidbody = GetComponent<Rigidbody2D>();
-	}
+    }
 
 	private void FixedUpdate()
 	{
-		Debug.Assert(_origin != null, "preAlphaProjectile was not initialized");
+		Debug.Assert(_origin != null, "PreAlphaProjectile was not initialized");
 		FixedUpdateMoveLogic();
 		FixedUpdateDespawnLogic();
 	}
@@ -58,6 +58,12 @@ public class PreAlphaProjectile : MonoBehaviour
 		if (other.gameObject == _target)
 		{
 			other.GetComponent<Health>().Value -= Damage;
+		}
+		GameObject[] collidables = GameObject.FindGameObjectsWithTag("Collidable");
+
+		foreach (GameObject collidable in collidables)
+		{
+			if (other.gameObject == collidable) { Destroy(gameObject); }
 		}
 		Destroy(gameObject);
 	}

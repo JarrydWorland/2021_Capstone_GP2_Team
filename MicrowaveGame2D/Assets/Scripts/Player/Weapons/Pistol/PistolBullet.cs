@@ -8,42 +8,51 @@ namespace Player.Weapons.Pistol
 		private float _velocity;
 		private Vector2 _direction;
 		public Rigidbody2D RigidBody;
+		private Vector3 _origin;
+
+		public static GameObject Make(GameObject bulletPrefab, BaseWeapon weapon, Vector2 direction)
+		{
+			GameObject bullet = Instantiate(bulletPrefab);
+			bullet.transform.position = weapon.transform.parent.position;
+
+			PistolBullet pistolBullet = bullet.GetComponent<PistolBullet>();
+			pistolBullet._weapon = weapon;
+			pistolBullet._velocity = weapon.Velocity;
+
+			pistolBullet._direction = direction;
+			pistolBullet._direction.Normalize();
+
+			return bullet;
+		}
 
 		private void FixedUpdate()
 		{
-			//RigidBody.MovePosition(RigidBody.position + Velocity * (Speed * Time.fixedDeltaTime));
-			// Move the bullet in the given direction.
-			RigidBody.MovePosition(RigidBody.position + _direction * (_velocity * Time.deltaTime));
+			Debug.Assert(_origin != null, "PreAlphaProjectile was not initialized");
+			FixedUpdateMoveLogic();
+			FixedUpdateDespawnLogic();
 		}
 
-		//private void OnTriggerExit2D(Collider2D other)
-  //      {
-		//	// If the collision occured with the player, ignore it.
-		//	if (other.gameObject == _weapon.transform.parent.gameObject) return;
-		//	GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
-		//	GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-		//	GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+		private void FixedUpdateMoveLogic()
+		{
+			Vector2 position = RigidBody.position + _direction * (_velocity * Time.fixedDeltaTime);
+			RigidBody.MovePosition(position);
+		}
 
-		//	foreach (GameObject floor in floors)
-  //          {
-		//		if (other.gameObject == floor) { Destroy(gameObject); }
-		//	}
-
-		//	foreach (GameObject wall in walls)
-		//	{
-		//		if (other.gameObject == wall) { Destroy(gameObject); }
-		//	}
-
-		//	foreach (GameObject door in doors)
-		//	{
-		//		if (other.gameObject == door) { Destroy(gameObject); }
-		//	}
-		//}
+		private void FixedUpdateDespawnLogic()
+		{
+			float distanceFromOrigin = (_origin - transform.position).sqrMagnitude;
+			if (distanceFromOrigin > 20f)
+			{
+				Destroy(gameObject);
+			}
+		}
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			// If the collision occured with the player, ignore it.
 			if (other.gameObject == _weapon.transform.parent.gameObject) return;
+
+			//if (other.gameObject == _parent) return;
 
 			GameObject[] collidables = GameObject.FindGameObjectsWithTag("Collidable");
 
@@ -62,21 +71,6 @@ namespace Player.Weapons.Pistol
 				health.Value -= _weapon.Damage;
 				Destroy(gameObject);
 			}
-		}
-
-		public static GameObject Make(GameObject bulletPrefab, BaseWeapon weapon, Vector2 direction)
-		{
-			GameObject bulletObject = Instantiate(bulletPrefab);
-			bulletObject.transform.position = weapon.transform.parent.position;
-
-			PistolBullet pistolBullet = bulletObject.GetComponent<PistolBullet>();
-			pistolBullet._weapon = weapon;
-			pistolBullet._velocity = weapon.Velocity;
-
-			pistolBullet._direction = direction;
-			pistolBullet._direction.Normalize();
-
-			return bulletObject;
 		}
 	}
 }
