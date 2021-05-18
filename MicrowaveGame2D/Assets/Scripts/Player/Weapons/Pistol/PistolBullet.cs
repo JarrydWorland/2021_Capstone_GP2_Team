@@ -16,30 +16,6 @@ namespace Player.Weapons.Pistol
 			RigidBody.MovePosition(RigidBody.position + _direction * (_velocity * Time.deltaTime));
 		}
 
-		//private void OnTriggerExit2D(Collider2D other)
-  //      {
-		//	// If the collision occured with the player, ignore it.
-		//	if (other.gameObject == _weapon.transform.parent.gameObject) return;
-		//	GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
-		//	GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-		//	GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
-
-		//	foreach (GameObject floor in floors)
-  //          {
-		//		if (other.gameObject == floor) { Destroy(gameObject); }
-		//	}
-
-		//	foreach (GameObject wall in walls)
-		//	{
-		//		if (other.gameObject == wall) { Destroy(gameObject); }
-		//	}
-
-		//	foreach (GameObject door in doors)
-		//	{
-		//		if (other.gameObject == door) { Destroy(gameObject); }
-		//	}
-		//}
-
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			// If the collision occured with the player, ignore it.

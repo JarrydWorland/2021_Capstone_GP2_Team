@@ -15,22 +15,22 @@ public class ConveyorBelt : MonoBehaviour
 
             if (pScript)
             {
-                if (pScript.transform.position.z == 180)
+                if (tag == "Up")
                 {
-                    //update the position to _target.position
-                    pScript.transform.position = new Vector3(transform.position.x, transform.position.y - 2);
+                        //update the position to _target.position
+                        pScript.transform.position = new Vector3(pScript.transform.position.x, transform.position.y + 2);
                 }
-                if (pScript.transform.position.z == 90)
+                if(tag == "Down")
                 {
-                    //update the position to _target.position
-                    pScript.transform.position = new Vector3(transform.position.x, transform.position.y + 2);
+                        //update the position to _target.position
+                        pScript.transform.position = new Vector3(pScript.transform.position.x, transform.position.y - 2);
                 }
-                if (pScript.transform.position.z == 270)
+                if(tag == "Left")
                 {
                     //update the position to _target.position
                     pScript.transform.position = new Vector3(transform.position.x - 2, transform.position.y);
                 }
-                if (pScript.transform.position.z == 0)
+                if(tag == "Right")
                 {
                     //update the position to _target.position
                     pScript.transform.position = new Vector3(transform.position.x + 2, transform.position.y);
