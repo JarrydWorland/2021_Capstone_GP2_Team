@@ -15,6 +15,7 @@ namespace Weapons
 		public float BulletVelocity = 20.0f;
 		public Sprite BulletSprite;
 		public float BulletScale = 1.0f;
+		public float BulletSpin = 0.0f;
 
 		private float _fireRateInverse;
 		private float _time;
@@ -40,7 +41,7 @@ namespace Weapons
 			bullet.AddComponent<SpriteRenderer>().sprite = BulletSprite;
 			bullet.AddComponent<Rigidbody2D>();
 			bullet.AddComponent<BoxCollider2D>().isTrigger = true;
-			bullet.AddComponent<BulletBehaviour>().Init(this);
+			bullet.AddComponent<BulletBehaviour>().Init(this, BulletVelocity, BulletSpin);
 			bullet.transform.Rotate(Vector3.forward, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
 			bullet.transform.localScale = new Vector3(BulletScale, BulletScale, BulletScale);
 			return bullet;
@@ -70,26 +71,39 @@ namespace Weapons
 		[RequireComponent(typeof(Rigidbody2D))]
 		private class BulletBehaviour : MonoBehaviour
 		{
-			private const float _velocity = 20.0f;
 
 			private Rigidbody2D _rigidBody;
 			private BaseWeapon _weapon;
 			private Vector2 _direction;
 			private Vector3 _origin;
 			private int _damage;
+			private float _spin;
+			private float _velocity = 20.0f;
 
-			public void Init(BaseWeapon weapon)
+			public void Init(BaseWeapon weapon, float velocity, float spin)
 			{
 				_weapon = weapon;
 				_direction = weapon.Direction;
 				_origin = weapon.transform.position;
 				_damage = weapon.Damage;
+				_velocity = velocity;
+				_spin = spin;
 				transform.position = _origin;
 			}
 
 			private void Start()
 			{
 				_rigidBody = GetComponent<Rigidbody2D>();
+			}
+
+			private void Update()
+			{
+				UpdateSpin();
+			}
+
+			private void UpdateSpin()
+			{
+				transform.Rotate(Vector3.forward, _spin * Time.deltaTime);
 			}
 
 			private void FixedUpdate()
@@ -116,8 +130,13 @@ namespace Weapons
 
 			private void OnTriggerEnter2D(Collider2D other)
 			{
-				// If the collision occured with the player, ignore it.
-				if (_weapon != null && other.gameObject == _weapon.gameObject) return;
+				// TODO: Temporarily, until we implement proper collsion
+				// groups, the bullet will use an arbitrary property of the
+				// thing it collides with (in this case the sprite of the
+				// attached RapidFireWeapon) to determine if the target is
+				// friendly or not. THIS MUST BE CHANGED.
+				RapidFireWeapon otherWeapon = other.GetComponent<RapidFireWeapon>();
+				if (_weapon != null && otherWeapon != null && ((RapidFireWeapon)_weapon).BulletSprite == otherWeapon.BulletSprite) return;
 
 				//if (other.gameObject == _parent) return;
 
