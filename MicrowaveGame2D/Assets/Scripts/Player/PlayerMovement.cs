@@ -1,25 +1,17 @@
 using UnityEngine;
 using Level;
 using UnityEngine.InputSystem;
-using System.Collections;
-using Player.Weapons;
 using System;
 
 namespace Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
-		public GameObject WeaponPrefab;
-		private GameObject _weaponObject;
-		private BaseWeapon _weapon;
-
 		public Rigidbody2D RigidBody;
 		[SerializeField]
 		private float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
-		//private float _maxVelocity = 20.0f;
-		//private float _minVelocity = 5.0f;
 
 		private Vector2 _velocity;
 
@@ -34,8 +26,8 @@ namespace Player
 			get => _velocity;
             set
             {
-				_velocity.x = value.x; //.Clamp(_minVelocity, _maxVelocity);
-				_velocity.y = value.y; //.Clamp(_minVelocity, _maxVelocity);
+				_velocity.x = value.x;
+				_velocity.y = value.y;
 
 				foreach(Animator animator in GetComponentsInChildren<Animator>())
 				{
@@ -49,13 +41,6 @@ namespace Player
 					animator.SetFloat("Speed", Velocity.sqrMagnitude);
 				}
 			}
-		}
-
-		private void Start()
-		{
-			_weaponObject = Instantiate(WeaponPrefab, transform, true);
-			_weaponObject.transform.position = transform.position;
-			_weapon = _weaponObject.GetComponent<BaseWeapon>();
 		}
 
 		private void FixedUpdate()
@@ -96,26 +81,6 @@ namespace Player
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			Velocity = context.ReadValue<Vector2>();
-		}
-
-		public void OnShoot(InputAction.CallbackContext context)
-		{
-			if (context.performed) 
-			{
-				_weapon.Shoot();
-				foreach(Animator animator in GetComponentsInChildren<Animator>())
-				{
-					animator.SetTrigger("Aiming");
-				}
-			}
-			else if (context.canceled)
-			{
-				_weapon.Holster();
-				foreach(Animator animator in GetComponentsInChildren<Animator>())
-				{
-					animator.SetTrigger("Holster");
-				}
-			}
 		}
 
 		// TODO: Temporary input events for debugging, remove here and from
