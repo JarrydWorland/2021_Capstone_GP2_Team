@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - Door
   - Collidable
+  - Up
+  - Down
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

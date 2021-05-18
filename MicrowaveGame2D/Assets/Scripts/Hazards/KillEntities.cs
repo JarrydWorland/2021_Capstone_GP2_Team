@@ -14,6 +14,7 @@ public class KillEntities : MonoBehaviour
             //Will eventually be upgraded to also interact with enemy entities
             if (pScript)
             {
+                pScript.Speed = 5.0f;
                 player.GetComponent<Health>().Value = 0;
             }
         }
