@@ -41,6 +41,7 @@ namespace Weapons
 			bullet.AddComponent<Rigidbody2D>();
 			bullet.AddComponent<BoxCollider2D>().isTrigger = true;
 			bullet.AddComponent<BulletBehaviour>().Init(this);
+			bullet.transform.Rotate(Vector3.forward, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
 			bullet.transform.localScale = new Vector3(BulletScale, BulletScale, BulletScale);
 			return bullet;
 		}
@@ -107,7 +108,7 @@ namespace Weapons
 			private void FixedUpdateDespawnLogic()
 			{
 				float distanceFromOrigin = (_origin - transform.position).sqrMagnitude;
-				if (distanceFromOrigin > 100f)
+				if (distanceFromOrigin > 1000f)
 				{
 					Destroy(gameObject);
 				}
