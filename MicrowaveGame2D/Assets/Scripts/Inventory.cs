@@ -60,18 +60,15 @@ public class Inventory : MonoBehaviour
     {
         if (!context.performed) return;
 
-        bool droppedItem = false;
+        // Store the count before potentially dropping an item to reduce if statements later on.
+        int count = _nearbyItems.Count;
 
         // If the slot has an item, drop it.
-        if (_slots[slotId] != null)
-        {
-            DropItem(slotId);
-            droppedItem = true;
-        }
+        if (_slots[slotId] != null) DropItem(slotId);
 
-        // If no item was dropped and there is exactly one item, pick up the selected item.
-        // If an item was dropped and there is more than one item nearby, pick up the selected item.
-        if (droppedItem && _nearbyItems.Count > 1 || !droppedItem && _nearbyItems.Count == 1) PickupItem(slotId);
+        // If the count was larger than zero, there must be another item on the floor.
+        // Therefore we can pick it up and perform a "swap" rather than just a "drop".
+        if (count > 0) PickupItem(slotId);
     }
 
     private void OnUseItem(InputAction.CallbackContext context, int slotId)
