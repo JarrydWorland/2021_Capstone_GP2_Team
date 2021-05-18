@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletDamage: 1
   BulletFireRate: 1
-  BulletVelocity: 20
-  BulletSprite: {fileID: 21300000, guid: 9b444191e7118b04487b77302ad03b76, type: 3}
-  BulletScale: 0.1
+  BulletVelocity: 7.5
+  BulletSprite: {fileID: 21300000, guid: 92e25924e14e7e54c84adffa19a0fc0e, type: 3}
+  BulletScale: 0.2
+  BulletSpin: 360
