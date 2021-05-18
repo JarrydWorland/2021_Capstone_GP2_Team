@@ -7,7 +7,13 @@ namespace Items
 		public override void Use()
 		{
 			GameObject playerObject = GameObject.Find("Player");
-			playerObject.GetComponent<Health>().Value += 5;
+			Health playerHealth = playerObject.GetComponent<Health>();
+
+			if (playerHealth.Value < playerHealth.MaxHealth)
+			{
+				playerHealth.Value += 4;
+				Destroy(gameObject);
+			}
 		}
 	}
 }
