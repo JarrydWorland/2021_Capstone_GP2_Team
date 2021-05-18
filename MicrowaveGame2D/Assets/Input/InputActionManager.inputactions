@@ -30,6 +30,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Select Item",
+                    "type": "Button",
+                    "id": "1c80428c-9f00-46db-adef-5ad5616870cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Pickup / Drop Item",
                     "type": "Button",
                     "id": "fbb2f457-f943-46eb-b1c7-2a15b082a94f",
@@ -585,6 +593,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Decrease Health [Debug]",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bf30b0b-16dd-4263-8973-a9294e88f6ae",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a7eca50-60a0-4918-aa83-443a549e3d7b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0294844c-0f4d-48a8-bf90-6591a438d62a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12d69341-1c82-488f-b6ce-05181593dcc0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
