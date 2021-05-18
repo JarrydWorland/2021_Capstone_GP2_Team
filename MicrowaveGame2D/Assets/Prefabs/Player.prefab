@@ -571,4 +571,4 @@ MonoBehaviour:
   BulletFireRate: 5
   BulletVelocity: 20
   BulletSprite: {fileID: 21300000, guid: 7a437159611fdcb4e94f5808449ce8e8, type: 3}
-  BulletScale: 0.2
+  BulletScale: 0.13
