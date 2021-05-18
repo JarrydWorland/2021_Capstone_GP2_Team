@@ -319,7 +319,9 @@ GameObject:
   - component: {fileID: 4960198795522504774}
   - component: {fileID: 8165595877299822449}
   - component: {fileID: 4174239758579939034}
+  - component: {fileID: 9208924256674879770}
   - component: {fileID: 7310790717952797162}
+  - component: {fileID: 6592026831741148447}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -446,8 +448,8 @@ MonoBehaviour:
     m_ActionName: Playing/Pickup / Drop Item[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/right,/Keyboard/shift,/Keyboard/1,/Keyboard/shift,/Keyboard/2,/Keyboard/shift,/Keyboard/3,/Keyboard/shift,/Keyboard/4]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4174239758579939034}
-        m_TargetAssemblyTypeName: Player.PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 9208924256674879770}
+        m_TargetAssemblyTypeName: Player.PlayerShootBehaviour, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
         m_Arguments:
@@ -525,9 +527,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b117eebf8701cb34a84486f3031f118b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 2403750978332644197, guid: 2b9cf33e3c0b742488b828994c4b1e83, type: 3}
   RigidBody: {fileID: 6277386136968629915}
   _speed: 10
+--- !u!114 &9208924256674879770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cf5520c6cde0848b1e4db899210b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultWeapon: {fileID: 6592026831741148447}
 --- !u!114 &7310790717952797162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,3 +555,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 6
+--- !u!114 &6592026831741148447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c4e838dd3c41499f1dfdc6ca7e77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletFireRate: 5
+  BulletVelocity: 20
+  BulletSprite: {fileID: 21300000, guid: 4a3f0c199f5ec874f8f4166c3f72f2e1, type: 3}
