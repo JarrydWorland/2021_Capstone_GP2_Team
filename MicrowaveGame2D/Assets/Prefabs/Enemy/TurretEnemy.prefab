@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6113339563895672531}
   - component: {fileID: 5755585971191928932}
-  - component: {fileID: 2641343656169149214}
   - component: {fileID: 6501687495680098518}
   - component: {fileID: 7001072163876105909}
+  - component: {fileID: 1588275431339931132}
+  - component: {fileID: 4901973591558794130}
+  - component: {fileID: 7416684124633275481}
   m_Layer: 0
-  m_Name: Turret_Enemy
+  m_Name: TurretEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2641343656169149214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5463328042464237844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3bf4221e72ae3241bc426cbd8f8f2ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 9063544965860727830, guid: 37ea237b875ce084ebe3dd26cf943820, type: 3}
-  FireRate: 1
 --- !u!61 &6501687495680098518
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,3 +126,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 3
+--- !u!114 &1588275431339931132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463328042464237844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc97fe8a4ca51aa4a990a95cf8368a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4901973591558794130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463328042464237844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720cd3c84a14094d9ff915acab525ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon: {fileID: 7416684124633275481}
+--- !u!114 &7416684124633275481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463328042464237844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c4e838dd3c41499f1dfdc6ca7e77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
+  BulletFireRate: 1
+  BulletVelocity: 20
+  BulletSprite: {fileID: 21300000, guid: 9b444191e7118b04487b77302ad03b76, type: 3}
+  BulletScale: 0.1
