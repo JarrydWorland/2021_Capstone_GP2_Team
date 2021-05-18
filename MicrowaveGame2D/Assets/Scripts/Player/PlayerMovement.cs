@@ -14,7 +14,7 @@ namespace Player
 		private BaseWeapon _weapon;
 
 		public Rigidbody2D RigidBody;
-		public float _speed = 10.0f;
+		private float _speed = 10.0f;
 		private float _maxSpeed = 20.0f;
 		private float _minSpeed = 5.0f;
 		//private float _maxVelocity = 20.0f;
