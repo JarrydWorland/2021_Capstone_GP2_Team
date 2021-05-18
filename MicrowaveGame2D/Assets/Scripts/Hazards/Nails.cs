@@ -6,8 +6,8 @@ using System.Collections;
 public class Nails : MonoBehaviour
 {
     private int _damage = 1;
-    private float _increaseSpeed = 5.0f;
-    private float _decreaseSpeed = 5.0f;
+    private float _increasedSpeed = 10.0f;
+    private float _decreasedSpeed = 5.0f;
 
     public void OnTriggerEnter2D(Collider2D hit)
     {
@@ -22,9 +22,9 @@ public class Nails : MonoBehaviour
                 StartCoroutine(SlowTimer());
                 IEnumerator SlowTimer()
                 {
-                    pScript.Speed -= _decreaseSpeed;
+                    pScript.Speed = _decreasedSpeed;
                     yield return new WaitForSecondsRealtime(5.0f);
-                    pScript.Speed += _increaseSpeed;
+                    pScript.Speed = _increasedSpeed;
                 }
             }
         }
