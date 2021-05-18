@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a6084ea3ee4dfe74db6037d38da57f28, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7643711329857269032
@@ -174,15 +174,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 33500b4359954b44e944c1c5115dff4d, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4669863973592420994
@@ -276,15 +276,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 92ad0c10bbef49e43af2aa0e73943a1c, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5766392056463504725
@@ -319,8 +319,10 @@ GameObject:
   - component: {fileID: 4960198795522504774}
   - component: {fileID: 8165595877299822449}
   - component: {fileID: 4174239758579939034}
+  - component: {fileID: 9208924256674879770}
   - component: {fileID: 7310790717952797162}
-  - component: {fileID: 3925152552661984380}
+  - component: {fileID: 6592026831741148447}
+  - component: {fileID: -437860639897606278}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -439,8 +441,8 @@ MonoBehaviour:
     m_ActionName: Playing/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4174239758579939034}
-        m_TargetAssemblyTypeName: Player.PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 9208924256674879770}
+        m_TargetAssemblyTypeName: Player.PlayerShootBehaviour, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
         m_Arguments:
@@ -503,7 +505,7 @@ MonoBehaviour:
     m_ActionName: Playing/Decrease Health [Debug][/Keyboard/leftBracket]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnPickupDropItemSlotOne
         m_Mode: 0
@@ -519,7 +521,7 @@ MonoBehaviour:
     m_ActionName: Playing/Pickup / Drop Item - Slot 1[/XInputControllerWindows/dpad/up,/Keyboard/shift,/Keyboard/1]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnPickupDropItemSlotTwo
         m_Mode: 0
@@ -535,7 +537,7 @@ MonoBehaviour:
     m_ActionName: Playing/Pickup / Drop Item - Slot 2[/XInputControllerWindows/dpad/right,/Keyboard/shift,/Keyboard/2]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnPickupDropItemSlotThree
         m_Mode: 0
@@ -551,7 +553,7 @@ MonoBehaviour:
     m_ActionName: Playing/Pickup / Drop Item - Slot 3[/XInputControllerWindows/dpad/down,/Keyboard/shift,/Keyboard/3]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnPickupDropItemSlotFour
         m_Mode: 0
@@ -567,7 +569,7 @@ MonoBehaviour:
     m_ActionName: Playing/Pickup / Drop Item - Slot 4[/XInputControllerWindows/dpad/left,/Keyboard/shift,/Keyboard/4]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnUseItemSlotOne
         m_Mode: 0
@@ -583,7 +585,7 @@ MonoBehaviour:
     m_ActionName: Playing/Use Item - Slot 1[/XInputControllerWindows/buttonNorth,/Keyboard/1]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnUseItemSlotTwo
         m_Mode: 0
@@ -599,7 +601,7 @@ MonoBehaviour:
     m_ActionName: Playing/Use Item - Slot 2[/XInputControllerWindows/buttonEast,/Keyboard/2]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnUseItemSlotThree
         m_Mode: 0
@@ -615,7 +617,7 @@ MonoBehaviour:
     m_ActionName: Playing/Use Item - Slot 3[/XInputControllerWindows/buttonSouth,/Keyboard/3]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnUseItemSlotFour
         m_Mode: 0
@@ -631,7 +633,7 @@ MonoBehaviour:
     m_ActionName: Playing/Use Item - Slot 4[/XInputControllerWindows/buttonWest,/Keyboard/4]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnSelectItemLeft
         m_Mode: 0
@@ -647,7 +649,7 @@ MonoBehaviour:
     m_ActionName: Playing/Select Item - Left[/XInputControllerWindows/leftShoulder,/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3925152552661984380}
+      - m_Target: {fileID: -437860639897606278}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: OnSelectItemRight
         m_Mode: 0
@@ -678,9 +680,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b117eebf8701cb34a84486f3031f118b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 2403750978332644197, guid: 2b9cf33e3c0b742488b828994c4b1e83, type: 3}
   RigidBody: {fileID: 6277386136968629915}
   _speed: 10
+--- !u!114 &9208924256674879770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cf5520c6cde0848b1e4db899210b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultWeapon: {fileID: 6592026831741148447}
 --- !u!114 &7310790717952797162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +708,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 6
---- !u!114 &3925152552661984380
+--- !u!114 &6592026831741148447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c4e838dd3c41499f1dfdc6ca7e77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
+  BulletFireRate: 5
+  BulletVelocity: 20
+  BulletSprite: {fileID: 21300000, guid: 7a437159611fdcb4e94f5808449ce8e8, type: 3}
+  BulletScale: 0.13
+  BulletSpin: 0
+--- !u!114 &-437860639897606278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
