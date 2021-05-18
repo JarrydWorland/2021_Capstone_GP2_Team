@@ -50,7 +50,7 @@ namespace Events
         public static void Emit<T>(T eventArgs) where T : EventArgs
         {
             List<Handler<T>> handlers = GetHandlersFromType<T>();
-            foreach (Handler<T> handler in handlers) handler.Action.Invoke(eventArgs);
+            foreach (Handler<T> handler in handlers.ToArray()) handler.Action.Invoke(eventArgs);
         }
 
         /// <summary>

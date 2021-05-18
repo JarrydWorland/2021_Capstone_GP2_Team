@@ -10,7 +10,7 @@ namespace Player.Weapons.Pistol
 		public override string Description => "A basic weapon for start off with.";
 
 		public override int Damage => 1;
-		public override float Velocity => 10.0f;
+		public override float Velocity => 20.0f;
 		public override float FireRate => 5.0f;
 
 		private float _fireRateInverse;
@@ -36,7 +36,7 @@ namespace Player.Weapons.Pistol
 			Vector2 direction = mousePositionInWorld - (Vector2) transform.parent.position;
 
 			// Create a bullet instance.
-			PistolBullet.Make(BulletPrefab, transform.position, Velocity, direction);
+			PistolBullet.Make(BulletPrefab, this, direction);
 		}
 
 		private void Update()
