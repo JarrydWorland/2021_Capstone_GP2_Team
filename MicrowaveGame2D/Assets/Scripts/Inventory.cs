@@ -35,12 +35,23 @@ public class Inventory : MonoBehaviour
 			_nearbyItems.Remove(other.gameObject);
 	}
 
-	// TODO: Add "Keyboard: Q and E; Controller: Left Bumper and Right Bumper" for cycling through nearby items.
-	// OnCycleItem().
+	private void Update()
+	{
+		foreach (BaseItem item in _slots)
+		{
+			if (item != null) item.ItemUpdate();
+		}
+	}
+
+	// TODO: Separate actions to allow for easier extensibility / customisation of controls.
+	// Example for OnPickupDropItem():
+	// - Each slot will have its own action / callback (OnPickupDropItemSlotOne(), etc.).
+	//   From there, we use the existing OnPickupDropItem() method (renamed and with an integer parameter)
+	//   and parse in the slot ID that way.
 
 	public void OnUseItem(InputAction.CallbackContext context)
 	{
-		if (!context.performed) return;
+		if (!context.performed || Keyboard.current.shiftKey.isPressed) return;
 
 		// Get the slot ID based on the key pressed.
 		int slotId = GetSlotId(context.control.path);
@@ -50,21 +61,47 @@ public class Inventory : MonoBehaviour
 
 		// If the item is not null, call its "Use()" method.
 		// Note that we can't use "slotItem?.Use()" as that bypasses the game object's life time check.
-		if (slotItem != null) slotItem.Use();
+		if (slotItem != null)
+		{
+			slotItem.Use();
+			Debug.Log($"Used item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
+		}
 	}
 
-	public void OnItemInteraction(InputAction.CallbackContext context)
+	public void OnSelectItem(InputAction.CallbackContext context)
+	{
+		if (!context.performed || _nearbyItems.Count == 0) return;
+
+		// Get the key from the context.
+		string key = GetKeyFromControlPath(context.control.path);
+
+		// If the key is "q", requeue in reverse (last becomes first).
+		// Otherwise if it is "e", requeue normally (first becomes last).
+		if (key == "q") _nearbyItems.Requeue(true);
+		else if (key == "e") _nearbyItems.Requeue();
+
+		Debug.Log($"Changed selected item to \"{_nearbyItems.Peek().name}\".");
+	}
+
+	public void OnPickupDropItem(InputAction.CallbackContext context)
 	{
 		if (!context.performed) return;
 
 		// Get the slot ID based on the key pressed.
 		int slotId = GetSlotId(context.control.path);
 
-		// If the slot has an item, drop it.
-		if (_slots[slotId] != null) DropItem(slotId);
+		bool droppedItem = false;
 
-		// If there is an item nearby, pick it up.
-		if (_nearbyItems.Count > 0) PickupItem(slotId);
+		// If the slot has an item, drop it.
+		if (_slots[slotId] != null)
+		{
+			DropItem(slotId);
+			droppedItem = true;
+		}
+
+		// If no item was dropped and there is exactly one item, pick up the selected item.
+		// If an item was dropped and there is more than one item nearby, pick up the selected item.
+		if (droppedItem && _nearbyItems.Count > 1 || !droppedItem && _nearbyItems.Count == 1) PickupItem(slotId);
 	}
 
 	private void PickupItem(int slotId)
@@ -78,26 +115,39 @@ public class Inventory : MonoBehaviour
 
 		// Deactivate the item object so it can no longer be interacted with.
 		itemObject.SetActive(false);
+
+		Debug.Log($"Put item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
 	}
 
 	private void DropItem(int slotId)
 	{
+		Debug.Log($"Dropped item \"{_slots[slotId].name}\" from slot \"{slotId}\".");
+
 		// Get the current item object in the slot.
 		GameObject droppedItemObject = _slots[slotId].gameObject;
 
-		// Add the item to the nearby items queue.
-		_nearbyItems.Enqueue(droppedItemObject);
+		if (_slots[slotId].Used)
+		{
+			// If an item is being dropped but has already been used,
+			// destroy the item object.
+			Destroy(droppedItemObject);
+		}
+		else
+		{
+			// Add the item to the nearby items queue.
+			_nearbyItems.Enqueue(droppedItemObject);
 
-		// Active the item so it can be interacted with.
-		droppedItemObject.SetActive(true);
+			// Set the position to the current player's position.
+			droppedItemObject.transform.position = GameObject.Find("Player").transform.position;
 
-		// Set the slot to null to indicate there is null item available.
-		_slots[slotId] = null;
+			// Active the item so it can be interacted with.
+			droppedItemObject.SetActive(true);
+
+			// Set the slot to null to indicate there is no item available.
+			_slots[slotId] = null;
+		}
 	}
 
-	private int GetSlotId(string raw)
-	{
-		string key = raw.Substring(raw.LastIndexOf('/') + 1);
-		return int.TryParse(key, out int slot) ? slot - 1 : -1;
-	}
+	private string GetKeyFromControlPath(string raw) => raw.Substring(raw.LastIndexOf('/') + 1);
+	private int GetSlotId(string raw) => int.TryParse(GetKeyFromControlPath(raw), out int slot) ? slot - 1 : -1;
 }

@@ -1,3 +1,4 @@
+using Items;
 using UnityEngine;
 
 namespace Player.Weapons.Pistol
@@ -16,7 +17,8 @@ namespace Player.Weapons.Pistol
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			// If the collision occured with the player, ignore it.
-			if (other.gameObject.GetComponent<PlayerMovement>() != null) return;
+			if (other.gameObject.GetComponent<PlayerMovement>() != null ||
+			    other.gameObject.GetComponent<BaseItem>() != null) return;
 
 			// Attempt to fetch the health component from the other object.
 			Health health = other.gameObject.GetComponent<Health>();
