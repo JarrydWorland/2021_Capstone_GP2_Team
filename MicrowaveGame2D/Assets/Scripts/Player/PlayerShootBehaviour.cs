@@ -20,6 +20,15 @@ namespace Player
 			_animators = GetComponentsInChildren<Animator>();
 		}
 
+		public void Update()
+		{
+			foreach(Animator animator in GetComponentsInChildren<Animator>())
+			{
+				animator.SetFloat("AimingX", _weapon.Direction.x);
+				animator.SetFloat("AimingY", _weapon.Direction.y);
+			}
+		}
+
 		public void OnAim(InputAction.CallbackContext context)
 		{
 			if (context.control.device.name == "Mouse")
