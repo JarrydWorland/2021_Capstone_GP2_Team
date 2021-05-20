@@ -44,6 +44,7 @@ namespace Level
 
 				// create room using prefab
 				Room newRoom = Room.Make(newRoomPrefab, parent, newPosition);
+				newRoom.gameObject.SetActive(false);
 				grid.Add(newRoom);
 
 				// position room in scene
