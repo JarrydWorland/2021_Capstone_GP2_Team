@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 93d5bdcc1ee4579489ff82c3e1e91f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a6084ea3ee4dfe74db6037d38da57f28, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7643711329857269032
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 93d5bdcc1ee4579489ff82c3e1e91f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,15 +174,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 33500b4359954b44e944c1c5115dff4d, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4669863973592420994
@@ -255,7 +255,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 93d5bdcc1ee4579489ff82c3e1e91f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,15 +276,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 92ad0c10bbef49e43af2aa0e73943a1c, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5766392056463504725
@@ -319,7 +319,10 @@ GameObject:
   - component: {fileID: 4960198795522504774}
   - component: {fileID: 8165595877299822449}
   - component: {fileID: 4174239758579939034}
+  - component: {fileID: 9208924256674879770}
   - component: {fileID: 7310790717952797162}
+  - component: {fileID: 6592026831741148447}
+  - component: {fileID: -437860639897606278}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -378,7 +381,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.08900875, y: -0.7054162}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -389,7 +392,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2.6928477, y: 6.232955}
   m_EdgeRadius: 0
 --- !u!114 &8165595877299822449
 MonoBehaviour:
@@ -437,17 +440,9 @@ MonoBehaviour:
     m_ActionId: 4bdd2eac-3e70-4bab-a53b-bb0f4001c0d7
     m_ActionName: Playing/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b2beb362-04c7-4861-a388-5edc29f22910
-    m_ActionName: Playing/Use Item[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonEast,/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fbb2f457-f943-46eb-b1c7-2a15b082a94f
-    m_ActionName: Playing/Pickup / Drop Item[/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/right,/Keyboard/shift,/Keyboard/1,/Keyboard/shift,/Keyboard/2,/Keyboard/shift,/Keyboard/3,/Keyboard/shift,/Keyboard/4]
-  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4174239758579939034}
-        m_TargetAssemblyTypeName: Player.PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 9208924256674879770}
+        m_TargetAssemblyTypeName: Player.PlayerShootBehaviour, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
         m_Arguments:
@@ -508,6 +503,166 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2473a657-33b6-4146-a6a6-1247b86788c9
     m_ActionName: Playing/Decrease Health [Debug][/Keyboard/leftBracket]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnPickupDropItemSlotOne
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 342f983e-6554-4e03-914c-0e0c6a584991
+    m_ActionName: Playing/Pickup / Drop Item - Slot 1[/XInputControllerWindows/dpad/up,/Keyboard/shift,/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnPickupDropItemSlotTwo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78eeca70-2aa0-4a7c-9b6f-4ca27280153c
+    m_ActionName: Playing/Pickup / Drop Item - Slot 2[/XInputControllerWindows/dpad/right,/Keyboard/shift,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnPickupDropItemSlotThree
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d16dddde-069a-4a27-8bf6-f9dc61e9ba36
+    m_ActionName: Playing/Pickup / Drop Item - Slot 3[/XInputControllerWindows/dpad/down,/Keyboard/shift,/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnPickupDropItemSlotFour
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f0b804a9-ca39-4a31-ab43-44117a300f66
+    m_ActionName: Playing/Pickup / Drop Item - Slot 4[/XInputControllerWindows/dpad/left,/Keyboard/shift,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUseItemSlotOne
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2df90a95-bb59-4d17-b4a4-deed3f81b13b
+    m_ActionName: Playing/Use Item - Slot 1[/XInputControllerWindows/buttonNorth,/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUseItemSlotTwo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bbc81dd8-4ec6-4386-b53d-228a6cefb570
+    m_ActionName: Playing/Use Item - Slot 2[/XInputControllerWindows/buttonEast,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUseItemSlotThree
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b2457adb-7f73-4c7b-8813-ee70465e1ffb
+    m_ActionName: Playing/Use Item - Slot 3[/XInputControllerWindows/buttonSouth,/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUseItemSlotFour
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7444a09e-39f0-4d0f-a502-b7c08f419ff6
+    m_ActionName: Playing/Use Item - Slot 4[/XInputControllerWindows/buttonWest,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnSelectItemLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1a1e876-4b41-4949-8cf8-63a00d0688a9
+    m_ActionName: Playing/Select Item - Left[/XInputControllerWindows/leftShoulder,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -437860639897606278}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnSelectItemRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: caae1ea4-4929-4ae5-b17c-8f77ecb67c83
+    m_ActionName: Playing/Select Item - Right[/XInputControllerWindows/rightShoulder,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
@@ -525,9 +680,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b117eebf8701cb34a84486f3031f118b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 2403750978332644197, guid: 2b9cf33e3c0b742488b828994c4b1e83, type: 3}
   RigidBody: {fileID: 6277386136968629915}
   _speed: 10
+--- !u!114 &9208924256674879770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cf5520c6cde0848b1e4db899210b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultWeapon: {fileID: 6592026831741148447}
 --- !u!114 &7310790717952797162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,3 +708,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 6
+--- !u!114 &6592026831741148447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c4e838dd3c41499f1dfdc6ca7e77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
+  BulletFireRate: 5
+  BulletVelocity: 20
+  BulletSprite: {fileID: 21300000, guid: 7a437159611fdcb4e94f5808449ce8e8, type: 3}
+  BulletScale: 0.13
+  BulletSpin: 0
+--- !u!114 &-437860639897606278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574193837115946451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a0c99f716bb654a9143f2f0b2b730a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

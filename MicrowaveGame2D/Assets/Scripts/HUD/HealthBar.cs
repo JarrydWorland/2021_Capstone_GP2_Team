@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Events;
+using Helpers;
 
 public class HealthBar : MonoBehaviour
 {

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Events;
+using Helpers;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -9,6 +11,19 @@ public class Health : MonoBehaviour
 	/// 3 full hearts.
 	/// </summary>
 	public int MaxHealth = 6;
+
+	private const float _flashSpeed = 10f;
+	private float _flashTimer;
+	private List<SpriteRenderer> _spriteRenderers
+	{
+		get
+		{
+			SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+			List<SpriteRenderer> childSpriteRenderers = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
+			if (spriteRenderer) childSpriteRenderers.Add(spriteRenderer);
+			return childSpriteRenderers;
+		}
+	}
 
 	private int _value;
 
@@ -22,6 +37,7 @@ public class Health : MonoBehaviour
 		{
 			int oldValue = _value;
 			_value = value.Clamp(0, MaxHealth);
+			_flashTimer = 0.0f;
 			EventManager.Emit(new HealthChangedEventArgs
 			{
 				GameObject = gameObject,
@@ -31,10 +47,22 @@ public class Health : MonoBehaviour
 		}
 	}
 
-	void Start()
+	private void Start()
 	{
 		Value = MaxHealth;
+		_flashTimer = 1f;
 	}
+
+	private void Update()
+	{
+		_flashTimer += _flashSpeed * Time.deltaTime;
+		float white = 1f - Mathf.Min(_flashTimer, 1f);
+		foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
+		{
+			spriteRenderer.color = new Color(white, white, white);
+		}
+	}
+	
 }
 
 public class HealthChangedEventArgs : EventArgs
