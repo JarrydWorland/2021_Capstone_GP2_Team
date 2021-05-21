@@ -17,7 +17,7 @@ namespace Weapons
 		public abstract float FireRate { get; }
 
 		// The direction the weapon will shoot towards
-		private Vector2 _direction;
+		private Vector2 _direction = Vector2.right;
 		public Vector2 Direction
 		{
 			get => _direction;
