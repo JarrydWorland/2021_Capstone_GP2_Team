@@ -213,7 +213,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1545690113894969516, guid: d8d52e911979ff146be6bfaafc5532b6, type: 3}
       propertyPath: m_Name
-      value: BulletDamageIncrease
+      value: DamageIncrease
       objectReference: {fileID: 0}
     - target: {fileID: 6546523699060242625, guid: d8d52e911979ff146be6bfaafc5532b6, type: 3}
       propertyPath: m_RootOrder
@@ -676,7 +676,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1545690113894969516, guid: 6ded285a35e36a144a0d7b83325799c3, type: 3}
       propertyPath: m_Name
-      value: BulletVelocityIncrease
+      value: WeaponVelocityIncrease
       objectReference: {fileID: 0}
     - target: {fileID: 6546523699060242625, guid: 6ded285a35e36a144a0d7b83325799c3, type: 3}
       propertyPath: m_RootOrder
