@@ -44,10 +44,11 @@ namespace Level
 
 				// create room using prefab
 				Room newRoom = Room.Make(newRoomPrefab, parent, newPosition);
+				newRoom.gameObject.SetActive(false);
 				grid.Add(newRoom);
 
 				// position room in scene
-				int roomPlacementDistance = 25;
+				int roomPlacementDistance = 50;
 				newRoom.transform.position = new Vector3
 				{
 					x = newPosition.x * roomPlacementDistance,
