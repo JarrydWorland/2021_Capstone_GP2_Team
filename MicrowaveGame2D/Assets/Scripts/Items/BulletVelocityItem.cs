@@ -1,30 +1,16 @@
-using UnityEngine;
-
 namespace Items
 {
 	public class BulletVelocityItem : BaseItem
 	{
-		public int IncreaseValue;
+		// This isn't used for passive items as they aren't items you activate or consume.
+		public override bool Used => false;
 
-		private bool _used;
-		public override bool Used => _used;
+		public override void OnUseItem() { }
 
-		public override void Use()
-		{
-			if (_used) return;
+		public override void OnItemUpdate() { }
 
-			GameObject playerObject = GameObject.Find("Player");
-			Health playerHealth = playerObject.GetComponent<Health>();
+		public override void OnPickupItem() { }
 
-			if (playerHealth.Value < playerHealth.MaxHealth)
-			{
-				playerHealth.Value += IncreaseValue;
-				_used = true;
-
-				Destroy(gameObject);
-			}
-		}
-
-		public override void ItemUpdate() { }
+		public override void OnDropItem() { }
 	}
 }

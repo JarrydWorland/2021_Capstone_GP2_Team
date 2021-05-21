@@ -1,43 +1,16 @@
-using Player;
-using UnityEngine;
-
 namespace Items
 {
 	public class BulletDamageItem : BaseItem
 	{
-		public float IncreaseValue, DurationValue;
+		// This isn't used for passive items as they aren't items you activate or consume.
+		public override bool Used => false;
 
-		private PlayerMovement _playerMovement;
-		private float _time;
+		public override void OnUseItem() { }
 
-		private bool _used;
-		public override bool Used => _used;
+		public override void OnItemUpdate() { }
 
-		private void Start()
-		{
-			_playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-		}
+		public override void OnPickupItem() { }
 
-		public override void Use()
-		{
-			if (_used) return;
-            //_playerMovement.Speed += IncreaseValue;
-            //_used = true;
-        }
-
-        public override void ItemUpdate()
-		{
-			//if (!_used) return;
-			_playerMovement.Speed += IncreaseValue;
-			_used = true;
-
-			_time += Time.deltaTime;
-			if (_time >= DurationValue) Destroy(gameObject);
-		}
-
-		private void OnDestroy()
-		{
-			_playerMovement.Speed -= IncreaseValue;
-		}
+		public override void OnDropItem() { }
 	}
 }
