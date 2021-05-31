@@ -1775,8 +1775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: -36}
-  m_SizeDelta: {x: 160, y: 51.7321}
+  m_AnchoredPosition: {x: 23, y: -40}
+  m_SizeDelta: {x: 160, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973264121
 MonoBehaviour:
@@ -1921,7 +1921,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 25.084, y: -399.5}
-  m_SizeDelta: {x: 160, y: 51.7321}
+  m_SizeDelta: {x: 160, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058312619
 MonoBehaviour:
@@ -2090,33 +2090,33 @@ MonoBehaviour:
 
     Melanie Avent
 
-    
+
 
     Creative Director | Game Designer
 
     Lachlan
     McCaskill
 
-    
+
 
     Lead Artist
 
     Chae-eun Gim
 
-    
+
 
     Music Composer
 
     Joshua
 
-    
+
 
     Narrative
     Designer | Level Designer
 
     Kieran Freame
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -2256,20 +2256,20 @@ MonoBehaviour:
 
     Jarryd Worland
 
-    
+
 
     Programmer
 
     Andrew
     Giannakis
 
-    
+
 
     Programmer
 
     Basil Christofis
 
-    
+
 
     Programmer
 
@@ -2611,7 +2611,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 24, y: -287}
-  m_SizeDelta: {x: 160, y: 51.7321}
+  m_SizeDelta: {x: 160, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697911287
 MonoBehaviour:
@@ -2768,7 +2768,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 22.916, y: -169}
-  m_SizeDelta: {x: 160, y: 51.7321}
+  m_SizeDelta: {x: 160, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817460368
 MonoBehaviour:
