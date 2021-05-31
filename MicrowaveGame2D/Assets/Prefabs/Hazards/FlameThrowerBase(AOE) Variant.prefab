@@ -22,7 +22,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5363528297778027944, guid: 5b079558f971ff94da7d802676ff8ec6, type: 3}
       propertyPath: m_Name
-      value: FlameThrowerBase(AOE)
+      value: FlameThrowerBase(AOE) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363528297778027945, guid: 5b079558f971ff94da7d802676ff8ec6, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5363528297778027958, guid: 5b079558f971ff94da7d802676ff8ec6, type: 3}
       propertyPath: m_RootOrder
