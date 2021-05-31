@@ -9,14 +9,13 @@ namespace Player
 		[Tooltip("The players default weapon")]
 		public BaseWeapon DefaultWeapon;
 
-		private BaseWeapon _weapon;
+		public BaseWeapon Weapon => DefaultWeapon;
 		private Animator[] _animators;
 
 		private const float AimDeadzone = 0.1f;
 
 		private void Start()
 		{
-			_weapon = DefaultWeapon;
 			_animators = GetComponentsInChildren<Animator>();
 		}
 
@@ -24,8 +23,8 @@ namespace Player
 		{
 			foreach(Animator animator in GetComponentsInChildren<Animator>())
 			{
-				animator.SetFloat("AimingX", _weapon.Direction.x);
-				animator.SetFloat("AimingY", _weapon.Direction.y);
+				animator.SetFloat("AimingX", Weapon.Direction.x);
+				animator.SetFloat("AimingY", Weapon.Direction.y);
 			}
 		}
 
@@ -37,7 +36,7 @@ namespace Player
 				Vector2 mousePosition = Mouse.current.position.ReadValue();
 				Vector2 mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePosition);
 				Vector2 direction = mousePositionInWorld - (Vector2) transform.position;
-				_weapon.Direction = direction;
+				Weapon.Direction = direction;
 			}
 			else
 			{
@@ -46,7 +45,7 @@ namespace Player
 
 				// Aim in the direction of the right stick movement.
 				Vector2 value = context.ReadValue<Vector2>();
-				if (value.sqrMagnitude >= AimDeadzone) _weapon.Direction = value;
+				if (value.sqrMagnitude >= AimDeadzone) Weapon.Direction = value;
 			}
 		}
 
@@ -55,7 +54,7 @@ namespace Player
 		{
 			if (context.performed)
 			{
-				_weapon.Shoot();
+				Weapon.Shoot();
 				foreach (Animator animator in _animators)
 				{
 					animator.SetTrigger("Aiming");
@@ -63,7 +62,7 @@ namespace Player
 			}
 			else if (context.canceled)
 			{
-				_weapon.Holster();
+				Weapon.Holster();
 				foreach (Animator animator in _animators)
 				{
 					animator.SetTrigger("Holster");
@@ -71,9 +70,9 @@ namespace Player
 			}
 		}
 
-		public void SetWeapon(BaseWeapon weapon)
-		{
-			_weapon = weapon;
-		}
+		//public void SetWeapon(BaseWeapon weapon)
+		//{
+		//	Weapon = weapon;
+		//}
 	}
 }

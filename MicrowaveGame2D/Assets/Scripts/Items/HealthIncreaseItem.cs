@@ -9,7 +9,7 @@ namespace Items
 		private bool _used;
 		public override bool Used => _used;
 
-		public override void Use()
+		public override void OnUseItem()
 		{
 			if (_used) return;
 
@@ -25,6 +25,10 @@ namespace Items
 			}
 		}
 
-		public override void ItemUpdate() { }
+		public override void OnItemUpdate() { }
+
+		public override void OnPickupItem() { }
+
+		public override void OnDropItem() { }
 	}
 }
