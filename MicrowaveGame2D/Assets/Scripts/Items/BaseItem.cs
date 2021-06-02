@@ -8,6 +8,8 @@ namespace Items
 		public int? SlotId { get; set; }
 
 		public abstract bool IsConsumed { get; }
+		
+		public abstract bool IsActivated { get; }
 
 		// Called when the "Use Item" action is called
 		// for the slot this item is in.

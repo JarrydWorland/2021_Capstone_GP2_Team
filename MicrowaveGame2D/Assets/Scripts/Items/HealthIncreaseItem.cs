@@ -13,6 +13,7 @@ namespace Items
 		public override bool IsConsumed => _isConsumed;
 
 		private bool _isActivated;
+		public override bool IsActivated => _isActivated;
 
 		private void Start()
 		{

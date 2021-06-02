@@ -83,7 +83,13 @@ public class Inventory : MonoBehaviour
 		int count = _nearbyItems.Count;
 
 		// If the slot has an item, drop it.
-		if (_slots[slotId] != null) DropItem(slotId);
+		if (_slots[slotId] != null)
+		{
+			// If the item has been activated, it cannot be dropped.
+			if (_slots[slotId].IsActivated) return;
+			
+			DropItem(slotId);
+		}
 
 		// If the count was larger than zero, there must be another item on the floor.
 		// Therefore we can pick it up and perform a "swap" rather than just a "drop".
