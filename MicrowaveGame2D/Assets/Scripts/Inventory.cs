@@ -1,4 +1,4 @@
-using System;
+using Events;
 using Helpers;
 using Items;
 using UnityEngine;
@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 {
 	private BaseItem[] _slots;
 	private CircularQueue<GameObject> _nearbyItems;
+
+	private GameObject _selectedItemIndicatorObject;
 
 	private void Start()
 	{
@@ -20,6 +22,11 @@ public class Inventory : MonoBehaviour
 		};
 
 		_nearbyItems = new CircularQueue<GameObject>();
+
+		_selectedItemIndicatorObject = GameObject.Find("SelectedItemIndicator");
+		_selectedItemIndicatorObject.SetActive(false);
+
+		EventManager.Register<ItemConsumedEventArgs>(OnItemConsumed);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -38,10 +45,21 @@ public class Inventory : MonoBehaviour
 
 	private void Update()
 	{
+		UpdateSelectedItemIndicator();
+
 		foreach (BaseItem item in _slots)
 		{
 			if (item != null) item.ItemUpdate();
 		}
+	}
+
+	private void OnItemConsumed(ItemConsumedEventArgs eventArgs)
+	{
+		GameObject itemObject = eventArgs.Item.gameObject;
+		GameObject itemSlotObject = GetSlotObject("SlotItem", itemObject.GetComponent<BaseItem>().SlotId.Value);
+
+		itemSlotObject.GetComponent<SpriteRenderer>().sprite = null;
+		Destroy(itemObject);
 	}
 
 	public void OnPickupDropItemSlotOne(InputAction.CallbackContext context) => OnPickupDropItem(context, 0);
@@ -102,8 +120,12 @@ public class Inventory : MonoBehaviour
 		// This will be the currently selected item (i.e. its information is currently displayed). 
 		GameObject itemObject = _nearbyItems.Dequeue();
 
+		// Set the slot ID on the item.
+		BaseItem item = itemObject.GetComponent<BaseItem>();
+		item.SlotId = slotId;
+
 		// Update the slot with the new item.
-		_slots[slotId] = itemObject.GetComponent<BaseItem>();
+		_slots[slotId] = item;
 
 		// Deactivate the item object so it can no longer be interacted with.
 		itemObject.SetActive(false);
@@ -136,8 +158,6 @@ public class Inventory : MonoBehaviour
 		float scale = (itemSpriteRenderer.size.x > itemSpriteRenderer.size.y ? scaleX : scaleY) * 0.3f;
 		itemSlotSpriteRenderer.transform.localScale = new Vector3(scale, scale, 1.0f);
 
-		Debug.Log(scaleX + ", " + scaleY + ", " + scale);
-
 		Debug.Log($"Put item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
 	}
 
@@ -148,29 +168,23 @@ public class Inventory : MonoBehaviour
 		// Get the current item object in the slot.
 		GameObject droppedItemObject = _slots[slotId].gameObject;
 
-		if (_slots[slotId].Used)
-		{
-			// If an item is being dropped but has already been used,
-			// destroy the item object.
-			Destroy(droppedItemObject);
-		}
-		else
-		{
-			// Add the item to the nearby items queue.
-			_nearbyItems.Enqueue(droppedItemObject);
+		// Update the item slot ID to be null.
+		droppedItemObject.GetComponent<BaseItem>().SlotId = null;
 
-			// Set the position to the current player's position.
-			droppedItemObject.transform.position = GameObject.Find("Player").transform.position;
+		// Add the item to the nearby items queue.
+		_nearbyItems.Enqueue(droppedItemObject);
 
-			// Active the item so it can be interacted with.
-			droppedItemObject.SetActive(true);
+		// Set the position to the current player's position.
+		droppedItemObject.transform.position = GameObject.Find("Player").transform.position;
 
-			// Update the item slot sprite to be empty.
-			GetSlotObject("SlotItem", slotId).GetComponent<SpriteRenderer>().sprite = null;
+		// Active the item so it can be interacted with.
+		droppedItemObject.SetActive(true);
 
-			// Set the slot to null to indicate there is no item available.
-			_slots[slotId] = null;
-		}
+		// Update the item slot sprite to be empty.
+		GetSlotObject("SlotItem", slotId).GetComponent<SpriteRenderer>().sprite = null;
+
+		// Set the slot to null to indicate there is no item available.
+		_slots[slotId] = null;
 	}
 
 	private GameObject GetSlotObject(string common, int slotId)
@@ -183,5 +197,19 @@ public class Inventory : MonoBehaviour
 			3 => GameObject.Find(common + "Four"),
 			_ => null
 		};
+	}
+
+	private void UpdateSelectedItemIndicator()
+	{
+		if (_nearbyItems.Count > 0)
+		{
+			GameObject itemObject = _nearbyItems.Peek();
+
+			_selectedItemIndicatorObject.transform.position = new Vector3(itemObject.transform.position.x,
+				itemObject.transform.position.y + 0.35f, itemObject.transform.position.z);
+
+			_selectedItemIndicatorObject.SetActive(true);
+		}
+		else _selectedItemIndicatorObject.SetActive(false);
 	}
 }

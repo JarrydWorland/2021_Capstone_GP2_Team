@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 namespace Items
 {
 	public abstract class BaseItem : MonoBehaviour
 	{
-		public abstract bool Used { get; }
+		public int? SlotId { get; set; }
+
+		public abstract bool IsConsumed { get; }
 
 		// Called when the "Use Item" action is called
 		// for the slot this item is in.
@@ -15,5 +18,10 @@ namespace Items
 
 		// Note: "Update()" will only work when this item is on the floor.
 		// The object is inactive when it is in a slot.
+	}
+
+	public class ItemConsumedEventArgs : EventArgs
+	{
+		public BaseItem Item;
 	}
 }

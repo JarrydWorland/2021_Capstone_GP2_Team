@@ -1,3 +1,4 @@
+using Events;
 using UnityEngine;
 
 namespace Items
@@ -6,22 +7,34 @@ namespace Items
 	{
 		public int IncreaseValue;
 
-		private bool _used;
-		public override bool Used => _used;
+		private Health _playerHealth;
+
+		private bool _isConsumed;
+		public override bool IsConsumed => _isConsumed;
+
+		private bool _isActivated;
+
+		private void Start()
+		{
+			_playerHealth = GameObject.Find("Player").GetComponent<Health>();
+		}
 
 		public override void Use()
 		{
-			if (_used) return;
+			if (_isActivated) return;
 
-			GameObject playerObject = GameObject.Find("Player");
-			Health playerHealth = playerObject.GetComponent<Health>();
-
-			if (playerHealth.Value < playerHealth.MaxHealth)
+			if (_playerHealth.Value < _playerHealth.MaxHealth)
 			{
-				playerHealth.Value += IncreaseValue;
-				_used = true;
+				_isActivated = true;
 
-				Destroy(gameObject);
+				_playerHealth.Value += IncreaseValue;
+
+				EventManager.Emit(new ItemConsumedEventArgs
+				{
+					Item = this
+				});
+
+				_isConsumed = true;
 			}
 		}
 
