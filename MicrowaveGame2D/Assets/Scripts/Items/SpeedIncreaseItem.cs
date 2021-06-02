@@ -18,7 +18,7 @@ namespace Items
 			_playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 		}
 
-		public override void Use()
+		public override void OnUseItem()
 		{
 			if (_used) return;
 
@@ -26,13 +26,17 @@ namespace Items
 			_used = true;
 		}
 
-		public override void ItemUpdate()
+		public override void OnItemUpdate()
 		{
 			if (!_used) return;
 
 			_time += Time.deltaTime;
 			if (_time >= DurationValue) Destroy(gameObject);
 		}
+
+		public override void OnPickupItem() { }
+
+		public override void OnDropItem() { }
 
 		private void OnDestroy()
 		{

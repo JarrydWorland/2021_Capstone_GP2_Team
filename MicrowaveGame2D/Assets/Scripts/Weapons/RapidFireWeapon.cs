@@ -7,11 +7,25 @@ namespace Weapons
 		public override string Name => "Rapid Fire Weapon";
 		public override string Description => "A weapon that shoots bullets at a constant rate";
 
-		public override int Damage => BulletDamage;
-		public override float FireRate => BulletFireRate;
+		public override int Damage
+		{
+			get => BulletDamage;
+			set => BulletDamage = value;
+		}
 
+		public override float FireRate
+		{
+			get => BulletFireRate;
+			set
+            {
+				BulletFireRate = value;
+				_fireRateInverse = 1.0f / value;
+            }
+		}
+
+		public float BulletFireRate;
+        
 		public int BulletDamage = 1;
-		public float BulletFireRate = 1.0f;
 		public float BulletVelocity = 20.0f;
 		public Sprite BulletSprite;
 		public float BulletScale = 1.0f;
