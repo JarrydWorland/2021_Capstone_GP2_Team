@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Enemy;
 using Events;
 using Helpers;
 
@@ -41,6 +42,11 @@ public class HealthBar : MonoBehaviour
 			else if (difference < 0) PlayDamageAnimation(eventArgs);
 			else return; // difference == 0, nothing to animate
 		}
+		
+		// This is a temporary location for condition checking.
+		// Move this somewhere more permanent at some stage!
+		CheckForWinCondition(eventArgs);
+		CheckForLoseCondition(eventArgs);
 	}
 
 	private void PlayHealAnimation(HealthChangedEventArgs eventArgs)
@@ -95,6 +101,33 @@ public class HealthBar : MonoBehaviour
 		heart.AddComponent<HeartAnimator>();
 
 		return heart;
+	}
+	
+	private void CheckForWinCondition(HealthChangedEventArgs eventArgs)
+	{
+		// If the object has an enemy health behaviour component and its health is zero,
+		// the enemy has died, so we can now check for a win condition.
+		if (eventArgs.GameObject.GetComponent<EnemyHealthBehaviour>() != null && eventArgs.NewValue == 0)
+		{
+			// There are no enemies left in the level.
+			// Display the win condition scene / narrative.
+			if (FindObjectsOfType<EnemyHealthBehaviour>(true).Length - 1 == 0)
+			{
+				Debug.Log("You have won :)");
+				// TODO: Display the winning narrative scene here!
+			}
+		}
+	}
+	
+	private void CheckForLoseCondition(HealthChangedEventArgs eventArgs)
+	{
+		// If the object is the player and the health is zero,
+		// the player has died, so display the lose condition scene / narrative.
+		if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
+		{
+			Debug.Log("You have died and lost :(");
+			// TODO: Display the losing narrative scene here!
+		}
 	}
 
 	private class HeartAnimator : MonoBehaviour
