@@ -14,6 +14,10 @@ public class Health : MonoBehaviour
 
 	private const float _flashSpeed = 10f;
 	private float _flashTimer;
+
+	[SerializeField] private AudioClip entityDamaged;
+	protected AudioSource soundSource;
+
 	private List<SpriteRenderer> _spriteRenderers
 	{
 		get
@@ -43,7 +47,15 @@ public class Health : MonoBehaviour
 				GameObject = gameObject,
 				OldValue = oldValue,
 				NewValue = _value,
+
+				
 			});
+
+			if (oldValue > _value)
+            {
+				if (entityDamaged != null)
+					soundSource.Play();
+			}
 		}
 	}
 
@@ -51,6 +63,14 @@ public class Health : MonoBehaviour
 	{
 		Value = MaxHealth;
 		_flashTimer = 1f;
+
+		soundSource = this.gameObject.AddComponent<AudioSource>();
+		soundSource.loop = false;
+		soundSource.playOnAwake = false;
+		soundSource.volume = 0.6f;
+
+		if (entityDamaged != null)
+			soundSource.clip = entityDamaged;
 	}
 
 	private void Update()

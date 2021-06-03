@@ -11,6 +11,7 @@ namespace Items
 
 		private BaseWeapon _increaseRate;
 
+
 		private void Start()
 		{
 			_increaseRate = GameObject.Find("Player").GetComponent<PlayerShootBehaviour>().Weapon;
