@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEngine;
 using Events;
 using Enemy;
+using Items;
+using Helpers;
 
 namespace Level
 {
@@ -11,6 +13,8 @@ namespace Level
 		public IEnumerable<Door> Doors => GetComponentsInChildren<Door>(true);
 		public IEnumerable<DoorDirection> Directions => Doors.Select(door => door.Direction);
 		public Vector2Int Position { get; private set; }
+
+		// for room rewards
 		private int _enemiesInRoom;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
@@ -39,6 +43,18 @@ namespace Level
 			_enemiesInRoom = GetComponentsInChildren<EnemyHealthBehaviour>().Length;
 		}
 
+		private void OnEnable()
+		{
+			// register the OnHealthChangedEvent whenever the room becomes active
+			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChangedEvent);
+		}
+
+		private void OnDisable()
+		{
+			// unregister the OnHealthChangedEvent whenever the room becomes inactive
+			EventManager.Unregister(_healthChangedEventId);
+		}
+
 		private void OnHealthChangedEvent(HealthChangedEventArgs eventArgs)
 		{
 			bool isEnemy = eventArgs.GameObject.GetComponent<EnemyHealthBehaviour>() != null;
@@ -57,19 +73,16 @@ namespace Level
 
 		private void OnRoomCleared()
 		{
-			print(name + " has been cleared!");
-		}
+			// this should probably be cached
+			IEnumerable<GameObject> itemPrefabs = Resources
+				.LoadAll<GameObject>("Prefabs/Items")
+				.Where(itemPrefab => itemPrefab?.GetComponent<BaseItem>() != null);
 
-		private void OnEnable()
-		{
-			// register the OnHealthChangedEvent whenever the room becomes active
-			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChangedEvent);
-		}
+			// select a random item
+			GameObject randomItemPrefab = itemPrefabs.RandomElement();
 
-		private void OnDisable()
-		{
-			// unregister the OnHealthChangedEvent whenever the room becomes inactive
-			EventManager.Unregister(_healthChangedEventId);
+			// spawn the random item
+			Instantiate(randomItemPrefab, transform);
 		}
 	}
 }
