@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
 		GameObject itemObject = eventArgs.Item.gameObject;
 		GameObject itemSlotObject = GetSlotObject("SlotItem", itemObject.GetComponent<BaseItem>().SlotId.Value);
 
-		itemSlotObject.GetComponent<SpriteRenderer>().sprite = null;
+		itemSlotObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("HUD/ItemSlot");
 		Destroy(itemObject);
 	}
 
@@ -87,7 +87,6 @@ public class Inventory : MonoBehaviour
 		{
 			// If the item has been activated, it cannot be dropped.
 			if (_slots[slotId].IsActivated) return;
-			
 			DropItem(slotId);
 		}
 
@@ -136,8 +135,6 @@ public class Inventory : MonoBehaviour
 		// Deactivate the item object so it can no longer be interacted with.
 		itemObject.SetActive(false);
 
-		// Note: The following scaling code does not account for scaling in the transform of the object.
-
 		SpriteRenderer itemSpriteRenderer = itemObject.GetComponent<SpriteRenderer>();
 
 		// Get the item slot object and sprite render.
@@ -146,23 +143,6 @@ public class Inventory : MonoBehaviour
 
 		// Set the item slot sprite to the item sprite.
 		itemSlotSpriteRenderer.sprite = itemSpriteRenderer.sprite;
-
-		// Set the item slot colour to the item colour.
-		// This is temporary as the current item sprites are the same with different colour applied in Unity.
-		itemSlotSpriteRenderer.color = itemSpriteRenderer.color;
-
-		// Get the item slot background object and sprite renderer.
-		GameObject itemSlotBackgroundObject = GetSlotObject("SlotBackground", slotId);
-		SpriteRenderer itemSlotBackgroundSpriteRenderer = itemSlotBackgroundObject.GetComponent<SpriteRenderer>();
-
-		// Get the x and y scale of the item slot background against the item.
-		float scaleX = itemSlotBackgroundSpriteRenderer.size.x / itemSpriteRenderer.size.x;
-		float scaleY = itemSlotBackgroundSpriteRenderer.size.y / itemSpriteRenderer.size.y;
-
-		// Set the scale to the larger scale value.
-		// Note that the "* 0.3f" is temporary due to the current item sprites being 1px wide / tall.
-		float scale = (itemSpriteRenderer.size.x > itemSpriteRenderer.size.y ? scaleX : scaleY) * 0.3f;
-		itemSlotSpriteRenderer.transform.localScale = new Vector3(scale, scale, 1.0f);
 
 		Debug.Log($"Put item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
 	}
@@ -187,7 +167,8 @@ public class Inventory : MonoBehaviour
 		droppedItemObject.SetActive(true);
 
 		// Update the item slot sprite to be empty.
-		GetSlotObject("SlotItem", slotId).GetComponent<SpriteRenderer>().sprite = null;
+		GetSlotObject("SlotItem", slotId).GetComponent<SpriteRenderer>().sprite =
+			Resources.Load<Sprite>("HUD/ItemSlot");
 
 		// Set the slot to null to indicate there is no item available.
 		_slots[slotId] = null;
@@ -212,7 +193,7 @@ public class Inventory : MonoBehaviour
 			GameObject itemObject = _nearbyItems.Peek();
 
 			_selectedItemIndicatorObject.transform.position = new Vector3(itemObject.transform.position.x,
-				itemObject.transform.position.y + 0.35f, itemObject.transform.position.z);
+				itemObject.transform.position.y + 0.75f, itemObject.transform.position.z);
 
 			_selectedItemIndicatorObject.SetActive(true);
 		}
