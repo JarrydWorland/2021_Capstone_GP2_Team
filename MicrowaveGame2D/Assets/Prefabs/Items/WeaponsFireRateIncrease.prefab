@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b704bc943699a714f998e536bfb579ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IncreaseValue: 0
+  itemPickup: {fileID: 8300000, guid: bd4addc27bade6a4897c8440db0d9b52, type: 3}
