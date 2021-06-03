@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8885412942622315059, guid: f230b81a33a5ca943abd3789d92e3f87, type: 3}
+      propertyPath: m_TagString
+      value: Collidable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f230b81a33a5ca943abd3789d92e3f87, type: 3}
 --- !u!4 &7290657228193915463 stripped
@@ -643,6 +647,10 @@ PrefabInstance:
     - target: {fileID: 8885412942622315059, guid: f230b81a33a5ca943abd3789d92e3f87, type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885412942622315059, guid: f230b81a33a5ca943abd3789d92e3f87, type: 3}
+      propertyPath: m_TagString
+      value: Collidable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f230b81a33a5ca943abd3789d92e3f87, type: 3}
