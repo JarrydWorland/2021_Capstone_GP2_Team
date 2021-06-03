@@ -8,6 +8,9 @@ public class Inventory : MonoBehaviour
 	private BaseItem[] _slots;
 	private CircularQueue<GameObject> _nearbyItems;
 
+	[SerializeField] private AudioClip itemPickup;
+	private AudioSource soundSource;
+
 	private void Start()
 	{
 		_slots = new BaseItem[]
@@ -19,13 +22,24 @@ public class Inventory : MonoBehaviour
 		};
 
 		_nearbyItems = new CircularQueue<GameObject>();
+
+		soundSource = GetComponent<AudioSource>();
+		soundSource.loop = false;
+		soundSource.playOnAwake = false;
+
+		if (itemPickup != null)
+			soundSource.clip = itemPickup;
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		// If the colliding object is an item and it is not already on the nearby list, add it.
 		if (other.gameObject.HasComponent<BaseItem>() && !_nearbyItems.Contains(other.gameObject))
+        {
 			_nearbyItems.Enqueue(other.gameObject);
+		}
+			
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
@@ -112,6 +126,11 @@ public class Inventory : MonoBehaviour
 
 		// Call the item's "OnPickupItem()" method.
 		slotItem.OnPickupItem();
+
+		if (itemPickup != null)
+			soundSource.Play();
+
+		Debug.Log("It should have played!");
 
 		Debug.Log($"Put item \"{slotItem.name}\" in slot \"{slotId}\".");
 	}

@@ -12,11 +12,22 @@ namespace Player
 		public BaseWeapon Weapon => DefaultWeapon;
 		private Animator[] _animators;
 
+		[SerializeField] private AudioClip weaponFired;
+		protected AudioSource soundSource;
+
 		private const float AimDeadzone = 0.1f;
 
 		private void Start()
 		{
 			_animators = GetComponentsInChildren<Animator>();
+
+			soundSource = this.gameObject.AddComponent<AudioSource>();
+			soundSource.loop = false;
+			soundSource.playOnAwake = false;
+			soundSource.volume = 0.5f;
+
+			if (weaponFired != null)
+				soundSource.clip = weaponFired;
 		}
 
 		public void Update()
@@ -55,6 +66,12 @@ namespace Player
 			if (context.performed)
 			{
 				Weapon.Shoot();
+				if (weaponFired != null)
+				{
+					soundSource.pitch = Random.Range(0.7f, 1.5f);
+					soundSource.Play();
+				}
+
 				foreach (Animator animator in _animators)
 				{
 					animator.SetTrigger("Aiming");

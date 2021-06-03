@@ -34,7 +34,7 @@ namespace Items
 			if (_time >= DurationValue) Destroy(gameObject);
 		}
 
-		public override void OnPickupItem() { }
+		public override void OnPickupItem() {}
 
 		public override void OnDropItem() { }
 
