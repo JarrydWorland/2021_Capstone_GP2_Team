@@ -20,7 +20,7 @@ namespace Items
 
 		public override void OnItemUpdate() { }
 
-		public override void OnPickupItem() { _increaseDamage.Damage += 1; }
+		public override void OnPickupItem() { }
 
 		public override void OnDropItem() { _increaseDamage.Damage -= 1; }
 	}

@@ -9,12 +9,18 @@ namespace Items
 		private bool _used;
 		public override bool Used => _used;
 
-		public override void OnUseItem()
+
+		public void Start() {}
+
+        public override void OnUseItem()
 		{
+
+
 			if (_used) return;
 
 			GameObject playerObject = GameObject.Find("Player");
 			Health playerHealth = playerObject.GetComponent<Health>();
+
 
 			if (playerHealth.Value < playerHealth.MaxHealth)
 			{

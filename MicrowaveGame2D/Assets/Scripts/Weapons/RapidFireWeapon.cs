@@ -37,14 +37,30 @@ namespace Weapons
 
 		private bool _isFiring;
 
+		//[SerializeField] private AudioClip weaponFired;
+		//protected AudioSource soundSource;
+
 		private void Start()
 		{
 			_fireRateInverse = 1.0f / FireRate;
+			//soundSource = this.gameObject.AddComponent<AudioSource>();
+			//soundSource.loop = false;
+			//soundSource.playOnAwake = false;
+			//soundSource.volume = 0.5f;
+
+			//if (weaponFired != null)
+			//	soundSource.clip = weaponFired;
 		}
 
 		public override void Shoot()
 		{
 			_isFiring = true;
+
+			//if (weaponFired != null)
+			//{
+			//	soundSource.pitch = Random.Range(0.7f, 1.5f);
+			//	soundSource.Play();
+			//}
 		}
 
 		private GameObject SpawnBullet()

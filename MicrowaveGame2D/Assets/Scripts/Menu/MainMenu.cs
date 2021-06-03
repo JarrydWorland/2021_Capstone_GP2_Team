@@ -5,14 +5,17 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 
 //Created by Jarryd Worland
-//Last Updated: 7/05/2021
+//Last Updated: 2/06/2021
 
 public class MainMenu : MonoBehaviour
 {
- 
+
+    [SerializeField] private GameObject OpenSting;
+
     // Menu Interactions
     public void StartGame()
     {
+        OpenSting.SetActive(true);
         SceneManager.LoadScene(1);
     }
 

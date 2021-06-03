@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 3
+  entityDamaged: {fileID: 8300000, guid: f7fa681be08a25941b89871649539cc8, type: 3}
 --- !u!114 &1588275431339931132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc97fe8a4ca51aa4a990a95cf8368a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDestroyed: {fileID: 8300000, guid: 94b3950df6093e046b4edf8ae86ca414, type: 3}
 --- !u!114 &4901973591558794130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: {fileID: 7416684124633275481}
+  weaponFired: {fileID: 8300000, guid: d8029edf103563644a1aac0c5070a6e3, type: 3}
 --- !u!114 &7416684124633275481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +193,4 @@ MonoBehaviour:
   BulletScale: 0.2
   BulletSpin: 360
   BulletSpawnOffset: 1
+  weaponFired: {fileID: 8300000, guid: d8029edf103563644a1aac0c5070a6e3, type: 3}
