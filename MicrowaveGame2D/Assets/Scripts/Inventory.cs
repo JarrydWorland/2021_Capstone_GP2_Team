@@ -1,3 +1,4 @@
+using System;
 using Events;
 using Helpers;
 using Items;
@@ -10,6 +11,8 @@ public class Inventory : MonoBehaviour
 	private CircularQueue<GameObject> _nearbyItems;
 
 	private GameObject _selectedItemIndicatorObject;
+
+	private GameObject[] _slotObjects;
 
 	private void Start()
 	{
@@ -25,6 +28,14 @@ public class Inventory : MonoBehaviour
 
 		_selectedItemIndicatorObject = GameObject.Find("SelectedItemIndicator");
 		_selectedItemIndicatorObject.SetActive(false);
+
+		_slotObjects = new GameObject[]
+		{
+			GameObject.Find("SlotItemOne"),
+			GameObject.Find("SlotItemTwo"),
+			GameObject.Find("SlotItemThree"),
+			GameObject.Find("SlotItemFour")
+		};
 
 		EventManager.Register<ItemConsumedEventArgs>(OnItemConsumed);
 	}
@@ -49,16 +60,27 @@ public class Inventory : MonoBehaviour
 
 		foreach (BaseItem item in _slots)
 		{
-			if (item != null) item.ItemUpdate();
+			if (item != null)
+			{
+				item.ItemUpdate();
+
+				if (item.IsActivated && !item.IsConsumed)
+				{
+					float value = MapValueBetween(Mathf.Sin(Time.frameCount * 0.005f), -1.0f, 1.0f, 1.2f, 1.3f);
+					_slotObjects[item.SlotId.Value].transform.localScale = new Vector3(value, value, 1.0f);
+				}
+			}
 		}
 	}
 
 	private void OnItemConsumed(ItemConsumedEventArgs eventArgs)
 	{
 		GameObject itemObject = eventArgs.Item.gameObject;
-		GameObject itemSlotObject = GetSlotObject("SlotItem", itemObject.GetComponent<BaseItem>().SlotId.Value);
+		GameObject itemSlotObject = _slotObjects[itemObject.GetComponent<BaseItem>().SlotId.Value];
 
 		itemSlotObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("HUD/ItemSlot");
+		itemSlotObject.transform.localScale = new Vector3(1.25f, 1.25f, 1.0f);
+
 		Destroy(itemObject);
 	}
 
@@ -138,7 +160,7 @@ public class Inventory : MonoBehaviour
 		SpriteRenderer itemSpriteRenderer = itemObject.GetComponent<SpriteRenderer>();
 
 		// Get the item slot object and sprite render.
-		GameObject itemSlotObject = GetSlotObject("SlotItem", slotId);
+		GameObject itemSlotObject = _slotObjects[slotId];
 		SpriteRenderer itemSlotSpriteRenderer = itemSlotObject.GetComponent<SpriteRenderer>();
 
 		// Set the item slot sprite to the item sprite.
@@ -167,23 +189,10 @@ public class Inventory : MonoBehaviour
 		droppedItemObject.SetActive(true);
 
 		// Update the item slot sprite to be empty.
-		GetSlotObject("SlotItem", slotId).GetComponent<SpriteRenderer>().sprite =
-			Resources.Load<Sprite>("HUD/ItemSlot");
+		_slotObjects[slotId].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("HUD/ItemSlot");
 
 		// Set the slot to null to indicate there is no item available.
 		_slots[slotId] = null;
-	}
-
-	private GameObject GetSlotObject(string common, int slotId)
-	{
-		return slotId switch
-		{
-			0 => GameObject.Find(common + "One"),
-			1 => GameObject.Find(common + "Two"),
-			2 => GameObject.Find(common + "Three"),
-			3 => GameObject.Find(common + "Four"),
-			_ => null
-		};
 	}
 
 	private void UpdateSelectedItemIndicator()
@@ -199,4 +208,7 @@ public class Inventory : MonoBehaviour
 		}
 		else _selectedItemIndicatorObject.SetActive(false);
 	}
+
+	private static float MapValueBetween(float value, float oldMinimum, float oldMaximum, float newMinimum,
+		float newMaximum) => (value - oldMinimum) / (oldMaximum - oldMinimum) * (newMaximum - newMinimum) + newMinimum;
 }
