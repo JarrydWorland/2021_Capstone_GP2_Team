@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ba6135173103c42aafd6901cd2da32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageIncreaseValue: 1
+  IncreaseValue: 1
 --- !u!82 &6174243509738261436
 AudioSource:
   m_ObjectHideFlags: 0
