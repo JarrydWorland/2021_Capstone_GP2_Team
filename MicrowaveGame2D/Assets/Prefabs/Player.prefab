@@ -752,6 +752,7 @@ MonoBehaviour:
   BulletSprite: {fileID: 21300000, guid: 7a437159611fdcb4e94f5808449ce8e8, type: 3}
   BulletScale: 0.13
   BulletSpin: 0
+  BulletSpawnOffset: 1
 --- !u!114 &-437860639897606278
 MonoBehaviour:
   m_ObjectHideFlags: 0

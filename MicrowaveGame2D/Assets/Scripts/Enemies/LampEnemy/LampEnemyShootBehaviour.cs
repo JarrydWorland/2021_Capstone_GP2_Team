@@ -3,12 +3,14 @@ using Weapons;
 
 namespace Enemy.Turret
 {
-	public class TurretShootBehaviour : MonoBehaviour
+	[RequireComponent(typeof(Animator))]
+	public class LampEnemyShootBehaviour : MonoBehaviour
 	{
 		[Tooltip("Weapon to shoot with")]
 		public BaseWeapon Weapon;
 
 		private GameObject _target;
+		private Animator _animator;
 
 		[SerializeField] private AudioClip weaponFired;
 		protected AudioSource soundSource;
@@ -16,6 +18,7 @@ namespace Enemy.Turret
 		private void Start()
 		{
 			_target = GameObject.Find("Player");
+			_animator = GetComponent<Animator>();
 
 			soundSource = this.gameObject.AddComponent<AudioSource>();
 			soundSource.loop = false;
@@ -38,6 +41,9 @@ namespace Enemy.Turret
 			if (_target != null)
 			{
 				Weapon.Direction = _target.transform.position - transform.position;
+				_animator.SetFloat("DirectionX", Weapon.Direction.x);
+				_animator.SetFloat("DirectionY", Weapon.Direction.y);
+				_animator.SetFloat("FireRate", Weapon.FireRate);
 			}
 		}
 	}
