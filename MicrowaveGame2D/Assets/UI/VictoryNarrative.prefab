@@ -222,7 +222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3400056123285470859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53693ec7115d2c1428d186bc46cdce23, type: 3}
+  m_Script: {fileID: 11500000, guid: f297fa7b0eedf934ab58e95a2cd8bd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   narrativeTxt: {fileID: 3400056123708072284}
@@ -321,10 +321,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1121c54e74b9d2946b3017f6b3f1fc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startText: 
+  replacementText: 
   passages:
-  - Having disposed of the guards harassing him, Merlin breathed a sigh of relief.
-    Now he hoped he could find some friendlier faces.
-  - Thanks for playing the Alpha for Reheat!
+  - Merlin had successfully fended off his attackers. With a sigh of relief, he made
+    his way further into the city of scrap
+  - Thank you for playing our Alpha!
 --- !u!1 &3400056124528247204
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +339,7 @@ GameObject:
   - component: {fileID: 3400056124528247203}
   - component: {fileID: 3400056124528247202}
   m_Layer: 5
-  m_Name: ClosingNarrative
+  m_Name: VictoryNarrative
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

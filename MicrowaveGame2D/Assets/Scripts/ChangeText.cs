@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class ChangeText : MonoBehaviour
 {
-    public string startText;
-    public string replacementText;
+    public string[] passages;
+    private int index = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Text>().text = startText;
+        GetComponent<Text>().text = passages[index];
     }
 
     public void SwapText()
     {
-        GetComponent<Text>().text = replacementText;
+        index++;
+        GetComponent<Text>().text = passages[index];
     }
 }

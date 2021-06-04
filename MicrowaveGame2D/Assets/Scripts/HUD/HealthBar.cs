@@ -115,6 +115,7 @@ public class HealthBar : MonoBehaviour
 			{
 				Debug.Log("You have won :)");
 				// TODO: Display the winning narrative scene here!
+				GameObject.Find("VictoryNarrative").SetActive(true);
 			}
 		}
 	}
@@ -127,6 +128,7 @@ public class HealthBar : MonoBehaviour
 		{
 			Debug.Log("You have died and lost :(");
 			// TODO: Display the losing narrative scene here!
+			GameObject.Find("DefeatMenu").SetActive(true);
 		}
 	}
 
