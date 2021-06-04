@@ -30,20 +30,37 @@ namespace Weapons
 		public Sprite BulletSprite;
 		public float BulletScale = 1.0f;
 		public float BulletSpin = 0.0f;
+		public float BulletSpawnOffset = 0.0f;
 
 		private float _fireRateInverse;
 		private float _time;
 
 		private bool _isFiring;
 
+		//[SerializeField] private AudioClip weaponFired;
+		//protected AudioSource soundSource;
+
 		private void Start()
 		{
 			_fireRateInverse = 1.0f / FireRate;
+			//soundSource = this.gameObject.AddComponent<AudioSource>();
+			//soundSource.loop = false;
+			//soundSource.playOnAwake = false;
+			//soundSource.volume = 0.5f;
+
+			//if (weaponFired != null)
+			//	soundSource.clip = weaponFired;
 		}
 
 		public override void Shoot()
 		{
 			_isFiring = true;
+
+			//if (weaponFired != null)
+			//{
+			//	soundSource.pitch = Random.Range(0.7f, 1.5f);
+			//	soundSource.Play();
+			//}
 		}
 
 		private GameObject SpawnBullet()
@@ -55,7 +72,7 @@ namespace Weapons
 			bullet.AddComponent<SpriteRenderer>().sprite = BulletSprite;
 			bullet.AddComponent<Rigidbody2D>();
 			bullet.AddComponent<BoxCollider2D>().isTrigger = true;
-			bullet.AddComponent<BulletBehaviour>().Init(this, BulletVelocity, BulletSpin);
+			bullet.AddComponent<BulletBehaviour>().Init(this, BulletSpawnOffset, BulletVelocity, BulletSpin);
 			bullet.transform.Rotate(Vector3.forward, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
 			bullet.transform.localScale = new Vector3(BulletScale, BulletScale, BulletScale);
 			return bullet;
@@ -94,11 +111,11 @@ namespace Weapons
 			private float _spin;
 			private float _velocity = 20.0f;
 
-			public void Init(BaseWeapon weapon, float velocity, float spin)
+			public void Init(BaseWeapon weapon, float offset, float velocity, float spin)
 			{
 				_weapon = weapon;
 				_direction = weapon.Direction;
-				_origin = weapon.transform.position;
+				_origin = weapon.transform.position + ((Vector3)weapon.Direction) * offset;
 				_damage = weapon.Damage;
 				_velocity = velocity;
 				_spin = spin;

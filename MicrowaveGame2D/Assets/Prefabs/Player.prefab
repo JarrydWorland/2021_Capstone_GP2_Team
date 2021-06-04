@@ -468,7 +468,19 @@ MonoBehaviour:
     m_ActionId: 0aac6d15-4543-443a-b810-71786612fa05
     m_ActionName: Playing/Shoot[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5175006593492916490, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7b28fb15-c5d0-421d-b381-66f2dc30d30c
     m_ActionName: Playing/Pause[/XInputControllerWindows/start,/Keyboard/escape]
   - m_PersistentCalls:
@@ -707,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultWeapon: {fileID: 6592026831741148447}
+  weaponFired: {fileID: 0}
 --- !u!114 &7310790717952797162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 6
+  entityDamaged: {fileID: 0}
 --- !u!114 &6592026831741148447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,12 +746,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33c4e838dd3c41499f1dfdc6ca7e77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletDamage: 1
   BulletFireRate: 5
+  BulletDamage: 1
   BulletVelocity: 20
   BulletSprite: {fileID: 21300000, guid: 7a437159611fdcb4e94f5808449ce8e8, type: 3}
   BulletScale: 0.13
   BulletSpin: 0
+  BulletSpawnOffset: 1
 --- !u!114 &-437860639897606278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,3 +765,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a0c99f716bb654a9143f2f0b2b730a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPickup: {fileID: 0}

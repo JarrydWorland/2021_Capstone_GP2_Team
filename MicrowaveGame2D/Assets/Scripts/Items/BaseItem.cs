@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 
 namespace Items
 {
 	public abstract class BaseItem : MonoBehaviour
 	{
-		// A flag to indicate if the item has been used or not.
-		// If the item has been used and the player drops the item,
-		// the item will be destroyed.
-		public abstract bool Used { get; }
+		public int? SlotId { get; set; }
+
+		public abstract bool IsActivated { get; }
+
+		public abstract bool IsConsumed { get; }
+
+		// Items are by default not passive.
+		// Set this to true a startup method like Start().
+		public bool IsPassive { get; protected set; }
 
 		// Called when the "Use Item" action is called
 		// for the slot this item is in.
@@ -24,5 +30,10 @@ namespace Items
 
 		// Called when the item is dropped.
 		public abstract void OnDropItem();
+	}
+
+	public class ItemConsumedEventArgs : EventArgs
+	{
+		public BaseItem Item;
 	}
 }
