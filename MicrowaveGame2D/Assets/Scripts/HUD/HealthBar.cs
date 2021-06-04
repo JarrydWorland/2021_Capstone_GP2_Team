@@ -123,7 +123,7 @@ public class HealthBar : MonoBehaviour
 				Debug.Log("You have won :)");
 
 				Time.timeScale = 0;
-				_victoryNarrativeObject.SetActive(true);
+				FindObjectOfType<VictoryMenu>(true).gameObject.SetActive(true);
 			}
 		}
 	}

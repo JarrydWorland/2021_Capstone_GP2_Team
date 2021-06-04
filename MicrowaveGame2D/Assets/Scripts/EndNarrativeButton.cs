@@ -10,10 +10,10 @@ public class EndNarrativeButton : MonoBehaviour
     [SerializeField] private Text btnTxt;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         btnTxt.GetComponent<Text>().text = "Continue";
-        transform.parent.gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(true);
     }
 
     public void SwapText()
