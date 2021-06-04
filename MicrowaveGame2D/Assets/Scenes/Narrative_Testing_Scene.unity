@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingRoomPrefab: {fileID: 8284593621937231616, guid: e96ed5f3b0ae8f248be75dd4786e39e3, type: 3}
-  Depth: 1
+  Depth: 5
   roomTransition: {fileID: 8300000, guid: 7a65fa8e4250945418f3bb6d0d764c26, type: 3}
 --- !u!82 &563255240
 AudioSource:
