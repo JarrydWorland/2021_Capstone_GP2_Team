@@ -8,7 +8,7 @@ public class ChangeText : MonoBehaviour
     public string[] passages;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GetComponent<Text>().text = passages[0];
     }

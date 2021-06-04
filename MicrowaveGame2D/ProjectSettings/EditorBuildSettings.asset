@@ -20,4 +20,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Narrative_Testing_Scene.unity
     guid: 49a0f9038be501143bdddfcbb4aefeb5
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: ecf415ac3799d0547b858f6340421801, type: 2}

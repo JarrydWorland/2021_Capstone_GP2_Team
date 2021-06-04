@@ -605,6 +605,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5577020553761953776, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
   m_PrefabInstance: {fileID: 5553082453111800087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &465977113 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5175006593492916490, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+  m_PrefabInstance: {fileID: 5553082453111800087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465977112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123f710a10bd7a54fbca3a4b0f13866d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &467687834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,6 +733,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &557602947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3400056124528247204, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+  m_PrefabInstance: {fileID: 1384883288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &557602950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557602947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7451d2e1ce4b37140b8d21e9177cd68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
 --- !u!1 &563255237
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,16 +963,60 @@ PrefabInstance:
     m_TransformParent: {fileID: 1863510014}
     m_Modifications:
     - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1430603669}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.3634475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.20914915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 685558809}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 557602947}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Show
       objectReference: {fileID: 0}
     - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Menu.VictoryMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400056123285470857, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3400056124528247204, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_Name
@@ -951,7 +1024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3400056124528247204, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3400056124528247205, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
       propertyPath: m_Pivot.x
@@ -1044,6 +1117,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3400056124528247205, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
   m_PrefabInstance: {fileID: 1384883288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1430603669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400056123285470854, guid: ec75f599c6234f34bb4be07e4e6fb6a5, type: 3}
+  m_PrefabInstance: {fileID: 1384883288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1760079490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1524,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1760079491}
     m_Modifications:
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.45999843
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.36320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 465977113}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 563804245722738309, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1388648932296110387, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 340
