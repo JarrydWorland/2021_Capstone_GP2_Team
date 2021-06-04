@@ -26,5 +26,22 @@ namespace Helpers
 			value.CompareTo(minimum) < 0 ? minimum : value.CompareTo(maximum) > 0 ? maximum : value;
 
 		public static bool HasComponent<T>(this GameObject gameObject) => gameObject.GetComponent<T>() != null;
+		
+		// https://stackoverflow.com/a/44456334
+		public static GameObject FindInActiveObjectByName(string name)
+		{
+			Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+			for (int i = 0; i < objs.Length; i++)
+			{
+				if (objs[i].hideFlags == HideFlags.None)
+				{
+					if (objs[i].name == name)
+					{
+						return objs[i].gameObject;
+					}
+				}
+			}
+			return null;
+		}
 	}
 }

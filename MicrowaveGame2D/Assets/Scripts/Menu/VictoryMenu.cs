@@ -1,14 +1,16 @@
+﻿using Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Menu
 {
-	public class DefeatMenu : MonoBehaviour
+	public class VictoryMenu : MonoBehaviour
 	{
 		public void Show()
 		{
 			Time.timeScale = 0;
-			FindObjectOfType<DefeatMenu>(true).gameObject.SetActive(true);
+			Extensions.FindInActiveObjectByName("VictoryNarrative").SetActive(false);
+			FindObjectOfType<VictoryMenu>(true).gameObject.SetActive(true);
 		}
 
 		public void QuitGameplay()
