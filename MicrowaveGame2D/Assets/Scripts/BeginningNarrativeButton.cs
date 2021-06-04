@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NarrativeButton : MonoBehaviour
+public class BeginningNarrativeButton : MonoBehaviour
 {
     public ChangeText narrativeTxt;
     [SerializeField] private Text btnTxt;
@@ -17,16 +17,20 @@ public class NarrativeButton : MonoBehaviour
 
     public void SwapText()
     {
-        if (btnTxt.GetComponent<Text>().text == "Continue")
-        {
-            narrativeTxt.SwapText();
-            btnTxt.GetComponent<Text>().text = "Begin";
-            return;
-        }
-        else if (btnTxt.GetComponent<Text>().text == "Begin")
+        if (btnTxt.GetComponent<Text>().text == "Begin")
         {
             Time.timeScale = 1;
             transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            narrativeTxt.SwapText();
+        }
+
+        if (narrativeTxt.AtEnd())
+        {
+            btnTxt.GetComponent<Text>().text = "Begin";
+            return;
         }
     }
 }
