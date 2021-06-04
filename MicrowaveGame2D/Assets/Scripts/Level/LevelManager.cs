@@ -14,6 +14,9 @@ namespace Level
 		private Room _currentRoom;
 		private List<Room> _roomsToDisable = new List<Room>();
 
+		[SerializeField] private AudioClip roomTransition;
+		private AudioSource soundSource;
+
 		public static LevelManager Instance => FindObjectOfType<LevelManager>();
 
 		void Start()
@@ -21,6 +24,13 @@ namespace Level
 			_camera = Camera.main;
 			_cameraTargetPosition = _camera.transform.position;
 			_currentRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth);
+
+			soundSource = GetComponent<AudioSource>();
+			soundSource.loop = false;
+			soundSource.playOnAwake = false;
+
+			if (roomTransition != null)
+				soundSource.clip = roomTransition;
 		}
 
 		void Update()
@@ -49,6 +59,9 @@ namespace Level
 			Room newRoom = door.ConnectingDoor.GetComponentsInParent<Room>(true)[0];
 			_currentRoom = newRoom;
 			_currentRoom.gameObject.SetActive(true);
+
+			if (roomTransition != null)
+				soundSource.Play();
 
 			// ensure the new room is not in the rooms to disable queue
 			_roomsToDisable.Remove(_currentRoom);

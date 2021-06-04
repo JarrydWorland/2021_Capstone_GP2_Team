@@ -9,18 +9,18 @@ namespace Items
 
 		private Health _playerHealth;
 
-		private bool _isConsumed;
-		public override bool IsConsumed => _isConsumed;
-
 		private bool _isActivated;
 		public override bool IsActivated => _isActivated;
+
+		private bool _isConsumed;
+		public override bool IsConsumed => _isConsumed;
 
 		private void Start()
 		{
 			_playerHealth = GameObject.Find("Player").GetComponent<Health>();
 		}
 
-		public override void Use()
+		public override void OnUseItem()
 		{
 			if (_isActivated) return;
 
@@ -39,6 +39,9 @@ namespace Items
 			}
 		}
 
-		public override void ItemUpdate() { }
+		public override void OnItemUpdate() { }
+		public override void OnPickupItem() { }
+
+		public override void OnDropItem() { }
 	}
 }

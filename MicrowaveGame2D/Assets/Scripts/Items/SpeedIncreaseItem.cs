@@ -15,7 +15,7 @@ namespace Items
 		public override bool IsConsumed => _isConsumed;
 
 		private bool _isActivated;
-		
+
 		public override bool IsActivated => _isActivated;
 
 		private void Start()
@@ -23,7 +23,7 @@ namespace Items
 			_playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 		}
 
-		public override void Use()
+		public override void OnUseItem()
 		{
 			if (_isActivated) return;
 			_isActivated = true;
@@ -31,7 +31,7 @@ namespace Items
 			_playerMovement.Speed += IncreaseValue;
 		}
 
-		public override void ItemUpdate()
+		public override void OnItemUpdate()
 		{
 			if (!_isActivated || _isConsumed) return;
 
@@ -47,5 +47,9 @@ namespace Items
 
 			_isConsumed = true;
 		}
+
+		public override void OnPickupItem() { }
+
+		public override void OnDropItem() { }
 	}
 }

@@ -1,4 +1,3 @@
-using System;
 using Events;
 using Helpers;
 using Items;
@@ -13,6 +12,11 @@ public class Inventory : MonoBehaviour
 	private GameObject _selectedItemIndicatorObject;
 
 	private GameObject[] _slotObjects;
+
+	[SerializeField]
+	private AudioClip itemPickup;
+
+	private AudioSource soundSource;
 
 	private void Start()
 	{
@@ -38,6 +42,12 @@ public class Inventory : MonoBehaviour
 		};
 
 		EventManager.Register<ItemConsumedEventArgs>(OnItemConsumed);
+
+		soundSource = GetComponent<AudioSource>();
+		soundSource.loop = false;
+		soundSource.playOnAwake = false;
+
+		if (itemPickup != null) soundSource.clip = itemPickup;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -62,7 +72,7 @@ public class Inventory : MonoBehaviour
 		{
 			if (item != null)
 			{
-				item.ItemUpdate();
+				item.OnItemUpdate();
 
 				if (item.IsActivated && !item.IsConsumed)
 				{
@@ -104,11 +114,13 @@ public class Inventory : MonoBehaviour
 		// Store the count before potentially dropping an item to reduce if statements later on.
 		int count = _nearbyItems.Count;
 
+		BaseItem slotItem = _slots[slotId];
+
 		// If the slot has an item, drop it.
-		if (_slots[slotId] != null)
+		if (slotItem != null)
 		{
 			// If the item has been activated, it cannot be dropped.
-			if (_slots[slotId].IsActivated) return;
+			if (slotItem.IsActivated && !slotItem.IsPassive) return;
 			DropItem(slotId);
 		}
 
@@ -124,11 +136,11 @@ public class Inventory : MonoBehaviour
 		// Get the item in the slot.
 		BaseItem slotItem = _slots[slotId];
 
-		// If the item is not null, call its "Use()" method.
-		// Note that we can't use "slotItem?.Use()" as that bypasses the game object's life time check.
+		// If the item is not null, call its "OnUseItem()" method.
+		// Note that we can't use "slotItem?.OnUseItem()" as that bypasses the game object's life time check.
 		if (slotItem != null)
 		{
-			slotItem.Use();
+			slotItem.OnUseItem();
 			Debug.Log($"Used item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
 		}
 	}
@@ -167,6 +179,16 @@ public class Inventory : MonoBehaviour
 		itemSlotSpriteRenderer.sprite = itemSpriteRenderer.sprite;
 
 		Debug.Log($"Put item \"{_slots[slotId].name}\" in slot \"{slotId}\".");
+
+		// Call the item's "OnPickupItem()" method.
+		item.OnPickupItem();
+
+		if (itemPickup != null)
+			soundSource.Play();
+
+		Debug.Log("It should have played!");
+
+		Debug.Log($"Put item \"{item.name}\" in slot \"{slotId}\".");
 	}
 
 	private void DropItem(int slotId)

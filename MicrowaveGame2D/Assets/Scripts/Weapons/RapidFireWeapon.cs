@@ -7,11 +7,25 @@ namespace Weapons
 		public override string Name => "Rapid Fire Weapon";
 		public override string Description => "A weapon that shoots bullets at a constant rate";
 
-		public override int Damage => BulletDamage;
-		public override float FireRate => BulletFireRate;
+		public override int Damage
+		{
+			get => BulletDamage;
+			set => BulletDamage = value;
+		}
 
+		public override float FireRate
+		{
+			get => BulletFireRate;
+			set
+            {
+				BulletFireRate = value;
+				_fireRateInverse = 1.0f / value;
+            }
+		}
+
+		public float BulletFireRate;
+        
 		public int BulletDamage = 1;
-		public float BulletFireRate = 1.0f;
 		public float BulletVelocity = 20.0f;
 		public Sprite BulletSprite;
 		public float BulletScale = 1.0f;
@@ -22,14 +36,30 @@ namespace Weapons
 
 		private bool _isFiring;
 
+		//[SerializeField] private AudioClip weaponFired;
+		//protected AudioSource soundSource;
+
 		private void Start()
 		{
 			_fireRateInverse = 1.0f / FireRate;
+			//soundSource = this.gameObject.AddComponent<AudioSource>();
+			//soundSource.loop = false;
+			//soundSource.playOnAwake = false;
+			//soundSource.volume = 0.5f;
+
+			//if (weaponFired != null)
+			//	soundSource.clip = weaponFired;
 		}
 
 		public override void Shoot()
 		{
 			_isFiring = true;
+
+			//if (weaponFired != null)
+			//{
+			//	soundSource.pitch = Random.Range(0.7f, 1.5f);
+			//	soundSource.Play();
+			//}
 		}
 
 		private GameObject SpawnBullet()
