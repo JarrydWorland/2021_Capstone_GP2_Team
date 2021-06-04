@@ -48,10 +48,10 @@ namespace Level
 				grid.Add(newRoom);
 
 				// position room in scene
-				int roomPlacementDistance = 50;
+				int roomPlacementDistance = 35;
 				newRoom.transform.position = new Vector3
 				{
-					x = newPosition.x * roomPlacementDistance,
+					x = newPosition.x * roomPlacementDistance / 1.25f,
 					y = newPosition.y * roomPlacementDistance / 2,
 					z = 0,
 				};
