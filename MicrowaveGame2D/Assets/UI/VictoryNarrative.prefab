@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 3400056123285470855}
   - component: {fileID: 3400056123285470854}
   - component: {fileID: 3400056123285470857}
-  - component: {fileID: 3400056123285470852}
+  - component: {fileID: 237046995216422981}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3400056123285470852}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrativeButton, Assembly-CSharp
         m_MethodName: SwapText
         m_Mode: 1
@@ -213,7 +213,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
---- !u!114 &3400056123285470852
+--- !u!114 &237046995216422981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3400056123285470859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f297fa7b0eedf934ab58e95a2cd8bd44, type: 3}
+  m_Script: {fileID: 11500000, guid: 53693ec7115d2c1428d186bc46cdce23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   narrativeTxt: {fileID: 3400056123708072284}
@@ -322,12 +322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passages:
-  - 'This is the story of Merlin. Merlin was a robot with one purpose: To microwave
-    food. Unfortunately, after an incident involving a small child and a shiny spoon,
-    Merlin was discarded at a scrapyard.'
-  - Whilst attempting to escape his situation, Merlin fell through a hole in a pile
-    of scrap, into a hidden world beneath the scrapyard.
-  - Here, we join Merlin as he is being accosted by a group of mechanical soldiers
+  - Merlin had successfully fended off his attackers. With a sigh of relief, he made
+    his way further into the city of scrap
+  - Thank you for playing our Alpha!
 --- !u!1 &3400056124528247204
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +337,7 @@ GameObject:
   - component: {fileID: 3400056124528247203}
   - component: {fileID: 3400056124528247202}
   m_Layer: 5
-  m_Name: OpeningNarrative
+  m_Name: VictoryNarrative
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
