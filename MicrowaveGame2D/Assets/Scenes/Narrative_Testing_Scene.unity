@@ -158,6 +158,18 @@ PrefabInstance:
       propertyPath: entityDamaged
       value: 
       objectReference: {fileID: 8300000, guid: 97a562a0b409b3045b47e65d7b731c14, type: 3}
+    - target: {fileID: 8165595877299822449, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165595877299822449, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165595877299822449, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8574193837115946451, guid: ce7eb28eb3a969b4faa76e545cfbbcc6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -399,6 +411,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &465977112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5577020553761953776, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+  m_PrefabInstance: {fileID: 5553082453111800087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &467687834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1266,9 +1283,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -43
       objectReference: {fileID: 0}
+    - target: {fileID: 5175006593492916490, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: PauseMenuObject
+      value: 
+      objectReference: {fileID: 465977112}
     - target: {fileID: 5577020553761953776, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577020553761953776, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5701142871276035875, guid: 92228a90e22185a46a7505d484c2ecc5, type: 3}
       propertyPath: m_TargetGraphic
@@ -1460,6 +1485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VictoryEndGame
       objectReference: {fileID: 0}
+    - target: {fileID: 693038432260854171, guid: 49078f3627ac75a429f20528d6129ff8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8199573859316471328, guid: 49078f3627ac75a429f20528d6129ff8, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -1481,6 +1510,10 @@ PrefabInstance:
     - target: {fileID: 631485235044283182, guid: 4d6cbd3a61715c44e9109a2a0fac449a, type: 3}
       propertyPath: m_Name
       value: DefeatEndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 631485235044283182, guid: 4d6cbd3a61715c44e9109a2a0fac449a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3985994500053096696, guid: 4d6cbd3a61715c44e9109a2a0fac449a, type: 3}
       propertyPath: m_Pivot.x
