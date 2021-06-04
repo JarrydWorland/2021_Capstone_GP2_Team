@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 496058951192707807}
   - component: {fileID: -7170202518477895773}
   m_Layer: 0
-  m_Name: WeaponsFireRateIncrease
+  m_Name: FireRateIncrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b704bc943699a714f998e536bfb579ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IncreaseValue: 0
