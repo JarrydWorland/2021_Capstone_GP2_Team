@@ -30,6 +30,7 @@ namespace Weapons
 		public Sprite BulletSprite;
 		public float BulletScale = 1.0f;
 		public float BulletSpin = 0.0f;
+		public float BulletSpawnOffset = 0.0f;
 
 		private float _fireRateInverse;
 		private float _time;
@@ -71,7 +72,7 @@ namespace Weapons
 			bullet.AddComponent<SpriteRenderer>().sprite = BulletSprite;
 			bullet.AddComponent<Rigidbody2D>();
 			bullet.AddComponent<BoxCollider2D>().isTrigger = true;
-			bullet.AddComponent<BulletBehaviour>().Init(this, BulletVelocity, BulletSpin);
+			bullet.AddComponent<BulletBehaviour>().Init(this, BulletSpawnOffset, BulletVelocity, BulletSpin);
 			bullet.transform.Rotate(Vector3.forward, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
 			bullet.transform.localScale = new Vector3(BulletScale, BulletScale, BulletScale);
 			return bullet;
@@ -110,11 +111,11 @@ namespace Weapons
 			private float _spin;
 			private float _velocity = 20.0f;
 
-			public void Init(BaseWeapon weapon, float velocity, float spin)
+			public void Init(BaseWeapon weapon, float offset, float velocity, float spin)
 			{
 				_weapon = weapon;
 				_direction = weapon.Direction;
-				_origin = weapon.transform.position;
+				_origin = weapon.transform.position + ((Vector3)weapon.Direction) * offset;
 				_damage = weapon.Damage;
 				_velocity = velocity;
 				_spin = spin;
