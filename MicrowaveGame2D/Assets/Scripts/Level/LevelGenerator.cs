@@ -18,13 +18,13 @@ namespace Level
 		/* public static methods */
 		/*=======================*/
 
-		public static Room GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth)
+		public static Room GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth, bool disableChildRooms)
 		{
 			RoomGrid grid = new RoomGrid();
 			Vector2Int centre = new Vector2Int(0, 0);
 			Room startingRoom = Room.Make(startingRoomPrefab, parent, centre);
 			grid.Add(startingRoom);
-			SpawnChildRooms(startingRoom, parent, grid, depth);
+			SpawnChildRooms(startingRoom, parent, grid, depth, disableChildRooms);
 			return startingRoom;
 		}
 
@@ -32,7 +32,7 @@ namespace Level
 		/* private static methods */
 		/*========================*/
 
-		private static void SpawnChildRooms(Room room, Transform parent, RoomGrid grid, int depth)
+		private static void SpawnChildRooms(Room room, Transform parent, RoomGrid grid, int depth, bool disableChildRooms)
 		{
 			bool enclosedPrefabRequired = depth == 1;
 			bool DoorIsNotConnected(Door door) => door.ConnectingDoor == null;
@@ -44,20 +44,20 @@ namespace Level
 
 				// create room using prefab
 				Room newRoom = Room.Make(newRoomPrefab, parent, newPosition);
-				newRoom.gameObject.SetActive(false);
+				if (disableChildRooms) newRoom.gameObject.SetActive(false);
 				grid.Add(newRoom);
 
 				// position room in scene
-				int roomPlacementDistance = 50;
+				int roomPlacementDistance = 35;
 				newRoom.transform.position = new Vector3
 				{
-					x = newPosition.x * roomPlacementDistance,
+					x = newPosition.x * roomPlacementDistance / 1.25f,
 					y = newPosition.y * roomPlacementDistance / 2,
 					z = 0,
 				};
 
 				// recursively spawn child-rooms
-				SpawnChildRooms(newRoom, parent, grid, depth - 1);
+				SpawnChildRooms(newRoom, parent, grid, depth - 1, disableChildRooms);
 			}
 		}
 
