@@ -7,6 +7,7 @@ namespace Level
 	{
 		public GameObject StartingRoomPrefab;
 		public int Depth;
+		public bool AlwaysShowRooms;
 
 		private Camera _camera;
 		private Vector3 _cameraTargetPosition;
@@ -23,14 +24,16 @@ namespace Level
 		{
 			_camera = Camera.main;
 			_cameraTargetPosition = _camera.transform.position;
-			_currentRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth);
+			_currentRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, !AlwaysShowRooms);
 
 			soundSource = GetComponent<AudioSource>();
 			soundSource.loop = false;
 			soundSource.playOnAwake = false;
 
 			if (roomTransition != null)
+			{
 				soundSource.clip = roomTransition;
+			}
 		}
 
 		void Update()
@@ -40,12 +43,19 @@ namespace Level
 			//_camera.transform.position = Vector3.Lerp(start, end, 20 * Time.deltaTime);
 			_camera.transform.position = Vector3.SmoothDamp(start, end, ref _cameraVelocity, 0.1f);
 
-			if ((end - start).sqrMagnitude < 1.0f)
+			if (!AlwaysShowRooms)
 			{
-				foreach(Room room in _roomsToDisable)
+				if ((end - start).sqrMagnitude < 1.0f)
 				{
-					room.gameObject.SetActive(false);
+					foreach(Room room in _roomsToDisable)
+					{
+						room.gameObject.SetActive(false);
+					}
 				}
+			}
+			else
+			{
+				_roomsToDisable.Clear();
 			}
 		}
 
@@ -60,8 +70,7 @@ namespace Level
 			_currentRoom = newRoom;
 			_currentRoom.gameObject.SetActive(true);
 
-			if (roomTransition != null)
-				soundSource.Play();
+			if (roomTransition != null) soundSource.Play();
 
 			// ensure the new room is not in the rooms to disable queue
 			_roomsToDisable.Remove(_currentRoom);
