@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Resources.Scripts.Utilities
+namespace Scripts.Utilities
 {
 	public class CircularQueue<T>
 	{
@@ -57,8 +57,8 @@ namespace Resources.Scripts.Utilities
 		/// <summary>
 		/// Checks if the given item is in the queue.
 		/// </summary>
-		/// <param name="other"></param>
-		/// <returns></returns>
+		/// <param name="other">The item to be checked.</param>
+		/// <returns>Returns true if the item is contained in the queue, otherwise returns false.</returns>
 		public bool Contains(T other) => _list.Contains(other);
 
 		/// <summary>

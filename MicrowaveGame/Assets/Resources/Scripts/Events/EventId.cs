@@ -1,6 +1,6 @@
 using System;
 
-namespace Resources.Scripts.Events
+namespace Scripts.Events
 {
 	public readonly struct EventId<T> where T : EventArgs
 	{
