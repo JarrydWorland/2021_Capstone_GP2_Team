@@ -1,0 +1,37 @@
+using UnityEngine;
+
+namespace Scripts.Levels
+{
+	public class LevelGenerationBehaviour : MonoBehaviour
+	{
+		/// <summary>
+		/// The room prefab to use as the starting room.
+		/// </summary>
+		public GameObject StartingRoomPrefab;
+
+		/// <summary>
+		/// The depth of the level to be generated. Depth should be a value
+		/// larger than zero. A larger depth value will result in a larger
+		/// level being generated.
+		/// </summary>
+		public int Depth;
+
+		/// <summary>
+		/// This option is for debugging only. If true all rooms will always be
+		/// enabled in the scene, meaning all the rooms can be seen within the
+		/// unity editor while the game is running. However this also means all
+		/// rooms will be enabled and loaded even if the player is not in them.
+		/// </summary>
+		public bool AlwaysShowRooms;
+
+		/// <summary>
+		/// The starting room instance.
+		/// </summary>
+		public GameObject StartingRoom { get; private set; }
+
+		private void Start()
+		{
+			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, !AlwaysShowRooms);
+		}
+	}
+}
