@@ -86,6 +86,12 @@ namespace Scripts.Inventory
 		}
 
 		/// <summary>
+		/// Gets the item at the top of the queue (i.e. the selected item).
+		/// </summary>
+		/// <returns>The item at the top of the queue.</returns>
+		public ItemBehaviour GetNearbyItem() => _nearbyItems.Peek();
+
+		/// <summary>
 		/// Adds an item to the nearby item list.
 		/// </summary>
 		/// <param name="itemBehaviour">The item to be added.</param>
