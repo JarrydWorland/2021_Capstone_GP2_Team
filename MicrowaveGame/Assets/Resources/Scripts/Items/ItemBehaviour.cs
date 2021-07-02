@@ -40,7 +40,8 @@ namespace Scripts.Items
 		/// A callback method that is called to drop the item.
 		/// </summary>
 		/// <param name="inventorySlotBehaviour">The inventory slot that the item is stored in.</param>
-		public abstract void OnDropItem(InventorySlotBehaviour inventorySlotBehaviour);
+		/// <returns>Returns true if the item is ready to be dropped, otherwise returns false.</returns>
+		public abstract bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour);
 
 		protected virtual void Start()
 		{

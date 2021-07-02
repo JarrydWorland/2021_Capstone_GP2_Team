@@ -67,7 +67,9 @@ namespace Scripts.Inventory
 		public ItemBehaviour DropItem()
 		{
 			if (ItemBehaviour == null) return null;
-			ItemBehaviour.OnDropItem(this);
+
+			bool shouldDrop = ItemBehaviour.OnDropItem(this);
+			if (!shouldDrop) return null;
 
 			SetSprite(_inventorySlotSprite, Vector3.one);
 
