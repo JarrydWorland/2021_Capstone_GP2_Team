@@ -6,6 +6,9 @@ namespace Scripts.Inventory
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class InventorySlotBehaviour : MonoBehaviour
 	{
+		/// <summary>
+		/// The current item (null if empty).
+		/// </summary>
 		public ItemBehaviour ItemBehaviour { get; private set; }
 
 		private SpriteRenderer _inventorySpriteRenderer;
@@ -26,6 +29,10 @@ namespace Scripts.Inventory
 			if (ItemBehaviour != null) ItemBehaviour.OnUpdateItem(this);
 		}
 
+		/// <summary>
+		/// Pick up the given item, dropping any existing item in the slot, and update the slot sprite.
+		/// </summary>
+		/// <param name="itemBehaviour">The item to be added to the slot.</param>
 		public void PickupItem(ItemBehaviour itemBehaviour)
 		{
 			if (itemBehaviour == null) return;
@@ -37,18 +44,29 @@ namespace Scripts.Inventory
 			ItemBehaviour.OnPickupItem(this);
 		}
 
+		/// <summary>
+		/// Attempt to use the item if there is one in the slot.
+		/// </summary>
 		public void UseItem()
 		{
 			if (ItemBehaviour != null) ItemBehaviour.OnUseItem(this);
 		}
 
+		/// <summary>
+		/// Attempt to update the item if there is one in the slot.
+		/// </summary>
 		public void UpdateItem()
 		{
 			if (ItemBehaviour != null) ItemBehaviour.OnUpdateItem(this);
 		}
 
+		/// <summary>
+		/// Attempt to drop the item if there is one in the slot.
+		/// </summary>
+		/// <returns>The dropped item (null if empty).</returns>
 		public ItemBehaviour DropItem()
 		{
+			if (ItemBehaviour == null) return null;
 			ItemBehaviour.OnDropItem(this);
 
 			SetSprite(_inventorySlotSprite, Vector3.one);

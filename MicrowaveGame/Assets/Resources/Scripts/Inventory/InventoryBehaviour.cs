@@ -19,6 +19,8 @@ namespace Scripts.Inventory
 			_player = GameObject.Find("Player");
 		}
 
+		// --- The below methods are called by Unity's new input system.
+
 		public void OnSelectItemLeft(InputAction.CallbackContext context) => OnSelectItem(context, false);
 		public void OnSelectItemRight(InputAction.CallbackContext context) => OnSelectItem(context, true);
 
@@ -32,12 +34,26 @@ namespace Scripts.Inventory
 		public void OnUseItemSlotThree(InputAction.CallbackContext context) => OnUseItem(context, 2);
 		public void OnUseItemSlotFour(InputAction.CallbackContext context) => OnUseItem(context, 3);
 
+		// ---
+
+		/// <summary>
+		/// Changes the currently selected item on the floor.
+		/// Called by the "select item" input action.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		/// <param name="reverse">Rotates the circular queue clockwise if true, or counter-clockwise if false.</param>
 		private void OnSelectItem(InputAction.CallbackContext context, bool reverse)
 		{
 			if (!context.performed || _nearbyItems.Count == 0) return;
 			_nearbyItems.Requeue(reverse);
 		}
 
+		/// <summary>
+		/// Picks up an item if one is nearby, or drops an item if one is in the slot.
+		/// Called by the "pick up / drop item" input action.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		/// <param name="slotId">The ID of the slot.</param>
 		private void OnPickupDropItem(InputAction.CallbackContext context, int slotId)
 		{
 			if (!context.performed) return;
@@ -58,17 +74,30 @@ namespace Scripts.Inventory
 			}
 		}
 
+		/// <summary>
+		/// Attempts to use an item in the given slot.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		/// <param name="slotId">The ID of the slot.</param>
 		private void OnUseItem(InputAction.CallbackContext context, int slotId)
 		{
 			if (!context.performed || Keyboard.current.shiftKey.isPressed) return;
 			_slots[slotId].UseItem();
 		}
 
+		/// <summary>
+		/// Adds an item to the nearby item list.
+		/// </summary>
+		/// <param name="itemBehaviour">The item to be added.</param>
 		public void AddNearbyItem(ItemBehaviour itemBehaviour)
 		{
 			if (itemBehaviour != null && !_nearbyItems.Contains(itemBehaviour)) _nearbyItems.Enqueue(itemBehaviour);
 		}
 
+		/// <summary>
+		/// Removes an item from the nearby item list.
+		/// </summary>
+		/// <param name="itemBehaviour">The item to be removed.</param>
 		public void RemoveNearbyItem(ItemBehaviour itemBehaviour)
 		{
 			if (itemBehaviour != null && _nearbyItems.Contains(itemBehaviour)) _nearbyItems.Remove(itemBehaviour);

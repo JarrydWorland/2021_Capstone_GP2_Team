@@ -6,14 +6,40 @@ namespace Scripts.Items
 	[RequireComponent(typeof(BoxCollider2D))]
 	public abstract class ItemBehaviour : MonoBehaviour
 	{
+		/// <summary>
+		/// The name of the item.
+		/// </summary>
 		public string Name;
+
+		/// <summary>
+		/// The description of the item.
+		/// </summary>
 		public string Description;
 
 		private InventoryBehaviour _inventoryBehaviour;
 
+		/// <summary>
+		/// A callback method that is called to pick up an item.
+		/// </summary>
+		/// <param name="inventorySlotBehaviour">The inventory slot the item will be stored in.</param>
 		public abstract void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour);
+
+		/// <summary>
+		/// A callback method that is called to use the item.
+		/// </summary>
+		/// <param name="inventorySlotBehaviour">The inventory slot that the item is stored in.</param>
 		public abstract void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour);
+
+		/// <summary>
+		/// A callback method that is called to update the item.
+		/// </summary>
+		/// <param name="inventorySlotBehaviour">The inventory slot that the item is stored in.</param>
 		public abstract void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour);
+
+		/// <summary>
+		/// A callback method that is called to drop the item.
+		/// </summary>
+		/// <param name="inventorySlotBehaviour">The inventory slot that the item is stored in.</param>
 		public abstract void OnDropItem(InventorySlotBehaviour inventorySlotBehaviour);
 
 		protected virtual void Start()
