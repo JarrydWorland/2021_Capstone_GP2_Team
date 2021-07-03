@@ -63,6 +63,8 @@ namespace Scripts.Inventory
 			if (inventorySlotBehaviour.ItemBehaviour == null)
 			{
 				ItemBehaviour selectedItem = _nearbyItems.Peek();
+				if (selectedItem == null) return;
+				
 				inventorySlotBehaviour.PickupItem(selectedItem);
 				selectedItem.gameObject.SetActive(false);
 			}
