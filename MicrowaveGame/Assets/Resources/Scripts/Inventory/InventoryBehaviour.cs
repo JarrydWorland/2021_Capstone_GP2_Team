@@ -69,6 +69,8 @@ namespace Scripts.Inventory
 			else
 			{
 				ItemBehaviour itemBehaviour = _slots[slotId].DropItem();
+				if (itemBehaviour == null) return;
+				
 				itemBehaviour.transform.position = _player.transform.position;
 				itemBehaviour.gameObject.SetActive(true);
 			}

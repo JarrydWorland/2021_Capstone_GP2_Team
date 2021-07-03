@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Scripts.Inventory
 {
-	[RequireComponent(typeof(SpriteRenderer))]
 	public class InventorySlotBehaviour : MonoBehaviour
 	{
 		/// <summary>
@@ -16,12 +15,16 @@ namespace Scripts.Inventory
 
 		private Vector3 _inventorySlotInitialScale;
 
+		private Animator _animator;
+
 		private void Start()
 		{
-			_inventorySpriteRenderer = GetComponent<SpriteRenderer>();
+			_inventorySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 			_inventorySlotSprite = _inventorySpriteRenderer.sprite;
 
 			_inventorySlotInitialScale = _inventorySpriteRenderer.transform.localScale;
+
+			_animator = GetComponentInChildren<Animator>();
 		}
 
 		private void Update()
@@ -42,6 +45,8 @@ namespace Scripts.Inventory
 
 			SetSprite(ItemBehaviour.GetComponent<SpriteRenderer>().sprite, ItemBehaviour.transform.localScale);
 			ItemBehaviour.OnPickupItem(this);
+
+			_animator.Play("InventorySlotPickupItem");
 		}
 
 		/// <summary>
@@ -49,7 +54,11 @@ namespace Scripts.Inventory
 		/// </summary>
 		public void UseItem()
 		{
-			if (ItemBehaviour != null) ItemBehaviour.OnUseItem(this);
+			if (ItemBehaviour != null)
+			{
+				bool canUse = ItemBehaviour.OnUseItem(this);
+				if (canUse) _animator.Play("InventorySlotUseItem");
+			}
 		}
 
 		/// <summary>
@@ -70,6 +79,8 @@ namespace Scripts.Inventory
 
 			bool shouldDrop = ItemBehaviour.OnDropItem(this);
 			if (!shouldDrop) return null;
+
+			_animator.Play("InventorySlotDropItem");
 
 			SetSprite(_inventorySlotSprite, Vector3.one);
 
@@ -99,6 +110,7 @@ namespace Scripts.Inventory
 				1.0f
 			);
 
+			_inventorySpriteRenderer.transform.localScale = Vector3.one;
 			_inventorySpriteRenderer.sprite = sprite;
 		}
 	}
