@@ -49,7 +49,14 @@ namespace Scripts.Items
 			_inventoryBehaviour = GameObject.Find("Inventory").GetComponent<InventoryBehaviour>();
 		}
 
-		private void OnTriggerEnter2D(Collider2D other) => _inventoryBehaviour.AddNearbyItem(this);
-		private void OnTriggerExit2D(Collider2D other) => _inventoryBehaviour.RemoveNearbyItem(this);
+		private void OnTriggerEnter2D(Collider2D other)
+		{
+			if (other.gameObject.name == "Player") _inventoryBehaviour.AddNearbyItem(this);
+		}
+
+		private void OnTriggerExit2D(Collider2D other)
+		{
+			if (other.gameObject.name == "Player") _inventoryBehaviour.RemoveNearbyItem(this);
+		}
 	}
 }

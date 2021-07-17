@@ -59,12 +59,12 @@ namespace Scripts.Inventory
 			if (!context.performed) return;
 
 			InventorySlotBehaviour inventorySlotBehaviour = _slots[slotId];
+			ItemBehaviour selectedItem = _nearbyItems.Peek();
 
 			if (inventorySlotBehaviour.ItemBehaviour == null)
 			{
-				ItemBehaviour selectedItem = _nearbyItems.Peek();
 				if (selectedItem == null) return;
-				
+
 				inventorySlotBehaviour.PickupItem(selectedItem);
 				selectedItem.gameObject.SetActive(false);
 			}
@@ -72,9 +72,15 @@ namespace Scripts.Inventory
 			{
 				ItemBehaviour itemBehaviour = _slots[slotId].DropItem();
 				if (itemBehaviour == null) return;
-				
+
 				itemBehaviour.transform.position = _player.transform.position;
 				itemBehaviour.gameObject.SetActive(true);
+
+				if (selectedItem != null)
+				{
+					inventorySlotBehaviour.PickupItem(selectedItem);
+					selectedItem.gameObject.SetActive(false);
+				}
 			}
 		}
 

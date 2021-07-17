@@ -57,7 +57,7 @@ namespace Scripts.Inventory
 			if (ItemBehaviour != null)
 			{
 				bool canUse = ItemBehaviour.OnUseItem(this);
-				if (canUse) _animator.Play("InventorySlotUseItem");
+				_animator.Play(canUse ? "InventorySlotUseItem" : "InventorySlotIdle");
 			}
 		}
 
