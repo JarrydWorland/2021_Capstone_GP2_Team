@@ -19,6 +19,41 @@ namespace Scripts.Utilities
 			value.CompareTo(minimum) < 0 ? minimum : value.CompareTo(maximum) > 0 ? maximum : value;
 
 		/// <summary>
+		/// Gets a value from the dictionary if one already exists, otherwise it
+		/// will add a new value to the dictionary and return that instead.
+		/// </summary>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key to lookup in the dictionary.</param>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <returns>Returns an existing value if one exists, otherwise adds a new value and return it.</returns>
+		public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+			where TValue : new()
+		{
+			if (!dictionary.TryGetValue(key, out TValue val))
+			{
+				val = new TValue();
+				dictionary.Add(key, val);
+			}
+			return val;
+		}
+
+		/// <summary>
+		/// Gets a value from the dictionary if one exists, otherwise it will
+		/// return a default TValue.
+		/// </summary>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key to lookup in the dictionary.</param>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <returns>Returns an existing value if one exists, otherwise returns a default value.</returns>
+		public static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+		{
+			if (dictionary.TryGetValue(key, out TValue val)) return val;
+			return default;
+		}
+
+		/// <summary>
 		/// Checks if the given game object has a given component.
 		/// </summary>
 		/// <param name="gameObject">The game object.</param>
