@@ -13,7 +13,7 @@ namespace Scripts.Items
 		private PlayerMovementBehaviour _playerMovementBehaviour;
 		private float _time;
 
-		protected override void Start()
+		public override void Start()
 		{
 			base.Start();
 

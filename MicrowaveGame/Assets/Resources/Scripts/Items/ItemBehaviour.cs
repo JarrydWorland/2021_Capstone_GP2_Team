@@ -44,7 +44,7 @@ namespace Scripts.Items
 		/// <returns>Returns true if the item is ready to be dropped, otherwise returns false.</returns>
 		public abstract bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour);
 
-		protected virtual void Start()
+		public virtual void Start()
 		{
 			_inventoryBehaviour = GameObject.Find("Inventory").GetComponent<InventoryBehaviour>();
 		}
