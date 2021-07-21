@@ -17,8 +17,13 @@ namespace Scripts.Weapons
 		/// </summary>
 		public float FireRate;
 
+		/// <summary>
+		/// How fast the projectiles it produces travel. 0 if not applicable.
+		/// </summary>
+		public float ProjectileSpeed;
+
 		private PlayerWeaponBehaviour _playerWeaponBehaviour;
-		private bool isWeaponEquipped => _playerWeaponBehaviour.ActiveWeaponBehaviour == this;
+		private bool isWeaponEquipped => _playerWeaponBehaviour.EquippedWeaponBehaviour == this;
 
 		public override void Start()
 		{
@@ -65,9 +70,9 @@ namespace Scripts.Weapons
 		/// <returns>Returns true if the item is equipped, otherwise returns false.</returns>
 		public override bool OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_playerWeaponBehaviour.ActiveWeaponBehaviour.OnWeaponUnequip();
-			_playerWeaponBehaviour.ActiveWeaponBehaviour = isWeaponEquipped ? null : this;
-			_playerWeaponBehaviour.ActiveWeaponBehaviour.OnWeaponEquip();
+			_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponUnequip();
+			_playerWeaponBehaviour.EquippedWeaponBehaviour = isWeaponEquipped ? null : this;
+			_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponEquip();
 			
 			return isWeaponEquipped;
 		}
@@ -99,9 +104,9 @@ namespace Scripts.Weapons
 		{
 			if (isWeaponEquipped)
 			{
-				_playerWeaponBehaviour.ActiveWeaponBehaviour.OnWeaponUnequip();
-				_playerWeaponBehaviour.ActiveWeaponBehaviour = null;
-				_playerWeaponBehaviour.ActiveWeaponBehaviour.OnWeaponEquip();
+				_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponUnequip();
+				_playerWeaponBehaviour.EquippedWeaponBehaviour= null;
+				_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponEquip();
 			}
 			return true;
 		}
