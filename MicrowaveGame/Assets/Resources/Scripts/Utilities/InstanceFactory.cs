@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scripts.Rooms;
+using Scripts.Projectiles;
 
 namespace Scripts.Utilities
 {
@@ -26,6 +27,41 @@ namespace Scripts.Utilities
 			GameObject room = GameObject.Instantiate(roomPrefab, parent, true);
 			room.GetComponent<RoomConnectionBehaviour>().Init(position);
 			return room;
+		}
+
+		/// <summary>
+		/// Instantiate a projectile instance from a given projectile prefab.
+		/// </summary>
+		/// <param name="roomPrefab">
+		/// The projectile prefab to instantiate.
+		/// </param>
+		/// <param name="position">
+		/// The position to spawn the projectile at.
+		/// </param>
+		/// <param name="direction">
+		/// The direction the projectile should travel towards.
+		/// </param>
+		/// <param name="speed">
+		/// The speed the projectile should travel at.
+		/// </param>
+		/// <param name="damage">
+		/// The number of hit points the projectile should deal.
+		/// </param>
+		/// <param name="targetTag">
+		/// The TagBehaviour tag the projectile will target.
+		/// </param>
+		/// <returns> Returns an instantiated and initialised room gameobject instance.</returns>
+		public static GameObject InstantiateProjectile(
+			GameObject projectilePrefab,
+			Vector2 position,
+			Vector2 direction,
+			float speed,
+			int damage,
+			string targetTag)
+		{
+			GameObject projectile = GameObject.Instantiate(projectilePrefab);
+			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, speed, damage, targetTag);
+			return projectile;
 		}
 	}
 }

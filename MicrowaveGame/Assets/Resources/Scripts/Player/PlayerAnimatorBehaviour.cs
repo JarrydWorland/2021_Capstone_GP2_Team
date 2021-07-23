@@ -2,19 +2,29 @@ using UnityEngine;
 
 namespace Scripts.Player
 {
-	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(Animator))]
+	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(PlayerWeaponBehaviour), typeof(Animator))]
 	public class PlayerAnimatorBehaviour : MonoBehaviour
 	{
 		private PlayerMovementBehaviour _playerMovementBehaviour;
+		private PlayerWeaponBehaviour _playerWeaponBehaviour;
 		private Animator _animator;
+		private int _animatorShootingLayer;
 
 		private void Start()
 		{
 			_playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
+			_playerWeaponBehaviour = GetComponent<PlayerWeaponBehaviour>();
 			_animator = GetComponent<Animator>();
+			_animatorShootingLayer = _animator.GetLayerIndex("Shooting Layer");
 		}
 
 		private void Update()
+		{
+			UpdateMovementAnimation();
+			UpdateShootingAnimation();
+		}
+
+		private void UpdateMovementAnimation()
 		{
 			float speedPercentage = _playerMovementBehaviour.Direction.sqrMagnitude;
 			_animator.SetFloat("Speed", speedPercentage);
@@ -23,12 +33,13 @@ namespace Scripts.Player
 				_animator.SetFloat("MovementDirectionX", _playerMovementBehaviour.Direction.x);
 				_animator.SetFloat("MovementDirectionY", _playerMovementBehaviour.Direction.y);
 			}
+		}
 
-			// TODO: this sets the shooting direction towards the origin. This
-			// is temporary until weapons are re-implemented.
-			Vector2 direction = (Vector3.zero - transform.position).normalized;
-			_animator.SetFloat("ShootingDirectionX", direction.x);
-			_animator.SetFloat("ShootingDirectionY", direction.y);
+		private void UpdateShootingAnimation()
+		{
+			_animator.SetLayerWeight(_animatorShootingLayer, _playerWeaponBehaviour.Shooting ? 1.0f : 0.0f);
+			_animator.SetFloat("ShootingDirectionX", _playerWeaponBehaviour.Direction.x);
+			_animator.SetFloat("ShootingDirectionY", _playerWeaponBehaviour.Direction.y);
 		}
 	}
 }

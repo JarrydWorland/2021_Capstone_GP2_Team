@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 91458362385431467}
   - component: {fileID: 5147030722613144555}
   - component: {fileID: 8083425330494338674}
+  - component: {fileID: 8573620642782398239}
+  - component: {fileID: 7607394142230256565}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -335,11 +337,35 @@ MonoBehaviour:
     m_ActionId: a5549654-8ffe-4559-8596-e9d4c861e94b
     m_ActionName: Playing/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8573620642782398239}
+        m_TargetAssemblyTypeName: Scripts.Player.PlayerWeaponBehaviour, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7dad5b8a-da2c-47bc-8f1f-3592c7ad386b
     m_ActionName: Playing/Look[/XInputControllerWindows/rightStick,/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8573620642782398239}
+        m_TargetAssemblyTypeName: Scripts.Player.PlayerWeaponBehaviour, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 76d6a890-e855-4609-817f-0841c729b487
     m_ActionName: Playing/Shoot[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
@@ -412,6 +438,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf89d99ab7d8a4c4cbc90f44000f88d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8573620642782398239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945509771218161465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629ee196e7b75cb40a807a917d89cde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultWeapon: {fileID: 626987614110471692, guid: 3b3d622189d10b6489f243a181b3726f, type: 3}
+--- !u!114 &7607394142230256565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945509771218161465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195e8ac4ff2412f4e9fc5fc28a86c292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
 --- !u!1 &3812848186400315235
 GameObject:
   m_ObjectHideFlags: 0
