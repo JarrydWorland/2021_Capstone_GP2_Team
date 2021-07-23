@@ -52,9 +52,15 @@ namespace Scripts.Projectiles
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.GetComponent<TagBehaviour>()?.HasTag(TargetTag) ?? false)
+			TagBehaviour tagBehaviour = other.GetComponent<TagBehaviour>();
+			if (tagBehaviour != null && tagBehaviour.HasTag(TargetTag))
 			{
-				// TODO: deal damage
+				HealthBehaviour healthBehaviour = other.GetComponent<HealthBehaviour>();
+				if (healthBehaviour != null)
+				{
+					healthBehaviour.Value -= Damage;
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
