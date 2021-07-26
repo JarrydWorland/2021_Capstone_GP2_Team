@@ -6,7 +6,8 @@ namespace Scripts.Items
 {
 	public class ItemSpeedIncreaseBehaviour : ItemBehaviour
 	{
-		public int IncreaseValue, DurationValue;
+		public float IncreaseValue;
+		public int DurationValue;
 
 		private bool _isActive;
 
@@ -28,7 +29,7 @@ namespace Scripts.Items
 			if (_isActive) return false;
 			_isActive = true;
 
-			_playerMovementBehaviour.Speed += IncreaseValue;
+			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
 
 			return true;
 		}
@@ -42,7 +43,7 @@ namespace Scripts.Items
 
 			_isActive = false;
 
-			_playerMovementBehaviour.Speed -= IncreaseValue;
+			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
 
 			inventorySlotBehaviour.DropItem();
 			Destroy(this);
