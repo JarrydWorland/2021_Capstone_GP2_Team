@@ -56,14 +56,14 @@ namespace Scripts.Hazards
 		{
 			_colliding = true;
 
-			_playerMovementBehaviour.Speed *= SlowdownFactor;
+			_playerMovementBehaviour.MaxVelocity *= SlowdownFactor;
 			_time = _damageRateInverse;
 		}
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
 			_colliding = false;
-			_playerMovementBehaviour.Speed /= SlowdownFactor;
+			_playerMovementBehaviour.MaxVelocity /= SlowdownFactor;
 		}
 	}
 }
