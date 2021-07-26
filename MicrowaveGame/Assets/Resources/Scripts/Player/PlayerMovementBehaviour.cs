@@ -63,5 +63,17 @@ namespace Scripts.Player
 		{
 			Direction = context.ReadValue<Vector2>();
 		}
+
+		public void OnTriggerEnter2D(Collider2D other)
+		{
+			// TODO: velocity should be reset when hitting solid objects, below
+			// is a possible way to do that.
+
+			/* TagBehaviour tagBehaviour = other.GetComponent<TagBehaviour>(); */
+			/* if (tagBehaviour != null && tagBehaviour.HasTag("Solid")) */
+			/* { */
+			/* 	Velocity = Vector2.zero; */
+			/* } */
+		}
 	}
 }
