@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Speed Increase
   Description: Increases movement speed by {0} for {1} seconds.
-  IncreaseValue: 5
+  IncreaseValue: 0.075
   DurationValue: 5
 --- !u!1001 &8036875327095706385
 PrefabInstance:
