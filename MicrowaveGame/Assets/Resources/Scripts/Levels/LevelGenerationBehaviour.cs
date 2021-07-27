@@ -1,4 +1,5 @@
 using UnityEngine;
+using Scripts.Rooms;
 
 namespace Scripts.Levels
 {
@@ -22,7 +23,7 @@ namespace Scripts.Levels
 		/// unity editor while the game is running. However this also means all
 		/// rooms will be enabled and loaded even if the player is not in them.
 		/// </summary>
-		public bool AlwaysShowRooms;
+		public bool DebugAlwaysShowRooms;
 
 		/// <summary>
 		/// The starting room instance.
@@ -31,7 +32,14 @@ namespace Scripts.Levels
 
 		private void Start()
 		{
-			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, !AlwaysShowRooms);
+			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, !DebugAlwaysShowRooms);
+
+			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
+			LevelTraversalBehaviour levelTraversalBehaviour = GetComponent<LevelTraversalBehaviour>();
+			if (levelTraversalBehaviour != null)
+			{
+				levelTraversalBehaviour.CurrentRoom = StartingRoom.GetComponent<RoomConnectionBehaviour>();
+			}
 		}
 	}
 }
