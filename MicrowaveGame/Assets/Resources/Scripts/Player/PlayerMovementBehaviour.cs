@@ -30,7 +30,7 @@ namespace Scripts.Player
 		/// <summary>
 		/// The players movement velocity.
 		/// </summary>
-		public Vector2 Velocity { get; private set; }
+		public Vector2 Velocity { get; set; }
 		
 
 		private Rigidbody2D _rigidBody;
