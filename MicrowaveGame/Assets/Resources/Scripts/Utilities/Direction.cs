@@ -49,6 +49,22 @@ namespace Scripts.Utilities
 		}
 
 		/// <summary>
+		/// Gets a Vector3 from the given direction.
+		/// </summary>
+		/// <returns>A normalized Vector3 in the same direction.</returns>
+		public static Vector3 ToVector3(this Direction direction)
+		{
+			return direction switch
+			{
+				Direction.North => Vector3.up,
+				Direction.East => Vector3.right,
+				Direction.South => Vector3.down,
+				Direction.West => Vector3.left,
+				_ => throw new InvalidOperationException("Invalid Direction enum!")
+			};
+		}
+
+		/// <summary>
 		/// Gets a Vector2Int from the given direction.
 		/// </summary>
 		/// <returns>A normalized Vector2Int in the same direction.</returns>
