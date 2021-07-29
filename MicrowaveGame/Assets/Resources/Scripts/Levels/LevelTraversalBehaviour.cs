@@ -61,7 +61,7 @@ namespace Scripts.Levels
 
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
-									   * 2.0f;
+									   * 1.5f;
 		}
 	}
 }
