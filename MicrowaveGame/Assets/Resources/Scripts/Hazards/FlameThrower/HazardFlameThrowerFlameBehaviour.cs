@@ -46,7 +46,7 @@ namespace Scripts.Hazards.FlameThrower
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player")
+			if (other.gameObject.name == "Player")
 			{
 				_damageRateTime = _damageRateInverse;
 				_applied = true;
@@ -55,7 +55,7 @@ namespace Scripts.Hazards.FlameThrower
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player") _applied = false;
+			if (other.gameObject.name == "Player") _applied = false;
 		}
 	}
 }

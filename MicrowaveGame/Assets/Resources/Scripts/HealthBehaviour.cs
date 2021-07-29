@@ -22,6 +22,9 @@ namespace Scripts
 			{
 				int oldValue = _value;
 				_value = value.Clamp(0, MaxHealth);
+				
+				Debug.Log($"Health changed from {oldValue} to {value}.");
+				
 				EventManager.Emit(new HealthChangedEventArgs
 				{
 					GameObject = gameObject,
