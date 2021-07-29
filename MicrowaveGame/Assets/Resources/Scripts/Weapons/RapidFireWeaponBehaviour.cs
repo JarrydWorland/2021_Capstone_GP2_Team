@@ -32,7 +32,14 @@ namespace Scripts.Weapons
 			_time += Time.deltaTime;
 			if (shooting && _time >= _fireRateInverse)
 			{
-				InstanceFactory.InstantiateProjectile(ProjectilePrefab, position, direction, ProjectileSpeed, Damage, "Enemy");
+				InstanceFactory.InstantiateProjectile(
+					ProjectilePrefab,
+					position,
+					direction,
+					ProjectileSpeed,
+					Damage,
+					"Enemy"
+				);
 				_time = 0;
 			}
 		}
