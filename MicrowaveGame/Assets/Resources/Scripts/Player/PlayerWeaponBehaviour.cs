@@ -66,7 +66,7 @@ namespace Scripts.Player
 			{
 				// If the current device is keyboard and mouse, aim towards the cursor.
 				Vector2 mousePosition = Mouse.current.position.ReadValue();
-				Vector2 mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+				Vector2 mousePositionInWorld = UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
 				Direction = mousePositionInWorld - (Vector2) transform.position;
 			}
 			else

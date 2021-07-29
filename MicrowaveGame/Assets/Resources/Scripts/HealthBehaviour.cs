@@ -35,7 +35,10 @@ namespace Scripts
 		}
 		private int _value;
 
-		private void Start() => Value = MaxHealth;
+		private void Start()
+		{
+			_value = MaxHealth;
+		}
 	}
 
 	public class HealthChangedEventArgs : EventArgs
