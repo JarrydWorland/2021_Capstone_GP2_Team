@@ -1,24 +1,45 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
-	public class MenuMainBehaviour : MonoBehaviour
+	public class MenuMainBehaviour : MenuBehaviour
 	{
+		private void Start() => MenuManager.Init(this);
+
+		/// <summary>
+		/// Sets the current scene to the "Gameplay" scene.
+		/// Called when the "Start" button is pressed.
+		/// </summary>
 		public void OnStartButtonPressed() => SceneManager.LoadScene("Gameplay");
 
+		/// <summary>
+		/// Sets the current menu to the "Controls" menu.
+		/// Called when the "Controls" button is pressed.
+		/// </summary>
 		public void OnControlsButtonPressed()
 		{
-			gameObject.SetActive(false);
-			transform.parent.Find("Controls").gameObject.SetActive(true);
+			MenuControlsBehaviour controlsMenu =
+				transform.parent.Find("MenuControls").GetComponent<MenuControlsBehaviour>();
+
+			MenuManager.GoInto(controlsMenu);
 		}
 
+		/// <summary>
+		/// Sets the current menu to the "Credits" menu.
+		/// Called when the "Credits" button is pressed.
+		/// </summary>
 		public void OnCreditsButtonPressed()
 		{
-			gameObject.SetActive(false);
-			transform.parent.Find("Credits").gameObject.SetActive(true);
+			MenuCreditsBehaviour creditsMenu =
+				transform.parent.Find("MenuCredits").GetComponent<MenuCreditsBehaviour>();
+
+			MenuManager.GoInto(creditsMenu);
 		}
 
+		/// <summary>
+		/// Quits the game or exits the playing mode of the editor depending on the current executing context.
+		/// Called when the "Quit" button is pressed.
+		/// </summary>
 		public void OnQuitButtonPressed()
 		{
 #if UNITY_EDITOR

@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-
-namespace Scripts.Menus
+﻿namespace Scripts.Menus
 {
-	public class MenuControlsBehaviour : MonoBehaviour
+	public class MenuControlsBehaviour : MenuBehaviour
 	{
-		public void OnDoneButtonPressed()
-		{
-			gameObject.SetActive(false);
-			transform.parent.Find("Main").gameObject.SetActive(true);
-		}
+		/// <summary>
+		/// Sets the current menu to the previous menu.
+		/// Called when the "Done" button is pressed.
+		/// </summary>
+		public void OnDoneButtonPressed() => MenuManager.GoBack();
 	}
 }
