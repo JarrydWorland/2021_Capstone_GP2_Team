@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 8573620642782398239}
   - component: {fileID: 7284736375818517136}
   - component: {fileID: 7607394142230256565}
+  - component: {fileID: 249950576897786568}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -467,6 +468,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6e9639c-5299-43d4-97bc-56de51cb2085
     m_ActionName: Playing/Use Item - Slot 4[/XInputControllerWindows/buttonWest,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 729a08b1-317a-4914-9120-3ee496c9e45d
+    m_ActionName: Playing/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
@@ -537,6 +542,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 5
+--- !u!114 &249950576897786568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945509771218161465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6714e7be66954f51a7fe263b8a2bcc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3812848186400315235
 GameObject:
   m_ObjectHideFlags: 0
