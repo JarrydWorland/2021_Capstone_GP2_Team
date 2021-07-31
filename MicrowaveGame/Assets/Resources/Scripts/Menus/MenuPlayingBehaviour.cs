@@ -1,10 +1,15 @@
-﻿using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
-		private void Start() => MenuManager.Init(this);
+		private void Start()
+		{
+			Time.timeScale = 1.0f;
+			MenuManager.Init(this);
+		}
 
 		/// <summary>
 		/// Called via Unity's new input system when the user presses the "Escape" key.
@@ -16,6 +21,8 @@ namespace Scripts.Menus
 		{
 			if (!context.performed) return;
 
+			Time.timeScale = 0.0f;
+			
 			MenuPausedBehaviour pausedMenu =
 				transform.parent.Find("MenuPaused").GetComponent<MenuPausedBehaviour>();
 

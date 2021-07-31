@@ -1,10 +1,15 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
 	public class MenuMainBehaviour : MenuBehaviour
 	{
-		private void Start() => MenuManager.Init(this);
+		private void Start()
+		{
+			Time.timeScale = 1.0f;
+			MenuManager.Init(this);
+		}
 
 		/// <summary>
 		/// Sets the current scene to the "Gameplay" scene.

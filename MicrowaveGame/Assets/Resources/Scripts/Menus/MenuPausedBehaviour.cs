@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
@@ -8,7 +9,11 @@ namespace Scripts.Menus
 		/// Sets the current menu to the previous menu.
 		/// Called when the "Done" button is pressed.
 		/// </summary>
-		public void OnResumeButtonPressed() => MenuManager.GoBack();
+		public void OnResumeButtonPressed()
+		{
+			MenuManager.GoBack();
+			Time.timeScale = 1.0f;
+		}
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
