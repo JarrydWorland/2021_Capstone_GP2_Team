@@ -11,6 +11,8 @@ namespace Scripts.Weapons
 		/// </summary>
 		public GameObject ProjectilePrefab;
 
+		public AudioClip ShootAudioClip;
+
 		private float _fireRateInverse;
 		private float _time;
 
@@ -32,6 +34,7 @@ namespace Scripts.Weapons
 			_time += Time.deltaTime;
 			if (shooting && _time >= _fireRateInverse)
 			{
+				AudioManager.Play(ShootAudioClip);
 				InstanceFactory.InstantiateProjectile(
 					ProjectilePrefab,
 					position,

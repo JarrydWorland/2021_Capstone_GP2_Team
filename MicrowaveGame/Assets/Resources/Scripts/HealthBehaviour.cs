@@ -23,7 +23,10 @@ namespace Scripts
 				int oldValue = _value;
 				_value = value.Clamp(0, MaxHealth);
 				
-				Debug.Log($"Health changed from {oldValue} to {value}.");
+				if (oldValue > _value)
+				{
+					AudioManager.Play(DamageAudioClip);
+				}
 				
 				EventManager.Emit(new HealthChangedEventArgs
 				{
@@ -34,6 +37,12 @@ namespace Scripts
 			}
 		}
 		private int _value;
+
+
+		/// <summary>
+		/// The audio clip to play when damage is received.
+		/// </summary>
+		public AudioClip DamageAudioClip;
 
 		private void Start()
 		{

@@ -7,6 +7,8 @@ namespace Scripts.Inventory
 {
 	public class InventoryBehaviour : MonoBehaviour
 	{
+		public AudioClip PickupItemAudioClip;
+
 		private InventorySlotBehaviour[] _slots;
 		private CircularQueue<ItemBehaviour> _nearbyItems;
 
@@ -66,6 +68,7 @@ namespace Scripts.Inventory
 				if (selectedItem == null) return;
 
 				inventorySlotBehaviour.PickupItem(selectedItem);
+				AudioManager.Play(PickupItemAudioClip);
 				selectedItem.gameObject.SetActive(false);
 			}
 			else

@@ -12,6 +12,12 @@ namespace Scripts.Doors
 		public Direction Direction;
 
 		/// <summary>
+		/// The sound to play when the door is entered by the
+		/// player.
+		/// </summary>
+		public AudioClip EnterAudioClip;
+
+		/// <summary>
 		/// The door that this door leads into, usually located in another room.
 		/// </summary>
 		public DoorConnectionBehaviour ConnectingDoor { get; private set; }

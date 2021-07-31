@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: MaxHealth
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7107625165376847228, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: DamageAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d0c8a680d66bcc46b77fa5f242eb086, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876deed47f6e042419ea53645c052839, type: 3}
 --- !u!1 &6348037880082625250 stripped
