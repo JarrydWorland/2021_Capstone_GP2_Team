@@ -5,7 +5,8 @@ namespace Scripts.Utilities
 {
 	static class AudioManager
 	{
-		private static GameObject Camera => UnityEngine.Camera.main.gameObject;
+		private static GameObject _camera = null;
+		private static GameObject Camera => _camera ??= UnityEngine.Camera.main.gameObject;
 		private static List<AudioSource> _audioSources = new List<AudioSource>();
 
 		/// <summary>
