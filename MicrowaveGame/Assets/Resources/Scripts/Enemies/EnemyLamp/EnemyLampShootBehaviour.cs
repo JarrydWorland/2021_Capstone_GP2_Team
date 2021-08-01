@@ -46,8 +46,16 @@ namespace Scripts.Enemies.EnemyLamp
 		/// Shoot a projectile, this is called by a callback within the lamps
 		/// animations.
 		/// </summary>
-		public void Shoot()
+		public void Shoot(int direction)
 		{
+			Vector3[] directions = { Vector3.up, Vector3.right, Vector3.down, Vector3.left };
+			Vector3 animationDirection = directions[direction];
+
+			// unity is attempting to call two animation events due to the
+			// blendtree, so if this function was called from an animation
+			// further than 45 degrees from the actual direction dismiss it.
+			if (Vector3.Angle(_shootingDirection, animationDirection) >= 45) return;
+
 			InstanceFactory.InstantiateProjectile(
 				ProjectilePrefab,
 				_projectileSpawn.position,
