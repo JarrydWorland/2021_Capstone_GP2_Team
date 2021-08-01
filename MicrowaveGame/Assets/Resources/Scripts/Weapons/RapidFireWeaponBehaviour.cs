@@ -26,8 +26,9 @@ namespace Scripts.Weapons
 		/// </summary>
 		/// <param name="position">The position that the weapon should spawn projectiles at</param>
 		/// <param name="direction">The direction that the weapon should fire projectiles towards</param>
-		/// <param name="direction">Whether or not the weapon is being fired (is the trigger being pulled).</param>
-		public override void OnWeaponUpdate(Vector2 position, Vector2 direction, bool shooting)
+		/// <param name="shooting">Whether or not the weapon is being fired (is the trigger being pulled).</param>
+		/// <param name="additionalDamage">Any additional damage the player may deal on top of the weapon's damage.</param>
+		public override void OnWeaponUpdate(Vector2 position, Vector2 direction, bool shooting, int additionalDamage = 0)
 		{
 			_time += Time.deltaTime;
 			if (shooting && _time >= _fireRateInverse)
@@ -37,7 +38,7 @@ namespace Scripts.Weapons
 					position,
 					direction,
 					ProjectileSpeed,
-					Damage,
+					Damage + additionalDamage,
 					"Enemy"
 				);
 				_time = 0;

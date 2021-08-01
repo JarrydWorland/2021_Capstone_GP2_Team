@@ -6,7 +6,14 @@ namespace Scripts.Items
 {
 	public class ItemSpeedIncreaseBehaviour : ItemBehaviour
 	{
+		/// <summary>
+		/// The amount of additional speed when the item is active.
+		/// </summary>
 		public float IncreaseValue;
+
+		/// <summary>
+		/// The duration of the item.
+		/// </summary>
 		public int DurationValue;
 
 		private bool _isActive;
@@ -24,14 +31,14 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) { }
 
-		public override bool OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
+		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (_isActive) return false;
+			if (_isActive) return;
 			_isActive = true;
 
 			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
 
-			return true;
+			inventorySlotBehaviour.PlayAnimation("InventorySlotUseItem");
 		}
 
 		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour)
