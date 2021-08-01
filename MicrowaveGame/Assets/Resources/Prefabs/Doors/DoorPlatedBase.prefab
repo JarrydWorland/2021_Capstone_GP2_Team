@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 0
+  EnterAudioClip: {fileID: 8300000, guid: f46f92b852418de4e9812175fd2f720d, type: 3}

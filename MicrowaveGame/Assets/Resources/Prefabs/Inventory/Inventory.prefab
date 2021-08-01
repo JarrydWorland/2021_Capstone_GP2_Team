@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d75abcefb14a79afb9d67f4f0eb142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickupItemAudioClip: {fileID: 8300000, guid: 60d5fe67f7ae1d048a87eaaa4d9d1b49, type: 3}
 --- !u!114 &1501036230846358096
 MonoBehaviour:
   m_ObjectHideFlags: 0

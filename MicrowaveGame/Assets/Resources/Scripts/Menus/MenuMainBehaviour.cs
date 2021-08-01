@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
 	public class MenuMainBehaviour : MenuBehaviour
 	{
+		public AudioClip BackgroundMusicAudioClip;
+		public bool DebugDisableBackgroundMusic;
+
 		private void Start()
 		{
 			Time.timeScale = 1.0f;
 			MenuManager.Init(this);
+
+			if (!DebugDisableBackgroundMusic)
+			{
+				AudioManager.Play(BackgroundMusicAudioClip);
+			}
 		}
 
 		/// <summary>

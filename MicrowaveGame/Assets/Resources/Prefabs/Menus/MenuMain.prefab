@@ -897,6 +897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52e8fc073bd450f852e6412949b70a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundMusicAudioClip: {fileID: 8300000, guid: a339d5a34481fcf4eb038944a83015db, type: 3}
+  DebugDisableBackgroundMusic: 0
 --- !u!1 &6068145080964143199
 GameObject:
   m_ObjectHideFlags: 0

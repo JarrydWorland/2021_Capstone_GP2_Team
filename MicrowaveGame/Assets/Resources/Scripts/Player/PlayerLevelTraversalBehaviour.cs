@@ -2,6 +2,7 @@ using UnityEngine;
 
 using Scripts.Levels;
 using Scripts.Doors;
+using Scripts.Utilities;
 
 namespace Scripts.Player
 {
@@ -20,6 +21,7 @@ namespace Scripts.Player
 			DoorConnectionBehaviour doorConnectionBehaviour = other.GetComponent<DoorConnectionBehaviour>();
 			if (doorConnectionBehaviour != null)
 			{
+				AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
 				_levelTraversalBehaviour.ChangeRoom(doorConnectionBehaviour);
 			}
 		}
