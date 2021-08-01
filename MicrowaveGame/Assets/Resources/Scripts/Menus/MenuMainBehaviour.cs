@@ -6,12 +6,20 @@ namespace Scripts.Menus
 {
 	public class MenuMainBehaviour : MenuBehaviour
 	{
+		/// <summary>
+		/// The background music.
+		/// </summary>
 		public AudioClip BackgroundMusicAudioClip;
+
+		/// <summary>
+		/// A debug flag to disable the background music.
+		/// </summary>
 		public bool DebugDisableBackgroundMusic;
+
+		public override void OnEnter() => Time.timeScale = 1.0f;
 
 		private void Start()
 		{
-			Time.timeScale = 1.0f;
 			MenuManager.Init(this);
 
 			if (!DebugDisableBackgroundMusic)
@@ -30,25 +38,13 @@ namespace Scripts.Menus
 		/// Sets the current menu to the "Controls" menu.
 		/// Called when the "Controls" button is pressed.
 		/// </summary>
-		public void OnControlsButtonPressed()
-		{
-			MenuControlsBehaviour controlsMenu =
-				transform.parent.Find("MenuControls").GetComponent<MenuControlsBehaviour>();
-
-			MenuManager.GoInto(controlsMenu);
-		}
+		public void OnControlsButtonPressed() => MenuManager.GoInto("MenuControls");
 
 		/// <summary>
 		/// Sets the current menu to the "Credits" menu.
 		/// Called when the "Credits" button is pressed.
 		/// </summary>
-		public void OnCreditsButtonPressed()
-		{
-			MenuCreditsBehaviour creditsMenu =
-				transform.parent.Find("MenuCredits").GetComponent<MenuCreditsBehaviour>();
-
-			MenuManager.GoInto(creditsMenu);
-		}
+		public void OnCreditsButtonPressed() => MenuManager.GoInto("MenuCredits");
 
 		/// <summary>
 		/// Quits the game or exits the playing mode of the editor depending on the current executing context.

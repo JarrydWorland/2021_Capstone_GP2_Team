@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
+using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
 	public class MenuNarrativeBehaviour : MenuBehaviour
 	{
+		/// <summary>
+		/// The background music.
+		/// </summary>
 		public AudioClip BackgroundMusicAudioClip;
+		
+		/// <summary>
+		/// A debug flag to disable the background music.
+		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
 		private readonly string[] _strings =
@@ -23,13 +31,26 @@ namespace Scripts.Menus
 
 		private bool IsFinalString => _currentString == _strings.Length - 1;
 
+		private PlayerInput _playerInput;
+
+		public override void OnEnter()
+		{
+			Time.timeScale = 0.0f;
+			_playerInput.actions.Disable();
+		}
+
+		public override void OnLeave()
+		{
+			_playerInput.actions.Enable();
+			Time.timeScale = 1.0f;
+		}
+
 		private void Start()
 		{
-			Time.timeScale = 1.0f;
-			MenuManager.Init(this);
-
 			_textObject = transform.Find("Text").GetComponent<Text>();
 			_buttonTextObject = transform.Find("Button").GetComponentInChildren<Text>();
+
+			_playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
 			UpdateTexts();
 
@@ -37,6 +58,8 @@ namespace Scripts.Menus
 			{
 				AudioManager.Play(BackgroundMusicAudioClip);
 			}
+			
+			MenuManager.Init(this);
 		}
 
 		/// <summary>
@@ -48,10 +71,7 @@ namespace Scripts.Menus
 		{
 			if (IsFinalString)
 			{
-				MenuPlayingBehaviour playingMenu =
-					transform.parent.Find("MenuPlaying").GetComponent<MenuPlayingBehaviour>();
-
-				MenuManager.GoInto(playingMenu);
+				MenuManager.GoInto("MenuPlaying");
 			}
 			else
 			{

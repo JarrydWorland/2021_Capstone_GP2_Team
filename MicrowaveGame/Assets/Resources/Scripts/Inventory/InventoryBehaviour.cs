@@ -18,7 +18,8 @@ namespace Scripts.Inventory
 		{
 			_slots = GetComponentsInChildren<InventorySlotBehaviour>();
 			_nearbyItems = new CircularQueue<ItemBehaviour>();
-			_player = Extensions.FindInactiveObjectByName("Player");
+
+			_player = GameObject.Find("Player");
 		}
 
 		// --- The below methods are called by Unity's new input system.
