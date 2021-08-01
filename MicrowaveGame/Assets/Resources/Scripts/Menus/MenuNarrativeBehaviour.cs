@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
 	public class MenuNarrativeBehaviour : MenuBehaviour
 	{
+		public AudioClip BackgroundMusicAudioClip;
+		public bool DebugDisableBackgroundMusic;
+
 		private readonly string[] _strings =
 		{
 			"This is the story of Merlin. Merlin was a robot with one purpose: To microwave food. Unfortunately, after an incident involving a small child and a shiny spoon, Merlin was discarded at a scrapyard.",
@@ -28,6 +32,11 @@ namespace Scripts.Menus
 			_buttonTextObject = transform.Find("Button").GetComponentInChildren<Text>();
 
 			UpdateTexts();
+
+			if (!DebugDisableBackgroundMusic)
+			{
+				AudioManager.Play(BackgroundMusicAudioClip);
+			}
 		}
 
 		/// <summary>
