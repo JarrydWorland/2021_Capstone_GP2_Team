@@ -1,6 +1,7 @@
 ﻿using Scripts.Events;
 using Scripts.Menus;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Scripts.Player
 {
@@ -18,12 +19,9 @@ namespace Scripts.Player
 			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
 				Time.timeScale = 0.0f;
+				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 
-				// Surely there's a better way to find an inactive object...
-				MenuDeathBehaviour deathMenu =
-					transform.parent.transform.parent.Find("MenuDeath").GetComponent<MenuDeathBehaviour>();
-
-				MenuManager.GoInto(deathMenu);
+				MenuManager.GoInto("MenuDeath");
 			}
 		}
 
