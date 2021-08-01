@@ -47,7 +47,8 @@ namespace Scripts.Hazards
 
 		private void OnTriggerStay2D(Collider2D other)
 		{
-			if (other.gameObject.name == "Player") _time = 0;
+			if (other.gameObject.name != "Player") return;
+			_time = 0;
 
 			if (!_applied)
 			{

@@ -54,6 +54,7 @@ namespace Scripts.Hazards
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
+			if (other.gameObject.name != "Player") return;
 			_colliding = true;
 
 			_playerMovementBehaviour.MaxVelocity *= SlowdownFactor;
@@ -62,6 +63,8 @@ namespace Scripts.Hazards
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
+			if (other.gameObject.name != "Player") return;
+
 			_colliding = false;
 			_playerMovementBehaviour.MaxVelocity /= SlowdownFactor;
 		}
