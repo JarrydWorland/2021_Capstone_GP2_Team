@@ -24,7 +24,7 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerWeaponBehaviour.AdditionalDamage += IncreaseValue;
-			inventorySlotBehaviour.PlayAnimation("InventorySlotUseItem");
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
@@ -34,6 +34,8 @@ namespace Scripts.Items
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerWeaponBehaviour.AdditionalDamage -= IncreaseValue;
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+
 			return true;
 		}
 	}

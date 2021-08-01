@@ -16,7 +16,7 @@ namespace Scripts.Items
 		/// </summary>
 		public int DurationValue;
 
-		private bool _isActive;
+		private bool _isActive, _isUsed;
 
 		private PlayerMovementBehaviour _playerMovementBehaviour;
 		private float _time;
@@ -29,16 +29,17 @@ namespace Scripts.Items
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) { }
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			if (_isActive) return;
-			_isActive = true;
+			_isActive = _isUsed = true;
 
 			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
 
-			inventorySlotBehaviour.PlayAnimation("InventorySlotUseItem");
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
 		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour)
@@ -52,12 +53,14 @@ namespace Scripts.Items
 
 			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
 
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 			inventorySlotBehaviour.DropItem();
 			Destroy(this);
 		}
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
+			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			return !_isActive;
 		}
 	}

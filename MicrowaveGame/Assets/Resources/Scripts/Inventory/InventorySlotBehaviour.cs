@@ -44,11 +44,6 @@ namespace Scripts.Inventory
 			ItemBehaviour = itemBehaviour;
 
 			SetSprite(ItemBehaviour.GetComponent<SpriteRenderer>().sprite, ItemBehaviour.transform.localScale);
-
-			// We play the pickup item animation before calling OnPickupItem() so the item can play its own pickup
-			// animation if need be (e.g. passive items will immediately play the use item animation).
-			_animator.Play("InventorySlotPickupItem");
-
 			ItemBehaviour.OnPickupItem(this);
 		}
 
@@ -78,8 +73,6 @@ namespace Scripts.Inventory
 
 			bool shouldDrop = ItemBehaviour.OnDropItem(this);
 			if (!shouldDrop) return null;
-
-			_animator.Play("InventorySlotDropItem");
 
 			SetSprite(_inventorySlotSprite, Vector3.one);
 
