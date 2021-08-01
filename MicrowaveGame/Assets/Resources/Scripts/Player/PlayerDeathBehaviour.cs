@@ -15,7 +15,7 @@ namespace Scripts.Player
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
-			if (eventArgs.NewValue == 0)
+			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
 				Time.timeScale = 0.0f;
 

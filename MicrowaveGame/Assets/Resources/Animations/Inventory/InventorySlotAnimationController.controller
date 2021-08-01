@@ -77,7 +77,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InventorySlotUseItem
+  m_Name: InventorySlotBounceLoop
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -103,7 +103,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InventorySlotPickupItem
+  m_Name: InventorySlotBounceExpand
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -156,7 +156,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InventorySlotDropItem
+  m_Name: InventorySlotBounceContract
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

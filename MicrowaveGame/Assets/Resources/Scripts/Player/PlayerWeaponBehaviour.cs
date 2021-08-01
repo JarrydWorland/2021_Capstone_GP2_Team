@@ -40,6 +40,11 @@ namespace Scripts.Player
 		public bool Shooting { get; private set; }
 
 		private const float AimDeadzone = 0.1f;
+		
+		/// <summary>
+		/// Any additional animation the player may deal on top of the weapon's damage.
+		/// </summary>
+		public int AdditionalDamage { get; set; }
 
 		private void Start()
 		{

@@ -28,8 +28,7 @@ namespace Scripts.Items
 		/// A callback method that is called to use the item.
 		/// </summary>
 		/// <param name="inventorySlotBehaviour">The inventory slot that the item is stored in.</param>
-		/// <returns>Returns true if the item is ready to be used, otherwise returns false.</returns>
-		public abstract bool OnUseItem(InventorySlotBehaviour inventorySlotBehaviour);
+		public abstract void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour);
 
 		/// <summary>
 		/// A callback method that is called to update the item.

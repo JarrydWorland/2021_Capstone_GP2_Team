@@ -37,8 +37,9 @@ namespace Scripts.Weapons
 		/// </summary>
 		/// <param name="position">The position that the weapon should spawn projectiles at</param>
 		/// <param name="direction">The direction that the weapon should fire projectiles towards</param>
-		/// <param name="direction">Whether or not the weapon is being fired (is the trigger being pulled).</param>
-		public abstract void OnWeaponUpdate(Vector2 position, Vector2 direction, bool shooting);
+		/// <param name="shooting">Whether or not the weapon is being fired (is the trigger being pulled).</param>
+		/// <param name="additionalDamage">Any additional damage the player may deal on top of the weapon's damage.</param>
+		public abstract void OnWeaponUpdate(Vector2 position, Vector2 direction, bool shooting, int additionalDamage = 0);
 
 		/// <summary>
 		/// A callback method that is called when the weapon is equipped by the
@@ -68,13 +69,13 @@ namespace Scripts.Weapons
 		/// </summary>
 		/// <param name="inventorySlotBehaviour">The inventory slot that the weapon is stored in.</param>
 		/// <returns>Returns true if the item is equipped, otherwise returns false.</returns>
-		public override bool OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
+		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponUnequip();
 			_playerWeaponBehaviour.EquippedWeaponBehaviour = isWeaponEquipped ? null : this;
 			_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponEquip();
 			
-			return isWeaponEquipped;
+			if (isWeaponEquipped) inventorySlotBehaviour.PlayAnimation("InventorySlotUseItem");
 		}
 
 		/// <summary>
@@ -89,7 +90,8 @@ namespace Scripts.Weapons
 				OnWeaponUpdate(
 					_playerWeaponBehaviour.transform.position,
 					_playerWeaponBehaviour.Direction,
-					_playerWeaponBehaviour.Shooting
+					_playerWeaponBehaviour.Shooting,
+					_playerWeaponBehaviour.AdditionalDamage
 				);
 			}
 		}

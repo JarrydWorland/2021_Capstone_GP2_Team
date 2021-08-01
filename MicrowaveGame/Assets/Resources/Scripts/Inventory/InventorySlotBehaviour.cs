@@ -45,8 +45,6 @@ namespace Scripts.Inventory
 
 			SetSprite(ItemBehaviour.GetComponent<SpriteRenderer>().sprite, ItemBehaviour.transform.localScale);
 			ItemBehaviour.OnPickupItem(this);
-
-			_animator.Play("InventorySlotPickupItem");
 		}
 
 		/// <summary>
@@ -54,11 +52,7 @@ namespace Scripts.Inventory
 		/// </summary>
 		public void UseItem()
 		{
-			if (ItemBehaviour != null)
-			{
-				bool canUse = ItemBehaviour.OnUseItem(this);
-				_animator.Play(canUse ? "InventorySlotUseItem" : "InventorySlotIdle");
-			}
+			if (ItemBehaviour != null) ItemBehaviour.OnUseItem(this);
 		}
 
 		/// <summary>
@@ -79,8 +73,6 @@ namespace Scripts.Inventory
 
 			bool shouldDrop = ItemBehaviour.OnDropItem(this);
 			if (!shouldDrop) return null;
-
-			_animator.Play("InventorySlotDropItem");
 
 			SetSprite(_inventorySlotSprite, Vector3.one);
 
@@ -113,5 +105,7 @@ namespace Scripts.Inventory
 			_inventorySpriteRenderer.transform.localScale = Vector3.one;
 			_inventorySpriteRenderer.sprite = sprite;
 		}
+
+		public void PlayAnimation(string name) => _animator.Play(name);
 	}
 }
