@@ -67,9 +67,10 @@ MonoBehaviour:
   Description: Shoots bullets rapidly
   Damage: 1
   FireRate: 5
-  ProjectileSpeed: 20
-  ProjectilePrefab: {fileID: 1863189556075500660, guid: 8720f4e78742c3d44a6611eadf4381b1, type: 3}
+  ProjectileSpeed: 25
+  ProjectilePrefab: {fileID: 1863189556075500660, guid: 090d52b5c2b3ea845ab05abee120e09e, type: 3}
   ShootAudioClip: {fileID: 8300000, guid: 0f77eeebe9a628240a8d29443340df91, type: 3}
+  Spread: 15
 --- !u!1001 &4042283260543546799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5957798841488813594, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_Name
-      value: WeaponDefaultUpgraded
+      value: WeaponRapidFire
       objectReference: {fileID: 0}
     - target: {fileID: 7266489341063404860, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
