@@ -17,14 +17,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.55, y: 2.55}
+    oldSize: {x: 1.78, y: 0.19}
     newSize: {x: 2.55, y: 2.55}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1.7, y: 0.2}
   m_EdgeRadius: 0
 --- !u!212 &642125373982523117
 SpriteRenderer:
@@ -66,7 +66,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c27684097c1731a409f4bb6786bdab58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ce420ee4d4910f499eb5af7fcfe52d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4681444368211070705, guid: f53cd03f428072b4a9ad1ac029ec8236, type: 3}
       propertyPath: m_Name
-      value: ProjectileDefaultWeapon
+      value: ProjectileWeaponRapidFire
       objectReference: {fileID: 0}
     - target: {fileID: 7178730013344640899, guid: f53cd03f428072b4a9ad1ac029ec8236, type: 3}
       propertyPath: m_RootOrder
@@ -106,11 +106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7178730013344640899, guid: f53cd03f428072b4a9ad1ac029ec8236, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7178730013344640899, guid: f53cd03f428072b4a9ad1ac029ec8236, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7178730013344640899, guid: f53cd03f428072b4a9ad1ac029ec8236, type: 3}
       propertyPath: m_LocalPosition.x

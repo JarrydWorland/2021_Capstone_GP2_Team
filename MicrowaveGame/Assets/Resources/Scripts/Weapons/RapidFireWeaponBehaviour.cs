@@ -13,6 +13,8 @@ namespace Scripts.Weapons
 
 		public AudioClip ShootAudioClip;
 
+		public float Spread = 0;
+
 		private float _fireRateInverse;
 		private float _time;
 
@@ -35,11 +37,14 @@ namespace Scripts.Weapons
 			_time += Time.deltaTime;
 			if (shooting && _time >= _fireRateInverse)
 			{
+				float spreadAngle = Spread * Random.Range(0.0f, 1.0f) - (Spread/2.0f);
+				Vector2 spread = new Vector2(Mathf.Cos(spreadAngle), Mathf.Sin(spreadAngle));
+				Quaternion q = Quaternion.Euler(0, 0, spreadAngle);
 				AudioManager.Play(ShootAudioClip);
 				InstanceFactory.InstantiateProjectile(
 					ProjectilePrefab,
 					position,
-					direction,
+					q * direction,
 					ProjectileSpeed,
 					Damage + additionalDamage,
 					"Enemy"

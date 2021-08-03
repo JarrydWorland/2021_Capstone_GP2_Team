@@ -43,6 +43,7 @@ namespace Scripts.Projectiles
 		public virtual void Init(Vector2 position, Vector2 direction, float speed, int damage, string targetTag)
 		{
 			transform.position = position;
+			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 			_startingPosition = position;
 			Direction = direction;
 			Speed = speed;

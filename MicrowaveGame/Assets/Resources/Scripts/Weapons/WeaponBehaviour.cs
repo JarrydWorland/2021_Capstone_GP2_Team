@@ -60,7 +60,7 @@ namespace Scripts.Weapons
 		/// <param name="inventorySlotBehaviour">The inventory slot the weapon will be stored in.</param>
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 		}
 
 		/// <summary>
@@ -75,7 +75,8 @@ namespace Scripts.Weapons
 			_playerWeaponBehaviour.EquippedWeaponBehaviour = isWeaponEquipped ? null : this;
 			_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponEquip();
 			
-			if (isWeaponEquipped) inventorySlotBehaviour.PlayAnimation("InventorySlotUseItem");
+			if (isWeaponEquipped) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
+			else inventorySlotBehaviour.PlayAnimation("InventorySlotIdle");
 		}
 
 		/// <summary>
@@ -110,6 +111,7 @@ namespace Scripts.Weapons
 				_playerWeaponBehaviour.EquippedWeaponBehaviour= null;
 				_playerWeaponBehaviour.EquippedWeaponBehaviour.OnWeaponEquip();
 			}
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			return true;
 		}
 	}
