@@ -77,6 +77,40 @@ namespace Scripts.Utilities
 		}
 
 		/// <summary>
+		/// Convert a Vector2 into a Direction
+		/// </summary>
+		/// <param name="vector2">The Vector2.</param>
+		/// <returns>Returns the Vector2 represented as a Direction.</returns>
+		public static Direction ToDirection(this Vector2 vector2)
+		{
+			Vector2 normalized = vector2.normalized;
+			return Math.Abs(normalized.y) > Math.Abs(normalized.x)
+				? normalized.y >= 0
+					? Direction.North
+					: Direction.South
+				: normalized.x >= 0
+					? Direction.East
+					: Direction.West;
+		}
+
+		/// <summary>
+		/// Convert a Vector3 into a Direction
+		/// </summary>
+		/// <param name="vector2">The Vector3.</param>
+		/// <returns>Returns the Vector3 represented as a Direction.</returns>
+		public static Direction ToDirection(this Vector3 vector3)
+		{
+			Vector3 normalized = vector3.normalized;
+			return Math.Abs(normalized.y) > Math.Abs(normalized.x)
+				? normalized.y >= 0
+					? Direction.North
+					: Direction.South
+				: normalized.x >= 0
+					? Direction.East
+					: Direction.West;
+		}
+
+		/// <summary>
 		/// Given a collection, return an element at random.
 		/// </summary>
 		public static TSource GetRandomElement<TSource>(this IEnumerable<TSource> source) =>

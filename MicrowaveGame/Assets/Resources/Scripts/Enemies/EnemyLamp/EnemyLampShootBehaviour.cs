@@ -38,8 +38,9 @@ namespace Scripts.Enemies.EnemyLamp
 		void Update()
 		{
 			_shootingDirection = (_player.transform.position - transform.position).normalized;
-			_animator.SetFloat("ShootingDirectionX", _shootingDirection.x);
-			_animator.SetFloat("ShootingDirectionY", _shootingDirection.y);
+			Vector2 shootingDirectionAnimator = _shootingDirection.ToDirection().ToVector2();
+			_animator.SetFloat("ShootingDirectionX", shootingDirectionAnimator.x);
+			_animator.SetFloat("ShootingDirectionY", shootingDirectionAnimator.y);
 		}
 
 		/// <summary>
@@ -48,14 +49,6 @@ namespace Scripts.Enemies.EnemyLamp
 		/// </summary>
 		public void Shoot(int direction)
 		{
-			Vector3[] directions = { Vector3.up, Vector3.right, Vector3.down, Vector3.left };
-			Vector3 animationDirection = directions[direction];
-
-			// unity is attempting to call two animation events due to the
-			// blendtree, so if this function was called from an animation
-			// further than 45 degrees from the actual direction dismiss it.
-			if (Vector3.Angle(_shootingDirection, animationDirection) >= 45) return;
-
 			InstanceFactory.InstantiateProjectile(
 				ProjectilePrefab,
 				_projectileSpawn.position,
