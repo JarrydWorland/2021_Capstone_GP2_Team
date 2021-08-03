@@ -16,32 +16,60 @@ namespace Scripts.Rooms
 
 		private void Start()
 		{
-			_itemPrefabs ??= Resources.LoadAll<GameObject>("Prefabs/Items")
-				.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>());
+			InitItemPrefabs();
 
-			foreach (Transform childTransform in transform)
-			{
-				TagBehaviour tagBehaviour = childTransform.GetComponent<TagBehaviour>();
-				if (tagBehaviour != null && tagBehaviour.HasTag("Enemy")) _enemyCount++;
-			}
+			_enemyCount = GetComponentsInChildren<TagBehaviour>().Where(tag => tag.HasTag("Enemy")).Count();
 
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
 		}
 
+		private void OnDestroy()
+		{
+			EventManager.Unregister(_healthChangedEventId);
+		}
+
+		private void InitItemPrefabs()
+		{
+			if (_itemPrefabs == null)
+			{
+				IEnumerable<GameObject> itemPrefabs = Resources
+					.LoadAll<GameObject>("Prefabs/Items")
+					.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>());
+
+				IEnumerable<GameObject> weaponPrefabs = Resources
+					.LoadAll<GameObject>("Prefabs/Weapons")
+					.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>() && itemPrefab.name != "WeaponDefault");
+
+				_itemPrefabs = Enumerable.Empty<GameObject>()
+					.Concat(itemPrefabs)
+					.Concat(weaponPrefabs);
+			}
+		}
+
+		private void OnRoomCleared()
+		{
+			GameObject randomItemPrefab = _itemPrefabs.GetRandomElement();
+			GameObject randomItem = Instantiate(randomItemPrefab);
+			randomItem.transform.position = transform.position;
+		}
+
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
-			if (eventArgs.NewValue > 0) return;
-
 			TagBehaviour tagBehaviour = eventArgs.GameObject.GetComponent<TagBehaviour>();
-			if (tagBehaviour == null || !tagBehaviour.HasTag("Enemy")) return;
 
-			_enemyCount--;
-			if (_enemyCount != 0) return;
+			bool isEnemy = tagBehaviour != null && tagBehaviour.HasTag("Enemy");
+			bool isDead = eventArgs.NewValue == 0;
+			bool isWithinRoom = eventArgs.GameObject.transform.parent == transform;
 
-			GameObject randomItemPrefab = _itemPrefabs.GetRandomElement();
-			Instantiate(randomItemPrefab, transform);
-
-			EventManager.Unregister(_healthChangedEventId);
+			if (isEnemy && isDead && isWithinRoom)
+			{
+				_enemyCount -= 1;
+				if (_enemyCount <= 0)
+				{
+					OnRoomCleared();
+					EventManager.Unregister(_healthChangedEventId);
+				}
+			}
 		}
 	}
 }

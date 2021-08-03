@@ -152,7 +152,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2160616897188144416, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
       propertyPath: m_Name
-      value: PlatedRoomBase
+      value: RoomPlatedBase
       objectReference: {fileID: 0}
     - target: {fileID: 5331424471163732483, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
       propertyPath: m_Sprite
@@ -218,7 +218,8 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5006194943048804317, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
 --- !u!4 &7169833246283525280 stripped
 Transform:
