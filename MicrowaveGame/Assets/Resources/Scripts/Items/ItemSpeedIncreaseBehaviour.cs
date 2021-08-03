@@ -55,7 +55,7 @@ namespace Scripts.Items
 
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 			inventorySlotBehaviour.DropItem();
-			Destroy(this);
+			Destroy(gameObject);
 		}
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)

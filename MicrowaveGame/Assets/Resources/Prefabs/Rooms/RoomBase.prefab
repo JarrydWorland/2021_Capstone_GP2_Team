@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7422583930939099857}
   - component: {fileID: 1186674725662928174}
   - component: {fileID: 4032188139413544}
-  - component: {fileID: 5006194943048804317}
+  - component: {fileID: 3026127343857253258}
   m_Layer: 0
   m_Name: RoomBase
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ad5562eefc4c548aa08373515f8caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5006194943048804317
+--- !u!114 &3026127343857253258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
