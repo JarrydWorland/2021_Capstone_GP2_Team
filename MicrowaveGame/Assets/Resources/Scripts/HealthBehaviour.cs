@@ -2,6 +2,7 @@ using UnityEngine;
 using Scripts.Events;
 using Scripts.Utilities;
 using System;
+using System.Collections.Generic;
 
 namespace Scripts
 {
@@ -11,6 +12,20 @@ namespace Scripts
 		/// How much health the object has in total.
 		/// </summary>
 		public int MaxHealth = 5;
+
+		private float _flashTimer = 1.0f;
+		private const float _flashDurationSeconds = 0.2f;
+		private const float _flashDurationSecondsInverse = 1.0f / _flashDurationSeconds;
+		private List<SpriteRenderer> _spriteRenderers
+		{
+			get
+			{
+				SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+				List<SpriteRenderer> childSpriteRenderers = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
+				if (spriteRenderer) childSpriteRenderers.Add(spriteRenderer);
+				return childSpriteRenderers;
+			}
+		}
 
 		/// <summary>
 		/// The current health of the object.
@@ -26,6 +41,7 @@ namespace Scripts
 				if (oldValue > _value)
 				{
 					AudioManager.Play(DamageAudioClip);
+					_flashTimer = 0.0f;
 				}
 				
 				EventManager.Emit(new HealthChangedEventArgs
@@ -38,7 +54,6 @@ namespace Scripts
 		}
 		private int _value;
 
-
 		/// <summary>
 		/// The audio clip to play when damage is received.
 		/// </summary>
@@ -47,6 +62,16 @@ namespace Scripts
 		private void Start()
 		{
 			_value = MaxHealth;
+		}
+
+		private void Update()
+		{
+			_flashTimer += Time.deltaTime * _flashDurationSecondsInverse;
+			float white = 1f - Mathf.Min(_flashTimer, 1f);
+			foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
+			{
+				spriteRenderer.color = new Color(white, white, white);
+			}
 		}
 	}
 
