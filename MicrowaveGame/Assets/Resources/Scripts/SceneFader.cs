@@ -22,7 +22,8 @@ public class SceneFader : MonoBehaviour
     }
 
     /// <summary>
-    /// Calls fade out on current scene, and moves to the next one
+    /// Calls fade out on current scene, and moves to the next one. 
+    /// Replace any reference to SceneManager.LoadScene with this function
     /// </summary>
     /// <param name="scene">name of the scene being transitioned to</param>
     public void FadeTo(string scene)
