@@ -16,6 +16,11 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
+		/// <summary>
+		/// SceneFader gameobject
+		/// </summary>
+		public SceneFader sceneFader;
+
 		public override void OnEnter() => Time.timeScale = 1.0f;
 
 		private void Start()
@@ -32,7 +37,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => SceneManager.LoadScene("Gameplay");
+		public void OnStartButtonPressed() => sceneFader.FadeTo("Gameplay"); //SceneManager.LoadScene("Gameplay") (keeping line in case scenefader doesn't work
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
