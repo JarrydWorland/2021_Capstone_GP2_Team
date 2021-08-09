@@ -428,6 +428,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6649101893611499857, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_Name
+      value: FaderCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_RootOrder
       value: 3
