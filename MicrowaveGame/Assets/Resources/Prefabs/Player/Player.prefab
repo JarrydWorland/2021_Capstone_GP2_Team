@@ -672,18 +672,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2945509771218161467}
     m_Modifications:
-    - target: {fileID: 1382632392991897576, guid: 85578f3f818263f4baa4c3201a52ab65, type: 3}
-      propertyPath: m_Time
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382632392991897576, guid: 85578f3f818263f4baa4c3201a52ab65, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382632392991897576, guid: 85578f3f818263f4baa4c3201a52ab65, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.21697786
-      objectReference: {fileID: 0}
     - target: {fileID: 4090546422034121037, guid: 85578f3f818263f4baa4c3201a52ab65, type: 3}
       propertyPath: m_Name
       value: Trail
