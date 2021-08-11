@@ -117,6 +117,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228505293504604176, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228505293504604176, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4845905208100645833, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_Name
       value: ItemDamageIncrease
