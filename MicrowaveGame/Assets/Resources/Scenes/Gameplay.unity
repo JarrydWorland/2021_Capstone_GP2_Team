@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: sceneFader
       value: 
       objectReference: {fileID: 601259236}
+    - target: {fileID: 3563358544786854278, guid: f0d89f81af97b914da3eeac9eec64f20, type: 3}
+      propertyPath: sceneFaderBehaviour
+      value: 
+      objectReference: {fileID: 601259236}
     - target: {fileID: 7333766769061139433, guid: f0d89f81af97b914da3eeac9eec64f20, type: 3}
       propertyPath: m_Name
       value: MenuPaused
@@ -887,6 +891,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5509117974325810166, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: Img
+      value: 
+      objectReference: {fileID: 1632281579}
     - target: {fileID: 6649101893611499857, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_Name
       value: FaderCanvas
@@ -958,6 +966,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
   m_PrefabInstance: {fileID: 1632281577}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1632281579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2823050659497540830, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+  m_PrefabInstance: {fileID: 1632281577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1678858207 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4772921886234655895, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
@@ -1165,6 +1184,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772921886234655912, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
       propertyPath: sceneFader
+      value: 
+      objectReference: {fileID: 601259236}
+    - target: {fileID: 4772921886234655912, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
+      propertyPath: sceneFaderBehaviour
       value: 
       objectReference: {fileID: 601259236}
     m_RemovedComponents: []
