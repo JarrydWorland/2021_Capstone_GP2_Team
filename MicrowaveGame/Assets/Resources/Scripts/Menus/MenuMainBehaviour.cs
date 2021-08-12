@@ -32,7 +32,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => sceneFader.FadeTo("Gameplay"); //SceneManager.LoadScene("Gameplay"); (keeping line in case scenefader causes issues)
+		public void OnStartButtonPressed() => SceneManager.LoadScene("Gameplay");
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
