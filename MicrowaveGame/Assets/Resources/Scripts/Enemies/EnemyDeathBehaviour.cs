@@ -6,7 +6,6 @@ namespace Scripts.Enemies
 	class EnemyDeathBehaviour : MonoBehaviour
 	{
 		private HealthBehaviour _healthBehaviour;
-		private ParticleSystem _system;
 
 		private void Start()
 		{
@@ -19,8 +18,6 @@ namespace Scripts.Enemies
 		{
 			if (_healthBehaviour.Value == 0)
 			{
-				_system = GetComponent<ParticleSystem>();
-				_system.Play();
 				Destroy(gameObject);
 			}
 		}
