@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5509117974325810166, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: Img
+      value: 
+      objectReference: {fileID: 1172363988}
     - target: {fileID: 6649101893611499857, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_Name
       value: FaderCanvas
@@ -504,6 +508,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
   m_PrefabInstance: {fileID: 1172363986}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1172363988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2823050659497540830, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+  m_PrefabInstance: {fileID: 1172363986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1441684455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,6 +629,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6068145080738338564, guid: c8cf3b6575ae8fc42a859fb0c9664f3f, type: 3}
       propertyPath: sceneFader
+      value: 
+      objectReference: {fileID: 530476443}
+    - target: {fileID: 6068145080738338564, guid: c8cf3b6575ae8fc42a859fb0c9664f3f, type: 3}
+      propertyPath: sceneFaderBehaviour
       value: 
       objectReference: {fileID: 530476443}
     - target: {fileID: 6068145080738338566, guid: c8cf3b6575ae8fc42a859fb0c9664f3f, type: 3}

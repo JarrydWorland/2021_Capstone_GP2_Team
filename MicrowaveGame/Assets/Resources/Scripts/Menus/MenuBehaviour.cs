@@ -10,7 +10,8 @@ namespace Scripts.Menus
 		/// <summary>
 		/// SceneFader gameobject
 		/// </summary>
-		public SceneFader sceneFader;
+		[SerializeField]
+		protected SceneFaderBehaviour sceneFaderBehaviour;
 
 		/// <summary>
 		/// Called when entering the menu.

@@ -21,6 +21,6 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Menu" scene.
 		/// Called when the "Exit To Main Menu" button is pressed.
 		/// </summary>
-		public void OnExitButtonPressed() => sceneFader.FadeTo("Menu");
+		public void OnExitButtonPressed() => sceneFaderBehaviour.FadeTo("Menu");
 	}
 }

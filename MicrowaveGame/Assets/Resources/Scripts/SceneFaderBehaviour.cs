@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneFader : MonoBehaviour
+public class SceneFaderBehaviour : MonoBehaviour
 {
     //Credit to Brackeys' Tower Defence tutorial
 
     /// <summary>
     /// Black screen
     /// </summary>
-    public Image img;
+    public Image Img;
 
     /// <summary>
     /// Called anytime a scene is loaded
@@ -42,7 +42,7 @@ public class SceneFader : MonoBehaviour
         while (t > 0f)
         {
             t -= Time.unscaledDeltaTime;
-            img.color = new Color(0f, 0f, 0f, t);
+            Img.color = new Color(0f, 0f, 0f, t);
             yield return 0;
         }
 
@@ -60,7 +60,7 @@ public class SceneFader : MonoBehaviour
         while (t < 1f)
         {
             t += Time.unscaledDeltaTime;
-            img.color = new Color(0f, 0f, 0f, t);
+            Img.color = new Color(0f, 0f, 0f, t);
             yield return 0;
         }
 
