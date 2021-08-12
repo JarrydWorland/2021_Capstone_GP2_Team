@@ -8,7 +8,6 @@ namespace Scripts.Player
 	public class PlayerDeathBehaviour : MonoBehaviour
 	{
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
-		private ParticleSystem _system;
 
 		private void Start()
 		{
@@ -17,11 +16,6 @@ namespace Scripts.Player
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
-			if (eventArgs.GameObject.name == "Player")
-            {
-				_system = GetComponent<ParticleSystem>();
-				_system.Play();
-			}
 			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
 				Time.timeScale = 0.0f;
