@@ -8,6 +8,7 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
+			gameObject.GetComponent<DialogueTrigger>().TriggerDialogue(); //for testing
 			Time.timeScale = 1.0f;
 		}
 
