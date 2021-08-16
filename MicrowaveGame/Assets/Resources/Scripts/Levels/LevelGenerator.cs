@@ -51,13 +51,41 @@ namespace Scripts.Levels
 		/// </returns>
 		public static GameObject GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth, bool disableChildRooms = true)
 		{
-			RoomGrid grid = new RoomGrid(depth);
-			Vector2Int centre = new Vector2Int(0, 0);
-			GameObject startingRoomInstance = InstanceFactory.InstantiateRoom(startingRoomPrefab, parent, centre);
-			RoomConnectionBehaviour startingRoom = startingRoomInstance.GetComponent<RoomConnectionBehaviour>();
-			grid.Add(startingRoom);
-			SpawnChildRooms(startingRoom, parent, grid, depth, disableChildRooms);
-			return startingRoomInstance;
+			// NOTE: Due to how level generation is implemented, there is
+			// always the small possibility that despite best efforts a
+			// guaranteed room wont be able to find a viable position to spawn
+			// while upholding all of the required constraints.
+			//
+			// To ensure the guaranteed rooms are included in the level, the
+			// level will re-generate itself if it detects that not all the
+			// guaranteed rooms were spawned.
+
+			const int attempts = 25;
+
+			for (int i=0; i<attempts; i++)
+			{
+				RoomGrid grid = new RoomGrid(depth);
+				Vector2Int centre = new Vector2Int(0, 0);
+				GameObject startingRoomInstance = InstanceFactory.InstantiateRoom(startingRoomPrefab, parent, centre);
+				RoomConnectionBehaviour startingRoom = startingRoomInstance.GetComponent<RoomConnectionBehaviour>();
+				grid.Add(startingRoom);
+				SpawnChildRooms(startingRoom, parent, grid, depth, disableChildRooms);
+
+				bool levelVerfied = grid.Verify();
+				if (!levelVerfied)
+				{
+					// Debug.LogWarning($"Generated level did not pass verification check. Regenerating... (attempt #{i+1})");
+					foreach (Transform childTransform in parent.transform)
+					{
+						GameObject.Destroy(childTransform.gameObject);
+					}
+					continue;
+				}
+
+				return startingRoomInstance;
+			}
+			
+			throw new Exception("GenerateLevel failed. This is likely due to an invalid SpawnProbability configuration.");
 		}
 
 		/// <summary>
@@ -108,7 +136,7 @@ namespace Scripts.Levels
 				grid.Add(newRoom);
 
 				// position room in scene
-				int roomPlacementDistance = 35;
+				const int roomPlacementDistance = 35;
 				newRoom.transform.position = new Vector3
 				{
 					x = newPosition.x * roomPlacementDistance / 1.25f,
@@ -204,6 +232,34 @@ namespace Scripts.Levels
 					.Zip(spawnProbabilities, Tuple.Create)
 					.GetRandomElementWithProbability(tuple => tuple.Item2?.ProbabilityMultiplier ?? 1.0f)
 					.Item1;
+			}
+
+			/// <summary>
+			/// Verifies that the RoomGrid has placed all guaranteed rooms,
+			/// this is used as a fail-safe to ensure the level is not missing
+			/// vital rooms.
+			/// </summary>
+			/// <returns>
+			/// true if the RoomGrid contains all of the guaranteed rooms level
+			/// otherwise false.
+			/// </returns>
+			public bool Verify()
+			{
+				foreach (GameObject roomPrefab in _roomPrefabs)
+				{
+					RoomGenerationBehaviour roomGenerationBehaviour = roomPrefab.GetComponent<RoomGenerationBehaviour>();
+					List<SpawnProbability> spawnProbabilities = roomGenerationBehaviour.SpawnProbabilities;
+					
+					foreach(SpawnProbability spawnProbability in spawnProbabilities)
+					{
+						if (spawnProbability.GuaranteeSpawn == false) continue;
+
+						bool verified = HasSpawnedGuaranteedRoomPrefab(roomPrefab, spawnProbability.DepthPercentage);
+						if (!verified) return false;
+					}
+				}
+
+				return true;
 			}
 
 			/// <summary>

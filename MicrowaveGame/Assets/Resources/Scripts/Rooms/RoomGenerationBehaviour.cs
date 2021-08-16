@@ -59,6 +59,7 @@ namespace Scripts.Rooms
 		[Serializable]
 		public struct SpawnProbability
 		{
+			[SerializeField, Range(0.0f, 1.0f)]
 			public float DepthPercentage;
 			public float ProbabilityMultiplier;
 			public bool GuaranteeSpawn;
