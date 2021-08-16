@@ -35,13 +35,23 @@ namespace Scripts.Inventory
 			if (itemBehaviour != null)
 			{
 				Vector3 itemPosition = itemBehaviour.transform.position;
+				_itemPickerObject.transform.position = itemPosition + new Vector3(0.0f, 0.75f, 0.0f);
 
-				transform.position = itemPosition + new Vector3(0.0f, 0.75f, 0.0f);
+				const float spacing = 2.75f, doubleSpacing = spacing * 2.0f, screenSpacing = 150.0f;
 
-				float informationPanelPosition = _playerObject.transform.position.x > itemPosition.x ? -2.75f : 2.75f;
+				Vector3 informationPanelPosition =
+					itemPosition + new Vector3(_playerObject.transform.position.x > itemPosition.x ? -spacing : spacing,
+						0.0f, 0.0f);
 
-				_informationPanelObject.transform.position =
-					itemPosition + new Vector3(informationPanelPosition, 0.0f, 0.0f);
+				Vector3 informationPanelScreenPosition =
+					UnityEngine.Camera.main.WorldToScreenPoint(informationPanelPosition);
+
+				if (informationPanelScreenPosition.x + screenSpacing > Screen.width)
+					informationPanelPosition.x -= doubleSpacing;
+				else if (informationPanelScreenPosition.x - screenSpacing < 0.0f)
+					informationPanelPosition.x += doubleSpacing;
+
+				_informationPanelObject.transform.position = informationPanelPosition;
 
 				_textName.text = itemBehaviour.Name;
 				_textDescription.text = itemBehaviour.Description;
