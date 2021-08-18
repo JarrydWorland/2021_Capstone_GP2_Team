@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5144125292401404295}
-  - component: {fileID: -2528730731869492623}
   - component: {fileID: -891191424944441599}
   m_Layer: 0
   m_Name: Minimap
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2528730731869492623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5023625200016931397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &-891191424944441599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  PanDuration: 0.4
   StartingRoomColor: {r: 0, g: 1, b: 1, a: 1}
   CurrentRoomColor: {r: 1, g: 0, b: 0, a: 1}
   ExploredRoomColor: {r: 1, g: 1, b: 1, a: 1}
