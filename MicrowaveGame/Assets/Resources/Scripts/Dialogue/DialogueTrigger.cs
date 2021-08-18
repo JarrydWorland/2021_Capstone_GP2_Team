@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    ///<summary>
+    ///Attach this script to anything that we want to trigger an explanation (i.e. First look at an enemy)
+    ///</summary>
+
     /// <summary>
     /// Dialogue Object
     /// </summary>
