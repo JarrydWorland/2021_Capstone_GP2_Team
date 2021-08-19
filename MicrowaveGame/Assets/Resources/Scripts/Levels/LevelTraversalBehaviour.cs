@@ -4,6 +4,8 @@ using Scripts.Rooms;
 using Scripts.Doors;
 using Scripts.Camera;
 using Scripts.Utilities;
+using System;
+using Scripts.Events;
 
 namespace Scripts.Levels
 {
@@ -13,7 +15,21 @@ namespace Scripts.Levels
 		/// <summary>
 		/// The room the player is currently in.
 		/// </summary>
-		public RoomConnectionBehaviour CurrentRoom { get; set; }
+		public RoomConnectionBehaviour CurrentRoom
+		{
+			get => _currentRoom;
+			set
+			{
+				RoomConnectionBehaviour previousRoom = _currentRoom;
+				_currentRoom = value;
+				EventManager.Emit(new RoomTraversedEventArgs
+				{
+					PreviousRoom = previousRoom,
+					CurrentRoom = CurrentRoom,
+				});
+			}
+		}
+		private RoomConnectionBehaviour _currentRoom;
 
 		private LevelGenerationBehaviour _levelGenerationBehaviour;
 		private GameObject _player;
@@ -57,11 +73,17 @@ namespace Scripts.Levels
 			connectingRoom.gameObject.SetActive(true);
 
 			CurrentRoom = connectingRoom;
-			_cameraPanBehaviour.TargetPosition = CurrentRoom.transform.position;
+			_cameraPanBehaviour.Position.Value = CurrentRoom.transform.position;
 
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
 									   * 1.5f;
 		}
+	}
+
+	public class RoomTraversedEventArgs : EventArgs
+	{
+		public RoomConnectionBehaviour PreviousRoom;
+		public RoomConnectionBehaviour CurrentRoom;
 	}
 }
