@@ -272,6 +272,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a6e9639c-5299-43d4-97bc-56de51cb2085
     m_ActionName: Playing/Use Item - Slot 4[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 729a08b1-317a-4914-9120-3ee496c9e45d
+    m_ActionName: Playing/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
@@ -508,7 +512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7816582797103030130, guid: 8e5843760d3d4a14ca99bed0829a77b2, type: 3}
       propertyPath: m_Name
-      value: ItemPicker
+      value: InventorySelectedFloorItemIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816582797103030130, guid: 8e5843760d3d4a14ca99bed0829a77b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e5843760d3d4a14ca99bed0829a77b2, type: 3}
