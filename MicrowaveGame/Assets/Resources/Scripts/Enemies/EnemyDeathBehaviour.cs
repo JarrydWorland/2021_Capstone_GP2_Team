@@ -12,8 +12,6 @@ namespace Scripts.Enemies
 			_healthBehaviour = GetComponent<HealthBehaviour>();
 		}
 
-
-
 		private void Update()
 		{
 			if (_healthBehaviour.Value == 0)

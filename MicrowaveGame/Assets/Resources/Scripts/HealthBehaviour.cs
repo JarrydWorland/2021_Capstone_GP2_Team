@@ -13,10 +13,19 @@ namespace Scripts
 		/// </summary>
 		public int MaxHealth = 5;
 
+		/// <summary>
+		/// The audio clip to play when damage is received.
+		/// </summary>
+		public AudioClip DamageAudioClip;
+
+		/// <summary>
+		/// The particle system to play when damage is received.
+		/// </summary>
+		public ParticleSystem DamageParticleSystem;
+
 		private float _flashTimer = 1.0f;
 		private const float _flashDurationSeconds = 0.2f;
 		private const float _flashDurationSecondsInverse = 1.0f / _flashDurationSeconds;
-		private ParticleSystem _hurt;
 		private List<SpriteRenderer> _spriteRenderers
 		{
 			get
@@ -42,9 +51,8 @@ namespace Scripts
 				if (oldValue > _value)
 				{
 					AudioManager.Play(DamageAudioClip);
+					DamageParticleSystem.Play();
 					_flashTimer = 0.0f;
-					_hurt = GetComponent<ParticleSystem>();
-					_hurt.Play();
 				}
 				
 				EventManager.Emit(new HealthChangedEventArgs
@@ -56,11 +64,6 @@ namespace Scripts
 			}
 		}
 		private int _value;
-
-		/// <summary>
-		/// The audio clip to play when damage is received.
-		/// </summary>
-		public AudioClip DamageAudioClip;
 
 		private void Start()
 		{
