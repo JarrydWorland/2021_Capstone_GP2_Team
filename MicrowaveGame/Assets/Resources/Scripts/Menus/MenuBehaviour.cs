@@ -8,6 +8,12 @@ namespace Scripts.Menus
 	public abstract class MenuBehaviour : MonoBehaviour
 	{
 		/// <summary>
+		/// SceneFader gameobject
+		/// </summary>
+		[SerializeField]
+		protected SceneFaderBehaviour sceneFaderBehaviour;
+
+		/// <summary>
 		/// Called when entering the menu.
 		/// </summary>
 		public virtual void OnEnter() { }
