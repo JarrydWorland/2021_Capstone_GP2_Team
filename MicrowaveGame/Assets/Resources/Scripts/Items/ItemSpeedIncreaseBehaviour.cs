@@ -25,7 +25,7 @@ namespace Scripts.Items
 		{
 			base.Start();
 
-			Description = string.Format(Description, IncreaseValue, DurationValue);
+			Description = string.Format(Description, IncreaseValue * 100.0f, DurationValue);
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 		}
 
