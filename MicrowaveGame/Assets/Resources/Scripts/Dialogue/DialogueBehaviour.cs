@@ -1,86 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class DialogueBehaviour : MonoBehaviour
+namespace Scripts.DialogueUI
 {
-    /// <summary>
-    /// Text objects where strings are entered into 
-    /// </summary>
-    private Text SpeakerName; 
-    private Text ContentText;
-
-    /// <summary>
-    /// Queue that strings are loaded into.
-    /// </summary>
-    private Queue<string> Sentences;
-
-    public void Awake()
+    public class DialogueBehaviour : MonoBehaviour
     {
-        Sentences = new Queue<string>(); // Saw a circularQueue script in Utilities, can switch to that if preferred
-        SpeakerName = GameObject.Find("SpeakerText").GetComponent<Text>();
-        ContentText = GameObject.Find("DialogueText").GetComponent<Text>();
-    }
+        /// <summary>
+        /// Text objects where strings are entered into 
+        /// </summary>
+        private Text _speakerName;
+        private Text _contentText;
 
-    /// <summary>
-    /// Sets up the Dialogue object for display
-    /// </summary>
-    /// <param name="dialogue">Dialogue object with all dialogue strings</param>
-    public void StartDialogue(Dialogue dialogue)
-    {
-        Time.timeScale = 0.0f;
+        /// <summary>
+        /// Queue that strings are loaded into.
+        /// </summary>
+        private Queue<string> _sentences;
 
-        SpeakerName.text = dialogue.Name;
-
-        Sentences.Clear();
-
-        foreach (string sentence in dialogue.Sentences)
+        public void Awake()
         {
-            Sentences.Enqueue(sentence);
+            _sentences = new Queue<string>();
+            _speakerName = GameObject.Find("SpeakerText").GetComponent<Text>();
+            _contentText = GameObject.Find("DialogueText").GetComponent<Text>();
         }
 
-        DisplayNextSentence();
-    }
-
-    /// <summary>
-    /// Advances the queue
-    /// </summary>
-    public void DisplayNextSentence()
-    {
-        if (Sentences.Count == 0)
+        /// <summary>
+        /// Sets up the Dialogue object for display
+        /// </summary>
+        /// <param name="dialogue">Dialogue object with all dialogue strings</param>
+        public void StartDialogue(Dialogue dialogue)
         {
-            EndDialogue();
-            return;
+            GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
+            Time.timeScale = 0.0f;
+
+            _speakerName.text = dialogue.Name;
+
+            _sentences.Clear();
+
+            foreach (string sentence in dialogue.Sentences)
+            {
+                _sentences.Enqueue(sentence);
+            }
+
+            DisplayNextSentence();
         }
 
-        string sentence = Sentences.Dequeue();
-        StopCoroutine("TypeSentence");
-        StartCoroutine(TypeSentence(sentence));
-    }
-
-    /// <summary>
-    /// Types out the sentence one character at a time
-    /// </summary>
-    /// <param name="sentence">Line of dialogue to be typed out</param>
-    /// <returns></returns>
-    IEnumerator TypeSentence (string sentence)
-    {
-        ContentText.text = "";
-
-        foreach (char letter in sentence.ToCharArray())
+        /// <summary>
+        /// Advances the queue
+        /// </summary>
+        public void DisplayNextSentence()
         {
-            ContentText.text += letter;
-            yield return null;
-        }
-    }
+            if (_sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
 
-    /// <summary>
-    /// Ends the dialogue, and de-activates the gameObject
-    /// </summary>
-    void EndDialogue()
-    {
-        Time.timeScale = 1.0f;
-        gameObject.SetActive(false);
+            string sentence = _sentences.Dequeue();
+            StopCoroutine("TypeSentence");
+            StartCoroutine(TypeSentence(sentence));
+        }
+
+        /// <summary>
+        /// Types out the sentence one character at a time
+        /// </summary>
+        /// <param name="sentence">Line of dialogue to be typed out</param>
+        /// <returns></returns>
+        IEnumerator TypeSentence(string sentence)
+        {
+            _contentText.text = "";
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                _contentText.text += letter;
+                yield return new WaitForSeconds(0.05f);
+            }
+        }
+
+        /// <summary>
+        /// Ends the dialogue, and de-activates the gameObject
+        /// </summary>
+        void EndDialogue()
+        {
+            GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
+            Time.timeScale = 1.0f;
+            gameObject.SetActive(false);
+        }
     }
 }

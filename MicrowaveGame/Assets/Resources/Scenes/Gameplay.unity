@@ -787,6 +787,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
   m_PrefabInstance: {fileID: 664570584}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1383257156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7939357772108916606, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+  m_PrefabInstance: {fileID: 1930442738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2134df5cdc6c72446b96e87cf5b36270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1527350666
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +884,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1303808621}
     m_Modifications:
+    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3180719226130917096, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_Name
       value: DialogueDisplay
@@ -964,6 +987,14 @@ PrefabInstance:
     - target: {fileID: 5794048396616728324, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461171235301577170, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 371.8289
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461171235301577170, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -200.48553
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144c13c09b1619746941aa827c09675c, type: 3}
@@ -1292,9 +1323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff7b5d48dd196c428d1e5d00215f83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    Name: Merlin
+  Dialogue:
+    Name: Disembodied Voice
     Sentences:
-    - This is it, the Headquarters of the Lightbulb Mafia
-    - This is where those incandescent menaces are storing the stars
-    - Lets get them back!
+    - This is the story of a robot named Merlin.
+    - Merlin was an employee at a non-descript company, where worked in Room Number
+      427
+    - Merlin's life was relatively normal, until one peculiar day...
+  DialogueBehaviour: {fileID: 1383257156}
