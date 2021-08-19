@@ -1,92 +1,96 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Scripts.Menus;
+using Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Scripts.DialogueUI
+namespace Scripts.Dialogue
 {
-    public class DialogueBehaviour : MonoBehaviour
-    {
-        /// <summary>
-        /// Text objects where strings are entered into 
-        /// </summary>
-        private Text _speakerName;
-        private Text _contentText;
+	public class DialogueBehaviour : MonoBehaviour
+	{
+		private Text _speakerText;
+		private Text _contentText;
 
-        /// <summary>
-        /// Queue that strings are loaded into.
-        /// </summary>
-        private Queue<string> _sentences;
+		private Text _continueButtonText;
 
-        public void Awake()
-        {
-            _sentences = new Queue<string>();
-            _speakerName = GameObject.Find("SpeakerText").GetComponent<Text>();
-            _contentText = GameObject.Find("DialogueText").GetComponent<Text>();
-        }
+		private Queue<string> _sentences;
+		private Lerped<string> _currentSentence;
+		private int _maxSentenceLength;
 
-        /// <summary>
-        /// Sets up the Dialogue object for display
-        /// </summary>
-        /// <param name="dialogue">Dialogue object with all dialogue strings</param>
-        public void StartDialogue(Dialogue dialogue)
-        {
-            GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
-            Time.timeScale = 0.0f;
+		public void Awake()
+		{
+			_speakerText = GameObject.Find("SpeakerText").GetComponent<Text>();
+			_contentText = GameObject.Find("DialogueText").GetComponent<Text>();
+			_continueButtonText = GameObject.Find("ContinueButton").GetComponentInChildren<Text>();
 
-            _speakerName.text = dialogue.Name;
+			_sentences = new Queue<string>();
+			_currentSentence = new Lerped<string>(string.Empty, 2.0f, Interpolate, true);
+			_maxSentenceLength = int.MinValue;
+		}
 
-            _sentences.Clear();
+		private void Update()
+		{
+			_contentText.text = _currentSentence.Value;
+		}
 
-            foreach (string sentence in dialogue.Sentences)
-            {
-                _sentences.Enqueue(sentence);
-            }
+		/// <summary>
+		/// Given a dialogue object, load the sentences and display the first sentence.
+		/// </summary>
+		/// <param name="dialogue"></param>
+		public void StartDialogue(Dialogue dialogue)
+		{
+			MenuManager.Pause();
 
-            DisplayNextSentence();
-        }
+			_speakerText.text = dialogue.Speaker;
+			_sentences.Clear();
 
-        /// <summary>
-        /// Advances the queue
-        /// </summary>
-        public void DisplayNextSentence()
-        {
-            if (_sentences.Count == 0)
-            {
-                EndDialogue();
-                return;
-            }
+			foreach (string sentence in dialogue.Sentences)
+			{
+				if (sentence.Length > _maxSentenceLength) _maxSentenceLength = sentence.Length;
+				_sentences.Enqueue(sentence);
+			}
 
-            string sentence = _sentences.Dequeue();
-            StopCoroutine("TypeSentence");
-            StartCoroutine(TypeSentence(sentence));
-        }
+			DisplayNextSentence();
+		}
 
-        /// <summary>
-        /// Types out the sentence one character at a time
-        /// </summary>
-        /// <param name="sentence">Line of dialogue to be typed out</param>
-        /// <returns></returns>
-        IEnumerator TypeSentence(string sentence)
-        {
-            _contentText.text = "";
+		/// <summary>
+		/// Display the next sentence in the local queue.
+		/// </summary>
+		public void DisplayNextSentence()
+		{
+			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
 
-            foreach (char letter in sentence.ToCharArray())
-            {
-                _contentText.text += letter;
-                yield return new WaitForSeconds(0.05f);
-            }
-        }
+			if (_sentences.Count == 0)
+			{
+				EndDialogue();
+				return;
+			}
 
-        /// <summary>
-        /// Ends the dialogue, and de-activates the gameObject
-        /// </summary>
-        void EndDialogue()
-        {
-            GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
-            Time.timeScale = 1.0f;
-            gameObject.SetActive(false);
-        }
-    }
+			_currentSentence.Value = _sentences.Dequeue();
+		}
+
+		/// <summary>
+		/// Disables the dialogue display object and resumes play.
+		/// </summary>
+		public void EndDialogue()
+		{
+			gameObject.SetActive(false);
+			MenuManager.Resume();
+		}
+
+		/// <summary>
+		/// Interpolates between an empty string and the given full string.
+		/// Example: "" at 0.0f, "a" at 0.25f ... "abcd" at 1.0f.
+		/// </summary>
+		private string Interpolate(string _, string line, float interpolation)
+		{
+			if (string.IsNullOrWhiteSpace(line)) return string.Empty;
+
+			int length = line.Length;
+			interpolation = Math.Min(interpolation * _maxSentenceLength / length, 1.0f);
+
+			return line.Substring(0, (int) (length * interpolation));
+		}
+	}
 }

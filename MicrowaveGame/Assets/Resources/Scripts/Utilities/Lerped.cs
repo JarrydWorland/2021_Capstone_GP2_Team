@@ -8,8 +8,11 @@ namespace Scripts.Utilities
 		private Func<T, T, float, T> _easingMethod;
 		private float _durationSeconds;
 		private float _lastTimeSeconds;
+		private bool _unscaledTime;
 		private T _current;
 		private T _target;
+
+		private float CurrentTime => _unscaledTime ? Time.unscaledTime : Time.time;
 
 		/// <param name="initial">
 		/// The value the lerped value should start at.
@@ -21,14 +24,18 @@ namespace Scripts.Utilities
 		/// The easing method to apply during interpolation, this should be one
 		/// of the methods in Scripts.Utilities.Easing
 		/// </param>
-		public Lerped(T initial, float durationSeconds, Func<T, T, float, T> easingMethod)
+		/// <param name="unscaledTime">
+		/// Whether or not the lerp should ignore time scale.
+		/// </param>
+		public Lerped(T initial, float durationSeconds, Func<T, T, float, T> easingMethod, bool unscaledTime = false)
 		{
 			_current = initial;
 			_target = initial;
 			_durationSeconds = durationSeconds;
 			_easingMethod = easingMethod;
+			_unscaledTime = unscaledTime;
 		}
-		
+
 		/// <summary>
 		/// get returns the value lerped between the previous and current
 		/// values over _durationSeconds.
@@ -43,15 +50,14 @@ namespace Scripts.Utilities
 			{
 				_current = Value;
 				_target = value;
-				_lastTimeSeconds = Time.time;
+				_lastTimeSeconds = CurrentTime;
 			}
 		}
 
 		/// <summary>
 		/// The current interpolation value used by Value between 0.0f and 1.0f.
 		/// </summary>
-		public float Interpolation => Mathf.Min((Time.time - _lastTimeSeconds) / _durationSeconds, 1.0f);
-
+		public float Interpolation => Mathf.Min((CurrentTime - _lastTimeSeconds) / _durationSeconds, 1.0f);
 	}
 
 	public static class Easing

@@ -1,33 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Scripts.DialogueUI
+namespace Scripts.Dialogue
 {
-    public class DialogueTrigger : MonoBehaviour
-    {
-        ///<summary>
-        ///Attach this script to anything that we want to trigger an explanation (i.e. First look at an enemy)
-        ///Will need to add "using Scripts.DialogueUI" to reference the component
-        ///</summary>
+	public class DialogueTrigger : MonoBehaviour
+	{
+		/// <summary>
+		/// The dialogue information to be displayed.
+		/// </summary>
+		public Dialogue Dialogue;
 
-        /// <summary>
-        /// Dialogue Object
-        /// </summary>
-        public Dialogue Dialogue;
+		/// <summary>
+		/// The dialogue behaviour object that will process the dialogue object.
+		/// </summary>
+		public DialogueBehaviour DialogueBehaviour;
 
-        /// <summary>
-        /// DialogueBehaviour that the Dialogue object is passed into
-        /// </summary>
-        public DialogueBehaviour DialogueBehaviour;
-
-        /// <summary>
-        /// Called when Dialogue needs to be displayed
-        /// </summary>
-        public void TriggerDialogue()
-        {
-            DialogueBehaviour.gameObject.SetActive(true);
-            DialogueBehaviour.StartDialogue(Dialogue);
-        }
-    }
+		/// <summary>
+		/// Enables the given dialogue behaviour object and starts the dialogue sequence.
+		/// </summary>
+		public void TriggerDialogue()
+		{
+			DialogueBehaviour.gameObject.SetActive(true);
+			DialogueBehaviour.StartDialogue(Dialogue);
+		}
+	}
 }

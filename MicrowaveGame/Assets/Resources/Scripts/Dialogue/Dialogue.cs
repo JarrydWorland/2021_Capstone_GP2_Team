@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.DialogueUI
+namespace Scripts.Dialogue
 {
-    [System.Serializable]
-    public class Dialogue
-    {
-        /// <summary>
-        /// Name of the speaker
-        /// </summary>
-        public string Name;
+	[System.Serializable]
+	public class Dialogue
+	{
+		/// <summary>
+		/// The name of the speaker.
+		/// </summary>
+		public string Speaker;
 
-        /// <summary>
-        /// Sentences that the speaker will say
-        /// </summary>
-        [TextArea(3, 10)]
-        public string[] Sentences;
-    }
+		/// <summary>
+		/// The sentences that will be displayed.
+		/// </summary>
+		[TextArea(3, 10)]
+		public string[] Sentences;
+	}
 }
