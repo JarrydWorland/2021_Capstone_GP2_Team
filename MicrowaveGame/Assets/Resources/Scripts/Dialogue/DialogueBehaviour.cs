@@ -18,6 +18,8 @@ namespace Scripts.Dialogue
 		private Lerped<string> _currentSentence;
 		private int _maxSentenceLength;
 
+		public bool InDialogue { get; private set; }
+
 		public void Awake()
 		{
 			_speakerText = GameObject.Find("SpeakerText").GetComponent<Text>();
@@ -40,6 +42,8 @@ namespace Scripts.Dialogue
 		/// <param name="dialogue"></param>
 		public void StartDialogue(Dialogue dialogue)
 		{
+			InDialogue = true;
+
 			MenuManager.Pause();
 
 			_speakerText.text = dialogue.Speaker;
@@ -77,6 +81,8 @@ namespace Scripts.Dialogue
 		{
 			gameObject.SetActive(false);
 			MenuManager.Resume();
+
+			InDialogue = false;
 		}
 
 		/// <summary>

@@ -2,7 +2,7 @@
 
 namespace Scripts.Dialogue
 {
-	public class DialogueTrigger : MonoBehaviour
+	public class DialogueTriggerBehaviour : MonoBehaviour
 	{
 		/// <summary>
 		/// The dialogue information to be displayed.
