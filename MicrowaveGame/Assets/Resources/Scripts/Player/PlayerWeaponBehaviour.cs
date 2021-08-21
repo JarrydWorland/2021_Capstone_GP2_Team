@@ -46,6 +46,8 @@ namespace Scripts.Player
 		/// </summary>
 		public int AdditionalDamage { get; set; }
 
+		private Vector2 _lastMousePositionInWorld;
+
 		private void Start()
 		{
 			_defaultWeaponBehaviour = DefaultWeapon.GetComponent<WeaponBehaviour>();
@@ -58,6 +60,8 @@ namespace Scripts.Player
 
 		private void Update()
 		{
+			Direction = _lastMousePositionInWorld - (Vector2) transform.position;
+			
 			// default weapon is never instantiated so manually run update item method
 			_defaultWeaponBehaviour.OnUpdateItem(null);
 		}
@@ -69,10 +73,8 @@ namespace Scripts.Player
 		{
 			if (context.control.device.name == "Mouse")
 			{
-				// If the current device is keyboard and mouse, aim towards the cursor.
 				Vector2 mousePosition = Mouse.current.position.ReadValue();
-				Vector2 mousePositionInWorld = UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
-				Direction = mousePositionInWorld - (Vector2) transform.position;
+				_lastMousePositionInWorld = UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
 			}
 			else
 			{
