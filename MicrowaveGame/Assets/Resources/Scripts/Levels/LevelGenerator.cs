@@ -218,7 +218,24 @@ namespace Scripts.Levels
 					.ToList();
 				
 				// if there are any guaranteed prefabs for this depthPercentage, pick the first that is found.
-				int guaranteedIndex = spawnProbabilities.FindIndex(probability => probability.HasValue && probability.Value.GuaranteeSpawn);
+				int guaranteedIndex = -1;
+				for (int i=0; i<spawnProbabilities.Count; i++)
+				{
+					GameObject viablePrefab = viablePrefabs[i];
+					SpawnProbability? spawnProbability = spawnProbabilities[i];
+
+					bool isGuaranteed = true
+						&& spawnProbability.HasValue
+						&& spawnProbability.Value.Guarantee != SpawnProbability.SpawnGuarantee.None
+						&& !HasSpawnedGuaranteedRoomPrefab(viablePrefab, spawnProbability.Value.DepthPercentage);
+
+					if (isGuaranteed)
+					{
+						guaranteedIndex = i;
+						break;
+					}
+				}
+
 				if (guaranteedIndex != -1)
 				{
 					GameObject guaranteedPrefab = viablePrefabs[guaranteedIndex];
@@ -252,7 +269,7 @@ namespace Scripts.Levels
 					
 					foreach(SpawnProbability spawnProbability in spawnProbabilities)
 					{
-						if (spawnProbability.GuaranteeSpawn == false) continue;
+						if (spawnProbability.Guarantee == SpawnProbability.SpawnGuarantee.None) continue;
 
 						bool verified = HasSpawnedGuaranteedRoomPrefab(roomPrefab, spawnProbability.DepthPercentage);
 						if (!verified) return false;
@@ -320,11 +337,11 @@ namespace Scripts.Levels
 					return nonRequiredDoors.All(door => PositionInDirectionIsEmpty(position, door.Direction));
 				}
 
-				bool GuaranteedPrefabHasNotBeenSpawned(GameObject prefab)
+				bool OnlyOnceGuaranteePrefabHasNotBeenSpawned(GameObject prefab)
 				{
 					RoomGenerationBehaviour roomGenerationBehaviour = prefab.GetComponent<RoomGenerationBehaviour>();
 					SpawnProbability? spawnProbability = roomGenerationBehaviour.GetSpawnProbability(depthPercentage);
-					if (spawnProbability.HasValue && spawnProbability.Value.GuaranteeSpawn)
+					if (spawnProbability.HasValue && spawnProbability.Value.Guarantee == SpawnProbability.SpawnGuarantee.SpawnOnlyOnce)
 					{
 						return !HasSpawnedGuaranteedRoomPrefab(prefab, spawnProbability.Value.DepthPercentage);
 					}
@@ -335,7 +352,7 @@ namespace Scripts.Levels
 					.Where(PrefabHasRequiredDirections)
 					.Where(PrefabIsEnclosedIfRequired)
 					.Where(PrefabHasSpaceInFrontOfDoors)
-					.Where(GuaranteedPrefabHasNotBeenSpawned);
+					.Where(OnlyOnceGuaranteePrefabHasNotBeenSpawned);
 
 				return viablePrefabs.ToArray();
 			}
