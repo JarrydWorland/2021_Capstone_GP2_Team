@@ -298,6 +298,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Look - Gamepad",
+                    "type": "Value",
+                    "id": "c628f8a4-c078-4d98-a682-987614af6422",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "76d6a890-e855-4609-817f-0841c729b487",
@@ -515,17 +523,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "ac236a76-113a-4f13-af25-3008122ade97",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -876,6 +873,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0bc5495b-cb12-42af-bbf2-9cbe6a830b30",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5232a887-a924-4ed1-b6a7-40ce0bf1fd7d",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look - Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
