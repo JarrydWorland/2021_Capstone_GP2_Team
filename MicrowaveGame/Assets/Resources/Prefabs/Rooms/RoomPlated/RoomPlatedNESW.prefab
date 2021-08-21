@@ -127,7 +127,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836905721438733137, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: m_Name
-      value: PlatedRoomNESW
+      value: RoomPlatedNESW
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840917407308940322, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335125254231977664, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7109910784145065976, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: Enabled
@@ -176,6 +184,14 @@ PrefabInstance:
     - target: {fileID: 7169833246283525280, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342551686884698386, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002066610538388085, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
