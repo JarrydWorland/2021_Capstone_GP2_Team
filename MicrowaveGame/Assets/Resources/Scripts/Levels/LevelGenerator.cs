@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Scripts.Utilities;
 using Scripts.Rooms;
 using Scripts.Doors;
+using static Scripts.Rooms.RoomGenerationBehaviour;
+using System;
 
 namespace Scripts.Levels
 {
@@ -49,13 +51,41 @@ namespace Scripts.Levels
 		/// </returns>
 		public static GameObject GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth, bool disableChildRooms = true)
 		{
-			RoomGrid grid = new RoomGrid();
-			Vector2Int centre = new Vector2Int(0, 0);
-			GameObject startingRoomInstance = InstanceFactory.InstantiateRoom(startingRoomPrefab, parent, centre);
-			RoomConnectionBehaviour startingRoom = startingRoomInstance.GetComponent<RoomConnectionBehaviour>();
-			grid.Add(startingRoom);
-			SpawnChildRooms(startingRoom, parent, grid, depth, disableChildRooms);
-			return startingRoomInstance;
+			// NOTE: Due to how level generation is implemented, there is
+			// always the small possibility that despite best efforts a
+			// guaranteed room wont be able to find a viable position to spawn
+			// while upholding all of the required constraints.
+			//
+			// To ensure the guaranteed rooms are included in the level, the
+			// level will re-generate itself if it detects that not all the
+			// guaranteed rooms were spawned.
+
+			const int attempts = 25;
+
+			for (int i=0; i<attempts; i++)
+			{
+				RoomGrid grid = new RoomGrid(depth);
+				Vector2Int centre = new Vector2Int(0, 0);
+				GameObject startingRoomInstance = InstanceFactory.InstantiateRoom(startingRoomPrefab, parent, centre);
+				RoomConnectionBehaviour startingRoom = startingRoomInstance.GetComponent<RoomConnectionBehaviour>();
+				grid.Add(startingRoom);
+				SpawnChildRooms(startingRoom, parent, grid, depth, disableChildRooms);
+
+				bool levelVerfied = grid.Verify();
+				if (!levelVerfied)
+				{
+					// Debug.LogWarning($"Generated level did not pass verification check. Regenerating... (attempt #{i+1})");
+					foreach (Transform childTransform in parent.transform)
+					{
+						GameObject.Destroy(childTransform.gameObject);
+					}
+					continue;
+				}
+
+				return startingRoomInstance;
+			}
+			
+			throw new Exception("GenerateLevel failed. This is likely due to an invalid SpawnProbability configuration.");
 		}
 
 		/// <summary>
@@ -92,11 +122,12 @@ namespace Scripts.Levels
 		{
 			bool enclosedPrefabRequired = depth == 1;
 			bool DoorIsNotConnected(DoorConnectionBehaviour door) => door.ConnectingDoor == null;
+			Debug.Assert(depth > 0 || room.Doors.Where(DoorIsNotConnected).Count() == 0, "depth reached zero however there are still rooms with unconnected doors.");
 			foreach (DoorConnectionBehaviour currentDoor in room.Doors.Where(DoorIsNotConnected))
 			{
 				// find room prefab
 				Vector2Int newPosition = room.Position + currentDoor.Direction.ToVector2Int();
-				GameObject newRoomPrefab = grid.FindRandomPrefabFor(newPosition, enclosedPrefabRequired);
+				GameObject newRoomPrefab = grid.SelectPrefabFor(newPosition, enclosedPrefabRequired, depth);
 
 				// create room using prefab
 				GameObject newRoomInstance = InstanceFactory.InstantiateRoom(newRoomPrefab, parent, newPosition);
@@ -105,7 +136,7 @@ namespace Scripts.Levels
 				grid.Add(newRoom);
 
 				// position room in scene
-				int roomPlacementDistance = 35;
+				const int roomPlacementDistance = 35;
 				newRoom.transform.position = new Vector3
 				{
 					x = newPosition.x * roomPlacementDistance / 1.25f,
@@ -127,14 +158,23 @@ namespace Scripts.Levels
 		private class RoomGrid
 		{
 			private Dictionary<Vector2Int, RoomConnectionBehaviour> _grid = new Dictionary<Vector2Int, RoomConnectionBehaviour>();
+			private HashSet<Tuple<GameObject,float>> _spawnedGuaranteedRoomPrefabs = new HashSet<Tuple<GameObject,float>>();
+			private float _initialDepth;
+
+			public RoomGrid(int initialDepth)
+			{
+				_initialDepth = initialDepth;
+			}
 
 			/// <summary>
 			/// Add a new room to a position in grid, this should be used with
 			/// caution as the added room may not fit the requirements for the
-			/// position. Use FindRandomPrefabFor to find a prefab for a room
-			/// that meets the positions requirements. This method will connect
-			/// the doors of the given room to its neighbours in the grid if
-			/// those neighbours exist.
+			/// position.
+			///
+			/// Use SelectPrefabFor to find a prefab for a room that meets the
+			/// positions requirements. This method will connect the doors of
+			/// the given room to its neighbours in the grid if those
+			/// neighbours exist.
 			/// </summary>
 			/// <param name="room">
 			/// The RoomConnectionBehaviour of a partially initialized room.
@@ -149,20 +189,10 @@ namespace Scripts.Levels
 			}
 
 			/// <summary>
-			/// Given an empty position in the grid, find a random room prefab
-			/// for that position that meets the following requirements:
-			/// - PrefabHasRequiredDirections: Neighbouring rooms may have
-			///   doors that need to lead into a room at the given position, and the
-			///   random prefab must have associated doors so that the doors in
-			///   the neighbouring rooms are not blocked off.
-			/// - PrefabIsEnclosedIfRequired: At the end of level generation,
-			///   the final chosen room prefabs must be fully enclosed so that the level
-			///   does not contain doors that lead to nowhere.
-			/// - PrefabHasSpaceInFrontOfDoors: Similar to PrefabHasRequiredDirections,
-			///   neighbouring rooms may NOT have a door that leads into a room at
-			///   the given position, so the chosen prefab must not have a door
-			///   in that direction as it would be blocked off by the existing
-			///   neighbouring room.
+			/// Given an empty position in the grid, select a random room
+			/// prefab for that position that is viable in that the doors will
+			/// connect properly, and that takes into account room spawn
+			/// probabilities.
 			/// </summary>
 			/// <param name="position">
 			/// The position in the grid of rooms. The units used are relative
@@ -177,7 +207,112 @@ namespace Scripts.Levels
 			/// <returns>
 			/// A random room prefab that meets the requirements for the given position.
 			/// </returns>
-			public GameObject FindRandomPrefabFor(Vector2Int position, bool enclosedPrefabRequired)
+			public GameObject SelectPrefabFor(Vector2Int position, bool enclosedPrefabRequired, int depth)
+			{
+				float depthPercentage = 1.0f - ((depth-1) / (_initialDepth-1));
+
+				GameObject[] viablePrefabs = FindViablePrefabsFor(position, enclosedPrefabRequired, depthPercentage);
+				List<SpawnProbability?> spawnProbabilities = viablePrefabs
+					.Select(prefab => prefab.GetComponent<RoomGenerationBehaviour>())
+					.Select(room => room.GetSpawnProbability(depthPercentage))
+					.ToList();
+				
+				// if there are any guaranteed prefabs for this depthPercentage, pick the first that is found.
+				int guaranteedIndex = -1;
+				for (int i=0; i<spawnProbabilities.Count; i++)
+				{
+					GameObject viablePrefab = viablePrefabs[i];
+					SpawnProbability? spawnProbability = spawnProbabilities[i];
+
+					bool isGuaranteed = true
+						&& spawnProbability.HasValue
+						&& spawnProbability.Value.Guarantee != SpawnProbability.SpawnGuarantee.None
+						&& !HasSpawnedGuaranteedRoomPrefab(viablePrefab, spawnProbability.Value.DepthPercentage);
+
+					if (isGuaranteed)
+					{
+						guaranteedIndex = i;
+						break;
+					}
+				}
+
+				if (guaranteedIndex != -1)
+				{
+					GameObject guaranteedPrefab = viablePrefabs[guaranteedIndex];
+					SpawnProbability guaranteedSpawnProbability = spawnProbabilities[guaranteedIndex].Value;
+					AddSpawnedGuaranteedRoomPrefab(guaranteedPrefab, guaranteedSpawnProbability.DepthPercentage);
+					return guaranteedPrefab;
+				}
+
+				// no guaranteed prefabs found, pick a random prefab.
+				return viablePrefabs
+					.Zip(spawnProbabilities, Tuple.Create)
+					.GetRandomElementWithProbability(tuple => tuple.Item2?.ProbabilityMultiplier ?? 1.0f)
+					.Item1;
+			}
+
+			/// <summary>
+			/// Verifies that the RoomGrid has placed all guaranteed rooms,
+			/// this is used as a fail-safe to ensure the level is not missing
+			/// vital rooms.
+			/// </summary>
+			/// <returns>
+			/// true if the RoomGrid contains all of the guaranteed rooms level
+			/// otherwise false.
+			/// </returns>
+			public bool Verify()
+			{
+				foreach (GameObject roomPrefab in _roomPrefabs)
+				{
+					RoomGenerationBehaviour roomGenerationBehaviour = roomPrefab.GetComponent<RoomGenerationBehaviour>();
+					List<SpawnProbability> spawnProbabilities = roomGenerationBehaviour.SpawnProbabilities;
+					
+					foreach(SpawnProbability spawnProbability in spawnProbabilities)
+					{
+						if (spawnProbability.Guarantee == SpawnProbability.SpawnGuarantee.None) continue;
+
+						bool verified = HasSpawnedGuaranteedRoomPrefab(roomPrefab, spawnProbability.DepthPercentage);
+						if (!verified) return false;
+					}
+				}
+
+				return true;
+			}
+
+			/// <summary>
+			/// Given an empty position in the grid, find all of the viable room prefabs
+			/// for that position that meets the following requirements:
+			/// - PrefabHasRequiredDirections: Neighbouring rooms may have
+			///   doors that need to lead into a room at the given position, and the
+			///   random prefab must have associated doors so that the doors in
+			///   the neighbouring rooms are not blocked off.
+			/// - PrefabIsEnclosedIfRequired: At the end of level generation,
+			///   the final chosen room prefabs must be fully enclosed so that the level
+			///   does not contain doors that lead to nowhere.
+			/// - PrefabHasSpaceInFrontOfDoors: Similar to PrefabHasRequiredDirections,
+			///   neighbouring rooms may NOT have a door that leads into a room at
+			///   the given position, so the chosen prefab must not have a door
+			///   in that direction as it would be blocked off by the existing
+			///   neighbouring room.
+			/// - GuaranteedPrefabHasNotBeenSpawned: Prefabs marked as
+			///   guaranteed spawn for a given depth should only be spawned once
+			///   for that depth. If the prefab was already spawned, it is no
+			///   longer viable.
+			/// </summary>
+			/// <param name="position">
+			/// The position in the grid of rooms. The units used are relative
+			/// to the starting room. So 0,0 is the starting room. 1,0 is the
+			/// room east of that, etc.
+			/// </param>
+			/// <param name="enclosedPrefabRequired">
+			/// Whether or not the random prefab needs to be enclosed, meaning
+			/// all of its doors will connect to already existing rooms and the
+			/// room will contain no unconnected doors.
+			/// </param>
+			/// <returns>
+			/// An array of room prefabs that meets the requirements for the given position.
+			/// </returns>
+			private GameObject[] FindViablePrefabsFor(Vector2Int position, bool enclosedPrefabRequired, float depthPercentage)
 			{
 				HashSet<Direction> requiredDirections = FindRequiredDirectionsFor(position);
 
@@ -202,12 +337,24 @@ namespace Scripts.Levels
 					return nonRequiredDoors.All(door => PositionInDirectionIsEmpty(position, door.Direction));
 				}
 
+				bool OnlyOnceGuaranteePrefabHasNotBeenSpawned(GameObject prefab)
+				{
+					RoomGenerationBehaviour roomGenerationBehaviour = prefab.GetComponent<RoomGenerationBehaviour>();
+					SpawnProbability? spawnProbability = roomGenerationBehaviour.GetSpawnProbability(depthPercentage);
+					if (spawnProbability.HasValue && spawnProbability.Value.Guarantee == SpawnProbability.SpawnGuarantee.SpawnOnlyOnce)
+					{
+						return !HasSpawnedGuaranteedRoomPrefab(prefab, spawnProbability.Value.DepthPercentage);
+					}
+					return true;
+				}
+
 				IEnumerable<GameObject> viablePrefabs = _roomPrefabs
 					.Where(PrefabHasRequiredDirections)
 					.Where(PrefabIsEnclosedIfRequired)
-					.Where(PrefabHasSpaceInFrontOfDoors);
+					.Where(PrefabHasSpaceInFrontOfDoors)
+					.Where(OnlyOnceGuaranteePrefabHasNotBeenSpawned);
 
-				return viablePrefabs.GetRandomElement();
+				return viablePrefabs.ToArray();
 			}
 
 			private void ConnectDoorsAt(Vector2Int position)
@@ -251,6 +398,9 @@ namespace Scripts.Levels
 			{
 				return !_grid.ContainsKey(position + direction.ToVector2Int());
 			}
+
+			private void AddSpawnedGuaranteedRoomPrefab(GameObject roomPrefab, float depthPercentage) => _spawnedGuaranteedRoomPrefabs.Add(Tuple.Create(roomPrefab, depthPercentage));
+			private bool HasSpawnedGuaranteedRoomPrefab(GameObject roomPrefab, float depthPercentage) => _spawnedGuaranteedRoomPrefabs.Contains(Tuple.Create(roomPrefab, depthPercentage));
 		}
 	}
 }

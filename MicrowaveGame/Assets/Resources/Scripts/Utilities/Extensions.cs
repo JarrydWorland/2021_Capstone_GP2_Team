@@ -111,10 +111,38 @@ namespace Scripts.Utilities
 		}
 
 		/// <summary>
-		/// Given a collection, return an element at random.
+		/// Given a collection, return an element at random. Will throw an
+		/// exception if the collection is empty.
 		/// </summary>
 		public static TSource GetRandomElement<TSource>(this IEnumerable<TSource> source) =>
 			source.ElementAt(UnityEngine.Random.Range(0, source.Count()));
+
+		/// <summary>
+		/// Given a collection, return an element at random where each element
+		/// is given a probability via a probability predicate. Will throw an
+		/// exception if the collection is empty or the sum of the probabilities
+		/// is zero.
+		/// </summary>
+		/// <param name="probabilityPredicate">A function which takes a element from the collection and produces a probability for that element.</param>
+		/// <returns>A randomly selected element from the collection.</returns>
+		public static TSource GetRandomElementWithProbability<TSource>(this IEnumerable<TSource> source, Func<TSource, float> probabilityPredicate)
+		{
+			float[] probabilities = source.Select(probabilityPredicate).ToArray();
+			float probabilitySum = probabilities.Sum();
+			
+			int selectedIndex = 0;
+			float random = UnityEngine.Random.Range(0.0f, probabilitySum);
+			for (int i=0; i<probabilities.Length; i++)
+			{
+				if (random < probabilities[i])
+				{
+					selectedIndex = i;
+					break;
+				}
+				random -= probabilities[i];
+			}
+			return source.ElementAt(selectedIndex);
+		}
 
 		/// <summary>
 		/// Given a collection, only performs a Where() call with the given predicate if the given condition is met.
