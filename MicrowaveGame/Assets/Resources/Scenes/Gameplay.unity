@@ -236,6 +236,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1303808621}
     m_Modifications:
+    - target: {fileID: 3563358544786854278, guid: f0d89f81af97b914da3eeac9eec64f20, type: 3}
+      propertyPath: sceneFaderBehaviour
+      value: 
+      objectReference: {fileID: 635194762}
     - target: {fileID: 7333766769061139433, guid: f0d89f81af97b914da3eeac9eec64f20, type: 3}
       propertyPath: m_Name
       value: MenuPaused
@@ -335,6 +339,103 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7333766769061139434, guid: f0d89f81af97b914da3eeac9eec64f20, type: 3}
   m_PrefabInstance: {fileID: 441018065}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &526938068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1303808621}
+    m_Modifications:
+    - target: {fileID: 2823050659497540830, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509117974325810166, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: Img
+      value: 
+      objectReference: {fileID: 526938070}
+    - target: {fileID: 6649101893611499857, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_Name
+      value: FaderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8154957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8154957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8154957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -399.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -225.07642
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649101895029767658, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+      propertyPath: m_Name
+      value: SceneFader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+--- !u!4 &526938069 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6649101895029767656, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+  m_PrefabInstance: {fileID: 526938068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &526938070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2823050659497540830, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+  m_PrefabInstance: {fileID: 526938068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &547911200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,11 +493,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
+--- !u!1 &547911201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2945509771218161465, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
+  m_PrefabInstance: {fileID: 547911200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &547911202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547911201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ef6fa20fd045b1a129b63a45eab395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueContent:
+    Speaker: Disembodied Voice
+    Sentences:
+    - This is the story of a robot named Merlin
+    - "Merlin was an employee at a non-descript company, where worked in Room Number\r
+      427"
+    - Merlin's life was relatively normal, until one peculiar day...
 --- !u!224 &551223447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6289347686327385835, guid: eb9f20cc5db92c54090e74a5a059e5dc, type: 3}
   m_PrefabInstance: {fileID: 6289347685793988220}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &635194762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5509117974325810166, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
+  m_PrefabInstance: {fileID: 526938068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0fc8d737864634fb788ff26dc625bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &664570584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -559,6 +695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanDuration: 0.4
+--- !u!224 &711036010 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5794048396616728324, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+  m_PrefabInstance: {fileID: 2033778337}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &741390243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,12 +972,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1930442739}
+  - {fileID: 711036010}
   - {fileID: 396012729}
   - {fileID: 674056346}
   - {fileID: 551223447}
   - {fileID: 1678858207}
   - {fileID: 441018066}
+  - {fileID: 526938069}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -850,17 +992,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
   m_PrefabInstance: {fileID: 664570584}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1383257156 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7939357772108916606, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-  m_PrefabInstance: {fileID: 1930442738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2134df5cdc6c72446b96e87cf5b36270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1527350666
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,28 +1071,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4772921886234655895, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
   m_PrefabInstance: {fileID: 4772921884690180936}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1930442738
+--- !u!1001 &2033778337
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1303808621}
     m_Modifications:
-    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-      propertyPath: m_FontData.m_BestFit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1268921318875124602, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3180719226130917096, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_Name
-      value: DialogueDisplay
+      value: MenuDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 3180719226130917096, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_IsActive
@@ -1051,21 +1170,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8461171235301577170, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 371.8289
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461171235301577170, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -200.48553
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144c13c09b1619746941aa827c09675c, type: 3}
---- !u!224 &1930442739 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5794048396616728324, guid: 144c13c09b1619746941aa827c09675c, type: 3}
-  m_PrefabInstance: {fileID: 1930442738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2251424064974973492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,28 +1475,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb9f20cc5db92c54090e74a5a059e5dc, type: 3}
---- !u!1 &6289347685793988221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6289347686327385834, guid: eb9f20cc5db92c54090e74a5a059e5dc, type: 3}
-  m_PrefabInstance: {fileID: 6289347685793988220}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6289347685793988222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6289347685793988221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff7b5d48dd196c428d1e5d00215f83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dialogue:
-    Speaker: Disembodied Voice
-    Sentences:
-    - This is the story of a robot named Merlin.
-    - Merlin was an employee at a non-descript company, where worked in Room Number
-      427
-    - Merlin's life was relatively normal, until one peculiar day...
-  DialogueBehaviour: {fileID: 1383257156}

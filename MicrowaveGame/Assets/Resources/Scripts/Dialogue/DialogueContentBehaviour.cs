@@ -1,9 +1,15 @@
+﻿using System;
 using UnityEngine;
 
 namespace Scripts.Dialogue
 {
-	[System.Serializable]
-	public class Dialogue
+	public class DialogueContentBehaviour : MonoBehaviour
+	{
+		public DialogueContent dialogueContent;
+	}
+
+	[Serializable]
+	public class DialogueContent
 	{
 		/// <summary>
 		/// The name of the speaker.

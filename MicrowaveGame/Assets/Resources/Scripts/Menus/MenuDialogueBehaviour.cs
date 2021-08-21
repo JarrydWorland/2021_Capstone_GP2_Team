@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Scripts.Menus;
+using Scripts.Dialogue;
 using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.Dialogue
+namespace Scripts.Menus
 {
-	public class DialogueBehaviour : MonoBehaviour
+	public class MenuDialogueBehaviour : MenuBehaviour
 	{
 		private Text _speakerText;
 		private Text _contentText;
@@ -18,7 +18,8 @@ namespace Scripts.Dialogue
 		private Lerped<string> _currentSentence;
 		private int _maxSentenceLength;
 
-		public bool InDialogue { get; private set; }
+		public override void OnEnter() => MenuManager.Pause();
+		public override void OnLeave() => MenuManager.Resume();
 
 		public void Awake()
 		{
@@ -40,12 +41,8 @@ namespace Scripts.Dialogue
 		/// Given a dialogue object, load the sentences and display the first sentence.
 		/// </summary>
 		/// <param name="dialogue"></param>
-		public void StartDialogue(Dialogue dialogue)
+		public void StartDialogue(DialogueContent dialogue)
 		{
-			InDialogue = true;
-
-			MenuManager.Pause();
-
 			_speakerText.text = dialogue.Speaker;
 			_sentences.Clear();
 
@@ -63,26 +60,14 @@ namespace Scripts.Dialogue
 		/// </summary>
 		public void DisplayNextSentence()
 		{
-			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
-
 			if (_sentences.Count == 0)
 			{
-				EndDialogue();
+				MenuManager.GoBack();
 				return;
 			}
 
+			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
 			_currentSentence.Value = _sentences.Dequeue();
-		}
-
-		/// <summary>
-		/// Disables the dialogue display object and resumes play.
-		/// </summary>
-		public void EndDialogue()
-		{
-			gameObject.SetActive(false);
-			MenuManager.Resume();
-
-			InDialogue = false;
 		}
 
 		/// <summary>

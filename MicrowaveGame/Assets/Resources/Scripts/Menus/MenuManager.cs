@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Scripts.Dialogue;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -84,6 +85,20 @@ namespace Scripts.Menus
 		{
 			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
 			Time.timeScale = 1.0f;
+		}
+
+		/// <summary>
+		/// Given a dialogue object, switch to the dialogue menu and start the dialogue sequence.
+		/// </summary>
+		/// <param name="dialogue">The dialogue object containing the speaker name and sentences.</param>
+		public static void ShowDialogue(DialogueContent dialogue)
+		{
+			GoInto("MenuDialogue");
+
+			MenuDialogueBehaviour menuDialogueBehaviour = GameObject.Find("Canvas").transform.Find("MenuDialogue")
+				.GetComponent<MenuDialogueBehaviour>();
+
+			menuDialogueBehaviour.StartDialogue(dialogue);
 		}
 	}
 }

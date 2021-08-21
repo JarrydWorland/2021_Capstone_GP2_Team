@@ -1,3 +1,5 @@
+using Scripts.Dialogue;
+using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Utilities;
@@ -31,10 +33,8 @@ namespace Scripts.Player
 		/// The players movement velocity.
 		/// </summary>
 		public Vector2 Velocity { get; set; }
-		
 
 		private Rigidbody2D _rigidBody;
-
 
 		private void Start()
 		{
@@ -48,7 +48,7 @@ namespace Scripts.Player
 
 			// apply friction
 			Velocity = new Vector2(
-				(Mathf.Abs(Velocity.x) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.x), 
+				(Mathf.Abs(Velocity.x) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.x),
 				(Mathf.Abs(Velocity.y) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.y)
 			);
 
@@ -56,11 +56,23 @@ namespace Scripts.Player
 			_rigidBody.MovePosition(_rigidBody.position + Velocity);
 		}
 
+		// Temporary for testing the dialogue menu.
+		private bool _firstLaunch;
+
 		/// <summary>
 		/// Called on move event from unity input system.
 		/// </summary>
 		public void OnMove(InputAction.CallbackContext context)
 		{
+			if (!_firstLaunch)
+			{
+				_firstLaunch = true;
+
+				// Temporarily show the dialogue menu for testing.
+				DialogueContentBehaviour dialogueContentBehaviour = GetComponent<DialogueContentBehaviour>();
+				MenuManager.ShowDialogue(dialogueContentBehaviour.dialogueContent);
+			}
+
 			Direction = context.ReadValue<Vector2>();
 		}
 
