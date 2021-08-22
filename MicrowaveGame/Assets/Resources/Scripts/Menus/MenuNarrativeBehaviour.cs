@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
-using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
@@ -11,7 +10,7 @@ namespace Scripts.Menus
 		/// The background music.
 		/// </summary>
 		public AudioClip BackgroundMusicAudioClip;
-		
+
 		/// <summary>
 		/// A debug flag to disable the background music.
 		/// </summary>
@@ -31,26 +30,13 @@ namespace Scripts.Menus
 
 		private bool IsFinalString => _currentString == _strings.Length - 1;
 
-		private PlayerInput _playerInput;
-
-		public override void OnEnter()
-		{
-			Time.timeScale = 0.0f;
-			_playerInput.actions.Disable();
-		}
-
-		public override void OnLeave()
-		{
-			_playerInput.actions.Enable();
-			Time.timeScale = 1.0f;
-		}
+		public override void OnEnter() => MenuManager.Pause();
+		public override void OnLeave() => MenuManager.Resume();
 
 		private void Start()
 		{
 			_textObject = transform.Find("Text").GetComponent<Text>();
 			_buttonTextObject = transform.Find("Button").GetComponentInChildren<Text>();
-
-			_playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
 			UpdateTexts();
 
@@ -58,7 +44,7 @@ namespace Scripts.Menus
 			{
 				AudioManager.Play(BackgroundMusicAudioClip);
 			}
-			
+
 			MenuManager.Init(this);
 		}
 

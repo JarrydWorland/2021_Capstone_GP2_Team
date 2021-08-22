@@ -1,21 +1,12 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
-		public override void OnEnter()
-		{
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
-			Time.timeScale = 1.0f;
-		}
+		public override void OnEnter() => MenuManager.Resume();
 
-		public override void OnLeave()
-		{
-			Time.timeScale = 0.0f;
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
-		}
+		public override void OnLeave() => MenuManager.Pause();
 
 		/// <summary>
 		/// Called via Unity's new input system when the user presses the "Escape" key.

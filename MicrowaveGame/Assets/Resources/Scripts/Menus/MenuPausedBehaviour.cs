@@ -1,6 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-
-namespace Scripts.Menus
+﻿namespace Scripts.Menus
 {
 	public class MenuPausedBehaviour : MenuBehaviour
 	{
@@ -20,6 +18,6 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Menu" scene.
 		/// Called when the "Exit To Main Menu" button is pressed.
 		/// </summary>
-		public void OnExitButtonPressed() => sceneFaderBehaviour.FadeTo("Menu"); //SceneManager.LoadScene("Menu");
+		public void OnExitButtonPressed() => sceneFaderBehaviour.FadeTo("Menu");
 	}
 }
