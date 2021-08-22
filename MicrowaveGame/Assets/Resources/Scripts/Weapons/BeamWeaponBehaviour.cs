@@ -3,7 +3,7 @@ using Scripts.Utilities;
 
 namespace Scripts.Weapons
 {
-    public class BeamWeaponBehaviour : WeaponBehaviour
+	public class BeamWeaponBehaviour : WeaponBehaviour
 	{
 		/// <summary>
 		/// The projectile prefab to spawn while shooting. The prefab must
@@ -17,7 +17,6 @@ namespace Scripts.Weapons
 
 		private float _fireRateInverse;
 		private float _time;
-		private bool _firing = true;
 
 		public override void Start()
 		{
@@ -35,13 +34,22 @@ namespace Scripts.Weapons
 		/// <param name="additionalDamage">Any additional damage the player may deal on top of the weapon's damage.</param>
 		public override void OnWeaponUpdate(Vector2 position, Vector2 direction, bool shooting, int additionalDamage = 0)
 		{
-			if (_firing)
+			_time += Time.deltaTime;
+			if (shooting)
 			{
-				float spreadAngle = Spread * Random.Range(0.0f, 1.0f) - (Spread/2.0f);
+				float spreadAngle = Spread * Random.Range(0.0f, 1.0f) - (Spread / 2.0f);
 				Vector2 spread = new Vector2(Mathf.Cos(spreadAngle), Mathf.Sin(spreadAngle));
 				Quaternion q = Quaternion.Euler(0, 0, spreadAngle);
 				AudioManager.Play(ShootAudioClip);
-				InstanceFactory.InstantiateProjectile(ProjectilePrefab, position, direction, ProjectileSpeed, Damage + additionalDamage, "Enemy");
+				InstanceFactory.InstantiateProjectile(
+					ProjectilePrefab,
+					position + direction * 0.5f,
+					q * direction,
+					ProjectileSpeed,
+					Damage + additionalDamage,
+					"Enemy"
+				);
+				_time = 0;
 			}
 		}
 

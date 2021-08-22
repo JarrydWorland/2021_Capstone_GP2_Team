@@ -9,9 +9,12 @@ namespace Scripts.Projectiles
 		//Currently it creates a range around the player only based on the transform.position of the spawn of the starting room.
 		protected override void Update()
 		{
-			_radius = 5;
+			base.Update();
+			GameObject Player = GameObject.Find("Player");
+			float distance = Vector3.Distance(Player.transform.position, transform.position);
+			_radius = 4;
 			transform.position += (Vector3)Direction;
-			if (transform.position.sqrMagnitude > _radius) Destroy(gameObject);
+			if (distance > _radius) Destroy(gameObject);
 		}
 	}
 }
