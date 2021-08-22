@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using Scripts.Scenes;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace Scripts.Menus
@@ -21,6 +22,6 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Menu" scene.
 		/// Called when the "Exit To Main Menu" button is pressed.
 		/// </summary>
-		public void OnExitButtonPressed() => sceneFaderBehaviour.FadeTo("Menu");
+		public void OnExitButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Menu");
 	}
 }

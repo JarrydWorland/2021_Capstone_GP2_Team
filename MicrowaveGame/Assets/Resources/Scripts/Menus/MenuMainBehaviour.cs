@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Scripts.Scenes;
+using UnityEngine;
 using Scripts.Utilities;
 
 namespace Scripts.Menus
@@ -32,7 +32,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => sceneFaderBehaviour.FadeTo("Gameplay"); //SceneManager.LoadScene("Gameplay"); (keeping line in case scenefader causes issues)
+		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Gameplay");
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
