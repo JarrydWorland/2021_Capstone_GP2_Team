@@ -1,4 +1,5 @@
 ﻿using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
@@ -17,6 +18,14 @@ namespace Scripts.Menus
 		public void OnPause(InputAction.CallbackContext context)
 		{
 			if (context.performed) MenuManager.GoInto("MenuPaused");
+		}
+
+		private void Start()
+		{
+			if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+			}
 		}
 	}
 }

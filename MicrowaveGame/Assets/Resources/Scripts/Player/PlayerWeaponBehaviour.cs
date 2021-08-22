@@ -96,6 +96,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnShoot(InputAction.CallbackContext context)
 		{
+			if (!enabled) return;
+
 			if (context.performed) Shooting = true;
 			else if (context.canceled) Shooting = false;
 		}
