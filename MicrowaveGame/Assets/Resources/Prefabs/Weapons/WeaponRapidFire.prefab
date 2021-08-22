@@ -67,7 +67,7 @@ MonoBehaviour:
   Description: Shoots bullets rapidly
   Damage: 1
   FireRate: 5
-  ProjectileSpeed: 15
+  ProjectileSpeed: 25
   ProjectilePrefab: {fileID: 1863189556075500660, guid: 090d52b5c2b3ea845ab05abee120e09e, type: 3}
   ShootAudioClip: {fileID: 8300000, guid: 0f77eeebe9a628240a8d29443340df91, type: 3}
   Spread: 15
