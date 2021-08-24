@@ -29,7 +29,7 @@ namespace Scripts.Projectiles
 		private BoxCollider2D _boxCollider2D;
 		private Vector3 _startingPosition;
 
-		private void Start()
+		protected virtual void Start()
 		{
 			_boxCollider2D = GetComponent<BoxCollider2D>();
 		}

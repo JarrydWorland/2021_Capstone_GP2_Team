@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Beam Weapon
-  Description: Shoots a Single beam to hit an enemy
+  Description: fires a Single beam to hit an enemy
   Damage: 1
   FireRate: 0
   ProjectileSpeed: 3
@@ -132,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5957798841488813594, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_Name
-      value: WeaponBeam
+      value: WeaponRaycastBeam
       objectReference: {fileID: 0}
     - target: {fileID: 7266489341063404860, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x

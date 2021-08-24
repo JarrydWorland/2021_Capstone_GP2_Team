@@ -3,7 +3,7 @@ using Scripts.Utilities;
 
 namespace Scripts.Weapons
 {
-	public class BeamWeaponBehaviour : WeaponBehaviour
+	public class RaycastBeamWeaponBehaviour : WeaponBehaviour
 	{
 		/// <summary>
 		/// The projectile prefab to spawn while shooting. The prefab must
