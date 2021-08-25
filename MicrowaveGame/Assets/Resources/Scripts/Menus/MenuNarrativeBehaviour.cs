@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {

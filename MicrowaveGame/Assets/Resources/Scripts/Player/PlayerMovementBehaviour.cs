@@ -3,6 +3,7 @@ using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Utilities;
+using System;
 
 namespace Scripts.Player
 {
@@ -56,23 +57,11 @@ namespace Scripts.Player
 			_rigidBody.MovePosition(_rigidBody.position + Velocity);
 		}
 
-		// Temporary for testing the dialogue menu.
-		private bool _firstLaunch;
-
 		/// <summary>
 		/// Called on move event from unity input system.
 		/// </summary>
 		public void OnMove(InputAction.CallbackContext context)
 		{
-			if (!_firstLaunch)
-			{
-				_firstLaunch = true;
-
-				// Temporarily show the dialogue menu for testing.
-				DialogueContentBehaviour dialogueContentBehaviour = GetComponent<DialogueContentBehaviour>();
-				MenuManager.ShowDialogue(dialogueContentBehaviour.dialogueContent);
-			}
-
 			Direction = context.ReadValue<Vector2>();
 		}
 

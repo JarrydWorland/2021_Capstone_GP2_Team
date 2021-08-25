@@ -5,7 +5,7 @@ namespace Scripts.Dialogue
 {
 	public class DialogueContentBehaviour : MonoBehaviour
 	{
-		public DialogueContent dialogueContent;
+		public DialogueContent DialogueContent;
 	}
 
 	[Serializable]
