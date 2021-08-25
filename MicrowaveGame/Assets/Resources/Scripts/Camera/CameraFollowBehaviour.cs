@@ -5,9 +5,25 @@ namespace Scripts.Camera
 {
 	public class CameraFollowBehaviour : MonoBehaviour
 	{
+		/// <summary>
+		/// The target gameobject that the camera should follow.
+		/// </summary>
 		public GameObject Target;
+
+		/// <summary>
+		/// The bounds that the camera should be restricted to.
+		/// Bounds range from -x -> x and -y -> y.
+		/// </summary>
 		public Vector2 Bounds;
+
+		/// <summary>
+		/// Prevent camera movement on the X axis.
+		/// </summary>
 		public bool LockX;
+
+		/// <summary>
+		/// Prevent camera movement on the Y axis.
+		/// </summary>
 		public bool LockY;
 
 		private Vector3 _velocity;
