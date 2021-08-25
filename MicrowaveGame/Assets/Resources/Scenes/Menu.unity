@@ -636,18 +636,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 290342941}
     m_Modifications:
-    - target: {fileID: 5623186482634373175, guid: 8d30faa931206344f8f460c063dac881, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5623186482634373175, guid: 8d30faa931206344f8f460c063dac881, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5623186482634373175, guid: 8d30faa931206344f8f460c063dac881, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5623186483246349073, guid: 8d30faa931206344f8f460c063dac881, type: 3}
       propertyPath: m_Name
       value: MenuCredits

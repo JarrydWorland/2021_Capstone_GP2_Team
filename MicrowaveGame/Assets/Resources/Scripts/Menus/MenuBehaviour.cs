@@ -17,8 +17,12 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnEnter()
 		{
-			CurrentSelectable = GetComponentsInChildren<Selectable>().First();
-			CurrentSelectable.Select();
+			// TODO: The first button in "MenuPaused" doesn't animate after already animating.
+			// If you enter the pause menu, it will animate the first button (in this case the resume button),
+			// but if you resume and pause again, it won't animate it.
+
+			CurrentSelectable = GetComponentsInChildren<Selectable>().FirstOrDefault();
+			if (CurrentSelectable != null) CurrentSelectable.Select();
 		}
 
 		/// <summary>
@@ -37,7 +41,7 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnReturn()
 		{
-			CurrentSelectable.Select();
+			if (CurrentSelectable != null) CurrentSelectable.Select();
 		}
 	}
 }

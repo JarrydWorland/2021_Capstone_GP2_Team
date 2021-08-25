@@ -41,6 +41,8 @@ namespace Scripts.Menus
 		/// </summary>
 		public void OnPause(InputAction.CallbackContext context)
 		{
+			if (!context.performed) return;
+
 			if (MenuManager.Current.name == "MenuPlaying") MenuManager.GoInto("MenuPaused");
 			else if (MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
 		}
