@@ -16,7 +16,11 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		public override void OnEnter() => Time.timeScale = 1.0f;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			Time.timeScale = 1.0f;
+		}
 
 		private void Start()
 		{

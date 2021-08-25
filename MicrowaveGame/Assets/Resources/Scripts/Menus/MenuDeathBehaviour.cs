@@ -10,7 +10,11 @@ namespace Scripts.Menus
 		/// Sets the timeScale to 0.1f so that the game continues in the
 		/// background.
 		/// </summary>
-		public override void OnEnter() => Time.timeScale = 0.1f;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			Time.timeScale = 0.1f;
+		}
 
 		/// <summary>
 		/// Sets the current scene to the "Gameplay" scene.

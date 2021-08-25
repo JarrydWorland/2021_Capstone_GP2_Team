@@ -30,8 +30,17 @@ namespace Scripts.Menus
 
 		private bool IsFinalString => _currentString == _strings.Length - 1;
 
-		public override void OnEnter() => MenuManager.Pause();
-		public override void OnLeave() => MenuManager.Resume();
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			MenuManager.Pause();
+		}
+
+		public override void OnLeave()
+		{
+			MenuManager.Resume();
+			base.OnLeave();
+		}
 
 		private void Start()
 		{

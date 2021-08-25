@@ -18,8 +18,17 @@ namespace Scripts.Menus
 		private Lerped<string> _currentSentence;
 		private int _maxSentenceLength;
 
-		public override void OnEnter() => MenuManager.Pause();
-		public override void OnLeave() => MenuManager.Resume();
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			MenuManager.Pause();
+		}
+
+		public override void OnLeave()
+		{
+			MenuManager.Resume();
+			base.OnLeave();
+		}
 
 		public void Awake()
 		{
@@ -40,7 +49,7 @@ namespace Scripts.Menus
 		/// <summary>
 		/// Given a dialogue object, load the sentences and display the first sentence.
 		/// </summary>
-		/// <param name="dialogue"></param>
+		/// <param name="dialogue">The dialogue object containing the speaker name and the sentences.</param>
 		public void StartDialogue(DialogueContent dialogue)
 		{
 			_speakerText.text = dialogue.Speaker;
@@ -57,6 +66,7 @@ namespace Scripts.Menus
 
 		/// <summary>
 		/// Display the next sentence in the local queue.
+		/// Called when the "Continue" / "Begin" button is pressed.
 		/// </summary>
 		public void DisplayNextSentence()
 		{
