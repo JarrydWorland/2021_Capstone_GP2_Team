@@ -59,6 +59,8 @@ namespace Scripts.Menus
 		/// </summary>
 		public static void GoBack()
 		{
+			if (_history.Count == 0) return;
+
 			Current.OnLeave();
 
 			Current.gameObject.SetActive(false);
@@ -66,7 +68,7 @@ namespace Scripts.Menus
 			Current = _history.Pop();
 			Current.gameObject.SetActive(true);
 
-			Current.OnEnter();
+			Current.OnReturn();
 		}
 
 		/// <summary>

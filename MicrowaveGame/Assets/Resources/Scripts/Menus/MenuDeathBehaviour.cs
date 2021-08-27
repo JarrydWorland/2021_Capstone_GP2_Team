@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using Scripts.Scenes;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace Scripts.Menus
@@ -9,7 +10,11 @@ namespace Scripts.Menus
 		/// Sets the timeScale to 0.1f so that the game continues in the
 		/// background.
 		/// </summary>
-		public override void OnEnter() => Time.timeScale = 0.1f;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			Time.timeScale = 0.1f;
+		}
 
 		/// <summary>
 		/// Sets the current scene to the "Gameplay" scene.
@@ -21,6 +26,6 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Menu" scene.
 		/// Called when the "Exit To Main Menu" button is pressed.
 		/// </summary>
-		public void OnExitButtonPressed() => sceneFaderBehaviour.FadeTo("Menu");
+		public void OnExitButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Menu");
 	}
 }

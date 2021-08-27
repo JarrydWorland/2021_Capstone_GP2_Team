@@ -62,11 +62,29 @@ namespace Scripts.Utilities
 
 	public static class Easing
 	{
-		public static Vector2 Linear(Vector2 start, Vector2 end, float interpolation) => Vector2.LerpUnclamped(start, end, interpolation);
+		public static Vector2 Linear(Vector2 start, Vector2 end, float interpolation) => Vector2.LerpUnclamped(start, end, Linear(interpolation));
+		public static Vector2 EaseIn(Vector2 start, Vector2 end, float interpolation) => Vector2.LerpUnclamped(start, end, EaseIn(interpolation));
+		public static Vector2 EaseOut(Vector2 start, Vector2 end, float interpolation) => Vector2.LerpUnclamped(start, end, EaseOut(interpolation));
 		public static Vector2 EaseInOut(Vector2 start, Vector2 end, float interpolation) => Vector2.LerpUnclamped(start, end, EaseInOut(interpolation));
-		public static Vector3 Linear(Vector3 start, Vector3 end, float interpolation) => Vector3.LerpUnclamped(start, end, interpolation);
+		
+		public static Vector3 Linear(Vector3 start, Vector3 end, float interpolation) => Vector3.LerpUnclamped(start, end, Linear(interpolation));
+		public static Vector3 EaseIn(Vector3 start, Vector3 end, float interpolation) => Vector3.LerpUnclamped(start, end, EaseIn(interpolation));
+		public static Vector3 EaseOut(Vector3 start, Vector3 end, float interpolation) => Vector3.LerpUnclamped(start, end, EaseOut(interpolation));
 		public static Vector3 EaseInOut(Vector3 start, Vector3 end, float interpolation) => Vector3.LerpUnclamped(start, end, EaseInOut(interpolation));
+		
+		public static Color Linear(Color start, Color end, float interpolation) => Color.LerpUnclamped(start, end, Linear(interpolation));
+		public static Color EaseIn(Color start, Color end, float interpolation) => Color.LerpUnclamped(start, end, EaseIn(interpolation));
+		public static Color EaseOut(Color start, Color end, float interpolation) => Color.LerpUnclamped(start, end, EaseOut(interpolation));
+		public static Color EaseInOut(Color start, Color end, float interpolation) => Color.LerpUnclamped(start, end, EaseInOut(interpolation));
 
+		public static float Linear(float n) => n;
+		
+		// https://www.desmos.com/calculator/pbquteuou4
+		public static float EaseIn(float n) => Mathf.Pow(n, 2);
+
+		// https://www.desmos.com/calculator/ugnz3nncuq
+		public static float EaseOut(float n) => Mathf.Sqrt(n);
+		
 		// https://www.desmos.com/calculator/za8sugou91
 		private static float EaseInOut(float n) => n <= 0.5
 			? +2 * Mathf.Pow(n, 2)
