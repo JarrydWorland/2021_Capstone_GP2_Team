@@ -1,19 +1,21 @@
-﻿namespace Scripts.Menus
+﻿using Scripts.Utilities;
+
+namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			MenuManager.Resume();
+			GameState.Resume();
 		}
 
 		public override void OnLeave()
 		{
-			MenuManager.Pause();
+			GameState.Pause();
 			base.OnLeave();
 		}
 
-		public override void OnReturn() => MenuManager.Resume();
+		public override void OnReturn() => GameState.Resume();
 	}
 }

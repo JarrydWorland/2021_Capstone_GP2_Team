@@ -21,12 +21,12 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			MenuManager.Pause();
+			GameState.Pause();
 		}
 
 		public override void OnLeave()
 		{
-			MenuManager.Resume();
+			GameState.Resume();
 			base.OnLeave();
 		}
 

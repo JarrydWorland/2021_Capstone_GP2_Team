@@ -13,6 +13,10 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			base.OnEnter();
+
+			// This menu is only ever entered via the "MenuPlaying" menu which calls
+			// "GameState.Pause()" in its "OnLeave()" method, thus no need to call it here.
+
 			Time.timeScale = 0.1f;
 		}
 
