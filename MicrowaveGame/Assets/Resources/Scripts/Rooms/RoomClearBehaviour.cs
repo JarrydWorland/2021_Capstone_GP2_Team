@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Scripts.Doors;
 using Scripts.Events;
 using Scripts.Items;
+using Scripts.Levels;
 using Scripts.Utilities;
 using UnityEngine;
 
@@ -9,40 +11,61 @@ namespace Scripts.Rooms
 {
 	public class RoomClearBehaviour : MonoBehaviour
 	{
+		private EventId<RoomTraversedEventArgs> _roomTraversedEventId;
+		private DoorConnectionBehaviour[] _doorConnectionBehaviours;
+
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 		private int _enemyCount;
 
 		private static IEnumerable<GameObject> _itemPrefabs;
 
-		private void Start()
+		// We use "Awake()" here so every room has its events and enemy count calculated before
+		// we enter the room which is necessary for the "OnRoomTraversed()" method behaviour.
+		private void Awake()
 		{
 			InitItemPrefabs();
 
-			_enemyCount = GetComponentsInChildren<TagBehaviour>().Where(tag => tag.HasTag("Enemy")).Count();
+			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(OnRoomTraversed);
+			_doorConnectionBehaviours = GetComponentsInChildren<DoorConnectionBehaviour>();
 
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
+			_enemyCount = GetComponentsInChildren<TagBehaviour>().Count(tagBehaviour => tagBehaviour.HasTag("Enemy"));
 		}
 
 		private void OnDestroy()
 		{
+			EventManager.Unregister(_roomTraversedEventId);
 			EventManager.Unregister(_healthChangedEventId);
 		}
 
 		private void InitItemPrefabs()
 		{
-			if (_itemPrefabs == null)
+			if (_itemPrefabs != null) return;
+
+			IEnumerable<GameObject> itemPrefabs = Resources
+				.LoadAll<GameObject>("Prefabs/Items")
+				.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>());
+
+			IEnumerable<GameObject> weaponPrefabs = Resources
+				.LoadAll<GameObject>("Prefabs/Weapons")
+				.Where(itemPrefab =>
+					itemPrefab.HasComponent<ItemBehaviour>() && itemPrefab.name != "WeaponDefault");
+
+			_itemPrefabs = Enumerable.Empty<GameObject>()
+				.Concat(itemPrefabs)
+				.Concat(weaponPrefabs);
+		}
+
+		private void OnRoomTraversed(RoomTraversedEventArgs eventArgs)
+		{
+			RoomClearBehaviour roomClearBehaviour =
+				eventArgs.CurrentRoom.GetComponent<RoomClearBehaviour>();
+
+			if (roomClearBehaviour._enemyCount == 0) return;
+
+			foreach (DoorConnectionBehaviour doorConnectionBehaviour in roomClearBehaviour._doorConnectionBehaviours)
 			{
-				IEnumerable<GameObject> itemPrefabs = Resources
-					.LoadAll<GameObject>("Prefabs/Items")
-					.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>());
-
-				IEnumerable<GameObject> weaponPrefabs = Resources
-					.LoadAll<GameObject>("Prefabs/Weapons")
-					.Where(itemPrefab => itemPrefab.HasComponent<ItemBehaviour>() && itemPrefab.name != "WeaponDefault");
-
-				_itemPrefabs = Enumerable.Empty<GameObject>()
-					.Concat(itemPrefabs)
-					.Concat(weaponPrefabs);
+				if (doorConnectionBehaviour.IsOpen) doorConnectionBehaviour.Close();
 			}
 		}
 
@@ -51,6 +74,11 @@ namespace Scripts.Rooms
 			GameObject randomItemPrefab = _itemPrefabs.GetRandomElement();
 			GameObject randomItem = Instantiate(randomItemPrefab);
 			randomItem.transform.position = transform.position;
+
+			foreach (var doorConnectionBehaviour in _doorConnectionBehaviours)
+			{
+				if (!doorConnectionBehaviour.IsOpen) doorConnectionBehaviour.Open();
+			}
 		}
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
@@ -64,6 +92,7 @@ namespace Scripts.Rooms
 			if (isEnemy && isDead && isWithinRoom)
 			{
 				_enemyCount -= 1;
+
 				if (_enemyCount <= 0)
 				{
 					OnRoomCleared();

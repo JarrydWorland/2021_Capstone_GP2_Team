@@ -22,7 +22,7 @@ namespace Scripts.Camera
 
 		private void Start()
 		{
-			Position = new Lerped<Vector2>(transform.position, PanDuration, Easing.EaseInOut);
+			Position = new Lerped<Vector2>(transform.position, PanDuration, Easing.EaseInOut, true);
 		}
 
 		private void Update()

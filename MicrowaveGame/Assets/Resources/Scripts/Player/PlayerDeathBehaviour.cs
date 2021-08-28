@@ -1,7 +1,6 @@
 ﻿using Scripts.Events;
 using Scripts.Menus;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Scripts.Player
 {
@@ -16,13 +15,7 @@ namespace Scripts.Player
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
-			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
-			{
-				Time.timeScale = 0.0f;
-				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
-
-				MenuManager.GoInto("MenuDeath");
-			}
+			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0) MenuManager.GoInto("MenuDeath");
 		}
 
 		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
