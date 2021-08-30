@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Scripts.Dialogue;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
@@ -69,24 +68,6 @@ namespace Scripts.Menus
 			Current.gameObject.SetActive(true);
 
 			Current.OnReturn();
-		}
-
-		/// <summary>
-		/// Freezes the time scale (= 0.0f) and disables player input (moving, looking, etc.).
-		/// </summary>
-		public static void Pause()
-		{
-			Time.timeScale = 0.0f;
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
-		}
-
-		/// <summary>
-		/// Unfreezes the time scale (= 1.0f) and enables player input (moving, looking, etc.).
-		/// </summary>
-		public static void Resume()
-		{
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
-			Time.timeScale = 1.0f;
 		}
 
 		/// <summary>
