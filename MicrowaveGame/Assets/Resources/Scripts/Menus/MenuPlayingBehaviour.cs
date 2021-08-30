@@ -1,23 +1,20 @@
-﻿using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
-		public override void OnEnter() => MenuManager.Resume();
-
-		public override void OnLeave() => MenuManager.Pause();
-
-		/// <summary>
-		/// Called via Unity's new input system when the user presses the "Escape" key.
-		/// Sets the current menu to the "Controls" menu.
-		/// Called when the "Controls" button is pressed.
-		/// </summary>
-		/// <param name="context"></param>
-		public void OnPause(InputAction.CallbackContext context)
+		public override void OnEnter()
 		{
-			if (context.performed) MenuManager.GoInto("MenuPaused");
+			base.OnEnter();
+			GameState.Resume();
+		}
+
+		public override void OnLeave()
+		{
+			GameState.Pause();
+			base.OnLeave();
 		}
 
 		private void Start()
@@ -27,5 +24,7 @@ namespace Scripts.Menus
 				MenuManager.Init(this);
 			}
 		}
+
+		public override void OnReturn() => GameState.Resume();
 	}
 }

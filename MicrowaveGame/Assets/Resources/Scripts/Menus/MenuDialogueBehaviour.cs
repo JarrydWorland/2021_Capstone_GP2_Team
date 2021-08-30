@@ -20,8 +20,17 @@ namespace Scripts.Menus
 		private const float _charactersPerSecond = 30.0f;
 		private Action _onDialogueComplete = null;
 
-		public override void OnEnter() => MenuManager.Pause();
-		public override void OnLeave() => MenuManager.Resume();
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			GameState.Pause();
+		}
+
+		public override void OnLeave()
+		{
+			GameState.Resume();
+			base.OnLeave();
+		}
 
 		public void Awake()
 		{
@@ -38,7 +47,7 @@ namespace Scripts.Menus
 		/// <summary>
 		/// Given a dialogue object, load the sentences and display the first sentence.
 		/// </summary>
-		/// <param name="dialogue"></param>
+		/// <param name="dialogue">The dialogue object containing the speaker name and the sentences.</param>
 		public void StartDialogue(DialogueContent dialogue, Action onDialogueComplete = null)
 		{
 			_speakerText.text = dialogue.Speaker;
@@ -55,6 +64,7 @@ namespace Scripts.Menus
 
 		/// <summary>
 		/// Display the next sentence in the local queue.
+		/// Called when the "Continue" / "Begin" button is pressed.
 		/// </summary>
 		public void DisplayNextSentence()
 		{

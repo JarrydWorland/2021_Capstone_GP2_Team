@@ -38,7 +38,7 @@ namespace Scripts.Minimap
 			float panDuration = UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().PanDuration;
 			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(OnRoomTraversed);
 			_roomOffset ??= transform.Find("Background/RoomOffset");
-			_targetOffset ??= new Lerped<Vector3>(Vector3.zero, panDuration, Easing.EaseInOut);
+			_targetOffset ??= new Lerped<Vector3>(Vector3.zero, panDuration, Easing.EaseInOut, true);
 		}
 
 		private void OnDisable() =>  EventManager.Unregister(_roomTraversedEventId);

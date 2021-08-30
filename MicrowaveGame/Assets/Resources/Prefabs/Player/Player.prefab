@@ -360,30 +360,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dc9c774f-3989-4629-b757-5a91ab125056
-    m_ActionName: Menu/Navigation - Up[/XInputControllerWindows/dpad/up,/XInputControllerWindows/leftStick/up,/Keyboard/w,/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e6e33d4a-9366-4731-8ecd-32bd3e8de832
-    m_ActionName: Menu/Navigation - Down[/XInputControllerWindows/dpad/down,/XInputControllerWindows/leftStick/down,/Keyboard/s,/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d3c06bc0-21df-4b55-b040-485af6990884
-    m_ActionName: Menu/Navigation - Left[/XInputControllerWindows/dpad/left,/XInputControllerWindows/leftStick/left,/Keyboard/a,/Keyboard/leftArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a408767d-c899-4600-bd3a-c45ca932ae22
-    m_ActionName: Menu/Navigation - Right[/XInputControllerWindows/dpad/right,/XInputControllerWindows/leftStick/right,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 10f183b9-4c17-46a1-b151-a46cfa03ecb3
-    m_ActionName: Menu/Select[/XInputControllerWindows/buttonSouth,/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cd8a49a1-8eca-44c7-af28-1521b031ad64
-    m_ActionName: Menu/Cancel[/XInputControllerWindows/buttonEast,/Keyboard/escape]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5147030722613144555}
         m_TargetAssemblyTypeName: Scripts.Player.PlayerMovementBehaviour, Assembly-CSharp
@@ -472,10 +448,6 @@ MonoBehaviour:
     m_ActionId: a6e9639c-5299-43d4-97bc-56de51cb2085
     m_ActionName: Playing/Use Item - Slot 4[/XInputControllerWindows/buttonWest,/Keyboard/4]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 729a08b1-317a-4914-9120-3ee496c9e45d
-    m_ActionName: Playing/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8573620642782398239}
         m_TargetAssemblyTypeName: Scripts.Player.PlayerWeaponBehaviour, Assembly-CSharp
@@ -491,6 +463,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c628f8a4-c078-4d98-a682-987614af6422
     m_ActionName: Playing/Look - Gamepad[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 41e3c485-6d9e-43fe-90fa-f2d68656b380
+    m_ActionName: Menu/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9a02c0c4-27f6-4227-8d2b-84b45ee079b9
+    m_ActionName: Menu/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e78de144-be1b-4322-b8bb-a8f709d1cc5e
+    m_ActionName: Menu/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: adc7c2c1-cd20-4062-8cc2-109ec8318ee9
+    m_ActionName: Menu/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 927b191d-84e2-418b-adaa-b58504179db0
+    m_ActionName: Menu/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c1cf832-2a96-499d-bb08-f75606a68bb8
+    m_ActionName: Menu/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d846bace-6f8b-4b92-be21-d8b4f7b7c933
+    m_ActionName: Menu/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04256ddb-4cac-4c53-a94f-5c9d496872d2
+    m_ActionName: Menu/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 66f2b4aa-dbd4-4427-a1ba-ab97c242440b
+    m_ActionName: Menu/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ca78e28-6a7d-4e11-977f-fb2a15d715c5
+    m_ActionName: Menu/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c66a8323-0f3f-4c51-906c-b6b868e691b2
+    m_ActionName: Menu/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing

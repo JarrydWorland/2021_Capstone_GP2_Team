@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Scripts.Scenes;
+using UnityEngine;
 using Scripts.Utilities;
 
 namespace Scripts.Menus
@@ -16,7 +16,11 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		public override void OnEnter() => Time.timeScale = 1.0f;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			Time.timeScale = 1.0f;
+		}
 
 		private void Start()
 		{
@@ -32,7 +36,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => sceneFaderBehaviour.FadeTo("Hub"); //SceneManager.LoadScene("Gameplay"); (keeping line in case scenefader causes issues)
+		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
