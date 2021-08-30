@@ -27,6 +27,12 @@ namespace Scripts.Menus
 		public void OnAgainButtonPressed() => SceneManager.LoadScene("Gameplay");
 
 		/// <summary>
+		/// Sets the current scene to the "Hub" scene.
+		/// Called when the "Return to Hub" button is pressed.
+		/// </summary>
+		public void OnHubButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
+
+		/// <summary>
 		/// Sets the current scene to the "Menu" scene.
 		/// Called when the "Exit To Main Menu" button is pressed.
 		/// </summary>

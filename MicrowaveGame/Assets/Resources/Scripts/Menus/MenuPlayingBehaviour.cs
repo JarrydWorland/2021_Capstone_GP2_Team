@@ -1,4 +1,5 @@
-﻿using Scripts.Utilities;
+using UnityEngine.SceneManagement;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
@@ -14,6 +15,14 @@ namespace Scripts.Menus
 		{
 			GameState.Pause();
 			base.OnLeave();
+		}
+
+		private void Start()
+		{
+			if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+			}
 		}
 
 		public override void OnReturn() => GameState.Resume();
