@@ -71,12 +71,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: dd8be3fed08e7114e85805ea9b6e04fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29cafb1ff82da7542a283477cdc7ea84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 21.81, y: 12.491763}
+  m_Size: {x: 21.946554, y: 12.719999}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.25
+      value: -5.05
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.z
@@ -152,7 +152,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2160616897188144416, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
       propertyPath: m_Name
-      value: RoomPlatedBase
+      value: RoomIndustrialBase
       objectReference: {fileID: 0}
     - target: {fileID: 5331424471163732483, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
       propertyPath: m_Sprite
@@ -247,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -9.35
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.y
@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 9.45
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.y
@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4436045434589419298, guid: d0dd50b1fd140cd43b69bc825fc1ce58, type: 3}
       propertyPath: m_LocalPosition.z
