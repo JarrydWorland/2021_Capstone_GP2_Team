@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
@@ -33,12 +34,12 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			MenuManager.Pause();
+			GameState.Pause();
 		}
 
 		public override void OnLeave()
 		{
-			MenuManager.Resume();
+			GameState.Resume();
 			base.OnLeave();
 		}
 

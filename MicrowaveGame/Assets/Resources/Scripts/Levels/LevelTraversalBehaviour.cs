@@ -35,7 +35,7 @@ namespace Scripts.Levels
 		private GameObject _player;
 		private CameraPanBehaviour _cameraPanBehaviour;
 
-		private List<GameObject> _roomsToDisable = new List<GameObject>();
+		private readonly List<GameObject> _roomsToDisable = new List<GameObject>();
 
 		private void Start()
 		{
@@ -49,8 +49,11 @@ namespace Scripts.Levels
 			// if the camera is stationary that means it has settled on the
 			// CurrentRoom. So we can now disable any previous rooms knowing
 			// that they are outside the view of the camera.
-			if (_cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
+			if (_roomsToDisable.Count > 0 && _cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
 			{
+				// Resume input and time as the changing room sequence has finished.
+				GameState.Resume();
+				
 				_roomsToDisable.ForEach(room => room.SetActive(false));
 				_roomsToDisable.Clear();
 			}
@@ -64,6 +67,14 @@ namespace Scripts.Levels
 		/// </param>
 		public void ChangeRoom(DoorConnectionBehaviour doorConnectionBehaviour)
 		{
+			// Don't attempt to change the room if the door is closed / locked.
+			if (!doorConnectionBehaviour.IsOpen) return;
+			
+			// Freeze input and time while changing room.
+			GameState.Pause();
+			
+			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
+
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);
 
@@ -77,7 +88,7 @@ namespace Scripts.Levels
 
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
-									   * 1.5f;
+									   * 1.55f;
 		}
 	}
 

@@ -1,19 +1,30 @@
-﻿namespace Scripts.Menus
+using UnityEngine.SceneManagement;
+using Scripts.Utilities;
+
+namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			MenuManager.Resume();
+			GameState.Resume();
 		}
 
 		public override void OnLeave()
 		{
-			MenuManager.Pause();
+			GameState.Pause();
 			base.OnLeave();
 		}
 
-		public override void OnReturn() => MenuManager.Resume();
+		private void Start()
+		{
+			if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+			}
+		}
+
+		public override void OnReturn() => GameState.Resume();
 	}
 }

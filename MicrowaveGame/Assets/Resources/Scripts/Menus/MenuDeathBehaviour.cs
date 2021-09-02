@@ -13,6 +13,10 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			base.OnEnter();
+
+			// This menu is only ever entered via the "MenuPlaying" menu which calls
+			// "GameState.Pause()" in its "OnLeave()" method, thus no need to call it here.
+
 			Time.timeScale = 0.1f;
 		}
 
@@ -21,6 +25,12 @@ namespace Scripts.Menus
 		/// Called when the "Try Again" button is pressed.
 		/// </summary>
 		public void OnAgainButtonPressed() => SceneManager.LoadScene("Gameplay");
+
+		/// <summary>
+		/// Sets the current scene to the "Hub" scene.
+		/// Called when the "Return to Hub" button is pressed.
+		/// </summary>
+		public void OnHubButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
 
 		/// <summary>
 		/// Sets the current scene to the "Menu" scene.
