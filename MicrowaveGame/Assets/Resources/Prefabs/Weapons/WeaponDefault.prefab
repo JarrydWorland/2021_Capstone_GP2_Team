@@ -66,7 +66,7 @@ MonoBehaviour:
   Name: Default Weapon
   Description: Shoots bullets rapidly
   Damage: 1
-  FireRate: 5
+  FireRate: 2
   ProjectileSpeed: 15
   ProjectilePrefab: {fileID: 1863189556075500660, guid: 8720f4e78742c3d44a6611eadf4381b1, type: 3}
   ShootAudioClip: {fileID: 8300000, guid: 0f77eeebe9a628240a8d29443340df91, type: 3}
