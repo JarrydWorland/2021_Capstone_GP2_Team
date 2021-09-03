@@ -4,12 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace Scripts.Player
 {
-    public class PlayerWeaponBehaviour : MonoBehaviour
+	public class PlayerWeaponBehaviour : MonoBehaviour
 	{
 		/// <summary>
 		/// The default weapon prefab.
 		/// </summary>
 		public GameObject DefaultWeapon;
+
 		private WeaponBehaviour _defaultWeaponBehaviour;
 
 
@@ -17,10 +18,11 @@ namespace Scripts.Player
 		/// The WeaponBehaviour of the currently equipped weapon.
 		/// </summary>
 		public WeaponBehaviour EquippedWeaponBehaviour
-		{ 
+		{
 			get => _equippedWeaponBehaviour;
 			set => _equippedWeaponBehaviour = value ?? _defaultWeaponBehaviour;
 		}
+
 		private WeaponBehaviour _equippedWeaponBehaviour;
 
 		/// <summary>
@@ -31,7 +33,8 @@ namespace Scripts.Player
 			get => _direction;
 			set => _direction = value.normalized;
 		}
-		private Vector2 _direction;
+
+		private Vector2 _direction = Vector2.up;
 
 
 		/// <summary>
@@ -40,11 +43,14 @@ namespace Scripts.Player
 		public bool Shooting { get; private set; }
 
 		private const float AimDeadzone = 0.1f;
-		
+
 		/// <summary>
 		/// Any additional animation the player may deal on top of the weapon's damage.
 		/// </summary>
 		public int AdditionalDamage { get; set; }
+
+		private bool _isCurrentInputMouse;
+		private Vector2 _lastMousePositionInWorld;
 
 		private void Start()
 		{
@@ -53,11 +59,12 @@ namespace Scripts.Player
 
 			// default weapon is never instantiated so manually run start method
 			_defaultWeaponBehaviour.Start();
-			
 		}
 
 		private void Update()
 		{
+			if (_isCurrentInputMouse) Direction = _lastMousePositionInWorld - (Vector2) transform.position;
+
 			// default weapon is never instantiated so manually run update item method
 			_defaultWeaponBehaviour.OnUpdateItem(null);
 		}
@@ -67,22 +74,21 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnLook(InputAction.CallbackContext context)
 		{
-			if (context.control.device.name == "Mouse")
-			{
-				// If the current device is keyboard and mouse, aim towards the cursor.
-				Vector2 mousePosition = Mouse.current.position.ReadValue();
-				Vector2 mousePositionInWorld = UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
-				Direction = mousePositionInWorld - (Vector2) transform.position;
-			}
-			else
-			{
-				// If the current device is not keyboard and mouse, we assume it's a controller
-				// as it's the only other device specified in the InputActions file.
+			_isCurrentInputMouse = true;
 
-				// Aim in the direction of the right stick movement.
-				Vector2 value = context.ReadValue<Vector2>();
-				if (value.sqrMagnitude >= AimDeadzone) Direction = value;
-			}
+			Vector2 mousePosition = Mouse.current.position.ReadValue();
+			_lastMousePositionInWorld = (Vector2) UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
+		}
+
+		/// <summary>
+		/// Called on look gamepad event from unity input system.
+		/// </summary>
+		public void OnLookGamepad(InputAction.CallbackContext context)
+		{
+			_isCurrentInputMouse = false;
+
+			Vector2 value = context.ReadValue<Vector2>();
+			if (value.sqrMagnitude >= AimDeadzone) Direction = value;
 		}
 
 		/// <summary>
@@ -90,6 +96,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnShoot(InputAction.CallbackContext context)
 		{
+			if (!enabled) return;
+
 			if (context.performed) Shooting = true;
 			else if (context.canceled) Shooting = false;
 		}

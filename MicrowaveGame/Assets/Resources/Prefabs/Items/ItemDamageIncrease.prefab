@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Damage Increase
-  Description: Increases damage dealt by {0}.
+  Description: Increases damage dealt by {0} segment(s)
   IncreaseValue: 1
 --- !u!1001 &1768573698093045842
 PrefabInstance:
