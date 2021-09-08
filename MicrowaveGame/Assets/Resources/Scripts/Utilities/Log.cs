@@ -14,16 +14,34 @@ namespace Scripts.Utilities
 		public static readonly LogCategory Categories = LogCategory.None;
 #endif
 
-		public static void Info(string message, LogCategory categories) => Write(message, LogLevel.Info, categories);
+		/// <summary>Log something as information.</summary>
+		/// <param name="message">The message to log.</param>
+		/// <param name="category">
+		/// A bitflag representing the categories this log is a part of.
+		/// Defaults to only LogCategory.General.
+		/// </param>
+		public static void Info(string message, LogCategory category = LogCategory.General) => Write(message, LogLevel.Info, category);
 
-		public static void Warning(string message, LogCategory categories) => Write(message, LogLevel.Warning, categories);
+		/// <summary>Log something as a warning.</summary>
+		/// <param name="message">The message to log.</param>
+		/// <param name="category">
+		/// A bitflag representing the categories this log is a part of.
+		/// Defaults to only LogCategory.General.
+		/// </param>
+		public static void Warning(string message, LogCategory category = LogCategory.General) => Write(message, LogLevel.Warning, category);
 
-		public static void Error(string message, LogCategory categories) => Write(message, LogLevel.Error, categories);
+		/// <summary>Log something as an error.</summary>
+		/// <param name="message">The message to log.</param>
+		/// <param name="category">
+		/// A bitflag representing the categories this log is a part of.
+		/// Defaults to only LogCategory.General.
+		/// </param>
+		public static void Error(string message, LogCategory category = LogCategory.General) => Write(message, LogLevel.Error, category);
 
-		private static void Write(string message, LogLevel level, LogCategory categories)
+		private static void Write(string message, LogLevel level, LogCategory category)
 		{
-			if ((Categories & categories) == 0) return; // filter for any categories
-			// if (Categories == 0 || (Categories & categories) != Categories) return; // filter for only categories
+			if ((Categories & category) == 0) return; // filter for any category
+			// if (Categories == 0 || (Categories & category) != Categories) return; // filter for only category
 
 			Action<object> Log = level switch
 			{
@@ -34,7 +52,7 @@ namespace Scripts.Utilities
 
 			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(2);
 			string timeString = Grey($"{DateTime.Now:HH:mm:ss} ({Time.unscaledTime * 1000}ms)");
-			string categoriesString = Grey($"[{categories}]");
+			string categoriesString = Grey($"[{category}]");
 			string fileString = Grey($"({stackTrace.GetFileName().Split('\\').Last()}:{stackTrace.GetFileLineNumber()})");
 			Log($"{timeString} {categoriesString} {fileString}\n{message}");
 		}
