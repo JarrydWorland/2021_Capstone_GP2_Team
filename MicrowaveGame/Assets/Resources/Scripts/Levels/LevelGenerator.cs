@@ -63,7 +63,7 @@ namespace Scripts.Levels
 			// set level generation seed
 			if (!seed.HasValue) seed = (int)DateTime.Now.Ticks;
 			UnityEngine.Random.InitState(seed.Value);
-			Log.Info($"Generating level with depth {depth} and seed {seed.Value}", LogCategory.LevelGeneration);
+			Log.Info($"Generating level with depth {Log.Cyan(depth)} and seed {Log.Cyan(seed.Value)}", LogCategory.LevelGeneration);
 
 			const int attempts = 25;
 
