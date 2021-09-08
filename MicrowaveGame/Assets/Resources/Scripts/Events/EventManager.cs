@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Scripts.Utilities;
+using System.Linq;
 
 namespace Scripts.Events
 {
@@ -7,7 +9,6 @@ namespace Scripts.Events
 	{
 		private static readonly Dictionary<Type, object> Handlers = new Dictionary<Type, object>();
 		private static ulong _counter;
-
 
 		/// <summary>
 		/// Registers a handler for calling later via Emit().
@@ -27,6 +28,8 @@ namespace Scripts.Events
 				Action = handler
 			});
 
+			Log.Info($"{Log.Green(GetCallerString())} registered {Log.Cyan(handler.Method.Name)} for " + Log.Yellow($"<{typeof(T).Name}> "), LogCategory.EventManager);
+
 			return eventId;
 		}
 
@@ -39,7 +42,11 @@ namespace Scripts.Events
 		{
 			List<Handler<T>> handlers = GetHandlersFromType<T>();
 			int index = handlers.FindIndex(x => x.EventId == eventId);
-			if (index > -1) handlers.RemoveAt(index);
+			if (index > -1)
+			{
+				Log.Info($"{Log.Green(GetCallerString())} unregistered {Log.Cyan(handlers[index].Action.Method.Name)} from " + Log.Yellow($"<{typeof(T).Name}>"), LogCategory.EventManager);
+				handlers.RemoveAt(index);
+			}
 		}
 
 		/// <summary>
@@ -50,6 +57,7 @@ namespace Scripts.Events
 		public static void Emit<T>(T eventArgs) where T : EventArgs
 		{
 			List<Handler<T>> handlers = GetHandlersFromType<T>();
+			Log.Info($"{Log.Green(GetCallerString())} emitting " + Log.Yellow($"<{typeof(T).Name}>") + $" event to {Log.Cyan(handlers.Count)} handlers.", LogCategory.EventManager);
 			foreach (Handler<T> handler in handlers.ToArray()) handler.Action.Invoke(eventArgs);
 		}
 
@@ -71,6 +79,13 @@ namespace Scripts.Events
 		{
 			public EventId<T> EventId;
 			public Action<T> Action;
+		}
+
+		private static string GetCallerString()
+		{
+			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(2);
+			string callerString = $"{stackTrace.GetFileName().Split('\\').Last()}:{stackTrace.GetFileLineNumber()}";
+			return callerString;
 		}
 	}
 }
