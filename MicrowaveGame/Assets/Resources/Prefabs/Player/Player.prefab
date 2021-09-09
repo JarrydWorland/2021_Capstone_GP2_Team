@@ -543,9 +543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c8dc181224bac4ca6526cd0a9dbb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1
-  Friction: 0.01
-  MaxVelocity: 0.15
+  Acceleration: 1.5
+  Friction: 0.015
+  MaxVelocity: 0.175
 --- !u!114 &8083425330494338674
 MonoBehaviour:
   m_ObjectHideFlags: 0
