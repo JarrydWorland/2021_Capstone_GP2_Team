@@ -1,6 +1,9 @@
+using Scripts.Dialogue;
+using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Utilities;
+using System;
 
 namespace Scripts.Player
 {
@@ -31,10 +34,8 @@ namespace Scripts.Player
 		/// The players movement velocity.
 		/// </summary>
 		public Vector2 Velocity { get; set; }
-		
 
 		private Rigidbody2D _rigidBody;
-
 
 		private void Start()
 		{
@@ -48,7 +49,7 @@ namespace Scripts.Player
 
 			// apply friction
 			Velocity = new Vector2(
-				(Mathf.Abs(Velocity.x) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.x), 
+				(Mathf.Abs(Velocity.x) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.x),
 				(Mathf.Abs(Velocity.y) - Friction).Clamp(0, MaxVelocity) * Mathf.Sign(Velocity.y)
 			);
 

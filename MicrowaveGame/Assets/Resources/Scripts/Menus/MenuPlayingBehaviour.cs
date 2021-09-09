@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
@@ -7,25 +7,24 @@ namespace Scripts.Menus
 	{
 		public override void OnEnter()
 		{
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Enable();
-			Time.timeScale = 1.0f;
+			base.OnEnter();
+			GameState.Resume();
 		}
 
 		public override void OnLeave()
 		{
-			Time.timeScale = 0.0f;
-			GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
+			GameState.Pause();
+			base.OnLeave();
 		}
 
-		/// <summary>
-		/// Called via Unity's new input system when the user presses the "Escape" key.
-		/// Sets the current menu to the "Controls" menu.
-		/// Called when the "Controls" button is pressed.
-		/// </summary>
-		/// <param name="context"></param>
-		public void OnPause(InputAction.CallbackContext context)
+		private void Start()
 		{
-			if (context.performed) MenuManager.GoInto("MenuPaused");
+			if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+			}
 		}
+
+		public override void OnReturn() => GameState.Resume();
 	}
 }

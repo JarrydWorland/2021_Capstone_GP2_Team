@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Scripts.Dialogue;
 
 namespace Scripts.Menus
 {
-	public static class MenuManager
+    public static class MenuManager
 	{
 		private static Stack<MenuBehaviour> _history;
 
@@ -57,6 +59,8 @@ namespace Scripts.Menus
 		/// </summary>
 		public static void GoBack()
 		{
+			if (_history.Count == 0) return;
+
 			Current.OnLeave();
 
 			Current.gameObject.SetActive(false);
@@ -64,7 +68,21 @@ namespace Scripts.Menus
 			Current = _history.Pop();
 			Current.gameObject.SetActive(true);
 
-			Current.OnEnter();
+			Current.OnReturn();
+		}
+
+		/// <summary>
+		/// Given a dialogue object, switch to the dialogue menu and start the dialogue sequence.
+		/// </summary>
+		/// <param name="dialogue">The dialogue object containing the speaker name and sentences.</param>
+		public static void ShowDialogue(DialogueContent dialogue, Action onDialogueComplete = null)
+		{
+			GoInto("MenuDialogue");
+
+			MenuDialogueBehaviour menuDialogueBehaviour = GameObject.Find("Canvas").transform.Find("MenuDialogue")
+				.GetComponent<MenuDialogueBehaviour>();
+
+			menuDialogueBehaviour.StartDialogue(dialogue, onDialogueComplete);
 		}
 	}
 }
