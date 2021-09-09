@@ -8,9 +8,7 @@ namespace Scripts.Utilities
     public static class Log
 	{
 
-#if UNITY_EDITOR_LINUX
-		
-#elif UNITY_EDITOR
+#if UNITY_EDITOR
 		private static readonly LogCategory Categories = (LogCategory)EditorPrefs.GetInt("Scripts.Utilities.Log.Categories");
 #else
 		public static readonly LogCategory Categories = LogCategory.None;
