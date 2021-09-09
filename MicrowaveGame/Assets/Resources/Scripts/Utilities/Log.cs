@@ -8,7 +8,9 @@ namespace Scripts.Utilities
     public static class Log
 	{
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR_LINUX
+		
+#elif UNITY_EDITOR
 		private static readonly LogCategory Categories = (LogCategory)EditorPrefs.GetInt("Scripts.Utilities.Log.Categories");
 #else
 		public static readonly LogCategory Categories = LogCategory.None;
@@ -50,10 +52,9 @@ namespace Scripts.Utilities
 				_                => Debug.Log,
 			};
 
-			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(2);
 			string timeString = Grey($"{DateTime.Now:HH:mm:ss} ({Time.unscaledTime * 1000}ms)");
 			string categoriesString = Grey($"[{category}]");
-			string fileString = Grey($"({stackTrace.GetFileName().Split('\\').Last()}:{stackTrace.GetFileLineNumber()})");
+			string fileString = Grey(StackTraceFileString(3));
 			Log($"{timeString} {categoriesString} {fileString}\n{message}");
 		}
 
@@ -75,6 +76,14 @@ namespace Scripts.Utilities
 		public static string Red(object obj) => $"<color=#F44336>{obj}</color>";
 		public static string White(object obj) => $"<color=#FFFFFF>{obj}</color>";
 		public static string Yellow(object obj) => $"<color=#FFEB3B>{obj}</color>";
+
+		public static string StackTraceFileString(int stackFrame)
+		{
+			char seperator = Environment.OSVersion.Platform == PlatformID.Win32NT ? '\\' : '/';
+			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(stackFrame);
+			string fileString = $"{stackTrace.GetFileName().Split(seperator).Last()}:{stackTrace.GetFileLineNumber()}";
+			return fileString;
+		}
 	}
 
 	[Flags]

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Scripts.Utilities;
-using System.Linq;
 using System.Reflection;
 
 namespace Scripts.Events
@@ -29,7 +28,7 @@ namespace Scripts.Events
 				Action = handler
 			});
 
-			Log.Info($"{Log.Green(GetCallerString())} registered {Log.Cyan(handler.Method.Name)} for " + Log.Yellow($"<{typeof(T).Name}> "), LogCategory.EventManager);
+			Log.Info($"{Log.Green(Log.StackTraceFileString(2))} registered {Log.Cyan(handler.Method.Name)} for " + Log.Yellow($"<{typeof(T).Name}> "), LogCategory.EventManager);
 
 			return eventId;
 		}
@@ -45,7 +44,7 @@ namespace Scripts.Events
 			int index = handlers.FindIndex(x => x.EventId == eventId);
 			if (index > -1)
 			{
-				Log.Info($"{Log.Green(GetCallerString())} unregistered {Log.Cyan(handlers[index].Action.Method.Name)} from " + Log.Yellow($"<{typeof(T).Name}>"), LogCategory.EventManager);
+				Log.Info($"{Log.Green(Log.StackTraceFileString(2))} unregistered {Log.Cyan(handlers[index].Action.Method.Name)} from " + Log.Yellow($"<{typeof(T).Name}>"), LogCategory.EventManager);
 				handlers.RemoveAt(index);
 			}
 		}
@@ -58,7 +57,7 @@ namespace Scripts.Events
 		public static void Emit<T>(T eventArgs) where T : EventArgs
 		{
 			List<Handler<T>> handlers = GetHandlersFromType<T>();
-			Log.Info($"{Log.Green(GetCallerString())} emitting " + Log.Yellow($"<{typeof(T).Name}>") + $" event to {Log.Cyan(handlers.Count)} handlers.\n{EventToString(eventArgs)}", LogCategory.EventManager);
+			Log.Info($"{Log.Green(Log.StackTraceFileString(2))} emitting " + Log.Yellow($"<{typeof(T).Name}>") + $" event to {Log.Cyan(handlers.Count)} handlers.\n{EventToString(eventArgs)}", LogCategory.EventManager);
 			foreach (Handler<T> handler in handlers.ToArray()) handler.Action.Invoke(eventArgs);
 		}
 
@@ -80,13 +79,6 @@ namespace Scripts.Events
 		{
 			public EventId<T> EventId;
 			public Action<T> Action;
-		}
-
-		private static string GetCallerString()
-		{
-			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(2);
-			string callerString = $"{stackTrace.GetFileName().Split('\\').Last()}:{stackTrace.GetFileLineNumber()}";
-			return callerString;
 		}
 
 		private static string EventToString<T>(T obj) where T : EventArgs
