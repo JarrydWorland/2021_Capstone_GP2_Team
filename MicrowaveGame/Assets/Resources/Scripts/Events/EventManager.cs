@@ -110,7 +110,7 @@ namespace Scripts.Events
 			{
 				str += $"\t{val.Key} = {Log.Cyan(val.Value)},\n";
 			}
-			str += "}\n";
+			str += "}";
 
 			return str;
 		}
