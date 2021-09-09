@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Scripts.Utilities;
 using System.Linq;
+using System.Reflection;
 
 namespace Scripts.Events
 {
@@ -57,7 +58,7 @@ namespace Scripts.Events
 		public static void Emit<T>(T eventArgs) where T : EventArgs
 		{
 			List<Handler<T>> handlers = GetHandlersFromType<T>();
-			Log.Info($"{Log.Green(GetCallerString())} emitting " + Log.Yellow($"<{typeof(T).Name}>") + $" event to {Log.Cyan(handlers.Count)} handlers.", LogCategory.EventManager);
+			Log.Info($"{Log.Green(GetCallerString())} emitting " + Log.Yellow($"<{typeof(T).Name}>") + $" event to {Log.Cyan(handlers.Count)} handlers.\n{EventToString(eventArgs)}", LogCategory.EventManager);
 			foreach (Handler<T> handler in handlers.ToArray()) handler.Action.Invoke(eventArgs);
 		}
 
@@ -86,6 +87,32 @@ namespace Scripts.Events
 			var stackTrace = new System.Diagnostics.StackTrace(true).GetFrame(2);
 			string callerString = $"{stackTrace.GetFileName().Split('\\').Last()}:{stackTrace.GetFileLineNumber()}";
 			return callerString;
+		}
+
+		private static string EventToString<T>(T obj) where T : EventArgs
+		{
+			Type type = obj.GetType();
+			FieldInfo[] fields = type.GetFields();
+			PropertyInfo[] properties = type.GetProperties();
+
+			Dictionary<string, object> values = new Dictionary<string, object>();
+			Array.ForEach(fields, (field) =>
+			{
+				values.Add(field.Name, field.GetValue(obj) ?? Log.Red("null"));
+			});
+			Array.ForEach(properties, (property) =>
+			{
+				if (property.CanRead) values.Add(property.Name, property.GetValue(obj, null) ?? Log.Red("null"));
+			});
+
+			string str = "{\n";
+			foreach (var val in values)
+			{
+				str += $"\t{val.Key} = {Log.Cyan(val.Value)},\n";
+			}
+			str += "}\n";
+
+			return str;
 		}
 	}
 }

@@ -83,6 +83,7 @@ namespace Scripts.Utilities
 		General         = 1 << 0,
 		EventManager    = 1 << 1,
 		LevelGeneration = 1 << 2,
+		AudioManager    = 1 << 3,
 	}
 
 	public class EditorLogging : EditorWindow

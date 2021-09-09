@@ -35,6 +35,7 @@ namespace Scripts.Utilities
 			audioSource.volume = volume;
 			audioSource.loop = loop;
 			audioSource.Play();
+			Log.Info($"Playing {Log.Orange(audioClip.name)} (volume = {Log.Cyan(volume)}, loop = {Log.Cyan(loop)}) using audio source {Log.Cyan(_audioSources.IndexOf(audioSource))}.", LogCategory.AudioManager);
 		}
 
 		/// <summary>
@@ -54,6 +55,7 @@ namespace Scripts.Utilities
 		{
 			AudioSource audioSource = Camera.AddComponent<AudioSource>();
 			_audioSources.Add(audioSource);
+			Log.Info($"Adding additional audio source (there are now {Log.Cyan(_audioSources.Count)} audio sources).", LogCategory.AudioManager);
 			return audioSource;
 		}
 
