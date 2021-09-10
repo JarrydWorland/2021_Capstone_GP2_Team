@@ -49,7 +49,7 @@ namespace Scripts.Levels
 		/// connected doors in each room which form a "level graph" of
 		/// interconnected rooms.
 		/// </returns>
-		public static GameObject GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth, bool disableChildRooms = true)
+		public static GameObject GenerateLevel(GameObject startingRoomPrefab, Transform parent, int depth, int? seed = null, bool disableChildRooms = true)
 		{
 			// NOTE: Due to how level generation is implemented, there is
 			// always the small possibility that despite best efforts a
@@ -59,6 +59,11 @@ namespace Scripts.Levels
 			// To ensure the guaranteed rooms are included in the level, the
 			// level will re-generate itself if it detects that not all the
 			// guaranteed rooms were spawned.
+
+			// set level generation seed
+			if (!seed.HasValue) seed = (int)DateTime.Now.Ticks;
+			UnityEngine.Random.InitState(seed.Value);
+			Log.Info($"Generating level with depth {Log.Cyan(depth)} and seed {Log.Cyan(seed.Value)}", LogCategory.LevelGeneration);
 
 			const int attempts = 25;
 
@@ -74,7 +79,7 @@ namespace Scripts.Levels
 				bool levelVerfied = grid.Verify();
 				if (!levelVerfied)
 				{
-					// Debug.LogWarning($"Generated level did not pass verification check. Regenerating... (attempt #{i+1})");
+					Log.Warning($"Generated level did not pass verification check. Regenerating... (attempt #{i+1})", LogCategory.LevelGeneration);
 					foreach (Transform childTransform in parent.transform)
 					{
 						GameObject.Destroy(childTransform.gameObject);
