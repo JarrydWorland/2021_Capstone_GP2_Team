@@ -11,6 +11,8 @@ namespace Scripts.Player
 		/// </summary>
 		public GameObject DefaultWeapon;
 
+		public Transform ProjectileSpawn { get; private set; }
+
 		private WeaponBehaviour _defaultWeaponBehaviour;
 
 
@@ -34,7 +36,20 @@ namespace Scripts.Player
 			set => _direction = value.normalized;
 		}
 
+		/// <summary>
+		/// The direction the player is looking towards.
+		/// </summary>
+		public Vector2 LookDirection
+		{
+			get => _lookDirection;
+			set => _lookDirection = value.normalized;
+		}
+
+
+
+
 		private Vector2 _direction = Vector2.up;
+		private Vector2 _lookDirection = Vector2.up;
 
 
 		/// <summary>
@@ -54,6 +69,7 @@ namespace Scripts.Player
 
 		private void Start()
 		{
+			ProjectileSpawn = transform.Find("ProjectileSpawn");
 			_defaultWeaponBehaviour = DefaultWeapon.GetComponent<WeaponBehaviour>();
 			EquippedWeaponBehaviour = _defaultWeaponBehaviour;
 
@@ -63,7 +79,11 @@ namespace Scripts.Player
 
 		private void Update()
 		{
-			if (_isCurrentInputMouse) Direction = _lastMousePositionInWorld - (Vector2) transform.position;
+			if (_isCurrentInputMouse)
+			{
+				Direction = _lastMousePositionInWorld - (Vector2) ProjectileSpawn.position;
+				LookDirection = _lastMousePositionInWorld - (Vector2) transform.position;
+			}
 
 			// default weapon is never instantiated so manually run update item method
 			_defaultWeaponBehaviour.OnUpdateItem(null);
@@ -88,7 +108,7 @@ namespace Scripts.Player
 			_isCurrentInputMouse = false;
 
 			Vector2 value = context.ReadValue<Vector2>();
-			if (value.sqrMagnitude >= AimDeadzone) Direction = value;
+			if (value.sqrMagnitude >= AimDeadzone) Direction = LookDirection = value;
 		}
 
 		/// <summary>
