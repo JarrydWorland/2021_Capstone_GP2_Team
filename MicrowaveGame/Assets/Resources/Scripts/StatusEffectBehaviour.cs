@@ -32,10 +32,8 @@ namespace Scripts
 		/// <summary>
 		/// Create and apply the given status effect type.
 		/// </summary>
-		public void Apply<T>() where T : IStatusEffect, new()
+		public void Apply(IStatusEffect statusEffect)
 		{
-			T statusEffect = new T();
-
 			int index = _statusEffects.FindIndex(x => x.GetType() == statusEffect.GetType());
 
 			if (index > -1) _statusEffectStartTimes[index] = Time.time;

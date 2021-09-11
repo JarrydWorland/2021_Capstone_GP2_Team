@@ -3,12 +3,8 @@ using UnityEngine;
 
 namespace Scripts.StatusEffects
 {
-	public class StatusEffectSlowed : IStatusEffect
+	public class StatusEffectSlower : IStatusEffect
 	{
-		/// <summary>
-		/// The duration the oil spill effect should last for once the player is no
-		/// longer colliding with the oil spill.
-		/// </summary>
 		public int Duration => 5;
 
 		/// <summary>
