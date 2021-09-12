@@ -5,24 +5,27 @@ namespace Scripts.StatusEffects
 {
 	public class StatusEffectSlower : IStatusEffect
 	{
-		public int Duration => 5;
+		public int Duration { get; }
 
 		/// <summary>
 		/// The factor to reduce the acceleration by (e.g. 0.5f is 50% slower).
 		/// </summary>
-		private float _accelerationFactor = 0.5f;
+		private readonly float _accelerationFactor;
 
 		/// <summary>
 		/// The factor to reduce the friction by (e.g. 0.25f is 75% more slippery).
 		/// </summary>
-		private float _frictionFactor = 0.25f;
+		private readonly float _frictionFactor;
 
-		private PlayerMovementBehaviour _playerMovementBehaviour;
+		private readonly PlayerMovementBehaviour _playerMovementBehaviour;
 
-		public void Apply()
+		public StatusEffectSlower(int duration, float accelerationFactor, float frictionFactor)
 		{
-			_playerMovementBehaviour ??= GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
+			Duration = duration;
+			_accelerationFactor = accelerationFactor;
+			_frictionFactor = frictionFactor;
 
+			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 			_playerMovementBehaviour.Acceleration *= _accelerationFactor;
 			_playerMovementBehaviour.Friction *= _frictionFactor;
 		}

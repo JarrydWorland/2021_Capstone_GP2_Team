@@ -32,7 +32,7 @@ namespace Scripts.Items
 			_isUsed = true;
 
 			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
-				.Apply(new StatusEffectFaster(DurationValue, IncreaseValue));
+				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
 
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 			inventorySlotBehaviour.DropItem();

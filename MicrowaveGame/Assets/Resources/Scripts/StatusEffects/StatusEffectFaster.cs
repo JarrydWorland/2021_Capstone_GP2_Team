@@ -8,16 +8,13 @@ namespace Scripts.StatusEffects
 		public int Duration { get; }
 		private readonly float _increaseValue;
 
-		private PlayerMovementBehaviour _playerMovementBehaviour;
+		private readonly PlayerMovementBehaviour _playerMovementBehaviour;
 
 		public StatusEffectFaster(int duration, float increaseValue)
 		{
 			Duration = duration;
 			_increaseValue = increaseValue;
-		}
 
-		public void Apply()
-		{
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 			_playerMovementBehaviour.MaxVelocity += _increaseValue;
 		}

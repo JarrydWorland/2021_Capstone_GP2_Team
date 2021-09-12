@@ -1,4 +1,4 @@
-﻿using Scripts.Player;
+﻿using Scripts.StatusEffects;
 using UnityEngine;
 
 namespace Scripts.Hazards
@@ -21,43 +21,10 @@ namespace Scripts.Hazards
 		/// </summary>
 		public int Duration = 5;
 
-		private HealthBehaviour _healthBehaviour;
-
-		private float _damageRateInverse;
-		private float _damageRateTime;
-
-		private float _durationTime;
-
-		private bool _applied;
-
-		private void Start()
-		{
-			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
-			_damageRateInverse = 1.0f / DamageRate;
-		}
-
-		private void Update()
-		{
-			if (!_applied) return;
-
-			_damageRateTime += Time.deltaTime;
-
-			if (_damageRateTime >= _damageRateInverse)
-			{
-				_healthBehaviour.Value -= Damage;
-				_damageRateTime -= _damageRateInverse;
-			}
-
-			_durationTime += Time.deltaTime;
-			if (_durationTime > Duration) _applied = false;
-		}
-
 		private void OnTriggerStay2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player") return;
-
-			_durationTime = 0;
-			_applied = true;
+			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
+			if (statusEffectBehaviour != null) statusEffectBehaviour.Apply<StatusEffectMelting>(Damage, DamageRate);
 		}
 	}
 }
