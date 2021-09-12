@@ -11,6 +11,7 @@ namespace Scripts.Utilities
 		EventManager    = 1 << 1,
 		LevelGeneration = 1 << 2,
 		AudioManager    = 1 << 3,
+		StatusEffect    = 1 << 4
 	}
 
     public static class Log
