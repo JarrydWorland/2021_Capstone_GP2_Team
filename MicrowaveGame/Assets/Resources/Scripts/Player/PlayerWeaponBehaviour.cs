@@ -1,6 +1,9 @@
 using Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Utilities;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Scripts.Player
 {
@@ -11,10 +14,24 @@ namespace Scripts.Player
 		/// </summary>
 		public GameObject DefaultWeapon;
 
+		/// <summary>
+		/// The angle in degrees of the cone of activation for controller aim
+		/// assist.
+		/// </summary>
+		[Range(0.0f, 360.0f)]
+		public float AimAssistConeAngle = 45.0f;
+
+		/// <summary>
+		/// Whether or not a lock-on sprite should show on the target when
+		/// aim-assist is active.
+		/// </summary>
+		public bool ShowLockOn;
+
 		public Transform ProjectileSpawn { get; private set; }
 
 		private WeaponBehaviour _defaultWeaponBehaviour;
 
+		private SpriteRenderer _lockOn;
 
 		/// <summary>
 		/// The WeaponBehaviour of the currently equipped weapon.
@@ -33,23 +50,20 @@ namespace Scripts.Player
 		public Vector2 Direction
 		{
 			get => _direction;
-			set => _direction = value.normalized;
+			private set => _direction = value.normalized;
 		}
 
 		/// <summary>
 		/// The direction the player is looking towards.
 		/// </summary>
-		public Vector2 LookDirection
+		public Vector2 InputDirection
 		{
-			get => _lookDirection;
-			set => _lookDirection = value.normalized;
+			get => _inputDirection;
+			private set => _inputDirection = value.normalized;
 		}
 
-
-
-
 		private Vector2 _direction = Vector2.up;
-		private Vector2 _lookDirection = Vector2.up;
+		private Vector2 _inputDirection = Vector2.up;
 
 
 		/// <summary>
@@ -69,20 +83,48 @@ namespace Scripts.Player
 
 		private void Start()
 		{
-			ProjectileSpawn = transform.Find("ProjectileSpawn");
 			_defaultWeaponBehaviour = DefaultWeapon.GetComponent<WeaponBehaviour>();
 			EquippedWeaponBehaviour = _defaultWeaponBehaviour;
-
 			// default weapon is never instantiated so manually run start method
 			_defaultWeaponBehaviour.Start();
+
+			ProjectileSpawn = transform.Find("ProjectileSpawn");
+			_lockOn = transform.Find("LockOn").GetComponent<SpriteRenderer>();
 		}
 
 		private void Update()
 		{
+			_lockOn.enabled = false;
+
 			if (_isCurrentInputMouse)
 			{
 				Direction = _lastMousePositionInWorld - (Vector2) ProjectileSpawn.position;
-				LookDirection = _lastMousePositionInWorld - (Vector2) transform.position;
+				InputDirection = _lastMousePositionInWorld - (Vector2) transform.position;
+			}
+			else
+			{
+				float aimAssistConeAngle = AimAssistConeAngle.MapBetween(0, 360, 1.0f, -1.0f);
+				List<GameObject> enemies = TagBehaviour.FindWithTag("Enemy").ToList();
+				enemies.Sort((lhs, rhs) => Vector3
+					.Distance(transform.position, lhs.transform.position)
+					.CompareTo(Vector3.Distance(transform.position, rhs.transform.position)));
+
+				foreach (GameObject enemy in enemies)
+				{
+					Vector3 enemyDirection = (enemy.transform.position - ProjectileSpawn.position).normalized;
+					Vector3 enemyInputDirection = (enemy.transform.position - transform.position).normalized;
+					if (Vector3.Dot(InputDirection, enemyInputDirection) > aimAssistConeAngle)
+					{
+						Direction = enemyDirection;
+						if (ShowLockOn)
+						{
+							_lockOn.transform.position = enemy.transform.position;
+							_lockOn.color = Color.white;
+							_lockOn.enabled = true;
+						}
+						break;
+					}
+				}
 			}
 
 			// default weapon is never instantiated so manually run update item method
@@ -108,7 +150,7 @@ namespace Scripts.Player
 			_isCurrentInputMouse = false;
 
 			Vector2 value = context.ReadValue<Vector2>();
-			if (value.sqrMagnitude >= AimDeadzone) Direction = LookDirection = value;
+			if (value.sqrMagnitude >= AimDeadzone) Direction = InputDirection = value;
 		}
 
 		/// <summary>
