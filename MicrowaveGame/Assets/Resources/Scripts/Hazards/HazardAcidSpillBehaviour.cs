@@ -24,7 +24,7 @@ namespace Scripts.Hazards
 		private void OnTriggerStay2D(Collider2D other)
 		{
 			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
-			if (statusEffectBehaviour != null) statusEffectBehaviour.Apply<StatusEffectMelting>(Damage, DamageRate);
+			if (statusEffectBehaviour != null) statusEffectBehaviour.Apply<StatusEffectMelting>(Duration, Damage, DamageRate);
 		}
 	}
 }
