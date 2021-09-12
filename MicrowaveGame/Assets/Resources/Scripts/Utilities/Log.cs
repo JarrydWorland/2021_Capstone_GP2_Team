@@ -1,19 +1,20 @@
 using System;
 using UnityEngine;
-using UnityEditor;
 using System.Linq;
 
 namespace Scripts.Utilities
 {
+	[Flags]
+	public enum LogCategory
+	{
+		General         = 1 << 0,
+		EventManager    = 1 << 1,
+		LevelGeneration = 1 << 2,
+		AudioManager    = 1 << 3,
+	}
+
     public static class Log
 	{
-
-#if UNITY_EDITOR
-		private static readonly LogCategory Categories = (LogCategory)EditorPrefs.GetInt("Scripts.Utilities.Log.Categories");
-#else
-		public static readonly LogCategory Categories = LogCategory.None;
-#endif
-
 		/// <summary>Log something as information.</summary>
 		/// <param name="message">The message to log.</param>
 		/// <param name="category">
@@ -40,9 +41,6 @@ namespace Scripts.Utilities
 
 		private static void Write(string message, LogLevel level, LogCategory category)
 		{
-			if ((Categories & category) == 0) return; // filter for any category
-			// if (Categories == 0 || (Categories & category) != Categories) return; // filter for only category
-
 			Action<object> Log = level switch
 			{
 				LogLevel.Error   => Debug.LogError,
@@ -53,6 +51,7 @@ namespace Scripts.Utilities
 			string timeString = Grey($"{DateTime.Now:HH:mm:ss} ({Time.unscaledTime * 1000}ms)");
 			string categoriesString = Grey($"[{category}]");
 			string fileString = Grey(StackTraceFileString(3));
+
 			Log($"{timeString} {categoriesString} {fileString}\n{message}");
 		}
 
@@ -63,6 +62,7 @@ namespace Scripts.Utilities
 			Error,
 		}
 
+#if UNITY_EDITOR
 		public static string Blue(object obj) => $"<color=#2196F3>{obj}</color>";
 		public static string Cyan(object obj) => $"<color=#00BCD4>{obj}</color>";
 		public static string Green(object obj) => $"<color=#4CAF50>{obj}</color>";
@@ -82,41 +82,20 @@ namespace Scripts.Utilities
 			string fileString = $"{stackTrace.GetFileName().Split(seperator).Last()}:{stackTrace.GetFileLineNumber()}";
 			return fileString;
 		}
-	}
+#else
+		public static string Blue(object obj) => obj.ToString();
+		public static string Cyan(object obj) => obj.ToString();
+		public static string Green(object obj) => obj.ToString();
+		public static string Grey(object obj) => obj.ToString();
+		public static string Lime(object obj) => obj.ToString();
+		public static string Orange(object obj) => obj.ToString();
+		public static string Pink(object obj) => obj.ToString();
+		public static string Purple(object obj) => obj.ToString();
+		public static string Red(object obj) => obj.ToString();
+		public static string White(object obj) => obj.ToString();
+		public static string Yellow(object obj) => obj.ToString();
 
-	[Flags]
-	public enum LogCategory
-	{
-		General         = 1 << 0,
-		EventManager    = 1 << 1,
-		LevelGeneration = 1 << 2,
-		AudioManager    = 1 << 3,
-	}
-
-	public class EditorLogging : EditorWindow
-	{
-		private static readonly string[] CategoryNames = Enum.GetNames(typeof(LogCategory));
-
-		private void OnGUI()
-		{
-			EditorGUILayout.LabelField("Logging Categories");
-			LogCategory oldCategories = (LogCategory)EditorPrefs.GetInt("Scripts.Utilities.Log.Categories");
-			LogCategory categories = 0;
-			for (int i=0; i<CategoryNames.Length; i++)
-			{
-				LogCategory category = (LogCategory)(1 << i);
-				bool val = EditorGUILayout.Toggle(CategoryNames[i], oldCategories.HasFlag(category));
-				if (val) categories |= category;
-			}
-
-			EditorPrefs.SetInt("Scripts.Utilities.Log.Categories", (int)categories);
-    	}
-
-		[MenuItem("Utilities/Logging")]
-		private static void MenuItem()
-		{
-			EditorLogging window = GetWindow<EditorLogging>(false, "Logging");
-			window.Show();
-		}
+		public static string StackTraceFileString(int stackFrame) => "---DEBUG INFORMATION DISABLED---";
+#endif
 	}
 }
