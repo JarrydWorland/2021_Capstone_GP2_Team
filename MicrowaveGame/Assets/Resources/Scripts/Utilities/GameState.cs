@@ -12,8 +12,8 @@ namespace Scripts.Utilities
 		{
 			Time.timeScale = 0.0f;
 
-			GameObject.Find("Player").GetComponent<PlayerInput>().currentActionMap.Disable();
-			GameObject.Find("Inventory").GetComponent<PlayerInput>().currentActionMap.Disable();
+			//GameObject.Find("Player").GetComponent<PlayerInput>().currentActionMap.Disable();
+			//GameObject.Find("Inventory").GetComponent<PlayerInput>().currentActionMap.Disable();
 		}
 
 		/// <summary>
@@ -21,8 +21,8 @@ namespace Scripts.Utilities
 		/// </summary>
 		public static void Resume()
 		{
-			GameObject.Find("Inventory").GetComponent<PlayerInput>().currentActionMap.Enable();
-			GameObject.Find("Player").GetComponent<PlayerInput>().currentActionMap.Enable();
+			//GameObject.Find("Inventory").GetComponent<PlayerInput>().currentActionMap.Enable();
+			//GameObject.Find("Player").GetComponent<PlayerInput>().currentActionMap.Enable();
 
 			Time.timeScale = 1.0f;
 		}
