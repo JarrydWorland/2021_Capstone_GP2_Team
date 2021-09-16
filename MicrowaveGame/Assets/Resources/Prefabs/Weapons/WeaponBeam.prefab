@@ -67,7 +67,7 @@ MonoBehaviour:
   Description: Shoots a Single beam to hit an enemy
   Damage: 1
   FireRate: 0
-  ProjectileSpeed: 3
+  ProjectileSpeed: 1
   ProjectilePrefab: {fileID: 1863189556075500660, guid: 6c2a10d09e024dd4dbc9e5febf17f836, type: 3}
   ShootAudioClip: {fileID: 8300000, guid: 0f77eeebe9a628240a8d29443340df91, type: 3}
   Spread: 0
