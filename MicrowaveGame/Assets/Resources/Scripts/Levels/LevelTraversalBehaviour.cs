@@ -85,7 +85,7 @@ namespace Scripts.Levels
 
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
-									   * 1.55f;
+									   * 1.75f;
 			// Unfreeze input and time after changing room.
 			GameState.Resume();
 		}
