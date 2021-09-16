@@ -6,6 +6,7 @@ using Scripts.Camera;
 using Scripts.Utilities;
 using System;
 using Scripts.Events;
+using Scripts.Menus;
 
 namespace Scripts.Levels
 {
@@ -50,7 +51,10 @@ namespace Scripts.Levels
 			// CurrentRoom. So we can now disable any previous rooms knowing
 			// that they are outside the view of the camera.
 			if (_roomsToDisable.Count > 0 && _cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
-			{				
+			{
+				// If we haven't paused during the transition, unfreeze input and time after changing room.
+				if (MenuManager.Current.name == "MenuPlaying") GameState.Resume();
+				
 				_roomsToDisable.ForEach(room => room.SetActive(false));
 				_roomsToDisable.Clear();
 			}
@@ -86,8 +90,6 @@ namespace Scripts.Levels
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
 									   * 1.75f;
-			// Unfreeze input and time after changing room.
-			GameState.Resume();
 		}
 	}
 
