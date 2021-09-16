@@ -6,6 +6,7 @@ using Scripts.Camera;
 using Scripts.Utilities;
 using System;
 using Scripts.Events;
+using Scripts.Menus;
 
 namespace Scripts.Levels
 {
@@ -51,8 +52,8 @@ namespace Scripts.Levels
 			// that they are outside the view of the camera.
 			if (_roomsToDisable.Count > 0 && _cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
 			{
-				// Resume input and time as the changing room sequence has finished.
-				GameState.Resume();
+				// If we haven't paused during the transition, unfreeze input and time after changing room.
+				if (MenuManager.Current.name == "MenuPlaying") GameState.Resume();
 				
 				_roomsToDisable.ForEach(room => room.SetActive(false));
 				_roomsToDisable.Clear();
@@ -69,11 +70,11 @@ namespace Scripts.Levels
 		{
 			// Don't attempt to change the room if the door is closed / locked.
 			if (!doorConnectionBehaviour.IsOpen) return;
-			
-			// Freeze input and time while changing room.
-			GameState.Pause();
-			
-			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
+
+            // Freeze input and time while changing room.
+            GameState.Pause();
+
+            AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
 
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);

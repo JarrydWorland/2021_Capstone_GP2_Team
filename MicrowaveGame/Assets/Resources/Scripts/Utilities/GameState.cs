@@ -26,5 +26,17 @@ namespace Scripts.Utilities
 
 			Time.timeScale = 1.0f;
 		}
+
+		/// <summary>
+		/// Quits out of playing mode if in the editor, or exits the game if it's a built version.
+		/// </summary>
+		public static void Quit()
+		{
+#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+#else
+			Application.Quit();
+#endif
+		}
 	}
 }
