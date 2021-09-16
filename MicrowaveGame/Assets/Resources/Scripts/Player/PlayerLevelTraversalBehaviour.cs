@@ -14,7 +14,7 @@ namespace Scripts.Player
 			_levelTraversalBehaviour = GameObject.Find("Level").GetComponent<LevelTraversalBehaviour>();
 		}
 
-		public void OnTriggerStay2D(Collider2D other)
+		public void OnTriggerEnter2D(Collider2D other)
 		{
 			DoorConnectionBehaviour doorConnectionBehaviour = other.GetComponent<DoorConnectionBehaviour>();
 
