@@ -35,7 +35,12 @@ namespace Scripts.Doors
 		/// <summary>
 		/// Returns true if the door is open.
 		/// </summary>
-		public bool IsOpen { get; private set; } = true;
+		public bool IsOpen
+		{
+			get => _isOpen && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoorIdle");
+			private set => _isOpen = value;
+		}
+		private bool _isOpen = true;
 
 		/// <summary>
 		/// Opens / unlocks the door.
