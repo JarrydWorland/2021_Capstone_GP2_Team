@@ -18,8 +18,8 @@ namespace Scripts.Menus
 			Selectable nextSelectable = MenuManager.Current.CurrentSelectable.FindSelectable(direction);
 			if (nextSelectable == null) return;
 
+			nextSelectable.Select();
 			MenuManager.Current.CurrentSelectable = nextSelectable;
-			MenuManager.Current.CurrentSelectable.Select();
 		}
 
 		/// <summary>
