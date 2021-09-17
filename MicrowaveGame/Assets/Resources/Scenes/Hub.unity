@@ -377,21 +377,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2945509771218161465, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
   m_PrefabInstance: {fileID: 547911200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &547911202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547911201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ef6fa20fd045b1a129b63a45eab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueContent:
-    Speaker: 
-    Sentences: []
 --- !u!1001 &689051674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,7 +1018,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1141136754}
-  - component: {fileID: 1141136752}
   - component: {fileID: 1141136751}
   - component: {fileID: 1141136755}
   - component: {fileID: 1141136756}
@@ -1056,22 +1040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c693a462d36e95742add6472c5d61a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1141136752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141136750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ef6fa20fd045b1a129b63a45eab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueContent:
-    Speaker: Merlin
-    Sentences:
-    - I wonder where this leads...
 --- !u!4 &1141136754
 Transform:
   m_ObjectHideFlags: 0

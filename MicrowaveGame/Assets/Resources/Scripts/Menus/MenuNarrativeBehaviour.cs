@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.Menus
 {
@@ -56,6 +55,8 @@ namespace Scripts.Menus
 			}
 
 			MenuManager.Init(this);
+			if (Persistent.ShownNarritive) MenuManager.GoInto("MenuPlaying");
+			Persistent.ShownNarritive = true;
 		}
 
 		/// <summary>

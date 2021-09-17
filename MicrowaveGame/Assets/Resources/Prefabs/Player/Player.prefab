@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 5674462547828722752}
   - component: {fileID: 2945509771218161466}
   - component: {fileID: 91458362385431467}
-  - component: {fileID: 7633790683264234797}
   - component: {fileID: 5147030722613144555}
   - component: {fileID: 8083425330494338674}
   - component: {fileID: 8573620642782398239}
@@ -513,21 +512,6 @@ MonoBehaviour:
   m_DefaultActionMap: Playing
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7633790683264234797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945509771218161465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ef6fa20fd045b1a129b63a45eab395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueContent:
-    Speaker: 
-    Sentences: []
 --- !u!114 &5147030722613144555
 MonoBehaviour:
   m_ObjectHideFlags: 0
