@@ -75,7 +75,7 @@ namespace Scripts.Menus
 			_buttonIndicatorTransform.Find("ImageLeft").GetComponent<RectTransform>().localPosition -= offset;
 			_buttonIndicatorTransform.Find("ImageRight").GetComponent<RectTransform>().localPosition += offset;
 
-			ButtonIndicatorPosition = new Lerped<Vector3>(initialPosition, 0.1f, Easing.EaseOut, true);
+			ButtonIndicatorPosition = new Lerped<Vector3>(initialPosition, 0.075f, Easing.EaseInOut, true);
 		}
 	}
 }
