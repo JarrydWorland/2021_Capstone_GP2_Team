@@ -17,21 +17,14 @@ namespace Scripts.Menus
 			Button button = eventData.selectedObject.GetComponent<Button>();
 			if (button == null) return;
 
-			// Enable the indicators for the selected button.
-			SetButtonState(button, true);
-
-			// Disable the indicators for the previously selected button.
-			if (MenuManager.Current.CurrentSelectable is Button previousButton && previousButton != button)
-				SetButtonState(previousButton, false);
-
 			// Update the currently selected button reference for the current menu.
 			MenuManager.Current.CurrentSelectable = button;
-		}
 
-		private void SetButtonState(Button button, bool state)
-		{
-			Image[] images = button.GetComponentsInChildren<Image>();
-			foreach (Image image in images) image.enabled = state;
+			// Update the button indicators if the menu has them.
+			if (MenuManager.Current.ButtonIndicatorPosition != null)
+			{
+				MenuManager.Current.ButtonIndicatorPosition.Value = MenuManager.Current.CurrentSelectable.transform.position;
+			}
 		}
 	}
 }
