@@ -7,6 +7,11 @@ namespace Scripts.Items
 	public abstract class ItemBehaviour : MonoBehaviour
 	{
 		/// <summary>
+		/// The probability of this item spawning.
+		/// </summary>
+		public float SpawnProbability = 1.0f;
+
+		/// <summary>
 		/// The name of the item.
 		/// </summary>
 		public string Name;
