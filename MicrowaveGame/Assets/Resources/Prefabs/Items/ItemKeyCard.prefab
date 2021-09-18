@@ -81,7 +81,13 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - I found it! With this I can restore power to Light City!
+    - 'I found it! With this I can restore power to Light City!
+
+      ### Engaging
+      Teleporter ###
+
+      --- Congratulations, you have completed the demo, you''re
+      welcome to play again ---'
 --- !u!1001 &1447312555054794971
 PrefabInstance:
   m_ObjectHideFlags: 0
