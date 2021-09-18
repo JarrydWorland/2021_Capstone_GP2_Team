@@ -513,6 +513,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 290342941}
     m_Modifications:
+    - target: {fileID: 5623186482671948354, guid: 8d30faa931206344f8f460c063dac881, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 330.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623186482671948354, guid: 8d30faa931206344f8f460c063dac881, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5623186483246349073, guid: 8d30faa931206344f8f460c063dac881, type: 3}
       propertyPath: m_Name
       value: MenuCredits
@@ -604,6 +612,14 @@ PrefabInstance:
     - target: {fileID: 5623186483246349086, guid: 8d30faa931206344f8f460c063dac881, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623186484038667593, guid: 8d30faa931206344f8f460c063dac881, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 330.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623186484038667593, guid: 8d30faa931206344f8f460c063dac881, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d30faa931206344f8f460c063dac881, type: 3}
