@@ -89,7 +89,7 @@ namespace Scripts.Weapons
 			if (isWeaponEquipped)
 			{
 				OnWeaponUpdate(
-					_playerWeaponBehaviour.transform.position,
+					_playerWeaponBehaviour.ProjectileSpawn.position,
 					_playerWeaponBehaviour.Direction,
 					_playerWeaponBehaviour.Shooting,
 					_playerWeaponBehaviour.AdditionalDamage

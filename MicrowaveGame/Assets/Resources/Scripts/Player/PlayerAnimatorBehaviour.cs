@@ -1,4 +1,5 @@
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Player
 {
@@ -37,9 +38,10 @@ namespace Scripts.Player
 
 		private void UpdateShootingAnimation()
 		{
+			Vector2 shootingDirection =  _playerWeaponBehaviour.InputDirection.ToDirection().ToVector2();
 			_animator.SetLayerWeight(_animatorShootingLayer, _playerWeaponBehaviour.Shooting ? 1.0f : 0.0f);
-			_animator.SetFloat("ShootingDirectionX", _playerWeaponBehaviour.Direction.x);
-			_animator.SetFloat("ShootingDirectionY", _playerWeaponBehaviour.Direction.y);
+			_animator.SetFloat("ShootingDirectionX", shootingDirection.x);
+			_animator.SetFloat("ShootingDirectionY", shootingDirection.y);
 		}
 	}
 }
