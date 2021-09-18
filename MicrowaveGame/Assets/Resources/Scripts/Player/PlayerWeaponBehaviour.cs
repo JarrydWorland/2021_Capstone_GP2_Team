@@ -21,17 +21,11 @@ namespace Scripts.Player
 		[Range(0.0f, 360.0f)]
 		public float AimAssistConeAngle = 45.0f;
 
-		/// <summary>
-		/// Whether or not a lock-on sprite should show on the target when
-		/// aim-assist is active.
-		/// </summary>
-		public bool ShowLockOn;
-
 		public Transform ProjectileSpawn { get; private set; }
 
 		private WeaponBehaviour _defaultWeaponBehaviour;
 
-		private SpriteRenderer _lockOn;
+		private Transform _aimIndicator;
 
 		/// <summary>
 		/// The WeaponBehaviour of the currently equipped weapon.
@@ -78,7 +72,7 @@ namespace Scripts.Player
 		/// </summary>
 		public int AdditionalDamage { get; set; }
 
-		private bool _isCurrentInputMouse;
+		private bool _isCurrentInputMouse = true;
 		private Vector2 _lastMousePositionInWorld;
 
 		private void Start()
@@ -89,15 +83,14 @@ namespace Scripts.Player
 			_defaultWeaponBehaviour.Start();
 
 			ProjectileSpawn = transform.Find("ProjectileSpawn");
-			_lockOn = transform.Find("LockOn").GetComponent<SpriteRenderer>();
+			_aimIndicator = transform.Find("AimIndicator");
 		}
 
 		private void Update()
 		{
-			_lockOn.enabled = false;
-
 			if (_isCurrentInputMouse)
 			{
+				_aimIndicator.gameObject.SetActive(false);
 				Direction = _lastMousePositionInWorld - (Vector2) ProjectileSpawn.position;
 				InputDirection = _lastMousePositionInWorld - (Vector2) transform.position;
 			}
@@ -116,15 +109,13 @@ namespace Scripts.Player
 					if (Vector3.Dot(InputDirection, enemyInputDirection) > aimAssistConeAngle)
 					{
 						Direction = enemyDirection;
-						if (ShowLockOn)
-						{
-							_lockOn.transform.position = enemy.transform.position;
-							_lockOn.color = Color.white;
-							_lockOn.enabled = true;
-						}
 						break;
 					}
 				}
+
+				_aimIndicator.gameObject.SetActive(true);
+				_aimIndicator.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+				_aimIndicator.transform.rotation = Quaternion.FromToRotation(Vector3.right, InputDirection);
 			}
 
 			// default weapon is never instantiated so manually run update item method
