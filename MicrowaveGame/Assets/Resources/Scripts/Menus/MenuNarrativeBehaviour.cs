@@ -16,12 +16,9 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		private readonly string[] _strings =
-		{
-			"This is the story of Merlin. Merlin was a robot with one purpose: To microwave food. Unfortunately, after an incident involving a small child and a shiny spoon, Merlin was discarded at a scrapyard.",
-			"Whilst attempting to escape his situation, Merlin fell through a hole in a pile of scrap, into a hidden world beneath the scrapyard.",
-			"Here, we join Merlin as he is being accosted by a group of mechanical soldiers."
-		};
+		[SerializeField]
+		[TextArea(3, 10)]
+		private string[] _strings;
 
 		private int _currentString;
 
