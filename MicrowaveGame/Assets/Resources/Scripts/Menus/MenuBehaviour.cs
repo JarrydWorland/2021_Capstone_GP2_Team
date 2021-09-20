@@ -26,7 +26,7 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnEnter()
 		{
-			CurrentSelectable = GetComponentsInChildren<Selectable>().FirstOrDefault();
+			CurrentSelectable ??= GetComponentsInChildren<Selectable>().FirstOrDefault();
 
 			if (CurrentSelectable != null)
 			{
@@ -56,7 +56,11 @@ namespace Scripts.Menus
 
 		private void InitButtonIndicator(Vector3 initialPosition)
 		{
-			if (_buttonIndicatorTransform != null) return;
+			if (_buttonIndicatorTransform != null)
+			{
+				ButtonIndicatorPosition = new Lerped<Vector3>(initialPosition, 0.075f, Easing.EaseInOut, true);
+				return;
+			}
 
 			_buttonIndicatorTransform = transform.Find("MenuButtonIndicator");
 			if (_buttonIndicatorTransform == null) return;
