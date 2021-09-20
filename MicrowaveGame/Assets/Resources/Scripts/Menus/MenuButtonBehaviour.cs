@@ -19,12 +19,6 @@ namespace Scripts.Menus
 
 			// Update the currently selected button reference for the current menu.
 			MenuManager.Current.CurrentSelectable = button;
-
-			// Update the button indicators if the menu has them.
-			if (MenuManager.Current.ButtonIndicatorPosition != null)
-			{
-				MenuManager.Current.ButtonIndicatorPosition.Value = MenuManager.Current.CurrentSelectable.transform.position;
-			}
 		}
 	}
 }
