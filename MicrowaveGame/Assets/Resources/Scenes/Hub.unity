@@ -827,6 +827,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2251424065116161678, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
+      propertyPath: _strings.Array.data[0]
+      value: 'Welcome to L.E.D: Light Extraction Droid demo. You are about to assume
+        the role of Merlin, a robot working as a private detective who serves the
+        citizens of Light City'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251424065116161678, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
+      propertyPath: _strings.Array.data[1]
+      value: Merlin has just taken back control of the Light City Power Grid from
+        the villainous Lightbulb Gang, who have stolen the keycards that provide
+        power to Light City
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251424065116161678, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
+      propertyPath: _strings.Array.data[2]
+      value: Now, Merlin must infiltrate their place of operations known as the Lightclub,
+        and gain back control of the keycards. It is here that we join Merlin. Good
+        luck
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251424065116161678, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
       propertyPath: DebugDisableBackgroundMusic
       value: 1
       objectReference: {fileID: 0}
