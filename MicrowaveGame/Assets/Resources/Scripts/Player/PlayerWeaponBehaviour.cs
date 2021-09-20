@@ -93,6 +93,7 @@ namespace Scripts.Player
 				_aimIndicator.gameObject.SetActive(false);
 				Direction = _lastMousePositionInWorld - (Vector2) ProjectileSpawn.position;
 				InputDirection = _lastMousePositionInWorld - (Vector2) transform.position;
+				Look();
 			}
 			else
 			{
@@ -131,6 +132,17 @@ namespace Scripts.Player
 
 			Vector2 mousePosition = Mouse.current.position.ReadValue();
 			_lastMousePositionInWorld = (Vector2) UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
+		}
+
+		/// <summary>
+		/// Copy of On look event from unity input system, just applied in Update.
+		/// </summary>
+		private void Look()
+		{
+			_isCurrentInputMouse = true;
+
+			Vector2 mousePosition = Mouse.current.position.ReadValue();
+			_lastMousePositionInWorld = (Vector2)UnityEngine.Camera.main.ScreenToWorldPoint(mousePosition);
 		}
 
 		/// <summary>
