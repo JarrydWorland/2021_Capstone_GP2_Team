@@ -40,7 +40,7 @@ namespace Scripts.Weapons
 				float spreadAngle = Spread * Random.Range(0.0f, 1.0f) - (Spread/2.0f);
 				Vector2 spread = new Vector2(Mathf.Cos(spreadAngle), Mathf.Sin(spreadAngle));
 				Quaternion q = Quaternion.Euler(0, 0, spreadAngle);
-				AudioManager.Play(ShootAudioClip);
+				AudioManager.Play(ShootAudioClip, 0.75f, false, Random.Range(0.55f, 1.35f));
 				InstanceFactory.InstantiateProjectile(
 					ProjectilePrefab,
 					position,
