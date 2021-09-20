@@ -16,9 +16,14 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		[SerializeField]
-		[TextArea(3, 10)]
-		private string[] _strings;
+		/*[SerializeField]
+		[TextArea(3, 10)]*/
+		private string[] _strings =
+		{
+			"Welcome to L.E.D: Light Extraction Droid demo. You are about to assume the role of Merlin, a robot working as a private detective who serves the citizens of Light City",
+			"Merlin has just taken back control of the Light City Power Grid from the villainous Lightbulb Gang, who have stolen the keycards that provide power to Light City",
+			"Now, Merlin must infiltrate their place of operations known as the Lightclub, and gain back control of the keycards. It is here that we join Merlin. Good luck,"
+		};
 
 		private int _currentString;
 
