@@ -12,13 +12,15 @@ namespace Scripts.Menus
 	public abstract class MenuBehaviour : MonoBehaviour
 	{
 		public Selectable CurrentSelectable { get; set; }
-		public Lerped<Vector3> ButtonIndicatorPosition { get; private set; }
 
 		private Transform _buttonIndicatorTransform;
 
 		private void Update()
 		{
-			if (_buttonIndicatorTransform != null) _buttonIndicatorTransform.position = ButtonIndicatorPosition.Value;
+			if (_buttonIndicatorTransform != null)
+			{
+				_buttonIndicatorTransform.position = Vector3.Lerp(_buttonIndicatorTransform.position, CurrentSelectable.transform.position, 0.075f);
+			}
 		}
 
 		/// <summary>
@@ -26,7 +28,7 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnEnter()
 		{
-			CurrentSelectable = GetComponentsInChildren<Selectable>().FirstOrDefault();
+			CurrentSelectable ??= GetComponentsInChildren<Selectable>().FirstOrDefault();
 
 			if (CurrentSelectable != null)
 			{
@@ -74,8 +76,7 @@ namespace Scripts.Menus
 
 			_buttonIndicatorTransform.Find("ImageLeft").GetComponent<RectTransform>().localPosition -= offset;
 			_buttonIndicatorTransform.Find("ImageRight").GetComponent<RectTransform>().localPosition += offset;
-
-			ButtonIndicatorPosition = new Lerped<Vector3>(initialPosition, 0.075f, Easing.EaseInOut, true);
+			_buttonIndicatorTransform.position = initialPosition;
 		}
 	}
 }
