@@ -26,15 +26,13 @@ namespace Scripts.Enemies
 		{
 			//Instantiate our one-off particle system
 			ParticleSystem explosionEffect = Instantiate(deathParticle) as ParticleSystem;
-			Vector3 spawnPosition = new Vector3(transform.position.x,transform.position.y,transform.position.z-2);
+			Vector3 spawnPosition = new Vector3(transform.position.x,transform.position.y,transform.position.z-2); //have to use -2 because sprite ordering is too difficult to implement this late in the project.
 			explosionEffect.transform.position = spawnPosition;
 			
 			//play it
-			//explosionEffect.main.loop = false;
 			explosionEffect.Play();
 
-			//destroy the particle system when its duration is up, right
-			//it would play a second time.
+			//destroy the particle system when its duration is up
 			Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
 		}
 	}
