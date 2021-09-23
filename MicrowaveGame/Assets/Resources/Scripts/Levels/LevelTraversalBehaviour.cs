@@ -79,6 +79,18 @@ namespace Scripts.Levels
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);
 
+			// disable projectiles of enemies
+			foreach (GameObject LightBulb in GameObject.FindObjectsOfType<GameObject>())
+				if (LightBulb.name == "ProjectileLightBulb(Clone)") Destroy(LightBulb);
+
+			// disable projectiles of Default weapon
+			foreach (GameObject Bullet in GameObject.FindObjectsOfType<GameObject>())
+				if (Bullet.name == "ProjectileWeaponDefault(Clone)") Destroy(Bullet);
+
+			// disable projectiles of Upgraded weapon
+			foreach (GameObject Slug in GameObject.FindObjectsOfType<GameObject>())
+				if (Slug.name == "ProjectileWeaponRapidFire(Clone)") Destroy(Slug);
+
 			// find and enable the connecting room
 			RoomConnectionBehaviour connectingRoom = doorConnectionBehaviour.ConnectingDoor.GetComponentsInParent<RoomConnectionBehaviour>(true)[0];
 			_roomsToDisable.Remove(connectingRoom.gameObject); // ensure the connecting room is not queued to be disabled
