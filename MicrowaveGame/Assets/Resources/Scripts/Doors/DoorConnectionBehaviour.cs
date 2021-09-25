@@ -18,12 +18,59 @@ namespace Scripts.Doors
 		public AudioClip EnterAudioClip;
 
 		/// <summary>
+		/// The door sprite to be used when the door is open.
+		/// </summary>
+		public Sprite OpenDoorSprite;
+
+		/// <summary>
+		/// The door sprite to be used when the door is closed.
+		/// </summary>
+		public Sprite ClosedDoorSprite;
+
+		/// <summary>
 		/// The door that this door leads into, usually located in another room.
 		/// </summary>
 		public DoorConnectionBehaviour ConnectingDoor { get; private set; }
 
 		/// <summary>
-		/// Connects two doors together so that they lead into eachother. Used to create the level graph.
+		/// Returns true if the door is open.
+		/// </summary>
+		public bool IsOpen
+		{
+			get => _isOpen && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoorIdle");
+			private set => _isOpen = value;
+		}
+		private bool _isOpen = true;
+
+		/// <summary>
+		/// Opens / unlocks the door.
+		/// </summary>
+		public void Open()
+		{
+			IsOpen = true;
+
+			GetComponent<SpriteRenderer>().sprite = OpenDoorSprite;
+			GetComponent<Animator>().Play("DoorPulsateOut");
+
+			// Enables door collider when being reopened.
+			GetComponent<Collider2D>().enabled = true;
+		}
+
+		/// <summary>
+		/// Closes / locks the door.
+		/// </summary>
+		public void Close()
+		{
+			GetComponent<SpriteRenderer>().sprite = ClosedDoorSprite;
+			GetComponent<Animator>().Play("DoorPulsateIn");
+			
+			// Disables door collider while closed.
+			GetComponent<Collider2D>().enabled = false;
+			IsOpen = false;
+		}
+
+		/// <summary>
+		/// Connects two doors together so that they lead into each other. Used to create the level graph.
 		/// </summary>
 		/// <param name="left">The first door that will connect to the second door.</param>
 		/// <param name="right">The second door that will connect to the first door.</param>

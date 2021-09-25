@@ -28,13 +28,15 @@ namespace Scripts.Utilities
 		/// <param name="audioClip">The audio clip to play.</param>
 		/// <param name="volume">the volume the audio clip should be played at.</param>
 		/// <param name="loop">should the audio clip be looped.</param>
-		public static void Play(AudioClip audioClip, float volume = 0.75f, bool loop = false)
+		public static void Play(AudioClip audioClip, float volume = 0.75f, bool loop = false, float pitch = 1.0f)
 		{
 			AudioSource audioSource = GetAudioSource();
 			audioSource.clip = audioClip;
 			audioSource.volume = volume;
 			audioSource.loop = loop;
+			audioSource.pitch = pitch;
 			audioSource.Play();
+			Log.Info($"Playing {Log.Orange(audioClip.name)} (volume = {Log.Cyan(volume)}, loop = {Log.Cyan(loop)}) using audio source {Log.Cyan(_audioSources.IndexOf(audioSource))}.", LogCategory.AudioManager);
 		}
 
 		/// <summary>
@@ -54,6 +56,7 @@ namespace Scripts.Utilities
 		{
 			AudioSource audioSource = Camera.AddComponent<AudioSource>();
 			_audioSources.Add(audioSource);
+			Log.Info($"Adding additional audio source (there are now {Log.Cyan(_audioSources.Count)} audio sources).", LogCategory.AudioManager);
 			return audioSource;
 		}
 

@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Health Increase
-  Description: Heals the player for {0}.
+  Description: Heals the player for {0} segment(s)
   IncreaseValue: 2
 --- !u!1001 &1277662029549524865
 PrefabInstance:

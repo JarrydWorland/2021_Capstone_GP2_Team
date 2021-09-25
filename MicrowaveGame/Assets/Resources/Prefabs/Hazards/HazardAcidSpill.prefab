@@ -91,9 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   DamageRate: 1
-  Duration: 5
-  AccelerationFactor: 0.5
-  FrictionFactor: 0.25
+  Duration: 2
 --- !u!1001 &1788020827790010284
 PrefabInstance:
   m_ObjectHideFlags: 0

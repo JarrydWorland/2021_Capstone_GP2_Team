@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Scripts.Scenes;
+using UnityEngine;
 using Scripts.Utilities;
 
 namespace Scripts.Menus
@@ -16,7 +16,11 @@ namespace Scripts.Menus
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		public override void OnEnter() => Time.timeScale = 1.0f;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			Time.timeScale = 1.0f;
+		}
 
 		private void Start()
 		{
@@ -32,7 +36,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => SceneManager.LoadScene("Gameplay");
+		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
@@ -50,13 +54,6 @@ namespace Scripts.Menus
 		/// Quits the game or exits the playing mode of the editor depending on the current executing context.
 		/// Called when the "Quit" button is pressed.
 		/// </summary>
-		public void OnQuitButtonPressed()
-		{
-#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false;
-#else
-			Application.Quit();
-#endif
-		}
+		public void OnQuitButtonPressed() => GameState.Quit();
 	}
 }

@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9924687eb30a5ae49a1449562c9a133c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnProbability: 0.5
   Name: Defaut Weapon Upgraded
   Description: Shoots bullets rapidly
   Damage: 1
@@ -84,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1248822717635903519, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 1248822717635903519, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 1248822717635903519, guid: 926202b09ab1b4a4389247a4379e0f95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

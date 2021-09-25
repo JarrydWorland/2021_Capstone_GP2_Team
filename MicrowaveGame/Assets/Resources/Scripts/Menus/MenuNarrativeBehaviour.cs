@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
-using UnityEngine.InputSystem;
 
 namespace Scripts.Menus
 {
@@ -11,18 +10,15 @@ namespace Scripts.Menus
 		/// The background music.
 		/// </summary>
 		public AudioClip BackgroundMusicAudioClip;
-		
+
 		/// <summary>
 		/// A debug flag to disable the background music.
 		/// </summary>
 		public bool DebugDisableBackgroundMusic;
 
-		private readonly string[] _strings =
-		{
-			"This is the story of Merlin. Merlin was a robot with one purpose: To microwave food. Unfortunately, after an incident involving a small child and a shiny spoon, Merlin was discarded at a scrapyard.",
-			"Whilst attempting to escape his situation, Merlin fell through a hole in a pile of scrap, into a hidden world beneath the scrapyard.",
-			"Here, we join Merlin as he is being accosted by a group of mechanical soldiers."
-		};
+		[SerializeField]
+		[TextArea(3, 10)]
+		private string[] _strings;
 
 		private int _currentString;
 
@@ -31,18 +27,16 @@ namespace Scripts.Menus
 
 		private bool IsFinalString => _currentString == _strings.Length - 1;
 
-		private PlayerInput _playerInput;
-
 		public override void OnEnter()
 		{
-			Time.timeScale = 0.0f;
-			_playerInput.actions.Disable();
+			base.OnEnter();
+			GameState.Pause();
 		}
 
 		public override void OnLeave()
 		{
-			_playerInput.actions.Enable();
-			Time.timeScale = 1.0f;
+			GameState.Resume();
+			base.OnLeave();
 		}
 
 		private void Start()
@@ -50,16 +44,16 @@ namespace Scripts.Menus
 			_textObject = transform.Find("Text").GetComponent<Text>();
 			_buttonTextObject = transform.Find("Button").GetComponentInChildren<Text>();
 
-			_playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-
 			UpdateTexts();
 
 			if (!DebugDisableBackgroundMusic)
 			{
 				AudioManager.Play(BackgroundMusicAudioClip);
 			}
-			
+
 			MenuManager.Init(this);
+			if (Persistent.ShownNarritive) MenuManager.GoInto("MenuPlaying");
+			Persistent.ShownNarritive = true;
 		}
 
 		/// <summary>

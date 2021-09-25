@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingRoomPrefab: {fileID: 9129382335254063355, guid: deaf3ed0a21849244a0bd6dbaa0122a7, type: 3}
   Depth: 5
-  AlwaysShowRooms: 0
+  DebugSeed: 0
+  DebugAlwaysShowRooms: 0
 --- !u!114 &6167090671445229209
 MonoBehaviour:
   m_ObjectHideFlags: 0

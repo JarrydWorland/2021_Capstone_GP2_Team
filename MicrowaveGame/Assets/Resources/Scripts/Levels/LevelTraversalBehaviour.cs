@@ -4,6 +4,9 @@ using Scripts.Rooms;
 using Scripts.Doors;
 using Scripts.Camera;
 using Scripts.Utilities;
+using System;
+using Scripts.Events;
+using Scripts.Menus;
 
 namespace Scripts.Levels
 {
@@ -13,13 +16,27 @@ namespace Scripts.Levels
 		/// <summary>
 		/// The room the player is currently in.
 		/// </summary>
-		public RoomConnectionBehaviour CurrentRoom { get; set; }
+		public RoomConnectionBehaviour CurrentRoom
+		{
+			get => _currentRoom;
+			set
+			{
+				RoomConnectionBehaviour previousRoom = _currentRoom;
+				_currentRoom = value;
+				EventManager.Emit(new RoomTraversedEventArgs
+				{
+					PreviousRoom = previousRoom,
+					CurrentRoom = CurrentRoom,
+				});
+			}
+		}
+		private RoomConnectionBehaviour _currentRoom;
 
 		private LevelGenerationBehaviour _levelGenerationBehaviour;
 		private GameObject _player;
 		private CameraPanBehaviour _cameraPanBehaviour;
 
-		private List<GameObject> _roomsToDisable = new List<GameObject>();
+		private readonly List<GameObject> _roomsToDisable = new List<GameObject>();
 
 		private void Start()
 		{
@@ -33,8 +50,11 @@ namespace Scripts.Levels
 			// if the camera is stationary that means it has settled on the
 			// CurrentRoom. So we can now disable any previous rooms knowing
 			// that they are outside the view of the camera.
-			if (_cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
+			if (_roomsToDisable.Count > 0 && _cameraPanBehaviour.IsStationary && !_levelGenerationBehaviour.DebugAlwaysShowRooms)
 			{
+				// If we haven't paused during the transition, unfreeze time after changing room.
+				if (MenuManager.Current.name == "MenuPlaying") Time.timeScale = 1.0f;
+				
 				_roomsToDisable.ForEach(room => room.SetActive(false));
 				_roomsToDisable.Clear();
 			}
@@ -48,8 +68,28 @@ namespace Scripts.Levels
 		/// </param>
 		public void ChangeRoom(DoorConnectionBehaviour doorConnectionBehaviour)
 		{
+			// Don't attempt to change the room if the door is closed / locked.
+			if (!doorConnectionBehaviour.IsOpen) return;
+
+			// Freeze time while changing room.
+			Time.timeScale = 0.0f;
+			
+			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
+
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);
+
+			// disable projectiles of enemies
+			foreach (GameObject LightBulb in GameObject.FindObjectsOfType<GameObject>())
+				if (LightBulb.name == "ProjectileLightBulb(Clone)") Destroy(LightBulb);
+
+			// disable projectiles of Default weapon
+			foreach (GameObject Bullet in GameObject.FindObjectsOfType<GameObject>())
+				if (Bullet.name == "ProjectileWeaponDefault(Clone)") Destroy(Bullet);
+
+			// disable projectiles of Upgraded weapon
+			foreach (GameObject Slug in GameObject.FindObjectsOfType<GameObject>())
+				if (Slug.name == "ProjectileWeaponRapidFire(Clone)") Destroy(Slug);
 
 			// find and enable the connecting room
 			RoomConnectionBehaviour connectingRoom = doorConnectionBehaviour.ConnectingDoor.GetComponentsInParent<RoomConnectionBehaviour>(true)[0];
@@ -57,11 +97,17 @@ namespace Scripts.Levels
 			connectingRoom.gameObject.SetActive(true);
 
 			CurrentRoom = connectingRoom;
-			_cameraPanBehaviour.TargetPosition = CurrentRoom.transform.position;
+			_cameraPanBehaviour.Position.Value = CurrentRoom.transform.position;
 
 			_player.transform.position = doorConnectionBehaviour.ConnectingDoor.transform.position
 									   + doorConnectionBehaviour.Direction.ToVector3()
-									   * 1.5f;
+									   * 1.75f;
 		}
+	}
+
+	public class RoomTraversedEventArgs : EventArgs
+	{
+		public RoomConnectionBehaviour PreviousRoom;
+		public RoomConnectionBehaviour CurrentRoom;
 	}
 }

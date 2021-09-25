@@ -37,8 +37,8 @@ namespace Scripts.Enemies.EnemyLamp
 		// Update is called once per frame
 		void Update()
 		{
-			_shootingDirection = (_player.transform.position - transform.position).normalized;
-			Vector2 shootingDirectionAnimator = _shootingDirection.ToDirection().ToVector2();
+			_shootingDirection = (_player.transform.position - _projectileSpawn.transform.position).normalized;
+			Vector2 shootingDirectionAnimator =  (_player.transform.position - transform.position).ToDirection().ToVector2();
 			_animator.SetFloat("ShootingDirectionX", shootingDirectionAnimator.x);
 			_animator.SetFloat("ShootingDirectionY", shootingDirectionAnimator.y);
 		}

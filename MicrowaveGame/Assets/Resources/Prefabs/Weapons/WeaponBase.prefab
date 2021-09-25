@@ -27,5 +27,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponBase
       objectReference: {fileID: 0}
+    - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Size.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Size.y
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}

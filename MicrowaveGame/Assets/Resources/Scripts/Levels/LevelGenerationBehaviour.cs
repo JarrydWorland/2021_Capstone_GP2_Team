@@ -18,12 +18,19 @@ namespace Scripts.Levels
 		public int Depth;
 
 		/// <summary>
+		/// The seed to use when generating the level. Using zero will disable
+		/// the seed and use a random value instead.
+		/// </summary>
+		public int DebugSeed;
+
+		/// <summary>
 		/// This option is for debugging only. If true all rooms will always be
 		/// enabled in the scene, meaning all the rooms can be seen within the
 		/// unity editor while the game is running. However this also means all
 		/// rooms will be enabled and loaded even if the player is not in them.
 		/// </summary>
 		public bool DebugAlwaysShowRooms;
+		
 
 		/// <summary>
 		/// The starting room instance.
@@ -32,7 +39,8 @@ namespace Scripts.Levels
 
 		private void Start()
 		{
-			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, !DebugAlwaysShowRooms);
+			int? seed = DebugSeed != 0 ? (int?)DebugSeed : null;
+			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, seed, !DebugAlwaysShowRooms);
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
 			LevelTraversalBehaviour levelTraversalBehaviour = GetComponent<LevelTraversalBehaviour>();

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 613101071736585664}
   - component: {fileID: 7857006281314210475}
   - component: {fileID: 2608727520422310303}
+  - component: {fileID: 6867954288980126781}
   m_Layer: 0
   m_Name: DoorPlatedBase
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4989036636097526798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,12 +74,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 480fa82271ab67b4b9992d7d4f7c7f95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d533f3b645c97058fba83e5be0cb29b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.79, y: 2.87}
+  m_Size: {x: 3.96, y: 1.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08530855}
+  m_Offset: {x: -0.05, y: 0.015}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.79, y: 2.87}
-    newSize: {x: 4.79, y: 2.87}
+    oldSize: {x: 3.96, y: 1.36}
+    newSize: {x: 3.96, y: 1.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.79, y: 2.142634}
+  m_Size: {x: 2.65, y: 1.45}
   m_EdgeRadius: 0
 --- !u!114 &2608727520422310303
 MonoBehaviour:
@@ -124,3 +125,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   EnterAudioClip: {fileID: 8300000, guid: f46f92b852418de4e9812175fd2f720d, type: 3}
+  OpenDoorSprite: {fileID: 21300000, guid: d533f3b645c97058fba83e5be0cb29b3, type: 3}
+  ClosedDoorSprite: {fileID: 21300000, guid: 27db8aaba14a6fb599a1200229f43849, type: 3}
+--- !u!95 &6867954288980126781
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4989036636097526798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8f2cbb931c7b714ca6844918283dbd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
