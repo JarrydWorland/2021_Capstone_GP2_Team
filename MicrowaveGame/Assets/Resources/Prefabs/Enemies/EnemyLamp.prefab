@@ -177,6 +177,14 @@ PrefabInstance:
       propertyPath: deathParticles
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 1279188540046214428, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -217,6 +225,10 @@ PrefabInstance:
       propertyPath: DamageAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8d0c8a680d66bcc46b77fa5f242eb086, type: 3}
+    - target: {fileID: 7107625165376847228, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: DamageParticleSystem
+      value: 
+      objectReference: {fileID: 7595556399473022328}
     - target: {fileID: 7903555274545865669, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_SortingOrder
       value: 0
@@ -233,5 +245,10 @@ GameObject:
 --- !u!4 &3187417851856547551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4902640573814480245, guid: 876deed47f6e042419ea53645c052839, type: 3}
+  m_PrefabInstance: {fileID: 7508158114378871722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7595556399473022328 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 97531401738135250, guid: 876deed47f6e042419ea53645c052839, type: 3}
   m_PrefabInstance: {fileID: 7508158114378871722}
   m_PrefabAsset: {fileID: 0}
