@@ -28,7 +28,7 @@ namespace Scripts.Menus
 
 			if (!DebugDisableBackgroundMusic)
 			{
-				AudioManager.Play(BackgroundMusicAudioClip);
+				AudioManager.Play(BackgroundMusicAudioClip, 0.7f, true);
 			}
 		}
 
