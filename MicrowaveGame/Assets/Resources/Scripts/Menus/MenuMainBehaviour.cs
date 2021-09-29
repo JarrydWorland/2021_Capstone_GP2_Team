@@ -54,13 +54,6 @@ namespace Scripts.Menus
 		/// Quits the game or exits the playing mode of the editor depending on the current executing context.
 		/// Called when the "Quit" button is pressed.
 		/// </summary>
-		public void OnQuitButtonPressed()
-		{
-#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false;
-#else
-			Application.Quit();
-#endif
-		}
+		public void OnQuitButtonPressed() => GameState.Quit();
 	}
 }

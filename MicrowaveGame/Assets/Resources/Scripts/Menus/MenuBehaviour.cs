@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,17 +13,28 @@ namespace Scripts.Menus
 	{
 		public Selectable CurrentSelectable { get; set; }
 
+		private Transform _buttonIndicatorTransform;
+
+		private void Update()
+		{
+			if (_buttonIndicatorTransform != null)
+			{
+				_buttonIndicatorTransform.position = Vector3.Lerp(_buttonIndicatorTransform.position, CurrentSelectable.transform.position, 0.075f);
+			}
+		}
+
 		/// <summary>
 		/// Called when entering the menu.
 		/// </summary>
 		public virtual void OnEnter()
 		{
-			// TODO: The first button in "MenuPaused" doesn't animate after already animating.
-			// If you enter the pause menu, it will animate the first button (in this case the resume button),
-			// but if you resume and pause again, it won't animate it.
+			CurrentSelectable ??= GetComponentsInChildren<Selectable>().FirstOrDefault();
 
-			CurrentSelectable = GetComponentsInChildren<Selectable>().FirstOrDefault();
-			if (CurrentSelectable != null) CurrentSelectable.Select();
+			if (CurrentSelectable != null)
+			{
+				InitButtonIndicator(CurrentSelectable.transform.position);
+				CurrentSelectable.Select();
+			}
 		}
 
 		/// <summary>
@@ -42,6 +54,29 @@ namespace Scripts.Menus
 		public virtual void OnReturn()
 		{
 			if (CurrentSelectable != null) CurrentSelectable.Select();
+		}
+
+		private void InitButtonIndicator(Vector3 initialPosition)
+		{
+			if (_buttonIndicatorTransform != null) return;
+
+			_buttonIndicatorTransform = transform.Find("MenuButtonIndicator");
+			if (_buttonIndicatorTransform == null) return;
+
+			Button[] buttons = GetComponentsInChildren<Button>();
+			float maximumButtonWidth = float.MinValue;
+
+			foreach (Button button in buttons)
+			{
+				float width = button.GetComponent<RectTransform>().rect.width;
+				if (width > maximumButtonWidth) maximumButtonWidth = width;
+			}
+
+			Vector3 offset = new Vector3(maximumButtonWidth / 2.0f, 0.0f, 0.0f);
+
+			_buttonIndicatorTransform.Find("ImageLeft").GetComponent<RectTransform>().localPosition -= offset;
+			_buttonIndicatorTransform.Find("ImageRight").GetComponent<RectTransform>().localPosition += offset;
+			_buttonIndicatorTransform.position = initialPosition;
 		}
 	}
 }

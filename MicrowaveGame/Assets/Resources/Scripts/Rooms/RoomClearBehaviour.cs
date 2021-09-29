@@ -49,7 +49,7 @@ namespace Scripts.Rooms
 			IEnumerable<GameObject> weaponPrefabs = Resources
 				.LoadAll<GameObject>("Prefabs/Weapons")
 				.Where(itemPrefab =>
-					itemPrefab.HasComponent<ItemBehaviour>() && itemPrefab.name != "WeaponDefault");
+					itemPrefab.HasComponent<ItemBehaviour>());
 
 			_itemPrefabs = Enumerable.Empty<GameObject>()
 				.Concat(itemPrefabs)
@@ -71,7 +71,9 @@ namespace Scripts.Rooms
 
 		private void OnRoomCleared()
 		{
-			GameObject randomItemPrefab = _itemPrefabs.GetRandomElement();
+			GameObject randomItemPrefab = _itemPrefabs
+				.GetRandomElementWithProbability(itemPrefab => itemPrefab.GetComponent<ItemBehaviour>().SpawnProbability);
+
 			GameObject randomItem = Instantiate(randomItemPrefab);
 			randomItem.transform.position = transform.position;
 

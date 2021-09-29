@@ -35,7 +35,12 @@ namespace Scripts.Doors
 		/// <summary>
 		/// Returns true if the door is open.
 		/// </summary>
-		public bool IsOpen { get; private set; } = true;
+		public bool IsOpen
+		{
+			get => _isOpen && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoorIdle");
+			private set => _isOpen = value;
+		}
+		private bool _isOpen = true;
 
 		/// <summary>
 		/// Opens / unlocks the door.
@@ -46,6 +51,9 @@ namespace Scripts.Doors
 
 			GetComponent<SpriteRenderer>().sprite = OpenDoorSprite;
 			GetComponent<Animator>().Play("DoorPulsateOut");
+
+			// Enables door collider when being reopened.
+			GetComponent<Collider2D>().enabled = true;
 		}
 
 		/// <summary>
@@ -55,7 +63,9 @@ namespace Scripts.Doors
 		{
 			GetComponent<SpriteRenderer>().sprite = ClosedDoorSprite;
 			GetComponent<Animator>().Play("DoorPulsateIn");
-
+			
+			// Disables door collider while closed.
+			GetComponent<Collider2D>().enabled = false;
 			IsOpen = false;
 		}
 

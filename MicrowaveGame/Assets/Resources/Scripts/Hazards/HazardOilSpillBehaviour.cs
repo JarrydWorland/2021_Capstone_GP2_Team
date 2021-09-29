@@ -1,4 +1,4 @@
-﻿using Scripts.Player;
+﻿using Scripts.StatusEffects;
 using UnityEngine;
 
 namespace Scripts.Hazards
@@ -21,42 +21,12 @@ namespace Scripts.Hazards
 		/// </summary>
 		public float FrictionFactor = 0.25f;
 
-		private PlayerMovementBehaviour _playerMovementBehaviour;
-
-		private float _time;
-		private bool _applied;
-
-		private void Start()
-		{
-			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
-		}
-
-		private void Update()
-		{
-			if (!_applied) return;
-			_time += Time.deltaTime;
-
-			if (_time >= Duration)
-			{
-				_playerMovementBehaviour.Acceleration /= AccelerationFactor;
-				_playerMovementBehaviour.Friction /= FrictionFactor;
-
-				_applied = false;
-			}
-		}
-
 		private void OnTriggerStay2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player") return;
-			_time = 0;
+			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
 
-			if (!_applied)
-			{
-				_playerMovementBehaviour.Acceleration *= AccelerationFactor;
-				_playerMovementBehaviour.Friction *= FrictionFactor;
-
-				_applied = true;
-			}
+			if (statusEffectBehaviour != null)
+				statusEffectBehaviour.Apply<StatusEffectSlower>(Duration, AccelerationFactor, FrictionFactor);
 		}
 	}
 }

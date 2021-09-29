@@ -19,6 +19,21 @@ namespace Scripts.Utilities
 			value.CompareTo(minimum) < 0 ? minimum : value.CompareTo(maximum) > 0 ? maximum : value;
 
 		/// <summary>
+		/// Maps a number that is between oldMin and oldMax into a number that
+		/// is between newMin and newMax.
+		/// Example: (0.0f).MapBetween(-1.0f, 1.0f, 0.0f, 100.0f) == 50.0f
+		/// </summary>
+		/// <param name="value">The value to be clamped.</param>
+		/// <param name="oldMin">The old minimum value.</param>
+		/// <param name="oldMax">The old maximum value.</param>
+		/// <param name="newMin">The new minimum value.</param>
+		/// <param name="newMax">The new maximum value.</param>
+		/// <returns>A value mapped from oldMin and oldMax into one between newMin and newMax.</returns>
+		public static float MapBetween(this float value, float oldMin, float oldMax, float newMin, float newMax) =>
+			(value-oldMin)/(oldMax-oldMin) * (newMax-newMin) + newMin;
+
+
+		/// <summary>
 		/// Gets a value from the dictionary if one already exists, otherwise it
 		/// will add a new value to the dictionary and return that instead.
 		/// </summary>

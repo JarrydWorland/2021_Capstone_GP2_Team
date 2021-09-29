@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9924687eb30a5ae49a1449562c9a133c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnProbability: 0
   Name: Default Weapon
   Description: Shoots bullets rapidly
   Damage: 1
