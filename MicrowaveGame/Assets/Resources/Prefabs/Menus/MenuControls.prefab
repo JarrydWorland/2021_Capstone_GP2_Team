@@ -88,10 +88,10 @@ MonoBehaviour:
 
     E
 
-    1, 2,
-    3, 4 Keys
+    Shift
+    + 1, 2, 3, 4 Keys
 
-    Shift + 1, 2, 3, 4 Keys
+    1, 2, 3, 4 Keys
 
     Escape'
 --- !u!1 &2564488589942413394
