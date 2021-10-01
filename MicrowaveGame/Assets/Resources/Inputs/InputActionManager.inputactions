@@ -10,8 +10,8 @@
                     "type": "Value",
                     "id": "41e3c485-6d9e-43fe-90fa-f2d68656b380",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
+                    "processors": "StickDeadzone",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.1)"
                 },
                 {
                     "name": "Submit",
