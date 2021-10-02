@@ -30,15 +30,7 @@ namespace Scripts.Menus
 			if (context.performed)
             {
 				if (MenuManager.Current.name == "MenuPlaying") MenuManager.GoInto("MenuPaused");
-				else if (MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
-			}
-			else if(context.duration > 1)
-            {
-				if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||
-				MenuManager.Current.name == "MenuPaused")
-				{
-					MenuManager.GoBack();
-				}
+				else if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||  MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
 			}
 		}
 
