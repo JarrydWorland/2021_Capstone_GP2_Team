@@ -585,7 +585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultWeapon: {fileID: 626987614110471692, guid: 3b3d622189d10b6489f243a181b3726f, type: 3}
   AimAssistConeAngle: 3.25
-  ShowAimIndicator: 0
 --- !u!114 &7284736375818517136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6714e7be66954f51a7fe263b8a2bcc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDeath: {fileID: 8300000, guid: 82a811de84983d84f998cd277256a268, type: 3}
 --- !u!114 &276750575504442152
 MonoBehaviour:
   m_ObjectHideFlags: 0

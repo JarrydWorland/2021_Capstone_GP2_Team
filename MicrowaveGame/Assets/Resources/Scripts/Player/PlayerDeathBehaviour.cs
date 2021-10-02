@@ -1,6 +1,7 @@
 ﻿using Scripts.Events;
 using Scripts.Menus;
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Player
 {
@@ -8,6 +9,7 @@ namespace Scripts.Player
 	{
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
+		public AudioClip PlayerDeath;
 		private void Start()
 		{
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
@@ -15,7 +17,11 @@ namespace Scripts.Player
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
-			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0) MenuManager.GoInto("MenuDeath");
+			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
+			{
+				MenuManager.GoInto("MenuDeath");
+				AudioManager.Play(PlayerDeath);
+			}
 		}
 
 		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
