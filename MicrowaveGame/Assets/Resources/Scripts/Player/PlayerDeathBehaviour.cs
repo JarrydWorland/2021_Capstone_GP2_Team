@@ -1,5 +1,6 @@
 ﻿using Scripts.Events;
 using Scripts.Menus;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ namespace Scripts.Player
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
 		public ParticleSystem deathParticles;
+		public AudioClip PlayerDeath;
 
 		private void Start()
 		{
@@ -25,6 +27,7 @@ namespace Scripts.Player
 			{
 				Time.timeScale = 0.0f;
 				Explode();
+				AudioManager.Play(PlayerDeath);
 				transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
 				transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
 				transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;

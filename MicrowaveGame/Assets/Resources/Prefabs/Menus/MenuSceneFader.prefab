@@ -88,3 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0fc8d737864634fb788ff26dc625bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneTrans: {fileID: 8300000, guid: dd1697a9b2102724a84b5cddc865224d, type: 3}
