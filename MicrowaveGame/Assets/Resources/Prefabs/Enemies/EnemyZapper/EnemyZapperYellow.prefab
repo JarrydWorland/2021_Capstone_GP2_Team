@@ -128,6 +128,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: deathParticle
+      value: 
+      objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3470750117773476168, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_Name
       value: EnemyZapperYellow
@@ -188,10 +208,19 @@ PrefabInstance:
       propertyPath: DamageAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8d0c8a680d66bcc46b77fa5f242eb086, type: 3}
+    - target: {fileID: 7107625165376847228, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: DamageParticleSystem
+      value: 
+      objectReference: {fileID: 2054550472085341023}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876deed47f6e042419ea53645c052839, type: 3}
 --- !u!1 &3311041107559097541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3470750117773476168, guid: 876deed47f6e042419ea53645c052839, type: 3}
+  m_PrefabInstance: {fileID: 2150955424127264141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2054550472085341023 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 97531401738135250, guid: 876deed47f6e042419ea53645c052839, type: 3}
   m_PrefabInstance: {fileID: 2150955424127264141}
   m_PrefabAsset: {fileID: 0}
