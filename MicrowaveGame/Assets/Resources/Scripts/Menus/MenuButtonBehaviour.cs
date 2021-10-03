@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Scripts.Utilities;
 
 namespace Scripts.Menus
 {
 	public class MenuButtonBehaviour : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 	{
+		public AudioClip ButtonScroll;
+
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			Button button = eventData.pointerEnter.GetComponentInParent<Button>();
@@ -19,6 +22,7 @@ namespace Scripts.Menus
 
 			// Update the currently selected button reference for the current menu.
 			MenuManager.Current.CurrentSelectable = button;
+			AudioManager.Play(ButtonScroll);
 		}
 	}
 }

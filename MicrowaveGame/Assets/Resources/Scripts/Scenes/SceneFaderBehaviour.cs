@@ -11,6 +11,7 @@ namespace Scripts.Scenes
 
 		private bool _isFadingOut;
 		private string _targetScene;
+		public AudioClip SceneTrans;
 
 		/// <summary>
 		/// Get the instance of the scene fader behaviour from the current scene.
@@ -41,6 +42,7 @@ namespace Scripts.Scenes
 		public void FadeInto(string name)
 		{
 			_targetScene = name;
+			AudioManager.Play(SceneTrans);
 			FadeOut();
 		}
 

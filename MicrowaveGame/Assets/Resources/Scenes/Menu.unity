@@ -619,6 +619,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 290342941}
     m_Modifications:
+    - target: {fileID: 6068145080738338564, guid: c8cf3b6575ae8fc42a859fb0c9664f3f, type: 3}
+      propertyPath: ButtonScroll
+      value: 
+      objectReference: {fileID: 8300000, guid: 2947fd6b7a5743e4ebe91a143b9bc327, type: 3}
     - target: {fileID: 6068145080738338566, guid: c8cf3b6575ae8fc42a859fb0c9664f3f, type: 3}
       propertyPath: m_Name
       value: MenuMain
