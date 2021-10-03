@@ -39,7 +39,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 59b77e5e3b3dffd45858fb728b344e4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -116,6 +116,26 @@ PrefabInstance:
     - target: {fileID: 52621263356626380, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057482364902252336, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228505293504604176, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228505293504604176, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4845905208100645833, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_Name
