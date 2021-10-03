@@ -86,6 +86,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7169833246283525280, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
   m_PrefabInstance: {fileID: 207208858299706173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2312989402530478696
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7016742369639221149}
+    m_Modifications:
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13808107
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.090989165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801164611236894385, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922838659151511433, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
+      propertyPath: m_Name
+      value: HazardOilSpill
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a8a0b5075e8b6c4588203b345de3566, type: 3}
 --- !u!1001 &2728371466542447708
 PrefabInstance:
   m_ObjectHideFlags: 0
