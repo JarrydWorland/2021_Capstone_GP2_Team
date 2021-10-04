@@ -1,4 +1,5 @@
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.StatusEffects
 {
@@ -11,11 +12,12 @@ namespace Scripts.StatusEffects
 		private readonly HealthBehaviour _healthBehaviour;
 		private float _time;
 
-		public StatusEffectMelting(int duration, int damage, float rate)
+		public StatusEffectMelting(int duration, int damage, float rate, AudioClip clip)
 		{
 			Duration = duration;
 			_damage = damage;
 			_rateInverse = 1.0f / rate;
+			AudioManager.Play(clip);
 
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
