@@ -28,10 +28,12 @@ namespace Scripts.Projectiles
 
 		private BoxCollider2D _boxCollider2D;
 		private Vector3 _startingPosition;
+		private ParticleSystem _sparksEffect;
 
 		private void Start()
 		{
 			_boxCollider2D = GetComponent<BoxCollider2D>();
+			_sparksEffect = GetComponentInChildren<ParticleSystem>();
 		}
 
 		protected virtual void Update()
@@ -59,6 +61,8 @@ namespace Scripts.Projectiles
 			// Destroy when impacting solid objects
 			if (tagBehaviour.HasTag("Solid"))
 			{
+				
+				if(gameObject.name == "ProjectileWeaponDefault(Clone)"|| gameObject.name == "ProjectileWeaponRapidFire(Clone") Sparks();
 				Destroy(gameObject);
 			}
 
@@ -72,6 +76,20 @@ namespace Scripts.Projectiles
 					Destroy(gameObject);
 				}
 			}
+		}
+
+		void Sparks()
+        {
+			//Instantiate our one-off particle system
+			ParticleSystem sparksEffect = Instantiate(_sparksEffect) as ParticleSystem;
+			Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2); //have to use -2 because sprite ordering is too difficult to implement this late in the project.
+			sparksEffect.transform.position = spawnPosition;
+
+			//play it
+			sparksEffect.Play();
+
+			//destroy the particle system when its duration is up
+			Destroy(sparksEffect.gameObject, sparksEffect.main.duration);
 		}
 	}
 }
