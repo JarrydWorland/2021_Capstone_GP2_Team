@@ -8,6 +8,7 @@ namespace Scripts.StatusEffects
 		public int Duration { get; }
 		private readonly int _damage;
 		private readonly float _rateInverse;
+		private readonly AudioClip _clip;
 
 		private readonly HealthBehaviour _healthBehaviour;
 		private float _time;
@@ -17,8 +18,9 @@ namespace Scripts.StatusEffects
 			Duration = duration;
 			_damage = damage;
 			_rateInverse = 1.0f / rate;
-			AudioManager.Play(clip);
+			_clip = clip;
 
+			AudioManager.Play(_clip);
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 
