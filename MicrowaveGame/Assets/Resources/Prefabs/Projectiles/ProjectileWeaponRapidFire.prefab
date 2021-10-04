@@ -16,7 +16,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 1.78, y: 0.19}
     newSize: {x: 2.55, y: 2.55}
     adaptiveTilingThreshold: 0.5
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c491be42a2ad34cbe38a16ae6eaf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallAudioClip: {fileID: 8300000, guid: 8d0c8a680d66bcc46b77fa5f242eb086, type: 3}
 --- !u!1001 &6425710737429125765
 PrefabInstance:
   m_ObjectHideFlags: 0

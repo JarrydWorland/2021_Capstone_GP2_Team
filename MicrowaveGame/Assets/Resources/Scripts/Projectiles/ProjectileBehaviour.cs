@@ -26,6 +26,11 @@ namespace Scripts.Projectiles
 		/// </summary>
 		public string TargetTag { get; protected set; }
 
+		/// <summary>
+		/// The audio clip to play when wall is hit.
+		/// </summary>
+		public AudioClip WallAudioClip;
+
 		private BoxCollider2D _boxCollider2D;
 		private Vector3 _startingPosition;
 		private ParticleSystem _sparksEffect;
@@ -61,8 +66,8 @@ namespace Scripts.Projectiles
 			// Destroy when impacting solid objects
 			if (tagBehaviour.HasTag("Solid"))
 			{
-				
-				if(gameObject.name == "ProjectileWeaponDefault(Clone)"|| gameObject.name == "ProjectileWeaponRapidFire(Clone") Sparks();
+				AudioManager.Play(WallAudioClip, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
+				if (gameObject.name == "ProjectileWeaponDefault(Clone)"|| gameObject.name == "ProjectileWeaponRapidFire(Clone") Sparks();
 				Destroy(gameObject);
 			}
 
