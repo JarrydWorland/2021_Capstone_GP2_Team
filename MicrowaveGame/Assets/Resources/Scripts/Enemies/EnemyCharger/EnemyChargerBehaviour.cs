@@ -1,6 +1,4 @@
 using UnityEngine;
-using Scripts.Events;
-using Scripts.Levels;
 
 namespace Scripts.Enemies.EnemyCharger
 {
@@ -20,7 +18,6 @@ namespace Scripts.Enemies.EnemyCharger
 		private Vector3 _lazerUpOffset;
 		private Vector3 _lazerDownOffset;
 
-		private EventId<RoomTraversedEventArgs> _roomTraversedEventId;
 		private GameObject _lazerUpInstance;
 		private GameObject _lazerDownInstance;
 
@@ -71,16 +68,8 @@ namespace Scripts.Enemies.EnemyCharger
 			}
 		}
 
-		private void OnEnable()
-		{
-			// register for events
-			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(e => ResetLazer());
-		}
-
 		private void OnDisable()
 		{
-			// unregister from events
-			EventManager.Unregister<RoomTraversedEventArgs>(_roomTraversedEventId);
 			ResetLazer();
 		}
 
