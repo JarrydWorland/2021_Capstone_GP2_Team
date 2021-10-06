@@ -318,7 +318,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &5674462547828722752
@@ -585,7 +585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultWeapon: {fileID: 626987614110471692, guid: 3b3d622189d10b6489f243a181b3726f, type: 3}
   AimAssistConeAngle: 3.25
-  ShowAimIndicator: 0
 --- !u!114 &7284736375818517136
 MonoBehaviour:
   m_ObjectHideFlags: 0
