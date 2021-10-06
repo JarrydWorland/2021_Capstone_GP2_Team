@@ -78,178 +78,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a5549654-8ffe-4559-8596-e9d4c861e94b
-    m_ActionName: Playing/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7dad5b8a-da2c-47bc-8f1f-3592c7ad386b
-    m_ActionName: Playing/Look[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 76d6a890-e855-4609-817f-0841c729b487
-    m_ActionName: Playing/Shoot[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnSelectItemLeft
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: dfa978a8-ced6-4104-a890-d968c0414b06
-    m_ActionName: Playing/Select Item - Left[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnSelectItemRight
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 68ab6e13-0cae-4dc1-9cca-52b56d18f9ca
-    m_ActionName: Playing/Select Item - Right[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotOne
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 91cc1c95-056b-46c2-91af-6941f9160303
-    m_ActionName: Playing/Pickup / Drop Item - Slot 1[/Keyboard/shift,/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotTwo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8cf15f05-d9fc-4698-bc9d-a44db35246b0
-    m_ActionName: Playing/Pickup / Drop Item - Slot 2[/Keyboard/shift,/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotThree
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bd828c4c-389d-491d-8c24-ec5d713fd641
-    m_ActionName: Playing/Pickup / Drop Item - Slot 3[/Keyboard/shift,/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotFour
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f2f8cc50-bbd6-412f-9253-2e9bfb99937d
-    m_ActionName: Playing/Pickup / Drop Item - Slot 4[/Keyboard/shift,/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotOne
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2ec92cc8-8cea-4fe9-9ced-68e52f37f23d
-    m_ActionName: Playing/Use Item - Slot 1[/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotTwo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5370b77c-f546-4ec3-a4e7-a68d96c9bc2a
-    m_ActionName: Playing/Use Item - Slot 2[/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotThree
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a0b06bbd-3987-4c61-8263-46271ad90d2e
-    m_ActionName: Playing/Use Item - Slot 3[/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotFour
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a6e9639c-5299-43d4-97bc-56de51cb2085
-    m_ActionName: Playing/Use Item - Slot 4[/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 41e3c485-6d9e-43fe-90fa-f2d68656b380
     m_ActionName: Menu/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -290,12 +118,96 @@ MonoBehaviour:
     m_ActionName: Menu/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c628f8a4-c078-4d98-a682-987614af6422
-    m_ActionName: Playing/Look - Gamepad[/XInputControllerWindows/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c66a8323-0f3f-4c51-906c-b6b868e691b2
     m_ActionName: Menu/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnPickupItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f9b162f6-90f7-45ac-9043-deb630f17e4a
+    m_ActionName: Playing/Pickup Item[/Gamepad/buttonWest,/Gamepad/dpad/up,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnDropItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 06c43b4d-dc5c-4dd1-966f-a35d3f03fd33
+    m_ActionName: Playing/Drop Item[/Gamepad/buttonEast,/Gamepad/dpad/down,/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnUseItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3ad2ac2e-ab6c-4743-bbbf-62c0ce15034f
+    m_ActionName: Playing/Use Item[/Gamepad/buttonSouth,/Gamepad/leftTrigger,/Keyboard/space,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 30fe91ab-a189-45d2-93b4-9794b710cf8c
+    m_ActionName: Playing/View Item[/Gamepad/buttonNorth,/Gamepad/select,/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnSwitchItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c3492d5f-007a-40b9-b6f2-d95f48086800
+    m_ActionName: Playing/Switch Item[/Gamepad/leftShoulder,/Gamepad/rightShoulder,/Gamepad/dpad/left,/Gamepad/dpad/right,/Keyboard/q,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68ebef4e-4178-40b6-a5f3-d2a19c291e39
+    m_ActionName: Playing/Switch Item [Mouse][/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 222fe43d-3299-4dc8-b44a-bf6911137106
+    m_ActionName: Playing/Move[/Gamepad/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49149ca3-fa52-49ac-addf-d5ecc6d954c9
+    m_ActionName: Playing/Aim[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a18e23a-69ef-401a-a1c4-3e4980ee4bbd
+    m_ActionName: Playing/Aim [Gamepad][/Gamepad/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82c7d9b0-efc7-4ee6-ab05-55542ff2f93f
+    m_ActionName: Playing/Shoot[/Gamepad/rightTrigger,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
