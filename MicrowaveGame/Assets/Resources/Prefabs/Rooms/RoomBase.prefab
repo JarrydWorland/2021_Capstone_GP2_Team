@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enabled: 0
+  SpawnProbabilities: []
 --- !u!114 &4032188139413544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,3 +71,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb23afa31154580803714654fe046ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DoorOpen: {fileID: 8300000, guid: 93146e69e96852844b9a6f158f8a47bc, type: 3}

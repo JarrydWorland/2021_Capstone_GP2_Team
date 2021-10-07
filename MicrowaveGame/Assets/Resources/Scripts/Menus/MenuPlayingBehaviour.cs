@@ -12,7 +12,7 @@ namespace Scripts.Menus
 		{
 			base.OnEnter();
 			GameState.Resume();
-			AudioManager.Play(Unpause);
+			//AudioManager.Play(Unpause);
 		}
 
 		public override void OnLeave()

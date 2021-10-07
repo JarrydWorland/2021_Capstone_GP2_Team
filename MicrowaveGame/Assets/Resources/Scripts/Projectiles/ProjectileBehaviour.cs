@@ -27,7 +27,7 @@ namespace Scripts.Projectiles
 		public string TargetTag { get; protected set; }
 
 		private BoxCollider2D _boxCollider2D;
-		private Vector3 _startingPosition;
+		protected Vector3 _startingPosition;
 
 		private void Start()
 		{
