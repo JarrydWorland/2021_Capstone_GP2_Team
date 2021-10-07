@@ -22,15 +22,14 @@ namespace Scripts.Hazards
 		/// </summary>
 		public float FrictionFactor = 0.25f;
 
-		//public AudioClip sfx;
+		public AudioClip sfx;
 		private void OnTriggerStay2D(Collider2D other)
 		{
 			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
 
 			if (statusEffectBehaviour != null)
 			{
-				statusEffectBehaviour.Apply<StatusEffectSlower>(Duration, AccelerationFactor, FrictionFactor);
-				//AudioManager.Play(sfx);
+				statusEffectBehaviour.Apply<StatusEffectSlower>(Duration, AccelerationFactor, FrictionFactor, sfx);
 			}
 		}
 

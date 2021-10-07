@@ -22,14 +22,13 @@ namespace Scripts.Hazards
 		/// </summary>
 		public int Duration = 5;
 
-		//public AudioClip sfx;
+		public AudioClip sfx;
 		private void OnTriggerStay2D(Collider2D other)
 		{
 			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
 			if (statusEffectBehaviour != null)
 			{
-				statusEffectBehaviour.Apply<StatusEffectMelting>(Duration, Damage, DamageRate);
-				//AudioManager.Play(sfx);
+				statusEffectBehaviour.Apply<StatusEffectMelting>(Duration, Damage, DamageRate,sfx);
 			}
 		}
 	}

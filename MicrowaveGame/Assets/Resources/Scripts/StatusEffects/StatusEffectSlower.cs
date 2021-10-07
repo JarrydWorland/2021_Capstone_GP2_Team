@@ -1,5 +1,6 @@
 using Scripts.Player;
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.StatusEffects
 {
@@ -17,20 +18,24 @@ namespace Scripts.StatusEffects
 		/// </summary>
 		private readonly float _frictionFactor;
 
+		private readonly AudioClip _clip;
+
 		private readonly PlayerMovementBehaviour _playerMovementBehaviour;
 
-		public StatusEffectSlower(int duration, float accelerationFactor, float frictionFactor)
+		public StatusEffectSlower(int duration, float accelerationFactor, float frictionFactor, AudioClip clip)
 		{
 			Duration = duration;
 			_accelerationFactor = accelerationFactor;
 			_frictionFactor = frictionFactor;
+			_clip = clip;
 
+			AudioManager.Play(_clip);
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 			_playerMovementBehaviour.Acceleration *= _accelerationFactor;
 			_playerMovementBehaviour.Friction *= _frictionFactor;
 		}
 
-		public void Update() { }
+		public void Update() {}
 
 		public void Remove()
 		{
