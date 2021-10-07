@@ -11,6 +11,7 @@ namespace Scripts.Menus
 	/// </summary>
 	public abstract class MenuBehaviour : MonoBehaviour
 	{
+
 		public Selectable CurrentSelectable { get; set; }
 
 		private Transform _buttonIndicatorTransform;

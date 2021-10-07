@@ -5,6 +5,7 @@ namespace Scripts.Utilities
 {
 	public static class GameState
 	{
+		
 		/// <summary>
 		/// Freezes the time scale (= 0.0f) and disables player input (moving, looking, etc.).
 		/// </summary>

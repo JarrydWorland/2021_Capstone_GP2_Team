@@ -1,5 +1,6 @@
 ﻿using Scripts.StatusEffects;
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Hazards
 {
@@ -21,10 +22,14 @@ namespace Scripts.Hazards
 		/// </summary>
 		public int Duration = 5;
 
+		public AudioClip sfx;
 		private void OnTriggerStay2D(Collider2D other)
 		{
 			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
-			if (statusEffectBehaviour != null) statusEffectBehaviour.Apply<StatusEffectMelting>(Duration, Damage, DamageRate);
+			if (statusEffectBehaviour != null)
+			{
+				statusEffectBehaviour.Apply<StatusEffectMelting>(Duration, Damage, DamageRate,sfx);
+			}
 		}
 	}
 }
