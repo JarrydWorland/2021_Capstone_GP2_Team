@@ -32,7 +32,7 @@ namespace Scripts.Projectiles
 		public AudioClip WallAudioClip;
 
 		private BoxCollider2D _boxCollider2D;
-		private Vector3 _startingPosition;
+		protected Vector3 _startingPosition;
 		private ParticleSystem _sparksEffect;
 
 		private void Start()

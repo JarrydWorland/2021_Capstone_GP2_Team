@@ -1,5 +1,6 @@
 ﻿using Scripts.Player;
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Hazards
 {
@@ -28,6 +29,8 @@ namespace Scripts.Hazards
 
 		private bool _colliding;
 
+		public AudioClip sfx;
+
 		private void Start()
 		{
 			GameObject playerObject = GameObject.Find("Player");
@@ -48,6 +51,7 @@ namespace Scripts.Hazards
 				{
 					_healthBehaviour.Value -= Damage;
 					_time -= _damageRateInverse;
+					AudioManager.Play(sfx, 0.5f);
 				}
 			}
 		}

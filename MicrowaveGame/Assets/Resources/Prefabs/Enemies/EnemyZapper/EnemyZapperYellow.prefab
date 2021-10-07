@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 4
   AttackDistance: 1.75
+  weaponSfx: {fileID: 8300000, guid: 20f47423be857174892a14646a3e0d4c, type: 3}
 --- !u!1001 &2150955424127264141
 PrefabInstance:
   m_ObjectHideFlags: 0
