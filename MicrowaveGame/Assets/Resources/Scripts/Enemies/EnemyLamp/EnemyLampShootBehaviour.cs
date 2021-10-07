@@ -26,6 +26,8 @@ namespace Scripts.Enemies.EnemyLamp
 		private Animator _animator;
 		private Vector3 _shootingDirection;
 
+		public AudioClip weaponSfx;
+
 		// Start is called before the first frame update
 		void Start()
 		{
@@ -57,6 +59,7 @@ namespace Scripts.Enemies.EnemyLamp
 				ProjectileDamage,
 				"Player"
 			);
+			AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
 		}
 	}
 }

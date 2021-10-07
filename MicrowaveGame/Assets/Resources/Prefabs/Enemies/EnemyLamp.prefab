@@ -132,6 +132,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 5180670377464514851, guid: 9ee9c6373ed3bd24bba71f0618cd2829, type: 3}
   ProjectileSpeed: 10
   ProjectileDamage: 1
+  weaponSfx: {fileID: 8300000, guid: 77f9a8af4a9580e41adf51d487d57874, type: 3}
 --- !u!1 &9195344886885661961
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace Scripts.Menus
 
 			// Update the currently selected button reference for the current menu.
 			MenuManager.Current.CurrentSelectable = button;
-			AudioManager.Play(ButtonScroll);
+			AudioManager.Play(ButtonScroll, 0.55f);
 		}
 	}
 }

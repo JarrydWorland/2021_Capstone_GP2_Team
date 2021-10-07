@@ -63,9 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31bb27bc981446fb2519f90e261c4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnProbability: 1
   Name: Damage Increase
   Description: Increases damage dealt by {0} segment(s)
   IncreaseValue: 1
+  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
 --- !u!1001 &1768573698093045842
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -164,6 +164,7 @@ MonoBehaviour:
   Damage: 1
   DamageRate: 2
   SlowdownFactor: 0.5
+  sfx: {fileID: 8300000, guid: eaeedc20209a9c14fb33cb6af9e3e950, type: 3}
 --- !u!1001 &1636794004184532440
 PrefabInstance:
   m_ObjectHideFlags: 0

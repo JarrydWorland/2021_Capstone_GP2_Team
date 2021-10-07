@@ -19,6 +19,8 @@ namespace Scripts.Rooms
 
 		private static IEnumerable<GameObject> _itemPrefabs;
 
+		public AudioClip DoorOpen;
+
 		// We use "Awake()" here so every room has its events and enemy count calculated before
 		// we enter the room which is necessary for the "OnRoomTraversed()" method behaviour.
 		private void Awake()
@@ -76,6 +78,8 @@ namespace Scripts.Rooms
 
 			GameObject randomItem = Instantiate(randomItemPrefab);
 			randomItem.transform.position = transform.position;
+
+			AudioManager.Play(DoorOpen);
 
 			foreach (var doorConnectionBehaviour in _doorConnectionBehaviours)
 			{
