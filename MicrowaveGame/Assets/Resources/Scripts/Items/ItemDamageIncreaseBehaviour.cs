@@ -1,4 +1,5 @@
 ﻿using Scripts.Inventory;
+using Scripts.Utilities;
 using Scripts.Player;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Scripts.Items
 		public int IncreaseValue;
 
 		private PlayerWeaponBehaviour _playerWeaponBehaviour;
+
+		public AudioClip itemDrop;
 
 		public override void Start()
 		{
@@ -35,6 +38,7 @@ namespace Scripts.Items
 		{
 			_playerWeaponBehaviour.AdditionalDamage -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+			AudioManager.Play(itemDrop, 0.55f);
 
 			return true;
 		}

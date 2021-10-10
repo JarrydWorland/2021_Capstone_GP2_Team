@@ -1,4 +1,5 @@
 using Scripts.Inventory;
+using Scripts.Utilities;
 using Scripts.StatusEffects;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace Scripts.Items
 		public int DurationValue;
 
 		private bool _isUsed;
+
+		public AudioClip itemDrop;
 
 		public override void Start()
 		{
@@ -44,7 +47,9 @@ namespace Scripts.Items
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+			AudioManager.Play(itemDrop, 0.55f);
 			return true;
+
 		}
 	}
 }

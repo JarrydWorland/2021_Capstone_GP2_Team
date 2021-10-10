@@ -25,11 +25,14 @@ namespace Scripts.Hazards
 		public AudioClip sfx;
 		private void OnTriggerStay2D(Collider2D other)
 		{
-			StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponent<StatusEffectBehaviour>();
-
-			if (statusEffectBehaviour != null)
+			if (other.gameObject.name == "Wheel")
 			{
-				statusEffectBehaviour.Apply<StatusEffectSlower>(Duration, AccelerationFactor, FrictionFactor, sfx);
+				StatusEffectBehaviour statusEffectBehaviour = other.gameObject.GetComponentInParent<StatusEffectBehaviour>();
+
+				if (statusEffectBehaviour != null)
+				{
+					statusEffectBehaviour.Apply<StatusEffectSlower>(Duration, AccelerationFactor, FrictionFactor, sfx);
+				}
 			}
 		}
 

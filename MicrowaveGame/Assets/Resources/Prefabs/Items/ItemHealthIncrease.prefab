@@ -63,9 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1a06f09927405d995fa54d97e765ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnProbability: 1
   Name: Health Increase
   Description: Heals the player for {0} segment(s)
   IncreaseValue: 2
+  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
 --- !u!1001 &1277662029549524865
 PrefabInstance:
   m_ObjectHideFlags: 0

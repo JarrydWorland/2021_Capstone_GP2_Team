@@ -319,7 +319,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &5674462547828722752
@@ -560,6 +560,7 @@ MonoBehaviour:
   Acceleration: 1.5
   Friction: 0.015
   MaxVelocity: 0.175
+  moveSfx: {fileID: 8300000, guid: 5e59fbf69708693459cd094bd64e1a25, type: 3}
 --- !u!114 &8083425330494338674
 MonoBehaviour:
   m_ObjectHideFlags: 0

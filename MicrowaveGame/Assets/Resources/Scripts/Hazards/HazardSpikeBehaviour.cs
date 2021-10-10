@@ -1,5 +1,6 @@
 ﻿using Scripts.Player;
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Hazards
 {
@@ -28,6 +29,8 @@ namespace Scripts.Hazards
 
 		private bool _colliding;
 
+		public AudioClip sfx;
+
 		private void Start()
 		{
 			GameObject playerObject = GameObject.Find("Player");
@@ -48,25 +51,28 @@ namespace Scripts.Hazards
 				{
 					_healthBehaviour.Value -= Damage;
 					_time -= _damageRateInverse;
+					AudioManager.Play(sfx, 0.5f);
 				}
 			}
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player") return;
-			_colliding = true;
-
-			_playerMovementBehaviour.MaxVelocity *= SlowdownFactor;
-			_time = _damageRateInverse;
+			if(other.gameObject.name == "Wheel")
+            {
+				_colliding = true;
+				_playerMovementBehaviour.MaxVelocity *= SlowdownFactor;
+				_time = _damageRateInverse;
+			}
 		}
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
-			if (other.gameObject.name != "Player") return;
-
-			_colliding = false;
-			_playerMovementBehaviour.MaxVelocity /= SlowdownFactor;
+			if(other.gameObject.name == "Wheel")
+            {
+				_colliding = false;
+				_playerMovementBehaviour.MaxVelocity /= SlowdownFactor;
+			}
 		}
 	}
 }
