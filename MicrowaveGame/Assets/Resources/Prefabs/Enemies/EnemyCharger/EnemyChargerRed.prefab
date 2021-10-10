@@ -159,6 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf0f0a2bb1efd14e9ea521b60bfa315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeSfx: {fileID: 8300000, guid: 88b18fd08730bbb4fa06008ee2abfa90, type: 3}
+  dischargeSfx: {fileID: 8300000, guid: 98620789cc44b6445a580ea22c118f89, type: 3}
 --- !u!1001 &4340937672537007984
 PrefabInstance:
   m_ObjectHideFlags: 0
