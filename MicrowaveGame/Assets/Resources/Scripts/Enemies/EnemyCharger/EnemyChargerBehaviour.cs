@@ -80,7 +80,8 @@ namespace Scripts.Enemies.EnemyCharger
 			Destroy(_lazerDownInstance);
 			
 			// reset camera rotation
-			UnityEngine.Camera.main.transform.rotation = Quaternion.identity;
+			UnityEngine.Camera camera = UnityEngine.Camera.main;
+			if (camera != null) camera.transform.rotation = Quaternion.identity;
 		}
 
 		/// <summary>
