@@ -15,14 +15,32 @@ namespace Scripts.Inventory
 		private int _currentSlotIndex;
 
 		private List<ItemBehaviour> _nearbyItems;
+		private InventoryInformationPanelBehaviour _inventoryInformationPanelBehaviour;
 
 		private GameObject _player;
+
+		private bool _showInformationPanel;
 
 		private void Start()
 		{
 			_slots = GetComponentsInChildren<InventorySlotBehaviour>();
+
 			_nearbyItems = new List<ItemBehaviour>();
+
+			_inventoryInformationPanelBehaviour = GetComponentInChildren<InventoryInformationPanelBehaviour>();
+			_inventoryInformationPanelBehaviour.Hide();
+
+			_inventoryInformationPanelBehaviour.transform.position =
+				_inventoryInformationPanelBehaviour.transform.position += new Vector3(0.0f, 5.75f, 0.0f);
+
 			_player = GameObject.Find("Player");
+		}
+
+		private void Update()
+		{
+			if (_showInformationPanel && _slots[_currentSlotIndex].ItemBehaviour != null)
+				_inventoryInformationPanelBehaviour.Show(_slots[_currentSlotIndex].ItemBehaviour);
+			else _inventoryInformationPanelBehaviour.Hide();
 		}
 
 		/// <summary>
@@ -82,6 +100,16 @@ namespace Scripts.Inventory
 		{
 			if (!context.performed) return;
 			_slots[_currentSlotIndex].UseItem();
+		}
+
+		/// <summary>
+		/// Shows / hides the information panel for the currently selected item.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		public void OnViewItem(InputAction.CallbackContext context)
+		{
+			if (context.performed) _showInformationPanel = true;
+			else if (context.canceled) _showInformationPanel = false;
 		}
 
 		/// <summary>

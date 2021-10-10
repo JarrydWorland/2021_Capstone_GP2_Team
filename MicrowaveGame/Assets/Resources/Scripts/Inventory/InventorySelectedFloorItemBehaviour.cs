@@ -1,6 +1,5 @@
 using Scripts.Items;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.Inventory
 {
@@ -9,9 +8,7 @@ namespace Scripts.Inventory
 		private InventoryBehaviour _inventoryBehaviour;
 
 		private GameObject _itemPickerObject;
-
-		private GameObject _informationPanelObject;
-		private Text _textName, _textDescription;
+		private InventoryInformationPanelBehaviour _inventoryInformationPanelBehaviour;
 
 		private GameObject _playerObject;
 
@@ -20,10 +17,7 @@ namespace Scripts.Inventory
 			_inventoryBehaviour = GameObject.Find("Inventory").GetComponent<InventoryBehaviour>();
 
 			_itemPickerObject = GameObject.Find("ItemPicker").gameObject;
-			_informationPanelObject = GameObject.Find("InformationPanel").gameObject;
-
-			_textName = _informationPanelObject.transform.Find("Name").GetComponent<Text>();
-			_textDescription = _informationPanelObject.transform.Find("Description").GetComponent<Text>();
+			_inventoryInformationPanelBehaviour = GetComponentInChildren<InventoryInformationPanelBehaviour>();
 
 			_playerObject = GameObject.Find("Player");
 		}
@@ -51,18 +45,13 @@ namespace Scripts.Inventory
 				else if (informationPanelScreenPosition.x - screenSpacing < 0.0f)
 					informationPanelPosition.x += doubleSpacing;
 
-				_informationPanelObject.transform.position = informationPanelPosition;
-
-				_textName.text = itemBehaviour.Name;
-				_textDescription.text = itemBehaviour.Description;
-
 				_itemPickerObject.SetActive(true);
-				_informationPanelObject.SetActive(true);
+				_inventoryInformationPanelBehaviour.Show(itemBehaviour, informationPanelPosition);
 			}
 			else
 			{
+				_inventoryInformationPanelBehaviour.Hide();
 				_itemPickerObject.SetActive(false);
-				_informationPanelObject.SetActive(false);
 			}
 		}
 	}
