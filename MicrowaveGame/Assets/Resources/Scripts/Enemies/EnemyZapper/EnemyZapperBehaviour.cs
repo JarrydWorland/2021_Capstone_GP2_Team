@@ -28,6 +28,7 @@ namespace Scripts.Enemies.EnemyZapper
 		private Animator _animator;
 		private GameObject _shockGameObject;
 
+		public AudioClip weaponSfx;
 		private void Start()
 		{
 			Direction = Vector2.up;
@@ -64,6 +65,7 @@ namespace Scripts.Enemies.EnemyZapper
 		public void Attack()
 		{
 			Instantiate(_shockGameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+			AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
 		}
 
 		private void FixedUpdate()

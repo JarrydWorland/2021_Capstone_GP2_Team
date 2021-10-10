@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7711396043323572313}
   - component: {fileID: 5589856408755488367}
   m_Layer: 0
-  m_Name: Sparks
+  m_Name: Spark_No_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,8 +181,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -287,7 +287,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.97238916, g: 0.990566, b: 0.52705586, a: 1}
+      minColor: {r: 0.45464578, g: 0.6226415, b: 0.61664164, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -350,8 +350,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.25
-      minScalar: 0.05
+      scalar: 0.2
+      minScalar: 0.0375
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1041,8 +1041,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 60
-        minScalar: 30
+        scalar: 20
+        minScalar: 10
         maxCurve:
           serializedVersion: 2
           m_Curve:

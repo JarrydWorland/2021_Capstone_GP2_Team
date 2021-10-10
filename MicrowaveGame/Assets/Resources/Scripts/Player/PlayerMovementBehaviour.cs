@@ -37,6 +37,8 @@ namespace Scripts.Player
 
 		private Rigidbody2D _rigidBody;
 
+		public AudioClip moveSfx;
+
 		private void Start()
 		{
 			_rigidBody = GetComponent<Rigidbody2D>();
@@ -63,6 +65,7 @@ namespace Scripts.Player
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			Direction = context.ReadValue<Vector2>();
+			AudioManager.Play(moveSfx, 0.07f);
 		}
 
 		public void OnTriggerEnter2D(Collider2D other)

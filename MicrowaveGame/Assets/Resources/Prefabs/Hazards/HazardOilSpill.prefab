@@ -189,6 +189,7 @@ MonoBehaviour:
   Duration: 5
   AccelerationFactor: 0.5
   FrictionFactor: 0.25
+  sfx: {fileID: 8300000, guid: 457abcd612aa9934791f5d6c9cc7968b, type: 3}
 --- !u!1001 &1428685431790758638
 PrefabInstance:
   m_ObjectHideFlags: 0
