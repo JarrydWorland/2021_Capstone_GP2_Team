@@ -1,4 +1,5 @@
 using UnityEngine;
+using Scripts.Utilities;
 
 namespace Scripts.Enemies.EnemyCharger
 {
@@ -20,6 +21,9 @@ namespace Scripts.Enemies.EnemyCharger
 
 		private GameObject _lazerUpInstance;
 		private GameObject _lazerDownInstance;
+
+		public AudioClip chargeSfx;
+		public AudioClip dischargeSfx;
 
 		private void Start()
 		{
@@ -47,6 +51,12 @@ namespace Scripts.Enemies.EnemyCharger
 
 			if (lazerActive)
 			{
+				
+				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
+                {
+					AudioManager.Play(dischargeSfx);
+				}
+
 				// enable damage collider
 				_lazerDownInstance.GetComponent<BoxCollider2D>().enabled = true;
 
@@ -93,6 +103,7 @@ namespace Scripts.Enemies.EnemyCharger
 			_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
 			_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 			_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
+			AudioManager.Play(chargeSfx);
 
 		}
 		
