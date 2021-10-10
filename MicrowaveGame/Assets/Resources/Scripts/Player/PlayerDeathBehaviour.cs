@@ -27,7 +27,7 @@ namespace Scripts.Player
 			{
 				Time.timeScale = 0.0f;
 				Explode();
-				AudioManager.Play(PlayerDeath);
+				AudioManager.Play(PlayerDeath, 1f);
 				GameObject.Find("Player").GetComponent<Collider2D>().enabled = false;
 				transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
 				transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;

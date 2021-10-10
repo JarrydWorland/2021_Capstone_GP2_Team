@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
-  PlayerDeath: {fileID: 8300000, guid: ee85c98ddabb2054391bc40e2a8868aa, type: 3}
+  PlayerDeath: {fileID: 8300000, guid: 82a811de84983d84f998cd277256a268, type: 3}
 --- !u!114 &276750575504442152
 MonoBehaviour:
   m_ObjectHideFlags: 0
