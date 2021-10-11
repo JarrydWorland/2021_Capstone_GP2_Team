@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Scripts.Items;
 using Scripts.Utilities;
 using UnityEngine;
@@ -10,100 +12,183 @@ namespace Scripts.Inventory
 		public AudioClip PickupItemAudioClip;
 
 		private InventorySlotBehaviour[] _slots;
-		private CircularQueue<ItemBehaviour> _nearbyItems;
+		private int _currentSlotIndex;
+
+		private List<ItemBehaviour> _nearbyItems;
+
+		private InventorySlotIndicatorBehaviour _inventorySlotIndicatorBehaviour;
+		private InventoryInformationPanelBehaviour _inventoryInformationPanelBehaviour;
 
 		private GameObject _player;
+
+		private bool _showInformationPanel;
 
 		private void Start()
 		{
 			_slots = GetComponentsInChildren<InventorySlotBehaviour>();
-			_nearbyItems = new CircularQueue<ItemBehaviour>();
+
+			_nearbyItems = new List<ItemBehaviour>();
+
+			_inventorySlotIndicatorBehaviour = GetComponentInChildren<InventorySlotIndicatorBehaviour>();
+
+			_inventoryInformationPanelBehaviour = GetComponentInChildren<InventoryInformationPanelBehaviour>();
+			_inventoryInformationPanelBehaviour.Hide();
+
+			_inventoryInformationPanelBehaviour.transform.position =
+				_inventoryInformationPanelBehaviour.transform.position += new Vector3(0.0f, 5.0f, 0.0f);
 
 			_player = GameObject.Find("Player");
 		}
 
-		// --- The below methods are called by Unity's new input system.
-
-		public void OnSelectItemLeft(InputAction.CallbackContext context) => OnSelectItem(context, false);
-		public void OnSelectItemRight(InputAction.CallbackContext context) => OnSelectItem(context, true);
-
-		public void OnPickupDropItemSlotOne(InputAction.CallbackContext context) => OnPickupDropItem(context, 0);
-		public void OnPickupDropItemSlotTwo(InputAction.CallbackContext context) => OnPickupDropItem(context, 1);
-		public void OnPickupDropItemSlotThree(InputAction.CallbackContext context) => OnPickupDropItem(context, 2);
-		public void OnPickupDropItemSlotFour(InputAction.CallbackContext context) => OnPickupDropItem(context, 3);
-
-		public void OnUseItemSlotOne(InputAction.CallbackContext context) => OnUseItem(context, 0);
-		public void OnUseItemSlotTwo(InputAction.CallbackContext context) => OnUseItem(context, 1);
-		public void OnUseItemSlotThree(InputAction.CallbackContext context) => OnUseItem(context, 2);
-		public void OnUseItemSlotFour(InputAction.CallbackContext context) => OnUseItem(context, 3);
-
-		// ---
-
-		/// <summary>
-		/// Changes the currently selected item on the floor.
-		/// Called by the "select item" input action.
-		/// </summary>
-		/// <param name="context">The context of the input action.</param>
-		/// <param name="reverse">Rotates the circular queue clockwise if true, or counter-clockwise if false.</param>
-		private void OnSelectItem(InputAction.CallbackContext context, bool reverse)
+		private void Update()
 		{
-			if (!context.performed || _nearbyItems.Count == 0) return;
-			_nearbyItems.Requeue(reverse);
+			if (_showInformationPanel && _slots[_currentSlotIndex].ItemBehaviour != null)
+				_inventoryInformationPanelBehaviour.Show(_slots[_currentSlotIndex].ItemBehaviour);
+			else _inventoryInformationPanelBehaviour.Hide();
 		}
 
 		/// <summary>
-		/// Picks up an item if one is nearby, or drops an item if one is in the slot.
-		/// Called by the "pick up / drop item" input action.
+		/// Picks up an item if one is nearby.
+		/// Called by the "pickup item" input action.
 		/// </summary>
 		/// <param name="context">The context of the input action.</param>
-		/// <param name="slotId">The ID of the slot.</param>
-		private void OnPickupDropItem(InputAction.CallbackContext context, int slotId)
+		public void OnPickupItem(InputAction.CallbackContext context)
 		{
 			if (!context.performed) return;
 
-			InventorySlotBehaviour inventorySlotBehaviour = _slots[slotId];
-			ItemBehaviour selectedItem = _nearbyItems.Peek();
+			ItemBehaviour selectedItem = GetNearbyItem();
+			if (selectedItem == null) return;
 
-			if (inventorySlotBehaviour.ItemBehaviour == null)
+			InventorySlotBehaviour nextAvailableSlot = _slots.FirstOrDefault(x => x.ItemBehaviour == null);
+
+			if (nextAvailableSlot == null)
 			{
-				if (selectedItem == null) return;
+				// All inventory slots are taken.
+				// Swap the current item with the nearby item.
+				OnDropItem(context);
+				OnPickupItem(context);
 
-				inventorySlotBehaviour.PickupItem(selectedItem);
-				AudioManager.Play(PickupItemAudioClip);
-				selectedItem.gameObject.SetActive(false);
+				return;
 			}
-			else
+
+			// Pickup the item into the next available slot.
+			nextAvailableSlot.PickupItem(selectedItem);
+			selectedItem.gameObject.SetActive(false);
+
+			// If the slot indicator is invisible, make it visible and move it to the new slot.
+			if (!_inventorySlotIndicatorBehaviour.Visible)
 			{
-				ItemBehaviour itemBehaviour = _slots[slotId].DropItem();
-				if (itemBehaviour == null) return;
-
-				itemBehaviour.transform.position = _player.transform.position;
-				itemBehaviour.gameObject.SetActive(true);
-
-				if (selectedItem != null)
-				{
-					inventorySlotBehaviour.PickupItem(selectedItem);
-					selectedItem.gameObject.SetActive(false);
-				}
+				_inventorySlotIndicatorBehaviour.MoveTo(nextAvailableSlot.transform.localPosition, true);
+				_inventorySlotIndicatorBehaviour.Visible = true;
 			}
+
+			AudioManager.Play(PickupItemAudioClip);
 		}
 
 		/// <summary>
-		/// Attempts to use an item in the given slot.
+		/// Drops an item if one is in the slot.
+		/// Called by the "drop item" input action.
 		/// </summary>
 		/// <param name="context">The context of the input action.</param>
-		/// <param name="slotId">The ID of the slot.</param>
-		private void OnUseItem(InputAction.CallbackContext context, int slotId)
+		public void OnDropItem(InputAction.CallbackContext context)
 		{
-			if (!context.performed || Keyboard.current.shiftKey.isPressed) return;
-			_slots[slotId].UseItem();
+			if (!context.performed) return;
+
+			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem();
+			if (itemBehaviour == null) return;
+
+			int nextSlotIndex = -1;
+
+			for (int i = 0; i < _slots.Length; i++)
+			{
+				if (_slots[i].ItemBehaviour != null)
+				{
+					nextSlotIndex = i;
+					break;
+				}
+			}
+
+			// If there's a slot with an item, set it as the current slot and move the indicator to it.
+			// Otherwise hide the indicator.
+			if (nextSlotIndex != -1)
+			{
+				_currentSlotIndex = nextSlotIndex;
+
+				_inventorySlotIndicatorBehaviour.Visible = true;
+				_inventorySlotIndicatorBehaviour.MoveTo(_slots[_currentSlotIndex].transform.localPosition);
+			}
+			else _inventorySlotIndicatorBehaviour.Visible = false;
+
+			itemBehaviour.transform.position = _player.transform.position;
+			itemBehaviour.gameObject.SetActive(true);
+		}
+
+		/// <summary>
+		/// Attempts to use the item in the current slot, if any.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		public void OnUseItem(InputAction.CallbackContext context)
+		{
+			if (!context.performed) return;
+			_slots[_currentSlotIndex].UseItem();
+		}
+
+		/// <summary>
+		/// Shows / hides the information panel for the currently selected item.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		public void OnViewItem(InputAction.CallbackContext context)
+		{
+			if (context.performed) _showInformationPanel = true;
+			else if (context.canceled) _showInformationPanel = false;
+		}
+
+		/// <summary>
+		/// Switches the currently selected item.
+		/// Called by the "switch item" input action.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		public void OnSwitchItem(InputAction.CallbackContext context)
+		{
+			if (!context.performed || _slots.All(x => x.ItemBehaviour == null)) return;
+
+			Vector2 direction = context.ReadValue<Vector2>();
+			int currentSlotIndex = _currentSlotIndex;
+
+			do
+			{
+				currentSlotIndex += (int) direction.x;
+
+				if (currentSlotIndex < 0) currentSlotIndex = _slots.Length - 1;
+				else if (currentSlotIndex >= _slots.Length) currentSlotIndex = 0;
+			} while (_slots[currentSlotIndex].ItemBehaviour == null);
+
+			_currentSlotIndex = currentSlotIndex;
+			_inventorySlotIndicatorBehaviour.MoveTo(_slots[_currentSlotIndex].transform.localPosition);
 		}
 
 		/// <summary>
 		/// Gets the item at the top of the queue (i.e. the selected item).
 		/// </summary>
 		/// <returns>The item at the top of the queue.</returns>
-		public ItemBehaviour GetNearbyItem() => _nearbyItems.Peek();
+		public ItemBehaviour GetNearbyItem()
+		{
+			ItemBehaviour closestItem = null;
+			float closestDistance = float.MaxValue;
+
+			foreach (ItemBehaviour item in _nearbyItems)
+			{
+				float distance = Vector3.Distance(_player.transform.position, item.transform.position);
+
+				if (distance < closestDistance)
+				{
+					closestItem = item;
+					closestDistance = distance;
+				}
+			}
+
+			return closestItem;
+		}
 
 		/// <summary>
 		/// Adds an item to the nearby item list.
@@ -111,7 +196,7 @@ namespace Scripts.Inventory
 		/// <param name="itemBehaviour">The item to be added.</param>
 		public void AddNearbyItem(ItemBehaviour itemBehaviour)
 		{
-			if (itemBehaviour != null && !_nearbyItems.Contains(itemBehaviour)) _nearbyItems.Enqueue(itemBehaviour);
+			if (itemBehaviour != null && !_nearbyItems.Contains(itemBehaviour)) _nearbyItems.Add(itemBehaviour);
 		}
 
 		/// <summary>
