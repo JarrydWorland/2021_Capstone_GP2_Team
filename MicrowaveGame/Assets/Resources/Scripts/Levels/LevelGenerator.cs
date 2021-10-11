@@ -12,6 +12,12 @@ namespace Scripts.Levels
     public static class LevelGenerator
 	{
 		/// <summary>
+		/// The offset to use when placing rooms next to eachother in the
+		/// scene.
+		/// </summary>
+		public static readonly Vector2 RoomPlacementOffset = new Vector2(35 / 1.25f, 35 / 2.0f);
+
+		/// <summary>
 		/// A list containing all the enabled room prefabs that are within the
 		/// Assets/Resources/Prefabs/Rooms directory (including sub-directories).
 		/// Whether or not the prefab is enabled is determined via the Enabled
@@ -141,11 +147,10 @@ namespace Scripts.Levels
 				grid.Add(newRoom);
 
 				// position room in scene
-				const int roomPlacementDistance = 35;
 				newRoom.transform.position = new Vector3
 				{
-					x = newPosition.x * roomPlacementDistance / 1.25f,
-					y = newPosition.y * roomPlacementDistance / 2,
+					x = newPosition.x * RoomPlacementOffset.x,
+					y = newPosition.y * RoomPlacementOffset.y,
 					z = 0,
 				};
 

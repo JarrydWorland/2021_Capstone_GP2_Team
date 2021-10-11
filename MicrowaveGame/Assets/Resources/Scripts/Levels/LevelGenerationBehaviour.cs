@@ -39,8 +39,22 @@ namespace Scripts.Levels
 
 		private void Start()
 		{
-			int? seed = DebugSeed != 0 ? (int?)DebugSeed : null;
-			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, seed, !DebugAlwaysShowRooms);
+			// if no rooms have been manually placed the level will be
+			// automatically generated, if rooms have been manually placed the
+			// level should put the existing rooms into a valid state.
+			
+			bool levelGenerationEnabled = FindObjectsOfType<RoomConnectionBehaviour>().Length == 0;
+			if (levelGenerationEnabled)
+			{
+				// no rooms have been manually placed, generate the level.
+				int? seed = DebugSeed != 0 ? (int?)DebugSeed : null;
+				StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, seed, !DebugAlwaysShowRooms);
+			}
+			else
+			{
+				// rooms have been manually placed, put them in a valid state.
+				StartingRoom = LevelConnector.ConnectLevel(transform);
+			}
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
 			LevelTraversalBehaviour levelTraversalBehaviour = GetComponent<LevelTraversalBehaviour>();
