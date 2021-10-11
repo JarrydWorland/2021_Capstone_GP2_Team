@@ -627,11 +627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.5
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: 6.28
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalRotation.x
@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -663,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423177735013692067, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7942953208010087190, guid: f744935fe0911bd429ec22e26374b6ca, type: 3}
       propertyPath: m_Name
@@ -800,7 +800,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697041650}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9a2a50801f45f5a46a19412712e328ad, type: 3}
