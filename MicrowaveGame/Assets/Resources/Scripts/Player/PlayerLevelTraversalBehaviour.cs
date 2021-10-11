@@ -25,7 +25,7 @@ namespace Scripts.Player
 			{
 				Direction direction = doorConnectionBehaviour.Direction;
 
-				if(direction.ToVector2() == _playerMovementBehaviour.Direction)
+				if(direction == _playerMovementBehaviour.Direction.ToDirection())
                 {
 					GetComponent<PlayerMovementBehaviour>().Velocity = Vector2.zero;
 					_levelTraversalBehaviour.ChangeRoom(doorConnectionBehaviour);
