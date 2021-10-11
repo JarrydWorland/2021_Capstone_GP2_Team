@@ -29,12 +29,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5805293360274820006}
   - {fileID: 5692371425670739285}
   - {fileID: 7535020839666066654}
   - {fileID: 4451715394844109150}
   - {fileID: 8366615307718356296}
+  - {fileID: 5902444351883318132}
   - {fileID: 1076369366278700262}
+  - {fileID: 3527525163845031805}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,178 +79,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a5549654-8ffe-4559-8596-e9d4c861e94b
-    m_ActionName: Playing/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7dad5b8a-da2c-47bc-8f1f-3592c7ad386b
-    m_ActionName: Playing/Look[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 76d6a890-e855-4609-817f-0841c729b487
-    m_ActionName: Playing/Shoot[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnSelectItemLeft
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: dfa978a8-ced6-4104-a890-d968c0414b06
-    m_ActionName: Playing/Select Item - Left[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnSelectItemRight
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 68ab6e13-0cae-4dc1-9cca-52b56d18f9ca
-    m_ActionName: Playing/Select Item - Right[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotOne
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 91cc1c95-056b-46c2-91af-6941f9160303
-    m_ActionName: Playing/Pickup / Drop Item - Slot 1[/Keyboard/shift,/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotTwo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8cf15f05-d9fc-4698-bc9d-a44db35246b0
-    m_ActionName: Playing/Pickup / Drop Item - Slot 2[/Keyboard/shift,/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotThree
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bd828c4c-389d-491d-8c24-ec5d713fd641
-    m_ActionName: Playing/Pickup / Drop Item - Slot 3[/Keyboard/shift,/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnPickupDropItemSlotFour
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f2f8cc50-bbd6-412f-9253-2e9bfb99937d
-    m_ActionName: Playing/Pickup / Drop Item - Slot 4[/Keyboard/shift,/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotOne
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2ec92cc8-8cea-4fe9-9ced-68e52f37f23d
-    m_ActionName: Playing/Use Item - Slot 1[/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotTwo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5370b77c-f546-4ec3-a4e7-a68d96c9bc2a
-    m_ActionName: Playing/Use Item - Slot 2[/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotThree
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a0b06bbd-3987-4c61-8263-46271ad90d2e
-    m_ActionName: Playing/Use Item - Slot 3[/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2606824151859445984}
-        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
-        m_MethodName: OnUseItemSlotFour
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a6e9639c-5299-43d4-97bc-56de51cb2085
-    m_ActionName: Playing/Use Item - Slot 4[/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 41e3c485-6d9e-43fe-90fa-f2d68656b380
     m_ActionName: Menu/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -290,99 +119,223 @@ MonoBehaviour:
     m_ActionName: Menu/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c628f8a4-c078-4d98-a682-987614af6422
-    m_ActionName: Playing/Look - Gamepad[/XInputControllerWindows/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c66a8323-0f3f-4c51-906c-b6b868e691b2
     m_ActionName: Menu/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnPickupItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f9b162f6-90f7-45ac-9043-deb630f17e4a
+    m_ActionName: Playing/Pickup Item[/Gamepad/buttonWest,/Gamepad/dpad/up,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnDropItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 06c43b4d-dc5c-4dd1-966f-a35d3f03fd33
+    m_ActionName: Playing/Drop Item[/Gamepad/buttonEast,/Gamepad/dpad/down,/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnUseItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3ad2ac2e-ab6c-4743-bbbf-62c0ce15034f
+    m_ActionName: Playing/Use Item[/Gamepad/buttonSouth,/Gamepad/leftTrigger,/Keyboard/space,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnViewItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 30fe91ab-a189-45d2-93b4-9794b710cf8c
+    m_ActionName: Playing/View Item[/Gamepad/buttonNorth,/Gamepad/select,/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnSwitchItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c3492d5f-007a-40b9-b6f2-d95f48086800
+    m_ActionName: Playing/Switch Item[/Gamepad/leftShoulder,/Gamepad/rightShoulder,/Gamepad/dpad/left,/Gamepad/dpad/right,/Keyboard/q,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68ebef4e-4178-40b6-a5f3-d2a19c291e39
+    m_ActionName: Playing/Switch Item [Mouse][/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 222fe43d-3299-4dc8-b44a-bf6911137106
+    m_ActionName: Playing/Move[/Gamepad/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49149ca3-fa52-49ac-addf-d5ecc6d954c9
+    m_ActionName: Playing/Aim[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a18e23a-69ef-401a-a1c4-3e4980ee4bbd
+    m_ActionName: Playing/Aim [Gamepad][/Gamepad/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82c7d9b0-efc7-4ee6-ab05-55542ff2f93f
+    m_ActionName: Playing/Shoot[/Gamepad/rightTrigger,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Playing
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &2106009615595699098
-GameObject:
+--- !u!1001 &198396137589196908
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3018070518879395600}
+    m_Modifications:
+    - target: {fileID: 2057019516062580421, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_Name
+      value: InventoryInformationPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057019516062580421, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017684130384806679, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+--- !u!224 &5902444351883318132 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5992437198531877656, guid: a029c7991d4b5be32bd6ed4facc6f9e0, type: 3}
+  m_PrefabInstance: {fileID: 198396137589196908}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5805293360274820006}
-  - component: {fileID: 553846168943395145}
-  m_Layer: 0
-  m_Name: InventorySlotBackground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5805293360274820006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106009615595699098}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3018070518879395600}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &553846168943395145
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106009615595699098}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1035920323
-  m_SortingLayer: 1
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: c27684097c1731a409f4bb6786bdab58, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6862745}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.55, y: 2.55}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1001 &668786666037185308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,11 +349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.15
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.y
@@ -442,11 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.15
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.y
@@ -558,15 +511,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
-      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.z
@@ -604,15 +557,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
       propertyPath: m_LocalPosition.z
@@ -636,4 +589,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7050882633468489666, guid: fcbe4450643c93b4c99deb94a22ce669, type: 3}
   m_PrefabInstance: {fileID: 6637866000426337948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7859594356520187049
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3018070518879395600}
+    m_Modifications:
+    - target: {fileID: 190083644264105145, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_Name
+      value: InventorySelectedSlotIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+--- !u!4 &3527525163845031805 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6766282538214286292, guid: 1fa7183a25093723384893ab3d5a8d49, type: 3}
+  m_PrefabInstance: {fileID: 7859594356520187049}
   m_PrefabAsset: {fileID: 0}
