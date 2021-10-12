@@ -61,9 +61,10 @@ namespace Scripts.Levels
 			// Activate tutorial if it's the player is in the hub scene and
 			// they are viewing the narrative menu, meaning it is the first
 			// time they are in the hub.
-			if (SceneManager.GetActiveScene().name == "Hub" && Persistent.FirstTimeInHub)
+			if (SceneManager.GetActiveScene().name == "Hub")
 			{
-				SetupTutorial();
+				if (Persistent.FirstTimeInHub) SetupTutorial();
+				else LockTutorialDoor();
 			}
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
@@ -82,5 +83,10 @@ namespace Scripts.Levels
 			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
 			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
 		}
+
+		private void LockTutorialDoor() => StartingRoom
+			.GetComponent<RoomConnectionBehaviour>()
+			.GetDoorFacing(Utilities.Direction.South)
+			.Close();
 	}
 }
