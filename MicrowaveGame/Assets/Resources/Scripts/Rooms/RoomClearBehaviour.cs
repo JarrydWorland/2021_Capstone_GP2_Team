@@ -21,6 +21,8 @@ namespace Scripts.Rooms
 
 		public AudioClip DoorOpen;
 
+		public bool SpawnItemOnClear = true;
+
 		// We use "Awake()" here so every room has its events and enemy count calculated before
 		// we enter the room which is necessary for the "OnRoomTraversed()" method behaviour.
 		private void Awake()
@@ -73,11 +75,14 @@ namespace Scripts.Rooms
 
 		private void OnRoomCleared()
 		{
-			GameObject randomItemPrefab = _itemPrefabs
-				.GetRandomElementWithProbability(itemPrefab => itemPrefab.GetComponent<ItemBehaviour>().SpawnProbability);
+			if (SpawnItemOnClear)
+			{
+				GameObject randomItemPrefab = _itemPrefabs
+					.GetRandomElementWithProbability(itemPrefab => itemPrefab.GetComponent<ItemBehaviour>().SpawnProbability);
 
-			GameObject randomItem = Instantiate(randomItemPrefab);
-			randomItem.transform.position = transform.position;
+				GameObject randomItem = Instantiate(randomItemPrefab);
+				randomItem.transform.position = transform.position;
+			}
 
 			AudioManager.Play(DoorOpen);
 

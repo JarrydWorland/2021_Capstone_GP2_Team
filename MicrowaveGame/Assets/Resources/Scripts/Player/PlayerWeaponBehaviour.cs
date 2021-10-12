@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using Scripts.Utilities;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Player
 {
@@ -128,6 +129,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnLook(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
+
 			_isCurrentInputMouse = true;
 
 			Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -139,6 +142,8 @@ namespace Scripts.Player
 		/// </summary>
 		private void Look()
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
+
 			_isCurrentInputMouse = true;
 
 			Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -150,6 +155,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnLookGamepad(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
+
 			_isCurrentInputMouse = false;
 
 			Vector2 value = context.ReadValue<Vector2>();
@@ -161,6 +168,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnShoot(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
+		
 			if (!enabled) return;
 
 			if (context.performed) Shooting = true;

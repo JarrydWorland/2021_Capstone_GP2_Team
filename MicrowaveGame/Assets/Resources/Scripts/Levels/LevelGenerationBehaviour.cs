@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Scripts.Rooms;
+using Scripts.Camera;
 
 namespace Scripts.Levels
 {
@@ -39,8 +41,31 @@ namespace Scripts.Levels
 
 		private void Start()
 		{
-			int? seed = DebugSeed != 0 ? (int?)DebugSeed : null;
-			StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, seed, !DebugAlwaysShowRooms);
+			// if no rooms have been manually placed the level will be
+			// automatically generated, if rooms have been manually placed the
+			// level should put the existing rooms into a valid state.
+			
+			bool levelGenerationEnabled = FindObjectsOfType<RoomConnectionBehaviour>().Length == 0;
+			if (levelGenerationEnabled)
+			{
+				// no rooms have been manually placed, generate the level.
+				int? seed = DebugSeed != 0 ? (int?)DebugSeed : null;
+				StartingRoom = LevelGenerator.GenerateLevel(StartingRoomPrefab, transform, Depth, seed, !DebugAlwaysShowRooms);
+			}
+			else
+			{
+				// rooms have been manually placed, put them in a valid state.
+				StartingRoom = LevelConnector.ConnectLevel(transform);
+			}
+
+			// Activate tutorial if it's the player is in the hub scene and
+			// they are viewing the narrative menu, meaning it is the first
+			// time they are in the hub.
+			if (SceneManager.GetActiveScene().name == "Hub")
+			{
+				if (Persistent.FirstTimeInHub) SetupTutorial();
+				else LockTutorialDoor();
+			}
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
 			LevelTraversalBehaviour levelTraversalBehaviour = GetComponent<LevelTraversalBehaviour>();
@@ -49,5 +74,19 @@ namespace Scripts.Levels
 				levelTraversalBehaviour.CurrentRoom = StartingRoom.GetComponent<RoomConnectionBehaviour>();
 			}
 		}
+
+		private void SetupTutorial()
+		{
+			StartingRoom.SetActive(false);
+			StartingRoom = transform.Find("TutorialStartN").gameObject;
+			StartingRoom.SetActive(true);
+			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
+			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
+		}
+
+		private void LockTutorialDoor() => StartingRoom
+			.GetComponent<RoomConnectionBehaviour>()
+			.GetDoorFacing(Utilities.Direction.South)
+			.Close();
 	}
 }
