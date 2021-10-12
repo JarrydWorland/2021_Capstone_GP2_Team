@@ -35,6 +35,7 @@ namespace Scripts.Menus
 
 		public override void OnLeave()
 		{
+			Persistent.FirstTimeInHub = false;
 			GameState.Resume();
 			base.OnLeave();
 		}
@@ -53,7 +54,6 @@ namespace Scripts.Menus
 
 			MenuManager.Init(this);
 			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
-			Persistent.FirstTimeInHub = false;
 		}
 
 		/// <summary>

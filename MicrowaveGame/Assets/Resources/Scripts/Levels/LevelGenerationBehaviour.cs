@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scripts.Rooms;
 using Scripts.Camera;
-using Scripts.Menus;
 
 namespace Scripts.Levels
 {
@@ -62,7 +61,7 @@ namespace Scripts.Levels
 			// Activate tutorial if it's the player is in the hub scene and
 			// they are viewing the narrative menu, meaning it is the first
 			// time they are in the hub.
-			if (SceneManager.GetActiveScene().name == "Hub" && MenuManager.Current.name == "MenuNarrative")
+			if (SceneManager.GetActiveScene().name == "Hub" && Persistent.FirstTimeInHub)
 			{
 				SetupTutorial();
 			}

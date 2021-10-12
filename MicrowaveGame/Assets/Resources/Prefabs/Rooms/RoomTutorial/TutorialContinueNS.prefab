@@ -214,6 +214,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3277770960959380987, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
+      propertyPath: SpawnItemOnClear
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4335125254231977664, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: m_RootOrder
       value: 4
