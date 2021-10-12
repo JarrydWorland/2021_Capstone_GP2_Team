@@ -47,11 +47,6 @@ namespace Scripts.Menus
 
 			UpdateTexts();
 
-			if (!DebugDisableBackgroundMusic)
-			{
-				AudioManager.Play(BackgroundMusicAudioClip);
-			}
-
 			MenuManager.Init(this);
 			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
 		}
