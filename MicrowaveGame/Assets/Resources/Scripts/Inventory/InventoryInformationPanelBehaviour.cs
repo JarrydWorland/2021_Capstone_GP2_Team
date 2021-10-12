@@ -10,7 +10,7 @@ namespace Scripts.Inventory
 		private GameObject _informationPanelObject;
 		private Text _textName, _textDescription;
 
-		private void Start()
+		private void OnEnable()
 		{
 			_informationPanelObject = GetComponentsInChildren<RectTransform>()
 				.First(x => x.name == "InformationPanel").gameObject;
