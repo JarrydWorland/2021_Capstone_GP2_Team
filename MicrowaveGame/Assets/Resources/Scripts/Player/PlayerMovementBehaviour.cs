@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Utilities;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Player
 {
@@ -64,6 +65,8 @@ namespace Scripts.Player
 		/// </summary>
 		public void OnMove(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
+
 			Direction = context.ReadValue<Vector2>();
 			AudioManager.Play(moveSfx, 0.07f);
 		}

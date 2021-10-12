@@ -4,6 +4,7 @@ using Scripts.Items;
 using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Inventory
 {
@@ -54,6 +55,7 @@ namespace Scripts.Inventory
 		/// <param name="context">The context of the input action.</param>
 		public void OnPickupItem(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed) return;
 
 			ItemBehaviour selectedItem = GetNearbyItem();
@@ -92,6 +94,7 @@ namespace Scripts.Inventory
 		/// <param name="context">The context of the input action.</param>
 		public void OnDropItem(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed) return;
 
 			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem();
@@ -129,6 +132,7 @@ namespace Scripts.Inventory
 		/// <param name="context">The context of the input action.</param>
 		public void OnUseItem(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed) return;
 			_slots[_currentSlotIndex].UseItem();
 		}
@@ -139,6 +143,7 @@ namespace Scripts.Inventory
 		/// <param name="context">The context of the input action.</param>
 		public void OnViewItem(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (context.performed) _showInformationPanel = true;
 			else if (context.canceled) _showInformationPanel = false;
 		}
@@ -150,6 +155,7 @@ namespace Scripts.Inventory
 		/// <param name="context">The context of the input action.</param>
 		public void OnSwitchItem(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed || _slots.All(x => x.ItemBehaviour == null)) return;
 
 			Vector2 direction = context.ReadValue<Vector2>();
