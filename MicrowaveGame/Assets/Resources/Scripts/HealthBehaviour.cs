@@ -14,6 +14,11 @@ namespace Scripts
 		public int MaxHealth = 5;
 
 		/// <summary>
+		/// Prevents the health from becoming less than one.
+		/// </summary>
+		public bool Invincible = false;
+
+		/// <summary>
 		/// The audio clip to play when damage is received.
 		/// </summary>
 		public AudioClip DamageAudioClip;
@@ -46,9 +51,9 @@ namespace Scripts
 			set
 			{
 				int oldValue = _value;
-				_value = value.Clamp(0, MaxHealth);
+				_value = value.Clamp(Invincible ? 1 : 0, MaxHealth);
 				
-				if (oldValue > _value)
+				if (oldValue >= _value)
 				{
 					AudioManager.Play(DamageAudioClip, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 					DamageParticleSystem.Play();
