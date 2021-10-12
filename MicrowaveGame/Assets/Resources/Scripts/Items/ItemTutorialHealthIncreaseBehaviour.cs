@@ -23,11 +23,11 @@ namespace Scripts.Items
 			base.Start();
 
 			Description = string.Format(Description, IncreaseValue);
-			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 
 		private void OnEnable()
 		{
+			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 			if (_healthBehaviour != null)
 			{
 				int targetHealth = _healthBehaviour.MaxHealth - IncreaseValue;
