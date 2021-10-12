@@ -1,5 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Scripts.Rooms;
+using Scripts.Camera;
+using Scripts.Menus;
 
 namespace Scripts.Levels
 {
@@ -56,12 +59,29 @@ namespace Scripts.Levels
 				StartingRoom = LevelConnector.ConnectLevel(transform);
 			}
 
+			// Activate tutorial if it's the player is in the hub scene and
+			// they are viewing the narrative menu, meaning it is the first
+			// time they are in the hub.
+			if (SceneManager.GetActiveScene().name == "Hub" && MenuManager.Current.name == "MenuNarrative")
+			{
+				SetupTutorial();
+			}
+
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
 			LevelTraversalBehaviour levelTraversalBehaviour = GetComponent<LevelTraversalBehaviour>();
 			if (levelTraversalBehaviour != null)
 			{
 				levelTraversalBehaviour.CurrentRoom = StartingRoom.GetComponent<RoomConnectionBehaviour>();
 			}
+		}
+
+		private void SetupTutorial()
+		{
+			StartingRoom.SetActive(false);
+			StartingRoom = transform.Find("TutorialStartN").gameObject;
+			StartingRoom.SetActive(true);
+			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
+			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
 		}
 	}
 }

@@ -2,7 +2,7 @@ namespace Scripts
 {
 	public static class Persistent
 	{
-		public static bool ShownNarritive = false;
+		public static bool FirstTimeInHub = true;
 		public static int CollectedKeycardCount = 0;
 	}
 }

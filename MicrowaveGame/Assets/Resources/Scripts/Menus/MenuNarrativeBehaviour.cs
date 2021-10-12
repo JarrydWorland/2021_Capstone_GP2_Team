@@ -52,8 +52,8 @@ namespace Scripts.Menus
 			}
 
 			MenuManager.Init(this);
-			if (Persistent.ShownNarritive) MenuManager.GoInto("MenuPlaying");
-			Persistent.ShownNarritive = true;
+			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
+			Persistent.FirstTimeInHub = false;
 		}
 
 		/// <summary>
