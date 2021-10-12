@@ -28,9 +28,10 @@ namespace Scripts.Items
 
 		private void OnEnable()
 		{
-			if (_healthBehaviour != null)
+			int targetHealth = _healthBehaviour.MaxHealth - IncreaseValue;
+			if (_healthBehaviour != null && _healthBehaviour.Value != targetHealth)
 			{
-				_healthBehaviour.Value = _healthBehaviour.MaxHealth - IncreaseValue;
+				_healthBehaviour.Value = targetHealth;
 			}
 		}
 
