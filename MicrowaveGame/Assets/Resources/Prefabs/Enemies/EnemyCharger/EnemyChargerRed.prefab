@@ -172,6 +172,10 @@ PrefabInstance:
       propertyPath: deathParticle
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: smokeParticle
+      value: 
+      objectReference: {fileID: 4423831825359684002}
     - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -210,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4902640573814480245, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4902640573814480245, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_LocalRotation.w

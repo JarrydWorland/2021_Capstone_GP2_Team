@@ -175,6 +175,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
     - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: smokeParticle
+      value: 
+      objectReference: {fileID: 7595556399473022328}
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: deathParticles
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
