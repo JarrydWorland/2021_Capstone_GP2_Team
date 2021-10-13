@@ -25,8 +25,10 @@ namespace Scripts.Player
 			{
 				Direction direction = doorConnectionBehaviour.Direction;
 
-				if(direction == _playerMovementBehaviour.Direction.ToDirection())
-                {
+				float dotproduct = Vector2.Dot(direction.ToVector2(), _playerMovementBehaviour.Direction);
+				float angle = Extensions.MapBetween(dotproduct, -1.0f, 1.0f, 180, 0);
+				if(angle < 50)
+				{
 					GetComponent<PlayerMovementBehaviour>().Velocity = Vector2.zero;
 					_levelTraversalBehaviour.ChangeRoom(doorConnectionBehaviour);
 				}
