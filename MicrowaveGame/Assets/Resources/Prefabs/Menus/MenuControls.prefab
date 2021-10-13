@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 260, y: -12.5}
+  m_AnchoredPosition: {x: 260.00232, y: -12.5}
   m_SizeDelta: {x: 1247.6445, y: 1099.2295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2293860197284153866
@@ -84,14 +84,18 @@ MonoBehaviour:
 
     Left Click
 
+    TAB
+
     Q
 
     E
 
-    Shift
-    + 1, 2, 3, 4 Keys
+    F
 
-    1, 2, 3, 4 Keys
+    G
+
+    Space
+    or RMB
 
     Escape'
 --- !u!1 &2564488589942413394
@@ -536,17 +540,21 @@ MonoBehaviour:
 
     Shoot -
 
-    Previous Ground Item -
+    View Item Information -
 
-    Next
-    Ground Item -
+    Select
+    Previous Item -
 
-    Pickup / Drop Inventory Item -
+    Select Next Item -
 
-    Use Item -
+    Pickup Item -
 
-    Pause
-    -'
+    Drop Item -
+
+    Use
+    Item -
+
+    Pause -'
 --- !u!1001 &1181191397332939933
 PrefabInstance:
   m_ObjectHideFlags: 0
