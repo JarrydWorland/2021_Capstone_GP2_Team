@@ -58,6 +58,11 @@ namespace Scripts.Utilities
 		/// The current interpolation value used by Value between 0.0f and 1.0f.
 		/// </summary>
 		public float Interpolation => Mathf.Min((CurrentTime - _lastTimeSeconds) / _durationSeconds, 1.0f);
+
+		/// <summary>
+		/// Immediately finish the current interpolation.
+		/// </summary>
+		public void Finish() => _current = _target;
 	}
 
 	public static class Easing
