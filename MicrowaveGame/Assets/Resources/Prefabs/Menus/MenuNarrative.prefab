@@ -129,6 +129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackgroundMusicAudioClip: {fileID: 8300000, guid: 9a2a50801f45f5a46a19412712e328ad, type: 3}
   DebugDisableBackgroundMusic: 0
+  _strings:
+  - 'Welcome to the LED: Light Extraction Droid demo! You play as Merlin, a futuristic
+    robot detective of Light City.'
+  - Merlin has taken back control of Light City's power grid control room from the
+    Lightbulb Gang, but they've taken the power key card back to the Lightclub!
+  - Now Merlin must infiltrate the Lightclub, defeat the Lightbulb Gang, and retrieve
+    the key card to restore power back to Light City. Good luck!
 --- !u!1 &2251424065532064425
 GameObject:
   m_ObjectHideFlags: 0

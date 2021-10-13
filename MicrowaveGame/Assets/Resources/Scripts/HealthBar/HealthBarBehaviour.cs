@@ -12,6 +12,9 @@ namespace Scripts.HealthBar
 		/// </summary>
 		public GameObject CellPrefab;
 
+		private Color setColor = new Color(61, 255, 98, 255);
+		private Color makeColor; 
+
 		/// <summary>
 		/// The target to watch for health changed events.
 		/// </summary>
@@ -32,12 +35,15 @@ namespace Scripts.HealthBar
 
 		private void CreateCells()
 		{
-			const float margin = 0.75f;
+			const float margin = 0.9f;
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+			CellPrefab.GetComponent<SpriteRenderer>().color = setColor;
 			for (int i=0; i<_targetHealthBehaviour.MaxHealth; i++)
 			{
 				GameObject obj = Instantiate(CellPrefab, transform);
-				obj.transform.position += new Vector3(0, (cellHeight * margin * i), 0);
+				obj.transform.position += new Vector3((cellHeight * margin * i), 0, 0);
+				makeColor = obj.GetComponent<SpriteRenderer>().color;
+				obj.GetComponent<SpriteRenderer>().color = setColor;
 				_cellAnimators.Add(obj.GetComponent<Animator>());
 			}
 		}

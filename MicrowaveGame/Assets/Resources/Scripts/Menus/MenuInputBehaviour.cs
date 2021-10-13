@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Scripts.Menus
@@ -11,6 +12,7 @@ namespace Scripts.Menus
 		/// </summary>
 		public void OnNavigate(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed || MenuManager.Current.name == "MenuPlaying") return;
 
 			Vector2 direction = context.ReadValue<Vector2>();
@@ -27,25 +29,12 @@ namespace Scripts.Menus
 		/// </summary>
 		public void OnPause(InputAction.CallbackContext context)
 		{
+			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (context.performed)
             {
 				if (MenuManager.Current.name == "MenuPlaying") MenuManager.GoInto("MenuPaused");
 				else if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||  MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
 			}
 		}
-
-		///// <summary>
-		///// Called by unity's input system when the back button is pressed.
-		///// </summary>
-		//public void OnCancel(InputAction.CallbackContext context)
-		//{
-		//	if (!context.performed) return;
-
-		//	if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||
-		//	    MenuManager.Current.name == "MenuPaused")
-		//	{
-		//		MenuManager.GoBack();
-		//	}
-		//}
 	}
 }

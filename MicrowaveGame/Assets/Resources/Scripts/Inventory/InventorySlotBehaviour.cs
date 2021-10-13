@@ -11,7 +11,7 @@ namespace Scripts.Inventory
 		public ItemBehaviour ItemBehaviour { get; private set; }
 
 		private SpriteRenderer _inventorySpriteRenderer;
-		private Sprite _inventorySlotSprite;
+		private Sprite _inventorySlotBackgroundSprite;
 
 		private Vector3 _inventorySlotInitialScale;
 
@@ -19,10 +19,10 @@ namespace Scripts.Inventory
 
 		private void Start()
 		{
-			_inventorySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-			_inventorySlotSprite = _inventorySpriteRenderer.sprite;
+			_inventorySpriteRenderer = transform.Find("Animator/Sprite").GetComponent<SpriteRenderer>();
+			_inventorySlotBackgroundSprite = transform.Find("Background").GetComponent<SpriteRenderer>().sprite;
 
-			_inventorySlotInitialScale = _inventorySpriteRenderer.transform.localScale;
+			_inventorySlotInitialScale = transform.Find("Background").localScale;
 
 			_animator = GetComponentInChildren<Animator>();
 		}
@@ -56,14 +56,6 @@ namespace Scripts.Inventory
 		}
 
 		/// <summary>
-		/// Attempt to update the item if there is one in the slot.
-		/// </summary>
-		public void UpdateItem()
-		{
-			if (ItemBehaviour != null) ItemBehaviour.OnUpdateItem(this);
-		}
-
-		/// <summary>
 		/// Attempt to drop the item if there is one in the slot.
 		/// </summary>
 		/// <returns>The dropped item (null if empty).</returns>
@@ -74,7 +66,7 @@ namespace Scripts.Inventory
 			bool shouldDrop = ItemBehaviour.OnDropItem(this);
 			if (!shouldDrop) return null;
 
-			SetSprite(_inventorySlotSprite, Vector3.one);
+			SetSprite(null, _inventorySlotInitialScale);
 
 			ItemBehaviour itemBehaviour = ItemBehaviour;
 			ItemBehaviour = null;
@@ -89,20 +81,27 @@ namespace Scripts.Inventory
 		/// <param name="scale">The scale of the slot.</param>
 		private void SetSprite(Sprite sprite, Vector3 scale)
 		{
+			if (sprite == null)
+			{
+				_inventorySpriteRenderer.sprite = null;
+				_inventorySpriteRenderer.transform.localScale = scale;
+
+				return;
+			}
+
 			float spriteX = sprite.bounds.size.x * scale.x;
 			float spriteY = sprite.bounds.size.y * scale.y;
 
 			float finalScale = spriteX > spriteY
-				? _inventorySlotSprite.bounds.size.x / spriteX
-				: _inventorySlotSprite.bounds.size.y / spriteY;
+				? _inventorySlotBackgroundSprite.bounds.size.x / spriteX
+				: _inventorySlotBackgroundSprite.bounds.size.y / spriteY;
 
-			transform.localScale = new Vector3(
+			_inventorySpriteRenderer.transform.localScale = new Vector3(
 				_inventorySlotInitialScale.x * finalScale * scale.x,
 				_inventorySlotInitialScale.y * finalScale * scale.y,
 				1.0f
 			);
 
-			_inventorySpriteRenderer.transform.localScale = Vector3.one;
 			_inventorySpriteRenderer.sprite = sprite;
 		}
 
