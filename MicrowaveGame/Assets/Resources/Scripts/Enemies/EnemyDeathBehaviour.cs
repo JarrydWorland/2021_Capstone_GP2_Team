@@ -22,7 +22,8 @@ namespace Scripts.Enemies
 				Explode();
 				Destroy(gameObject);
 			}
-			if(_healthBehaviour.Value == 2)
+
+			if(_healthBehaviour.Value <= 2 && !_smokeParticle.isPlaying)
             {
 				_smokeParticle.Play();
 			}
