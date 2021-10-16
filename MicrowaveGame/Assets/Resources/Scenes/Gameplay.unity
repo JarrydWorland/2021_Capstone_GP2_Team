@@ -669,6 +669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 8496926758394248615, guid: 609cf602cf9281a43b8d880e025129ec, type: 3}
+      propertyPath: DebugAlwaysShowRooms
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609cf602cf9281a43b8d880e025129ec, type: 3}
 --- !u!1001 &773961025

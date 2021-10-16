@@ -172,6 +172,14 @@ PrefabInstance:
       propertyPath: deathParticle
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: smokeParticle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: _smokeParticle
+      value: 
+      objectReference: {fileID: 6714823499765861819}
     - target: {fileID: 924144125689729280, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -183,6 +191,10 @@ PrefabInstance:
     - target: {fileID: 3470750117773476168, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_Name
       value: EnemyChargerRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670281759337607175, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4902640573814480245, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: m_RootOrder
@@ -247,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 7107625165376847228, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: DamageParticleSystem
       value: 
-      objectReference: {fileID: 4423831825359684002}
+      objectReference: {fileID: 8171657488965050533}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 876deed47f6e042419ea53645c052839, type: 3}
 --- !u!1 &870477891331515960 stripped
@@ -260,8 +272,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4902640573814480245, guid: 876deed47f6e042419ea53645c052839, type: 3}
   m_PrefabInstance: {fileID: 4340937672537007984}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4423831825359684002 stripped
+--- !u!198 &6714823499765861819 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 97531401738135250, guid: 876deed47f6e042419ea53645c052839, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6994586879032077003, guid: 876deed47f6e042419ea53645c052839, type: 3}
+  m_PrefabInstance: {fileID: 4340937672537007984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8171657488965050533 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5573649705860188117, guid: 876deed47f6e042419ea53645c052839, type: 3}
   m_PrefabInstance: {fileID: 4340937672537007984}
   m_PrefabAsset: {fileID: 0}

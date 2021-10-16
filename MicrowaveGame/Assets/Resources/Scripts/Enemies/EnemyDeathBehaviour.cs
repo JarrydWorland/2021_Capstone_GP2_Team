@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace Scripts.Enemies
 {
@@ -6,7 +7,8 @@ namespace Scripts.Enemies
 	class EnemyDeathBehaviour : MonoBehaviour
 	{
 		private HealthBehaviour _healthBehaviour;
-		public ParticleSystem deathParticle;
+		public ParticleSystem _deathParticle;
+		public ParticleSystem _smokeParticle;
 
 		private void Start()
 		{
@@ -20,12 +22,17 @@ namespace Scripts.Enemies
 				Explode();
 				Destroy(gameObject);
 			}
+
+			if(_healthBehaviour.Value <= 2 && !_smokeParticle.isPlaying)
+            {
+				_smokeParticle.Play();
+			}
 		}
 
 		void Explode()
 		{
 			//Instantiate our one-off particle system
-			ParticleSystem explosionEffect = Instantiate(deathParticle) as ParticleSystem;
+			ParticleSystem explosionEffect = Instantiate(_deathParticle) as ParticleSystem;
 			Vector3 spawnPosition = new Vector3(transform.position.x,transform.position.y,transform.position.z-2); //have to use -2 because sprite ordering is too difficult to implement this late in the project.
 			explosionEffect.transform.position = spawnPosition;
 			
