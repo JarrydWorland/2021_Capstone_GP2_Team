@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnProbability: 0
   Name: Default Weapon
-  Description: Shoots bullets rapidly
+  Description: Merlin's Standard Laser
   Damage: 1
   FireRate: 2
   ProjectileSpeed: 15

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnProbability: 0
   Name: Key Card
-  Description: Restores power to Light City!
+  Description: This will help restore power to Light City!
 --- !u!114 &8614144819129509974
 MonoBehaviour:
   m_ObjectHideFlags: 0

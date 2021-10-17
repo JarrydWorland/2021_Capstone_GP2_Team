@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnProbability: 0.5
-  Name: Defaut Weapon Upgraded
-  Description: Shoots bullets rapidly
+  Name: Weapon Upgrade
+  Description: Able to fire rapidly
   Damage: 1
   FireRate: 5
   ProjectileSpeed: 25
