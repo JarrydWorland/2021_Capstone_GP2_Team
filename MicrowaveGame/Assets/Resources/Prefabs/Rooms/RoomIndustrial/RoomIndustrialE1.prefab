@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836905721438733137, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: m_Name
-      value: RoomIndustrialE_1
+      value: RoomIndustrialE1
       objectReference: {fileID: 0}
     - target: {fileID: 2840917407308940322, guid: f946603811f0b9c4288f1413c1bc842e, type: 3}
       propertyPath: m_RootOrder
