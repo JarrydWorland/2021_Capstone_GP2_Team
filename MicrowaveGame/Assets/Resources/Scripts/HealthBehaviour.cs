@@ -81,7 +81,7 @@ namespace Scripts
 			float white = 1f - Mathf.Min(_flashTimer, 1f);
 			foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
 			{
-				spriteRenderer.color = new Color(white, white, white);
+				spriteRenderer.color = new Color(white, 0.27f * white, 0.27f * white);
 			}
 		}
 	}
