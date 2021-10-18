@@ -29,7 +29,7 @@ namespace Scripts
 		public ParticleSystem DamageParticleSystem;
 
 		private float _flashTimer = 1.0f;
-		private const float _flashDurationSeconds = 0.2f;
+		private const float _flashDurationSeconds = 0.25f;
 		private const float _flashDurationSecondsInverse = 1.0f / _flashDurationSeconds;
 		private List<SpriteRenderer> _spriteRenderers
 		{
