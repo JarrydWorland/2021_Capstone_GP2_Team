@@ -168,7 +168,7 @@ namespace Scripts.Inventory
 			Vector2 direction = context.ReadValue<Vector2>();
 
 			int value = (int) direction.x;
-			if (value == 0) value = (int) -direction.y;
+			if (value == 0) value = (int) -direction.y < 0 ? -1 : 1;
 
 			int currentSlotIndex = _currentSlotIndex;
 
