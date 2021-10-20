@@ -48,18 +48,25 @@ namespace Scripts.Enemies.EnemyLamp
 		/// <summary>
 		/// Shoot a projectile, this is called by a callback within the lamps
 		/// animations.
-		/// </summary>
+		/// </summary>d
 		public void Shoot(int direction)
 		{
-			InstanceFactory.InstantiateProjectile(
+			if (_player.GetComponent<HealthBehaviour>().Value <= 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot"))
+			{
+				_animator.Play("Idle");
+			}
+			else
+			{
+				InstanceFactory.InstantiateProjectile(
 				ProjectilePrefab,
 				_projectileSpawn.position,
 				_shootingDirection,
 				ProjectileSpeed,
 				ProjectileDamage,
 				"Player"
-			);
-			AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
+				);
+				AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
+			}
 		}
 	}
 }

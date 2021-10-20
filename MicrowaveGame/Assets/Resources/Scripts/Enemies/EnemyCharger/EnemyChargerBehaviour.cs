@@ -100,10 +100,20 @@ namespace Scripts.Enemies.EnemyCharger
 		/// </summary>
 		public void Fire()
 		{
-			_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
-			_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
-			_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
-			AudioManager.Play(chargeSfx);
+			if (_player.GetComponent<HealthBehaviour>().Value <= 0 &&
+				_animator.GetCurrentAnimatorStateInfo(0).IsName("Charge") ||
+				_animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyChargerLocate") ||
+				_animator.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
+			{
+				_animator.Play("Idle");
+			}
+			else
+			{
+				_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
+				_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
+				_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
+				AudioManager.Play(chargeSfx);
+			}
 
 		}
 		
