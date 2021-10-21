@@ -18,6 +18,7 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			Persistent.CollectedKeycardCount += 1;
+			Persistent.FirstTimeInHub = false;
 			MenuManager.ShowDialogue(_dialogueContentBehaviour.DialogueContent, () =>
 			{
 				SceneManager.LoadScene("Hub");

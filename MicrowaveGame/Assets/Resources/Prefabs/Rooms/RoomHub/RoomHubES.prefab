@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2507488978888785857}
   - component: {fileID: 5370135058894737430}
+  - component: {fileID: 7355975850945795249}
   m_Layer: 0
   m_Name: HubRoom_card scanner
   m_TagString: Untagged
@@ -492,6 +493,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7355975850945795249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492368518782263075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581b14f229b57764d891ba2676e03f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardCount: 0
+  _hubCount: 0
 --- !u!1 &8996388910753398575
 GameObject:
   m_ObjectHideFlags: 0
