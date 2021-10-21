@@ -150,20 +150,31 @@ namespace Scripts.Inventory
 
 		/// <summary>
 		/// Switches the currently selected item.
+		/// Called by the "switch item (mouse)" input action.
+		/// </summary>
+		/// <param name="context">The context of the input action.</param>
+		public void OnSwitchItemMouse(InputAction.CallbackContext context) => OnSwitchItem(context);
+
+		/// <summary>
+		/// Switches the currently selected item.
 		/// Called by the "switch item" input action.
 		/// </summary>
 		/// <param name="context">The context of the input action.</param>
 		public void OnSwitchItem(InputAction.CallbackContext context)
 		{
-			if (!SceneManager.GetActiveScene().isLoaded) return;
-			if (!context.performed || _slots.All(x => x.ItemBehaviour == null)) return;
+			if (!SceneManager.GetActiveScene().isLoaded || !context.performed ||
+			    _slots.All(x => x.ItemBehaviour == null)) return;
 
-			Vector2 direction = context.ReadValue<Vector2>();
+			Vector2 direction = context.ReadValue<Vector2>().normalized;
+
+			int value = (int) direction.x;
+			if (value == 0) value = (int) -direction.y;
+
 			int currentSlotIndex = _currentSlotIndex;
 
 			do
 			{
-				currentSlotIndex += (int) direction.x;
+				currentSlotIndex += value;
 
 				if (currentSlotIndex < 0) currentSlotIndex = _slots.Length - 1;
 				else if (currentSlotIndex >= _slots.Length) currentSlotIndex = 0;
