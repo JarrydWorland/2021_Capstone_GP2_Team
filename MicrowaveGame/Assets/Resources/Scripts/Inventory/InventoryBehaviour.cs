@@ -204,7 +204,7 @@ namespace Scripts.Inventory
 		/// <summary>
 		/// Updates the slot indicator's visibility and position.
 		/// </summary>
-		/// <param name="inventorySlotBehaviour">If one is given, assume we're picking up an item. Otherwise, assuming we're dropping an item.</param>
+		/// <param name="inventorySlotBehaviour">If one is given, assume we're picking up an item. Otherwise, assume we're dropping an item.</param>
 		public void UpdateSlotIndicator(InventorySlotBehaviour inventorySlotBehaviour = null)
 		{
 			if (inventorySlotBehaviour != null && !_inventorySlotIndicatorBehaviour.Visible)
