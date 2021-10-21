@@ -165,10 +165,10 @@ namespace Scripts.Inventory
 			if (!SceneManager.GetActiveScene().isLoaded || !context.performed ||
 			    _slots.All(x => x.ItemBehaviour == null)) return;
 
-			Vector2 direction = context.ReadValue<Vector2>();
+			Vector2 direction = context.ReadValue<Vector2>().normalized;
 
 			int value = (int) direction.x;
-			if (value == 0) value = (int) -direction.y < 0 ? -1 : 1;
+			if (value == 0) value = (int) -direction.y;
 
 			int currentSlotIndex = _currentSlotIndex;
 
