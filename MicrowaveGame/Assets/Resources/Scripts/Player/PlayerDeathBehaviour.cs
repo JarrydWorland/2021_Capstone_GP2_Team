@@ -9,8 +9,10 @@ namespace Scripts.Player
 {
 	public class PlayerDeathBehaviour : MonoBehaviour
 	{
-		private const float CameraShakeStrength = 1.0f;
-		private const float CameraShakeDamping = 10.0f;
+		private const float CameraShakeStrength = 3.0f;
+		private const float CameraShakeDamping = 30.0f;
+		//private const float TimeFactor = 1f;
+		private Transform CameraTransform;
 
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
@@ -23,6 +25,7 @@ namespace Scripts.Player
 			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 			transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
 			transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
+			CameraTransform = UnityEngine.Camera.main.transform;
 		}
 
         private void OnHealthChanged(HealthChangedEventArgs eventArgs)
@@ -63,13 +66,21 @@ namespace Scripts.Player
 
 		private IEnumerator Shake()
         {
-			float zRotation = UnityEngine.Random.Range(0f, CameraShakeDamping) - (CameraShakeStrength / 2.0f);
-			UnityEngine.Camera.main.transform.rotation = Quaternion.Lerp(
-				UnityEngine.Camera.main.transform.rotation,
-				Quaternion.Euler(0, 0, zRotation),
-				CameraShakeDamping * Time.deltaTime
-				);
-			yield return new WaitForSecondsRealtime(0.25f);
+			for (int i = 0; i < 10f; i++)
+			{
+				float zRotation = UnityEngine.Random.Range(-CameraShakeDamping, CameraShakeDamping) - (CameraShakeStrength / 2.0f);
+				CameraTransform.rotation = Quaternion.Lerp(
+					CameraTransform.rotation,
+					Quaternion.Euler(0, 0, zRotation),
+					CameraShakeDamping * Time.deltaTime
+					);
+				yield return new WaitForSecondsRealtime(0.05f);
+			}
+				Reset();
+		}
+
+        private void Reset()
+        {
 			UnityEngine.Camera camera = UnityEngine.Camera.main;
 			if (camera != null) camera.transform.rotation = Quaternion.identity;
 		}
