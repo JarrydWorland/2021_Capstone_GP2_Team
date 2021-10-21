@@ -1,11 +1,11 @@
 using Scripts.Inventory;
-using Scripts.Utilities;
 using Scripts.StatusEffects;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
-	public class ItemSpeedIncreaseBehaviour : ItemBehaviour
+    public class ItemSpeedIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of additional speed when the item is active.

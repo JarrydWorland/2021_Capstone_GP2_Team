@@ -1,7 +1,5 @@
-using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Scripts.Dialogue;
 using Scripts.Utilities;
 
 namespace Scripts.DungeonEntrance

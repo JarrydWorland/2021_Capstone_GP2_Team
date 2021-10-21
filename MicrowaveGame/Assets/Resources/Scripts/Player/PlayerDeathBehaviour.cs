@@ -1,12 +1,12 @@
-﻿using Scripts.Events;
-using Scripts.Menus;
-using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Menus;
 
 namespace Scripts.Player
 {
-	public class PlayerDeathBehaviour : MonoBehaviour
+    public class PlayerDeathBehaviour : MonoBehaviour
 	{
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 

@@ -1,10 +1,10 @@
-﻿using Scripts.Inventory;
-using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Inventory;
 using UnityEngine;
 
 namespace Scripts.Items
 {
-	public class ItemHealthIncreaseBehaviour : ItemBehaviour
+    public class ItemHealthIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of health to heal the player when the item is used.

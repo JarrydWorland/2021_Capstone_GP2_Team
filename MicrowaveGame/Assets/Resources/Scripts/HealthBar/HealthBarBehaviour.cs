@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
 using Scripts.Events;
 
 namespace Scripts.HealthBar
 {
-	public class HealthBarBehaviour : MonoBehaviour
+    public class HealthBarBehaviour : MonoBehaviour
 	{
 		/// <summary>
 		/// How cell prefab to use in the health bar.
