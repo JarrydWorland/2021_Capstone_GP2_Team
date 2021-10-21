@@ -3,11 +3,15 @@ using Scripts.Menus;
 using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace Scripts.Player
 {
 	public class PlayerDeathBehaviour : MonoBehaviour
 	{
+		private const float CameraShakeStrength = 1.0f;
+		private const float CameraShakeDamping = 10.0f;
+
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
 		public ParticleSystem deathParticles;
@@ -21,7 +25,7 @@ namespace Scripts.Player
 			transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
 		}
 
-		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
+        private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
 			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
@@ -34,6 +38,10 @@ namespace Scripts.Player
 				transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
+			}
+			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue < eventArgs.OldValue)
+            {
+				StartCoroutine(Shake());
 			}
 		}
 
@@ -52,5 +60,18 @@ namespace Scripts.Player
 			//destroy the particle system when its duration is up
 			Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
 		}
-	}
+
+		private IEnumerator Shake()
+        {
+			float zRotation = UnityEngine.Random.Range(0f, CameraShakeDamping) - (CameraShakeStrength / 2.0f);
+			UnityEngine.Camera.main.transform.rotation = Quaternion.Lerp(
+				UnityEngine.Camera.main.transform.rotation,
+				Quaternion.Euler(0, 0, zRotation),
+				CameraShakeDamping * Time.deltaTime
+				);
+			yield return new WaitForSecondsRealtime(0.25f);
+			UnityEngine.Camera camera = UnityEngine.Camera.main;
+			if (camera != null) camera.transform.rotation = Quaternion.identity;
+		}
+    }
 }
