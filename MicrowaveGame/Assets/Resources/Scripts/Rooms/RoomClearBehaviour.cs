@@ -20,6 +20,7 @@ namespace Scripts.Rooms
 		private static IEnumerable<GameObject> _itemPrefabs;
 
 		public AudioClip DoorOpen;
+		public AudioClip DoorLock;
 
 		public bool SpawnItemOnClear = true;
 
@@ -62,6 +63,7 @@ namespace Scripts.Rooms
 
 		private void OnRoomTraversed(RoomTraversedEventArgs eventArgs)
 		{
+			bool onceShut = false;
 			RoomClearBehaviour roomClearBehaviour =
 				eventArgs.CurrentRoom.GetComponent<RoomClearBehaviour>();
 
@@ -69,7 +71,16 @@ namespace Scripts.Rooms
 
 			foreach (DoorConnectionBehaviour doorConnectionBehaviour in roomClearBehaviour._doorConnectionBehaviours)
 			{
-				if (doorConnectionBehaviour.IsOpen) doorConnectionBehaviour.Close();
+				if (doorConnectionBehaviour.IsOpen)
+				{
+					doorConnectionBehaviour.Close();
+					if (!onceShut)
+					{
+						AudioManager.Play(DoorLock, 0.75f, false);
+						onceShut = true;
+					}
+				}
+				
 			}
 		}
 

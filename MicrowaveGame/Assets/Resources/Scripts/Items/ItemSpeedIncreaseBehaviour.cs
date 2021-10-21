@@ -20,6 +20,7 @@ namespace Scripts.Items
 		private bool _isUsed;
 
 		public AudioClip itemDrop;
+		public AudioClip speedSFX;
 
 		public override void Start()
 		{
@@ -37,6 +38,7 @@ namespace Scripts.Items
 			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
 				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
 
+			AudioManager.Play(speedSFX, 0.95f, false);
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 			inventorySlotBehaviour.DropItem();
 			Destroy(gameObject);
@@ -46,8 +48,11 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			if (!_isUsed)
+			{
+				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+				AudioManager.Play(itemDrop, 0.55f);
+			}
 			return true;
 
 		}
