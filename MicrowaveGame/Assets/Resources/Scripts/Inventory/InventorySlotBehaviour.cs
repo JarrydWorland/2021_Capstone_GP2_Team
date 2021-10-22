@@ -17,6 +17,8 @@ namespace Scripts.Inventory
 
 		private Animator _animator;
 
+		private static InventoryBehaviour _inventoryBehaviour;
+
 		private void Start()
 		{
 			_inventorySpriteRenderer = transform.Find("Animator/Sprite").GetComponent<SpriteRenderer>();
@@ -25,6 +27,8 @@ namespace Scripts.Inventory
 			_inventorySlotInitialScale = transform.Find("Background").localScale;
 
 			_animator = GetComponentInChildren<Animator>();
+
+			_inventoryBehaviour = GameObject.Find("Inventory").GetComponent<InventoryBehaviour>();
 		}
 
 		private void Update()
@@ -70,6 +74,8 @@ namespace Scripts.Inventory
 
 			ItemBehaviour itemBehaviour = ItemBehaviour;
 			ItemBehaviour = null;
+
+			_inventoryBehaviour.UpdateSlotIndicator();
 
 			return itemBehaviour;
 		}
