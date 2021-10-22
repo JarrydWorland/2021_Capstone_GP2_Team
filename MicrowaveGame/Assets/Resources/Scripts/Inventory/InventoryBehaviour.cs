@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using Scripts.Audio;
 using Scripts.Items;
-using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Scripts.Inventory
 {
-	public class InventoryBehaviour : MonoBehaviour
+    public class InventoryBehaviour : MonoBehaviour
 	{
 		public AudioClip PickupItemAudioClip;
 
