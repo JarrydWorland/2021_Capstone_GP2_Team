@@ -1,10 +1,10 @@
 ﻿using Scripts.Player;
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Hazards
 {
-	public class HazardSpikeBehaviour : HazardBehaviour
+    public class HazardSpikeBehaviour : HazardBehaviour
 	{
 		/// <summary>
 		/// The amount of damage that will be dealt to the player.

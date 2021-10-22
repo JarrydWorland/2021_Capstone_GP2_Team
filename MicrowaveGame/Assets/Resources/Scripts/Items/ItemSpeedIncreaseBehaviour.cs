@@ -1,11 +1,11 @@
 using Scripts.Inventory;
-using Scripts.Utilities;
 using Scripts.StatusEffects;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
-	public class ItemSpeedIncreaseBehaviour : ItemBehaviour
+    public class ItemSpeedIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of additional speed when the item is active.
@@ -17,10 +17,10 @@ namespace Scripts.Items
 		/// </summary>
 		public int DurationValue;
 
-		private bool _isUsed;
+		private bool _isActive, _isUsed;
+		private float _time;
 
 		public AudioClip itemDrop;
-		public AudioClip speedSFX;
 
 		public override void Start()
 		{
@@ -33,18 +33,28 @@ namespace Scripts.Items
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_isUsed = true;
+			if (_isActive) return;
+			_isActive = _isUsed = true;
 
 			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
 				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
 
-			AudioManager.Play(speedSFX, 0.95f, false);
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
+		}
+
+		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour)
+		{
+			if (!_isActive) return;
+
+			_time += Time.deltaTime;
+			if (_time < DurationValue) return;
+
+			_isActive = false;
+
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			inventorySlotBehaviour.DropItem();
 			Destroy(gameObject);
 		}
-
-		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour) { }
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
@@ -53,8 +63,8 @@ namespace Scripts.Items
 				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 				AudioManager.Play(itemDrop, 0.55f);
 			}
-			return true;
 
+			return !_isActive;
 		}
 	}
 }

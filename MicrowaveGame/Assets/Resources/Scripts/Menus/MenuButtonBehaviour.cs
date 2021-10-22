@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Menus
 {
-	public class MenuButtonBehaviour : MonoBehaviour, IPointerEnterHandler, ISelectHandler
+    public class MenuButtonBehaviour : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 	{
 		public AudioClip ButtonScroll;
 
