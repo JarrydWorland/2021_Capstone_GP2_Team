@@ -134,6 +134,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 3792441add99d074f92b3d64346a73a9, type: 3}
     - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
+      propertyPath: _explosionSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 3792441add99d074f92b3d64346a73a9, type: 3}
+    - target: {fileID: 868377942114259293, guid: 876deed47f6e042419ea53645c052839, type: 3}
       propertyPath: deathParticle
       value: 
       objectReference: {fileID: 1823355332080700248, guid: 7b65b1113adccc04eb975a6e84a1fe7e, type: 3}
