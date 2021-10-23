@@ -19,7 +19,7 @@ namespace Scripts.Menus
 		private const int _maxSentenceLength = 200;
 		private const float _charactersPerSecond = 30.0f;
 		private Action _onDialogueComplete = null;
-
+		public AudioClip textWrite;
 		public override void OnEnter()
 		{
 			base.OnEnter();
@@ -77,6 +77,8 @@ namespace Scripts.Menus
 
 			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
 			_currentSentence.Value = _sentences.Dequeue();
+
+			//AudioManager.Play(textWrite, 1f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 		}
 
 		/// <summary>

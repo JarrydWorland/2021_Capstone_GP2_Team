@@ -82,7 +82,7 @@ MonoBehaviour:
   Description: Heals player damage by {0}
   IncreaseValue: 2
   itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
---- !u!1001 &1277662029549524865
+  healthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2

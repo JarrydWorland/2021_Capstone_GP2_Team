@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Scripts.Rooms;
 using Scripts.Doors;
 using Scripts.Camera;
-using Scripts.Utilities;
 using System;
 using Scripts.Events;
+using Scripts.Audio;
 using Scripts.Menus;
+using Scripts.Utilities;
 
 namespace Scripts.Levels
 {
-	[RequireComponent(typeof(LevelGenerationBehaviour))]
+    [RequireComponent(typeof(LevelGenerationBehaviour))]
 	public class LevelTraversalBehaviour : MonoBehaviour
 	{
 		/// <summary>

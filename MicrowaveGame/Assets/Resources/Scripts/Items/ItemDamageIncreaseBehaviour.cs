@@ -1,11 +1,11 @@
 ﻿using Scripts.Inventory;
-using Scripts.Utilities;
 using Scripts.Player;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
-	public class ItemDamageIncreaseBehaviour : ItemBehaviour
+    public class ItemDamageIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of additional damage dealt by the player when the item is active.

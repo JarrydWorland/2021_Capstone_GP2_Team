@@ -1,15 +1,14 @@
 ﻿using System.Linq;
-using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Scripts.Menus
 {
-	/// <summary>
-	/// The base menu behaviour to extend off of.
-	/// </summary>
-	public abstract class MenuBehaviour : MonoBehaviour
+    /// <summary>
+    /// The base menu behaviour to extend off of.
+    /// </summary>
+    public abstract class MenuBehaviour : MonoBehaviour
 	{
 
 		public Selectable CurrentSelectable { get; set; }
