@@ -21,6 +21,7 @@ namespace Scripts.Items
 		private float _time;
 
 		public AudioClip itemDrop;
+		public AudioClip speedIncrease;
 
 		public override void Start()
 		{
@@ -38,6 +39,8 @@ namespace Scripts.Items
 
 			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
 				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
+
+			AudioManager.Play(speedIncrease, 0.75f, false);
 
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
