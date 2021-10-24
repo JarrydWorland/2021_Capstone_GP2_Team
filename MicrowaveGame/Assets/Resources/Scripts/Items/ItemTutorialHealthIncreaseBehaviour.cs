@@ -1,11 +1,11 @@
 ﻿using Scripts.Inventory;
-using Scripts.Utilities;
 using UnityEngine;
 using Scripts.Events;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
-	public class ItemTutorialHealthIncreaseBehaviour : ItemBehaviour
+    public class ItemTutorialHealthIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of health to heal the player when the item is used.
@@ -17,6 +17,7 @@ namespace Scripts.Items
 		private bool _isUsed;
 
 		public AudioClip itemDrop;
+		public AudioClip healthSFX;
 
 		public override void Start()
 		{
@@ -45,7 +46,7 @@ namespace Scripts.Items
 				_isUsed = true;
 
 				_healthBehaviour.Value += IncreaseValue;
-
+				AudioManager.Play(healthSFX, 1f);
 				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 				inventorySlotBehaviour.DropItem();
 
@@ -65,8 +66,11 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			if (!_isUsed)
+			{
+				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+				AudioManager.Play(itemDrop, 0.55f);
+			}
 			return true;
 		}
 	}

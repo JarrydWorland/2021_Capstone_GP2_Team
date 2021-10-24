@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Enemies.EnemyZapper
 {

@@ -51,23 +51,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6451877114390167387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5979434245322456136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31796240da884a4bb651685ad77d692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpawnProbability: 0
-  Name: Health Increase
-  Description: Heals the player for {0} segment(s)
-  IncreaseValue: 2
-  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
 --- !u!114 &2927735266534546174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +65,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tags:
   - Enemy
---- !u!1001 &1277662029549524865
+--- !u!114 &6451877114390167387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979434245322456136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31796240da884a4bb651685ad77d692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnProbability: 0
+  Name: Health Increase
+  Description: Heals player damage by {0}
+  IncreaseValue: 2
+  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
+  healthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2

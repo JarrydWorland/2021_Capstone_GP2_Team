@@ -1,10 +1,10 @@
 using Scripts.Player;
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.StatusEffects
 {
-	public class StatusEffectSlower : IStatusEffect
+    public class StatusEffectSlower : IStatusEffect
 	{
 		public int Duration { get; }
 

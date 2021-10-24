@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using Scripts.Utilities;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Menus
 {

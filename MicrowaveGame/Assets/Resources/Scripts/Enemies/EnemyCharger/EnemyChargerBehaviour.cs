@@ -1,5 +1,5 @@
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Enemies.EnemyCharger
 {
@@ -24,6 +24,9 @@ namespace Scripts.Enemies.EnemyCharger
 
 		public AudioClip chargeSfx;
 		public AudioClip dischargeSfx;
+
+		private AudioId _chargeSfxId;
+		private AudioId _dischargeSfxId;
 
 		private void Start()
 		{
@@ -54,7 +57,7 @@ namespace Scripts.Enemies.EnemyCharger
 				
 				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
                 {
-					AudioManager.Play(dischargeSfx);
+					_dischargeSfxId = AudioManager.Play(dischargeSfx);
 				}
 
 				// enable damage collider
@@ -81,6 +84,8 @@ namespace Scripts.Enemies.EnemyCharger
 		private void OnDisable()
 		{
 			ResetLazer();
+			AudioManager.Stop(_chargeSfxId);
+			AudioManager.Stop(_dischargeSfxId);
 		}
 
 		private void ResetLazer()
@@ -100,10 +105,7 @@ namespace Scripts.Enemies.EnemyCharger
 		/// </summary>
 		public void Fire()
 		{
-			if (_player.GetComponent<HealthBehaviour>().Value <= 0 &&
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("Charge") ||
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyChargerLocate") ||
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
+			if (_player.GetComponent<HealthBehaviour>().Value <= 0 && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			{
 				_animator.Play("Idle");
 			}
@@ -112,7 +114,7 @@ namespace Scripts.Enemies.EnemyCharger
 				_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
 				_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 				_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
-				AudioManager.Play(chargeSfx);
+				_chargeSfxId = AudioManager.Play(chargeSfx);
 			}
 
 		}

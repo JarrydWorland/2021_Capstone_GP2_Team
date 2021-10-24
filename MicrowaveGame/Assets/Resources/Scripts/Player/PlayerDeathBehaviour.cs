@@ -1,13 +1,13 @@
-﻿using Scripts.Events;
-using Scripts.Menus;
-using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Scripts.Menus;
 
 namespace Scripts.Player
 {
-	public class PlayerDeathBehaviour : MonoBehaviour
+    public class PlayerDeathBehaviour : MonoBehaviour
 	{
 		private const float CameraShakeStrength = 3.0f;
 		private const float CameraShakeDamping = 30.0f;
@@ -84,5 +84,5 @@ namespace Scripts.Player
 			UnityEngine.Camera camera = UnityEngine.Camera.main;
 			if (camera != null) camera.transform.rotation = Quaternion.identity;
 		}
-    }
+	}
 }

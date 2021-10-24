@@ -202,7 +202,19 @@ MonoBehaviour:
     m_ActionId: c3492d5f-007a-40b9-b6f2-d95f48086800
     m_ActionName: Playing/Switch Item[/Gamepad/leftShoulder,/Gamepad/rightShoulder,/Gamepad/dpad/left,/Gamepad/dpad/right,/Keyboard/q,/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2606824151859445984}
+        m_TargetAssemblyTypeName: Scripts.Inventory.InventoryBehaviour, Assembly-CSharp
+        m_MethodName: OnSwitchItemMouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 68ebef4e-4178-40b6-a5f3-d2a19c291e39
     m_ActionName: Playing/Switch Item [Mouse][/Mouse/scroll]
   - m_PersistentCalls:
