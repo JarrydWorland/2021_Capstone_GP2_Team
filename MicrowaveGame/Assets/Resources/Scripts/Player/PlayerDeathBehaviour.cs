@@ -9,9 +9,8 @@ namespace Scripts.Player
 {
     public class PlayerDeathBehaviour : MonoBehaviour
 	{
-		private const float CameraShakeStrength = 3.0f;
+		private const float CameraShakeStrength = 9.0f;
 		private const float CameraShakeDamping = 30.0f;
-		//private const float TimeFactor = 1f;
 		private Transform CameraTransform;
 
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
@@ -68,7 +67,7 @@ namespace Scripts.Player
         {
 			for (int i = 0; i < 10f; i++)
 			{
-				float zRotation = UnityEngine.Random.Range(-CameraShakeDamping, CameraShakeDamping) - (CameraShakeStrength / 2.0f);
+				float zRotation = UnityEngine.Random.Range(0.0f, CameraShakeStrength) - (CameraShakeStrength / 2.0f);
 				CameraTransform.rotation = Quaternion.Lerp(
 					CameraTransform.rotation,
 					Quaternion.Euler(0, 0, zRotation),
