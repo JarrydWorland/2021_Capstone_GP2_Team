@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5880336708097724937, guid: 5d0e1e2dcbaca7b4893ec46d174fd834, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d0e1e2dcbaca7b4893ec46d174fd834, type: 3}
 --- !u!1001 &380900815
@@ -614,6 +618,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5674462547828722752, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
       propertyPath: Invincible
       value: 1
@@ -791,6 +799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 8496926758394248615, guid: 609cf602cf9281a43b8d880e025129ec, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 21300000, guid: d533f3b645c97058fba83e5be0cb29b3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609cf602cf9281a43b8d880e025129ec, type: 3}
 --- !u!1001 &773961025

@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using Scripts.Rooms;
 using Scripts.Camera;
 
+
 namespace Scripts.Levels
 {
 	public class LevelGenerationBehaviour : MonoBehaviour
@@ -32,7 +33,9 @@ namespace Scripts.Levels
 		/// rooms will be enabled and loaded even if the player is not in them.
 		/// </summary>
 		public bool DebugAlwaysShowRooms;
-		
+
+		public Sprite Door;
+
 
 		/// <summary>
 		/// The starting room instance.
@@ -44,7 +47,7 @@ namespace Scripts.Levels
 			// if no rooms have been manually placed the level will be
 			// automatically generated, if rooms have been manually placed the
 			// level should put the existing rooms into a valid state.
-			
+
 			bool levelGenerationEnabled = FindObjectsOfType<RoomConnectionBehaviour>().Length == 0;
 			if (levelGenerationEnabled)
 			{
@@ -64,7 +67,14 @@ namespace Scripts.Levels
 			if (SceneManager.GetActiveScene().name == "Hub")
 			{
 				if (Persistent.FirstTimeInHub) SetupTutorial();
-				else LockTutorialDoor();
+				else
+				{
+					if (Persistent.CollectedKeycardCount == 3)
+					{
+						EndLogic(Door);
+					}
+					LockTutorialDoor();
+				}
 			}
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
@@ -74,6 +84,14 @@ namespace Scripts.Levels
 				levelTraversalBehaviour.CurrentRoom = StartingRoom.GetComponent<RoomConnectionBehaviour>();
 			}
 		}
+
+		private void EndLogic(Sprite openDoor)
+        {
+			GameObject _endDoor = GameObject.Find("PlatedDoorWest");
+			SpriteRenderer _endSprite = _endDoor.GetComponent<SpriteRenderer>();
+			_endSprite.sprite = openDoor;
+
+        }
 
 		private void SetupTutorial()
 		{
