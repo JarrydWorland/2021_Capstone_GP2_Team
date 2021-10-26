@@ -30,9 +30,9 @@ namespace Scripts.HealthBar
 			CreateCells();
 		}
 
-		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
+        private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
 
-		private void CreateCells()
+		public void CreateCells()
 		{
 			const float margin = 0.9f;
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
