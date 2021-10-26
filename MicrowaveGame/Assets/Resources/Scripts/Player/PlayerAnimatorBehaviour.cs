@@ -3,18 +3,18 @@ using Scripts.Utilities;
 
 namespace Scripts.Player
 {
-	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(PlayerWeaponBehaviour), typeof(Animator))]
+	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(PlayerShootBehaviour), typeof(Animator))]
 	public class PlayerAnimatorBehaviour : MonoBehaviour
 	{
 		private PlayerMovementBehaviour _playerMovementBehaviour;
-		private PlayerWeaponBehaviour _playerWeaponBehaviour;
+		private PlayerShootBehaviour _playerShootBehaviour;
 		private Animator _animator;
 		private int _animatorShootingLayer;
 
 		private void Start()
 		{
 			_playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
-			_playerWeaponBehaviour = GetComponent<PlayerWeaponBehaviour>();
+			_playerShootBehaviour = GetComponent<PlayerShootBehaviour>();
 			_animator = GetComponent<Animator>();
 			_animatorShootingLayer = _animator.GetLayerIndex("Shooting Layer");
 		}
@@ -38,8 +38,8 @@ namespace Scripts.Player
 
 		private void UpdateShootingAnimation()
 		{
-			Vector2 shootingDirection =  _playerWeaponBehaviour.InputDirection.ToDirection().ToVector2();
-			_animator.SetLayerWeight(_animatorShootingLayer, _playerWeaponBehaviour.Shooting ? 1.0f : 0.0f);
+			Vector2 shootingDirection = _playerShootBehaviour.RawDirection.ToDirection().ToVector2();
+			_animator.SetLayerWeight(_animatorShootingLayer, _playerShootBehaviour.Shooting ? 1.0f : 0.0f);
 			_animator.SetFloat("ShootingDirectionX", shootingDirection.x);
 			_animator.SetFloat("ShootingDirectionY", shootingDirection.y);
 		}
