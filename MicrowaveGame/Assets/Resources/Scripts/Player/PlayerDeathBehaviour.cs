@@ -2,17 +2,17 @@
 using Scripts.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using Scripts.Camera;
 using Scripts.Menus;
 
 namespace Scripts.Player
 {
     public class PlayerDeathBehaviour : MonoBehaviour
 	{
-		private const float CameraShakeStrength = 9.0f;
-		private const float CameraShakeDamping = 30.0f;
-		private Transform CameraTransform;
+		private const float CameraShakeStrength = 1.5f;
+		private const float CameraShakeDuration = 0.2f;
 
+		private CameraShakeBehaviour _cameraShakeBehaviour;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
 		public ParticleSystem deathParticles;
@@ -20,11 +20,11 @@ namespace Scripts.Player
 
 		private void Start()
 		{
+			_cameraShakeBehaviour = UnityEngine.Camera.main.GetComponent<CameraShakeBehaviour>();
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
 			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 			transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
 			transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
-			CameraTransform = UnityEngine.Camera.main.transform;
 		}
 
         private void OnHealthChanged(HealthChangedEventArgs eventArgs)
@@ -43,7 +43,7 @@ namespace Scripts.Player
 			}
 			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue < eventArgs.OldValue)
             {
-				StartCoroutine(Shake());
+				_cameraShakeBehaviour.Shake(CameraShakeStrength, CameraShakeDuration);
 			}
 		}
 
@@ -61,27 +61,6 @@ namespace Scripts.Player
 
 			//destroy the particle system when its duration is up
 			Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
-		}
-
-		private IEnumerator Shake()
-        {
-			for (int i = 0; i < 10f; i++)
-			{
-				float zRotation = UnityEngine.Random.Range(0.0f, CameraShakeStrength) - (CameraShakeStrength / 2.0f);
-				CameraTransform.rotation = Quaternion.Lerp(
-					CameraTransform.rotation,
-					Quaternion.Euler(0, 0, zRotation),
-					CameraShakeDamping * Time.deltaTime
-					);
-				yield return new WaitForSecondsRealtime(0.05f);
-			}
-				Reset();
-		}
-
-        private void Reset()
-        {
-			UnityEngine.Camera camera = UnityEngine.Camera.main;
-			if (camera != null) camera.transform.rotation = Quaternion.identity;
 		}
 	}
 }
