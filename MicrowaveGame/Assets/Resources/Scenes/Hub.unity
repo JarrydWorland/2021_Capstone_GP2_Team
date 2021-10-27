@@ -344,7 +344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3684964746714219147, guid: 5d0e1e2dcbaca7b4893ec46d174fd834, type: 3}
       propertyPath: m_Name
-      value: RoomHubES
+      value: RoomHubSW
       objectReference: {fileID: 0}
     - target: {fileID: 5322624418239999354, guid: 5d0e1e2dcbaca7b4893ec46d174fd834, type: 3}
       propertyPath: m_RootOrder
