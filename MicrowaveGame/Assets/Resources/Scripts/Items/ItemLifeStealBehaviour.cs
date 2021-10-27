@@ -3,27 +3,23 @@ using Scripts.Inventory;
 using Scripts.Utilities;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Scripts.Items
 {
-
     public class ItemLifeStealBehaviour : ItemBehaviour
     {
         public int IncreaseValue;
 
+        public AudioClip ItemDrop;
+        public AudioClip HealthSFX;
+
         private HealthBehaviour _healthBehaviour;
         private HealthBehaviour _enemyHealthBehaviour;
 
-        public AudioClip itemDrop;
-        public AudioClip healthSFX;
-
-        // Start is called before the first frame update
         public override void Start()
         {
             base.Start();
 
-            Description = string.Format(Description, IncreaseValue);
             _healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
         }
 
@@ -31,11 +27,12 @@ namespace Scripts.Items
         {
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
         }
+
         public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
 
         public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            List<GameObject> enemies = TagBehaviour.FindWithTag("Enemy").ToList();
+            IEnumerable<GameObject> enemies = TagBehaviour.FindWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
                 _enemyHealthBehaviour = enemy.GetComponent<HealthBehaviour>();
@@ -44,8 +41,7 @@ namespace Scripts.Items
                     if (_healthBehaviour.Value < _healthBehaviour.MaxHealth)
                     {
                         _healthBehaviour.Value += IncreaseValue;
-                        AudioManager.Play(healthSFX, 0.75f, false);
-
+                        AudioManager.Play(HealthSFX, 0.75f);
                     }
                 }
             }
@@ -54,7 +50,7 @@ namespace Scripts.Items
         public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-            AudioManager.Play(itemDrop, 0.45f);
+            AudioManager.Play(ItemDrop, 0.45f);
             return true;
         }
     }
