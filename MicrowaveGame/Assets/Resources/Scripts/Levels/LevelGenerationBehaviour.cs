@@ -34,9 +34,6 @@ namespace Scripts.Levels
 		/// </summary>
 		public bool DebugAlwaysShowRooms;
 
-		public Sprite Door;
-
-
 		/// <summary>
 		/// The starting room instance.
 		/// </summary>
@@ -66,15 +63,14 @@ namespace Scripts.Levels
 			// time they are in the hub.
 			if (SceneManager.GetActiveScene().name == "Hub")
 			{
-				if (Persistent.FirstTimeInHub) SetupTutorial();
-				else
+				// Keep ending door locked until win conditions are met
+				if (Persistent.CollectedKeycardCount < 3)
 				{
-					if (Persistent.CollectedKeycardCount == 3)
-					{
-						EndLogic(Door);
-					}
-					LockTutorialDoor();
+					LockEndingDoor();
 				}
+
+				if (Persistent.FirstTimeInHub) SetupTutorial();
+				else LockTutorialDoor();
 			}
 
 			// set levelTraversalBehaviour.CurrentRoom to StartingRoom
@@ -85,14 +81,6 @@ namespace Scripts.Levels
 			}
 		}
 
-		private void EndLogic(Sprite openDoor)
-        {
-			GameObject _endDoor = GameObject.Find("PlatedDoorWest");
-			SpriteRenderer _endSprite = _endDoor.GetComponent<SpriteRenderer>();
-			_endSprite.sprite = openDoor;
-
-        }
-
 		private void SetupTutorial()
 		{
 			StartingRoom.SetActive(false);
@@ -101,6 +89,11 @@ namespace Scripts.Levels
 			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
 			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
 		}
+
+		private void LockEndingDoor() => StartingRoom
+			.GetComponent<RoomConnectionBehaviour>()
+			.GetDoorFacing(Utilities.Direction.West)
+			.Close();
 
 		private void LockTutorialDoor() => StartingRoom
 			.GetComponent<RoomConnectionBehaviour>()
