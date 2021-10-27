@@ -32,20 +32,20 @@ namespace Scripts.Items
         }
 
         public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
-        {/*
+        {
             //_isUsed = true;
+            inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 
             _healthBehaviour.MaxHealth += IncreaseValue;
             _healthBarBehaviour.AddCells(IncreaseValue, _healthBehaviour.MaxHealth);
-            
+
             Debug.Log($"{_healthBehaviour.transform.name}'s Maximum Health Increased by {IncreaseValue}");
             Debug.Log($"Health Behaviour: {_healthBehaviour.transform.name}'s Maximum Health is {_healthBehaviour.MaxHealth}");
 
             AudioManager.Play(healthSFX, 0.75f, false);
-            inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
-            inventorySlotBehaviour.DropItem();
-            Destroy(gameObject);
-            */
+            //inventorySlotBehaviour.DropItem();
+            //Destroy(gameObject);
+
         }
 
 
@@ -55,11 +55,16 @@ namespace Scripts.Items
 
         public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            if (!_isUsed)
-            {
+            Debug.Log($"{_healthBehaviour.transform.name}'s Maximum Health Decreased by {IncreaseValue}");
+            Debug.Log($"Health Behaviour: {_healthBehaviour.transform.name}'s Maximum Health is {_healthBehaviour.MaxHealth}");
+
+            _healthBehaviour.MaxHealth -= IncreaseValue;
+            Destroy(_healthBarBehaviour.transform.GetChild(6));
+            //if (!_isUsed)
+            //{
                 inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
                 AudioManager.Play(itemDrop, 0.45f);
-            }
+            //}
             return true;
         }
     }

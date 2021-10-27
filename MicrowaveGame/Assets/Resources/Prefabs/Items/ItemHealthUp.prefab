@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnProbability: 1
   Name: Health Up
-  Description: 
+  Description: increases max health
   IncreaseValue: 1
   itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
   healthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}

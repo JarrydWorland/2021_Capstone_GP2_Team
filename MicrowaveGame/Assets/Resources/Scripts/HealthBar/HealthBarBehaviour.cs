@@ -58,14 +58,14 @@ namespace Scripts.HealthBar
 			}
 		}
 
-		private void AddCells(int IncreaseValue, int newMaxHealth)
+		public void AddCells(int IncreaseValue, int newMaxHealth)
         {
 			const float margin = 0.9f;
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
 			CellPrefab.GetComponent<SpriteRenderer>().color = setColor;
 
-			if (_targetHealthBehaviour.MaxHealth != newMaxHealth)
-				_targetHealthBehaviour.MaxHealth = newMaxHealth;
+			//if (_targetHealthBehaviour.MaxHealth != newMaxHealth)
+			//	_targetHealthBehaviour.MaxHealth = newMaxHealth;
 
 			for (int i = _targetHealthBehaviour.MaxHealth; i < (_targetHealthBehaviour.MaxHealth + IncreaseValue); i++)
 			{

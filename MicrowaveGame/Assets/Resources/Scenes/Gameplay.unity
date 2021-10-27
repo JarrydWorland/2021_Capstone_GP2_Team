@@ -222,6 +222,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8461171235301577170, guid: 144c13c09b1619746941aa827c09675c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 648
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144c13c09b1619746941aa827c09675c, type: 3}
 --- !u!224 &51205459 stripped
@@ -495,6 +499,10 @@ PrefabInstance:
     - target: {fileID: 4252811419457458747, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
+      propertyPath: MaxHealth
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
