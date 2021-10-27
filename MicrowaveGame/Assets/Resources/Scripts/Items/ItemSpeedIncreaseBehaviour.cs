@@ -1,4 +1,5 @@
 using Scripts.Inventory;
+using Scripts.Player;
 using Scripts.StatusEffects;
 using UnityEngine;
 using Scripts.Audio;
@@ -15,10 +16,12 @@ namespace Scripts.Items
 		/// <summary>
 		/// The duration of the item.
 		/// </summary>
-		public int DurationValue;
+		//public int DurationValue;
 
-		private bool _isActive, _isUsed;
+		//private bool _isActive, _isUsed;
 		private float _time;
+
+		private PlayerMovementBehaviour _playerMovementBehaviour;
 
 		public AudioClip itemDrop;
 		public AudioClip speedIncrease;
@@ -26,48 +29,48 @@ namespace Scripts.Items
 		public override void Start()
 		{
 			base.Start();
-			Description = string.Format(Description, IncreaseValue * 100.0f, DurationValue);
+			Description = string.Format(Description, IncreaseValue * 100.0f);
+			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
+		{
+			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
-
+		}
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (_isActive) return;
-			_isActive = _isUsed = true;
+			//if (_isActive) return;
+			//_isActive = _isUsed = true;
 
-			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
-				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
+			//GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
+			//	.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
 
-			AudioManager.Play(speedIncrease, 0.75f, false);
+			//AudioManager.Play(speedIncrease, 0.75f, false);
 
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
+			//inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
 		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isActive) return;
+			//if (!_isActive) return;
 
-			_time += Time.deltaTime;
-			if (_time < DurationValue) return;
+			//_time += Time.deltaTime;
+			//if (_time < DurationValue) return;
 
-			_isActive = false;
+			//_isActive = false;
 
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			inventorySlotBehaviour.DropItem();
-			Destroy(gameObject);
+			//inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+			//inventorySlotBehaviour.DropItem();
+			//Destroy(gameObject);
 		}
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed)
-			{
-				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-				AudioManager.Play(itemDrop, 0.55f);
-			}
-
-			return !_isActive;
+			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+			AudioManager.Play(itemDrop, 0.55f);
+			return true;
 		}
 	}
 }
