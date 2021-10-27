@@ -31,13 +31,18 @@ namespace Scripts.Items
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
         }
 
-        public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) {
+        public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
+        {
             _isUsed = true;
 
-            _playerHealthBehaviour.Value = _playerHealthBehaviour.MaxHealth;
-            Debug.Log($"{_playerHealthBehaviour.transform.name}'s Health Reset to Max");
-            AudioManager.Play(healthSFX, 0.75f, false);
-            Destroy(gameObject);
+            if (_playerHealthBehaviour.Value != _playerHealthBehaviour.MaxHealth)
+            {
+                _playerHealthBehaviour.Value = _playerHealthBehaviour.MaxHealth;
+                Debug.Log($"{_playerHealthBehaviour.transform.name}'s Health Reset to Max");
+                AudioManager.Play(healthSFX, 0.75f, false);
+                inventorySlotBehaviour.DropItem();
+                Destroy(gameObject);
+            } 
         }
 
         public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour) { }

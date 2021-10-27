@@ -32,7 +32,7 @@ namespace Scripts.HealthBar
 
         private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
 
-		public void CreateCells()
+		private void CreateCells()
 		{
 			const float margin = 0.9f;
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
