@@ -123,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbd9433c13ddff4db741e4cfa58e6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 1
+  SpawnProbability: 0.5
   Name: Life Steal
   Description: Steals some life from the enemy
   IncreaseValue: 1
-  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
-  healthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
+  ItemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
+  HealthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
 --- !u!1001 &1110792912450544423
 PrefabInstance:
   m_ObjectHideFlags: 0

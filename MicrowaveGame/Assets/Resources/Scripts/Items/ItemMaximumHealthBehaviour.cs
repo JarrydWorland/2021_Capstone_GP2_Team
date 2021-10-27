@@ -1,28 +1,22 @@
 using Scripts.Inventory;
 using UnityEngine;
 using Scripts.Audio;
-using Scripts.HealthBar;
-using Scripts.Events;
-using System.Collections.Generic;
 
 namespace Scripts.Items
 {
     public class ItemMaximumHealthBehaviour : ItemBehaviour
     {
-        public int IncreaseValue;
+        public AudioClip ItemDrop;
+        public AudioClip HealthSFX;
 
         private bool _isUsed;
 
         private HealthBehaviour _playerHealthBehaviour;
 
-        public AudioClip itemDrop;
-        public AudioClip healthSFX;
-
         public override void Start()
         {
             base.Start();
 
-            Description = string.Format(Description, IncreaseValue);
             _playerHealthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
         }
 
@@ -33,13 +27,12 @@ namespace Scripts.Items
 
         public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            _isUsed = true;
-
             if (_playerHealthBehaviour.Value != _playerHealthBehaviour.MaxHealth)
             {
+            	_isUsed = true;
                 _playerHealthBehaviour.Value = _playerHealthBehaviour.MaxHealth;
                 Debug.Log($"{_playerHealthBehaviour.transform.name}'s Health Reset to Max");
-                AudioManager.Play(healthSFX, 0.75f, false);
+                AudioManager.Play(HealthSFX, 0.75f, false);
                 inventorySlotBehaviour.DropItem();
                 Destroy(gameObject);
             } 
@@ -49,10 +42,10 @@ namespace Scripts.Items
 
         public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            if(!_isUsed)
+            if (!_isUsed)
             {
-            inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-            AudioManager.Play(itemDrop, 0.55f);
+            	inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+            	AudioManager.Play(ItemDrop, 0.55f);
             }
             return true;
         }
