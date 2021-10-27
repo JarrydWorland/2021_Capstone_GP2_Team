@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using Scripts.Rooms;
 using Scripts.Camera;
 
+
 namespace Scripts.Levels
 {
 	public class LevelGenerationBehaviour : MonoBehaviour
@@ -32,7 +33,6 @@ namespace Scripts.Levels
 		/// rooms will be enabled and loaded even if the player is not in them.
 		/// </summary>
 		public bool DebugAlwaysShowRooms;
-		
 
 		/// <summary>
 		/// The starting room instance.
@@ -44,7 +44,7 @@ namespace Scripts.Levels
 			// if no rooms have been manually placed the level will be
 			// automatically generated, if rooms have been manually placed the
 			// level should put the existing rooms into a valid state.
-			
+
 			bool levelGenerationEnabled = FindObjectsOfType<RoomConnectionBehaviour>().Length == 0;
 			if (levelGenerationEnabled)
 			{
@@ -63,6 +63,12 @@ namespace Scripts.Levels
 			// time they are in the hub.
 			if (SceneManager.GetActiveScene().name == "Hub")
 			{
+				// Keep ending door locked until win conditions are met
+				if (Persistent.CollectedKeycardCount < 3)
+				{
+					LockEndingDoor();
+				}
+
 				if (Persistent.FirstTimeInHub) SetupTutorial();
 				else LockTutorialDoor();
 			}
@@ -83,6 +89,11 @@ namespace Scripts.Levels
 			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
 			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
 		}
+
+		private void LockEndingDoor() => StartingRoom
+			.GetComponent<RoomConnectionBehaviour>()
+			.GetDoorFacing(Utilities.Direction.West)
+			.Close();
 
 		private void LockTutorialDoor() => StartingRoom
 			.GetComponent<RoomConnectionBehaviour>()
