@@ -887,10 +887,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5322624418239999354}
     m_Modifications:
-    - target: {fileID: 134371325241584015, guid: 102b0fd6e207c36499ca24ed679edc97, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 27db8aaba14a6fb599a1200229f43849, type: 3}
     - target: {fileID: 3941457077106186506, guid: 102b0fd6e207c36499ca24ed679edc97, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -939,12 +935,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatedDoorWest
       objectReference: {fileID: 0}
-    - target: {fileID: 7230247428920690404, guid: 102b0fd6e207c36499ca24ed679edc97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3272782073660597712, guid: 102b0fd6e207c36499ca24ed679edc97, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 102b0fd6e207c36499ca24ed679edc97, type: 3}
 --- !u!1001 &6901698563595475162
 PrefabInstance:
