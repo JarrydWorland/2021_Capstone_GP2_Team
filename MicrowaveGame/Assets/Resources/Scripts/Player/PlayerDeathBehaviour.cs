@@ -16,9 +16,6 @@ namespace Scripts.Player
 		private void Start()
 		{
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
-			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
-			transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-			transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
 		}
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
@@ -28,10 +25,13 @@ namespace Scripts.Player
 				Time.timeScale = 0.0f;
 				Explode();
 				AudioManager.Play(PlayerDeath, 1f);
-				GameObject.Find("Player").GetComponent<Collider2D>().enabled = false;
-				transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-				transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
-				transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+
+				Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+				foreach (Collider2D collider in colliders) collider.enabled = false;
+
+				SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+				foreach (SpriteRenderer spriteRenderer in spriteRenderers) spriteRenderer.enabled = false;
+
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
 			}
