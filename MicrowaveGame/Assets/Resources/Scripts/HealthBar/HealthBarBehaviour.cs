@@ -57,5 +57,25 @@ namespace Scripts.HealthBar
 				else _cellAnimators[i].SetBool("Full", false);
 			}
 		}
+
+		private void AddCells(int IncreaseValue, int newMaxHealth)
+        {
+			const float margin = 0.9f;
+			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+			CellPrefab.GetComponent<SpriteRenderer>().color = setColor;
+
+			if (_targetHealthBehaviour.MaxHealth != newMaxHealth)
+				_targetHealthBehaviour.MaxHealth = newMaxHealth;
+
+			for (int i = _targetHealthBehaviour.MaxHealth; i < (_targetHealthBehaviour.MaxHealth + IncreaseValue); i++)
+			{
+				GameObject obj = Instantiate(CellPrefab, transform);
+				obj.transform.position += new Vector3((cellHeight * margin * i), 0, 0);
+				makeColor = obj.GetComponent<SpriteRenderer>().color;
+				obj.GetComponent<SpriteRenderer>().color = setColor;
+				_cellAnimators.Add(obj.GetComponent<Animator>());
+				_cellAnimators[i].SetBool("Full", false);
+			}
+		}
 	}
 }
