@@ -41,7 +41,7 @@ namespace Scripts.Player
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
 			}
-			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue < eventArgs.OldValue)
+			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue <= eventArgs.OldValue)
             {
 				_cameraShakeBehaviour.Shake(CameraShakeStrength, CameraShakeDuration);
 			}
