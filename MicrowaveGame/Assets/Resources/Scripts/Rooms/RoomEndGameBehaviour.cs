@@ -12,7 +12,7 @@ namespace Scripts.Rooms
 		private CameraPanBehaviour _cameraPanBehaviour;
 		private bool _ending;
 
-		private void Start()
+		private void Awake()
 		{
 			_cameraPanBehaviour = UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>();
 			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(OnRoomTraversedEvent);
