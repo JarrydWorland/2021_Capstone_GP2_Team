@@ -2,12 +2,17 @@
 using Scripts.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Camera;
 using Scripts.Menus;
 
 namespace Scripts.Player
 {
     public class PlayerDeathBehaviour : MonoBehaviour
 	{
+		private const float CameraShakeStrength = 1.5f;
+		private const float CameraShakeDuration = 0.2f;
+
+		private CameraShakeBehaviour _cameraShakeBehaviour;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
 		public ParticleSystem deathParticles;
@@ -15,10 +20,11 @@ namespace Scripts.Player
 
 		private void Start()
 		{
+			_cameraShakeBehaviour = UnityEngine.Camera.main.GetComponent<CameraShakeBehaviour>();
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
 		}
 
-		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
+        private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
 			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
@@ -34,6 +40,10 @@ namespace Scripts.Player
 
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
+			}
+			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue <= eventArgs.OldValue)
+            {
+				_cameraShakeBehaviour.Shake(CameraShakeStrength, CameraShakeDuration);
 			}
 		}
 

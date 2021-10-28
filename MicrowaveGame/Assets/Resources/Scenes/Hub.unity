@@ -619,6 +619,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
+      propertyPath: MaxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
       propertyPath: Invincible
       value: 1
       objectReference: {fileID: 0}
