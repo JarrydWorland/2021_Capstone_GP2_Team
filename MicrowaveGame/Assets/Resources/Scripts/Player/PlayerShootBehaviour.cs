@@ -77,7 +77,6 @@ namespace Scripts.Player
 		private Transform _aimIndicatorTransform;
 		private Transform _projectileSpawnTransform;
 
-		private float _fireRateInverse;
 		private float _time;
 
 		private bool _isCurrentInputMouse = true;
@@ -90,8 +89,7 @@ namespace Scripts.Player
 			_projectileSpawnTransform = transform.Find("ProjectileSpawn");
 			_aimIndicatorTransform = transform.Find("AimIndicator");
 
-			_fireRateInverse = 1.0f / FireRate;
-			_time = _fireRateInverse;
+			_time = 1.0f / FireRate;
 		}
 
 		private void Update()
@@ -137,7 +135,7 @@ namespace Scripts.Player
 
 			_time += Time.deltaTime;
 
-			if (Shooting && _time >= _fireRateInverse)
+			if (Shooting && _time >= 1.0f / FireRate)
 			{
 				AudioManager.Play(ShootAudioClip, 0.75f, false, Random.Range(0.55f, 1.35f));
 
