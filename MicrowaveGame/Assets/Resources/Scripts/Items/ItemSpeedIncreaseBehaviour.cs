@@ -14,8 +14,6 @@ namespace Scripts.Items
 
 		public AudioClip ItemDrop;
 
-		private float _time;
-
 		private PlayerMovementBehaviour _playerMovementBehaviour;
 
 		public override void Start()
@@ -27,7 +25,7 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
