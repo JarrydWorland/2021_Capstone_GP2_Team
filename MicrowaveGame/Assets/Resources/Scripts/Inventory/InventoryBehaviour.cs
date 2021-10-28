@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Scripts.Inventory
 {
-    public class InventoryBehaviour : MonoBehaviour
+	public class InventoryBehaviour : MonoBehaviour
 	{
 		public AudioClip PickupItemAudioClip;
 
@@ -215,6 +215,9 @@ namespace Scripts.Inventory
 			}
 			else
 			{
+				// If the current slot has an item, then don't attempt to find another slot.
+				if (_slots[_currentSlotIndex].ItemBehaviour != null) return;
+
 				int nextSlotIndex = -1;
 
 				for (int i = 0; i < _slots.Length; i++)
