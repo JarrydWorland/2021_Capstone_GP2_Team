@@ -65,11 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnProbability: 1
   Name: Speed Increase
-  Description: Increases movement speed for {1} seconds
+  Description: Slighty increase movement speed
   IncreaseValue: 0.075
-  DurationValue: 5
-  itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
-  speedIncrease: {fileID: 8300000, guid: f1b44806f3713b44aa8ccf1b8f0fe034, type: 3}
+  ItemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
 --- !u!1001 &8036875327095706385
 PrefabInstance:
   m_ObjectHideFlags: 0
