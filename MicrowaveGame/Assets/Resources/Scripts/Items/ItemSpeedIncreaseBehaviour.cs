@@ -1,55 +1,43 @@
 using Scripts.Inventory;
-using Scripts.Utilities;
-using Scripts.StatusEffects;
+using Scripts.Player;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
-	public class ItemSpeedIncreaseBehaviour : ItemBehaviour
+    public class ItemSpeedIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of additional speed when the item is active.
 		/// </summary>
 		public float IncreaseValue;
 
-		/// <summary>
-		/// The duration of the item.
-		/// </summary>
-		public int DurationValue;
+		public AudioClip ItemDrop;
 
-		private bool _isUsed;
-
-		public AudioClip itemDrop;
+		private PlayerMovementBehaviour _playerMovementBehaviour;
 
 		public override void Start()
 		{
 			base.Start();
-			Description = string.Format(Description, IncreaseValue * 100.0f, DurationValue);
+			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
-
-		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_isUsed = true;
-
-			GameObject.Find("Player").GetComponent<StatusEffectBehaviour>()
-				.Apply<StatusEffectFaster>(DurationValue, IncreaseValue);
-
-			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
-			inventorySlotBehaviour.DropItem();
-			Destroy(gameObject);
+			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
+
+		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
 
 		public override void OnUpdateItem(InventorySlotBehaviour inventorySlotBehaviour) { }
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
+			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+			AudioManager.Play(ItemDrop, 0.55f);
 			return true;
-
 		}
 	}
 }

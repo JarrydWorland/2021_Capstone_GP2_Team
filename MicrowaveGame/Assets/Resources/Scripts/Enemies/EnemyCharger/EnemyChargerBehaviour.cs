@@ -1,16 +1,17 @@
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
+using Scripts.Camera;
 
 namespace Scripts.Enemies.EnemyCharger
 {
     [RequireComponent(typeof(Animator))]
 	public class EnemyChargerBehaviour : MonoBehaviour
 	{
-		private const float CameraShakeStrength = 5.0f;
-		private const float CameraShakeDamping = 50.0f;
+		private const float CameraShakeStrength = 3.0f;
 		private const float LazerSpeed = 4.0f;
 		private const float LazerActiveFrame = 22.0f / 50.0f; // frame 22 of 50
 
+		private CameraShakeBehaviour _cameraShakeBehaviour;
 		private Transform _projectileSpawn;
 		private Animator _animator;
 		private GameObject _lazerUpPrefab;
@@ -25,8 +26,12 @@ namespace Scripts.Enemies.EnemyCharger
 		public AudioClip chargeSfx;
 		public AudioClip dischargeSfx;
 
+		private AudioId _chargeSfxId;
+		private AudioId _dischargeSfxId;
+
 		private void Start()
 		{
+			_cameraShakeBehaviour = UnityEngine.Camera.main.GetComponent<CameraShakeBehaviour>();
 			_projectileSpawn = transform.Find("ProjectileSpawn");
 			_animator = GetComponent<Animator>();
 			_lazerUpPrefab = Resources.Load<GameObject>("Prefabs/Enemies/EnemyCharger/Lazer/EnemyChargerLazerUp");
@@ -54,19 +59,13 @@ namespace Scripts.Enemies.EnemyCharger
 				
 				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
                 {
-					AudioManager.Play(dischargeSfx);
+					_dischargeSfxId = AudioManager.Play(dischargeSfx);
 				}
 
 				// enable damage collider
 				_lazerDownInstance.GetComponent<BoxCollider2D>().enabled = true;
 
-				// shake camera
-				float zRotation = UnityEngine.Random.Range(0.0f, CameraShakeStrength) - (CameraShakeStrength/2.0f);
-				UnityEngine.Camera.main.transform.rotation = Quaternion.Lerp(
-					UnityEngine.Camera.main.transform.rotation,
-					Quaternion.Euler(0, 0, zRotation),
-					CameraShakeDamping * Time.deltaTime
-				);
+				_cameraShakeBehaviour.Shake(CameraShakeStrength, 0.1f);
 			}
 
 			if (lazerFinished)
@@ -81,6 +80,8 @@ namespace Scripts.Enemies.EnemyCharger
 		private void OnDisable()
 		{
 			ResetLazer();
+			AudioManager.Stop(_chargeSfxId);
+			AudioManager.Stop(_dischargeSfxId);
 		}
 
 		private void ResetLazer()
@@ -88,10 +89,6 @@ namespace Scripts.Enemies.EnemyCharger
 			// destroy instances
 			Destroy(_lazerUpInstance);
 			Destroy(_lazerDownInstance);
-			
-			// reset camera rotation
-			UnityEngine.Camera camera = UnityEngine.Camera.main;
-			if (camera != null) camera.transform.rotation = Quaternion.identity;
 		}
 
 		/// <summary>
@@ -100,10 +97,7 @@ namespace Scripts.Enemies.EnemyCharger
 		/// </summary>
 		public void Fire()
 		{
-			if (_player.GetComponent<HealthBehaviour>().Value <= 0 &&
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("Charge") ||
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyChargerLocate") ||
-				_animator.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
+			if (_player.GetComponent<HealthBehaviour>().Value <= 0 && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			{
 				_animator.Play("Idle");
 			}
@@ -112,7 +106,7 @@ namespace Scripts.Enemies.EnemyCharger
 				_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
 				_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 				_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
-				AudioManager.Play(chargeSfx);
+				_chargeSfxId = AudioManager.Play(chargeSfx);
 			}
 
 		}

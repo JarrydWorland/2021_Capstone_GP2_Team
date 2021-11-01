@@ -1,9 +1,9 @@
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.StatusEffects
 {
-	public class StatusEffectMelting : IStatusEffect
+    public class StatusEffectMelting : IStatusEffect
 	{
 		public int Duration { get; }
 		private readonly int _damage;

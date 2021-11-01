@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomIndustrialBase
       objectReference: {fileID: 0}
+    - target: {fileID: 3026127343857253258, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
+      propertyPath: DoorLock
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ea1663d515ad2945806a2065dcbaa06, type: 3}
     - target: {fileID: 5331424471163732483, guid: eebd3d9ef2092c843a9d7ced579f4fd2, type: 3}
       propertyPath: m_Sprite
       value: 

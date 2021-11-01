@@ -1,9 +1,9 @@
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Projectiles
 {
-	public class ProjectileBulletBehaviour : ProjectileBehaviour
+    public class ProjectileBulletBehaviour : ProjectileBehaviour
 	{
 		public AudioClip ttlSfx;
 		protected override void Update()
