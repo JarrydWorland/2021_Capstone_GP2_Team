@@ -74,8 +74,7 @@ namespace Scripts.Menus
 				if (_onDialogueComplete != null) _onDialogueComplete();
 				return;
 			}
-
-			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
+			
 			_currentSentence.Value = _sentences.Dequeue();
 
 			//AudioManager.Play(textWrite, 1f, false, UnityEngine.Random.Range(0.55f, 1.35f));
