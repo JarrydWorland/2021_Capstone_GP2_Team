@@ -59,7 +59,7 @@ namespace Scripts.Enemies.EnemyCharger
 				
 				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
                 {
-					_dischargeSfxId = AudioManager.Play(dischargeSfx);
+					_dischargeSfxId = AudioManager.Play(dischargeSfx, AudioCategory.Effect);
 				}
 
 				// enable damage collider
@@ -106,7 +106,7 @@ namespace Scripts.Enemies.EnemyCharger
 				_lazerUpInstance = GameObject.Instantiate(_lazerUpPrefab, _projectileSpawn.position + _lazerUpOffset, Quaternion.identity);
 				_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 				_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
-				_chargeSfxId = AudioManager.Play(chargeSfx);
+				_chargeSfxId = AudioManager.Play(chargeSfx, AudioCategory.Effect);
 			}
 
 		}

@@ -1,14 +1,33 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Scripts.Utilities;
 
 namespace Scripts.Audio
 {
-    static class AudioManager
+	public static class AudioManager
 	{
 		private static AudioId _idCounter = 0;
-		private static List<AudioEntry> _audioEntries= new List<AudioEntry>();
-		private static GameObject _camera = null;
+		private static readonly List<AudioEntry> AudioEntries = new List<AudioEntry>();
+
+		private static float[] _audioCategoryVolumes;
+
+		private static float[] AudioCategoryVolumes
+		{
+			get
+			{
+				if (_audioCategoryVolumes == null)
+				{
+					_audioCategoryVolumes = new float[Enum.GetValues(typeof(AudioCategory)).Length];
+					for (int i = 0; i < _audioCategoryVolumes.Length; i++) _audioCategoryVolumes[i] = 1.0f;
+				}
+
+				return _audioCategoryVolumes;
+			}
+		}
+
+		private static GameObject _camera;
+
 		private static GameObject Camera
 		{
 			get
@@ -18,66 +37,92 @@ namespace Scripts.Audio
 					_camera = UnityEngine.Camera.main.gameObject;
 					_camera.AddComponent<AudioManagerDestroyBehaviour>();
 				}
+
 				return _camera;
 			}
 		}
 
 		/// <summary>
-		/// Play a provided audio clip. An audio source will be automatically
-		/// selected.
+		/// Play a provided audio clip. An audio source will be automatically selected.
 		/// </summary>
 		/// <param name="audioClip">The audio clip to play.</param>
-		/// <param name="volume">the volume the audio clip should be played at.</param>
-		/// <param name="loop">should the audio clip be looped.</param>
+		/// <param name="category">The category of the audio clip. See <see cref="AudioCategory"/> for available categories.</param>
+		/// <param name="volume">The volume the audio clip should be played at.</param>
+		/// <param name="loop">Whether or not the the audio clip loop.</param>
+		/// <param name="pitch">The pitch the audio clip should be played at.</param>
 		/// <returns>The id of the playing audio.</returns>
-		public static AudioId Play(AudioClip audioClip, float volume = 0.75f, bool loop = false, float pitch = 1.0f)
+		public static AudioId Play(AudioClip audioClip, AudioCategory category, float volume = 0.75f, bool loop = false,
+			float pitch = 1.0f)
 		{
-			AudioEntry audioEntry = GetAudioEntry();
+			AudioEntry audioEntry = GetAudioEntry(category);
+
 			audioEntry.AudioSource.clip = audioClip;
-			audioEntry.AudioSource.volume = volume;
+			audioEntry.AudioSource.volume = volume * AudioCategoryVolumes[(int) category];
 			audioEntry.AudioSource.loop = loop;
 			audioEntry.AudioSource.pitch = pitch;
 			audioEntry.AudioSource.Play();
-			Log.Info($"Playing {Log.Orange(audioClip.name)} (volume = {Log.Cyan(volume)}, loop = {Log.Cyan(loop)}) using audio entry {Log.Cyan(_audioEntries.IndexOf(audioEntry))}.", LogCategory.AudioManager);
+
+			Log.Info($"Playing {Log.Orange(audioClip.name)} (volume = {Log.Cyan(volume)}, loop = {Log.Cyan(loop)}) using audio entry {Log.Cyan(AudioEntries.IndexOf(audioEntry))}.", LogCategory.AudioManager);
 			return audioEntry.Id;
 		}
 
 		/// <summary>
 		/// Stops all audio sources playing the provided audio clip.
 		/// </summary>
-		/// <param name="audioClip">The audio clip to stop.</param>
+		/// <param name="audioId">The audio ID to stop.</param>
 		public static void Stop(AudioId audioId)
 		{
-			AudioEntry audioEntry = _audioEntries.Find(entry => entry.Id == audioId);
-			if (audioEntry != null)
-			{
-				audioEntry.AudioSource.Stop();
-			}
+			AudioEntry audioEntry = AudioEntries.Find(entry => entry.Id == audioId);
+			if (audioEntry != null) audioEntry.AudioSource.Stop();
+		}
+
+		/// <summary>
+		/// Gets the given category's volume.
+		/// </summary>
+		/// <param name="category">The category.</param>
+		/// <returns>The category's volume as a float between 0.0f and 1.0f.</returns>
+		public static float GetCategoryVolume(AudioCategory category) => AudioCategoryVolumes[(int) category];
+
+		/// <summary>
+		/// Sets the given category's volume, including all audio entries of said category.
+		/// </summary>
+		/// <param name="category">The category to update.</param>
+		/// <param name="volume">The new volume audio entries should be played at.</param>
+		public static void SetCategoryVolume(AudioCategory category, float volume)
+		{
+			AudioCategoryVolumes[(int) category] = volume;
+
+			AudioEntries.FindAll(entry => entry.Category == category)
+				.ForEach(entry => entry.AudioSource.volume = volume);
 		}
 
 		private static AudioEntry AddAudioEntry()
 		{
 			AudioEntry audioEntry = new AudioEntry
 			{
-				Id = _idCounter++,
-				AudioSource = Camera.AddComponent<AudioSource>(),
+				AudioSource = Camera.AddComponent<AudioSource>()
 			};
-			_audioEntries.Add(audioEntry);
-			Log.Info($"Adding additional audio entry (there are now {Log.Cyan(_audioEntries.Count)} audio entries).", LogCategory.AudioManager);
+
+			AudioEntries.Add(audioEntry);
+
+			Log.Info($"Adding additional audio entry (there are now {Log.Cyan(AudioEntries.Count)} audio entries).", LogCategory.AudioManager);
 			return audioEntry;
 		}
 
-		private static AudioEntry GetAudioEntry()
+		private static AudioEntry GetAudioEntry(AudioCategory category)
 		{
-			AudioEntry audioEntry = _audioEntries.Find(entry => !entry.AudioSource.isPlaying) ?? AddAudioEntry();
+			AudioEntry audioEntry = AudioEntries.Find(entry => !entry.AudioSource.isPlaying) ?? AddAudioEntry();
 			audioEntry.Id = _idCounter++;
+			audioEntry.Category = category;
+
 			return audioEntry;
 		}
 
 		private class AudioEntry
 		{
 			public AudioId Id;
-			public AudioSource AudioSource;			
+			public AudioCategory Category;
+			public AudioSource AudioSource;
 		}
 
 		private class AudioManagerDestroyBehaviour : MonoBehaviour
@@ -85,7 +130,7 @@ namespace Scripts.Audio
 			private void OnDestroy()
 			{
 				_idCounter = 0;
-				_audioEntries.Clear();
+				AudioEntries.Clear();
 			}
 		}
 	}

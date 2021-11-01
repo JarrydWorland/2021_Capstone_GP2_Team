@@ -79,7 +79,7 @@ namespace Scripts.Inventory
 
 			UpdateSlotIndicator(nextAvailableSlot);
 
-			AudioManager.Play(PickupItemAudioClip);
+			AudioManager.Play(PickupItemAudioClip, AudioCategory.Effect);
 		}
 
 		/// <summary>

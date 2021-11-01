@@ -48,5 +48,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66123aa871fe4b4795d8dcadb54bdd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pause: {fileID: 8300000, guid: 445e1e0d1d56b634ea98ae9c04101b56, type: 3}
-  Unpause: {fileID: 8300000, guid: fbb0d80262eb1c04d8259ed97b9ed91e, type: 3}
+  GameplayLoopAudioClip: {fileID: 8300000, guid: 9a2a50801f45f5a46a19412712e328ad, type: 3}
+  PauseAudioClip: {fileID: 8300000, guid: 445e1e0d1d56b634ea98ae9c04101b56, type: 3}

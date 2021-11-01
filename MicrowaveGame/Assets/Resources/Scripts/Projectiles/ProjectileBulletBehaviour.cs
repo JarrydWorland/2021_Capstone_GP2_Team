@@ -15,7 +15,7 @@ namespace Scripts.Projectiles
 			if (distance.sqrMagnitude > 1000)
 			{
 				Destroy(gameObject);
-				AudioManager.Play(ttlSfx, 0.55f);
+				AudioManager.Play(ttlSfx, AudioCategory.Effect, 0.55f);
 			}
 			
 		}

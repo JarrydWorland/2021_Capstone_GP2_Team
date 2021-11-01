@@ -40,7 +40,7 @@ namespace Scripts.Items
 			_playerShootBehaviour.FireRate -= IncreaseValue;
 
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(DropItemAudioClip, 0.55f);
+			AudioManager.Play(DropItemAudioClip, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}

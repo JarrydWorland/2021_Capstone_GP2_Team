@@ -32,7 +32,7 @@ namespace Scripts.Items
             	_isUsed = true;
                 _playerHealthBehaviour.Value = _playerHealthBehaviour.MaxHealth;
                 Debug.Log($"{_playerHealthBehaviour.transform.name}'s Health Reset to Max");
-                AudioManager.Play(HealthSFX, 0.75f, false);
+                AudioManager.Play(HealthSFX, AudioCategory.Effect);
                 inventorySlotBehaviour.DropItem();
                 Destroy(gameObject);
             } 
@@ -45,7 +45,7 @@ namespace Scripts.Items
             if (!_isUsed)
             {
             	inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-            	AudioManager.Play(ItemDrop, 0.55f);
+            	AudioManager.Play(ItemDrop, AudioCategory.Effect, 0.55f);
             }
             return true;
         }

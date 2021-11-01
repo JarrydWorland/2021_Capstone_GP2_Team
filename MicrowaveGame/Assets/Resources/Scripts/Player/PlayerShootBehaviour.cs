@@ -137,7 +137,7 @@ namespace Scripts.Player
 
 			if (Shooting && _time >= 1.0f / FireRate)
 			{
-				AudioManager.Play(ShootAudioClip, 0.75f, false, Random.Range(0.55f, 1.35f));
+				AudioManager.Play(ShootAudioClip, AudioCategory.Effect, 0.75f, false, Random.Range(0.55f, 1.35f));
 
 				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction,
 					ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy");

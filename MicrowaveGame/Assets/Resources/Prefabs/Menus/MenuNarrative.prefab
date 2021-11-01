@@ -127,8 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0958d462df714ecabea166f68fc0eb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundMusicAudioClip: {fileID: 8300000, guid: 9a2a50801f45f5a46a19412712e328ad, type: 3}
-  DebugDisableBackgroundMusic: 0
+  HubLoopAudioClip: {fileID: 8300000, guid: 0c8c7646bc6db8d449eee698f9ba9c10, type: 3}
   _strings:
   - 'Welcome to the LED: Light Extraction Droid demo! You play as Merlin, a futuristic
     robot detective of Light City.'

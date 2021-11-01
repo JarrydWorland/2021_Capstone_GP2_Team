@@ -36,7 +36,7 @@ namespace Scripts.Items
 		{
 			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(ItemDrop, 0.55f);
+			AudioManager.Play(ItemDrop, AudioCategory.Effect, 0.55f);
 			return true;
 		}
 	}
