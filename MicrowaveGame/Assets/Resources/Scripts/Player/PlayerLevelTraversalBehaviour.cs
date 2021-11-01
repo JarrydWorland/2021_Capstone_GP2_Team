@@ -21,7 +21,7 @@ namespace Scripts.Player
 		{
 			DoorConnectionBehaviour doorConnectionBehaviour = other.GetComponent<DoorConnectionBehaviour>();
 
-			if (doorConnectionBehaviour != null)
+			if (doorConnectionBehaviour != null && doorConnectionBehaviour.IsOpen)
 			{
 				Direction direction = doorConnectionBehaviour.Direction;
 

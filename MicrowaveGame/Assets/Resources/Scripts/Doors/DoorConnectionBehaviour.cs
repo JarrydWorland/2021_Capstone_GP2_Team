@@ -51,9 +51,6 @@ namespace Scripts.Doors
 
 			GetComponent<SpriteRenderer>().sprite = OpenDoorSprite;
 			GetComponent<Animator>().Play("DoorPulsateOut");
-
-			// Enables door collider when being reopened.
-			GetComponent<Collider2D>().enabled = true;
 		}
 
 		/// <summary>
@@ -64,8 +61,6 @@ namespace Scripts.Doors
 			GetComponent<SpriteRenderer>().sprite = ClosedDoorSprite;
 			GetComponent<Animator>().Play("DoorPulsateIn");
 			
-			// Disables door collider while closed.
-			GetComponent<Collider2D>().enabled = false;
 			IsOpen = false;
 		}
 
