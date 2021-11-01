@@ -36,7 +36,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
+		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene"); //Hub
 
 		/// <summary>
 		/// Sets the current menu to the "Controls" menu.
