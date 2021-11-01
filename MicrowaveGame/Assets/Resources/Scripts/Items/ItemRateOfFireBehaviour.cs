@@ -19,6 +19,8 @@ namespace Scripts.Items
 		/// </summary>
 		public AudioClip DropItemAudioClip;
 
+		public AudioClip RateOfFireSFX;
+
 		private void Start()
 		{
 			base.Start();
@@ -27,6 +29,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
+			AudioManager.Play(RateOfFireSFX, 0.75f, false);
 			_playerShootBehaviour.FireRate += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}

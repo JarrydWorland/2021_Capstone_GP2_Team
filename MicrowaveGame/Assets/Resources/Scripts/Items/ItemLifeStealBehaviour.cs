@@ -12,6 +12,7 @@ namespace Scripts.Items
 
         public AudioClip ItemDrop;
         public AudioClip HealthSFX;
+        public AudioClip LifeStealSFX;
 
         private HealthBehaviour _healthBehaviour;
         private HealthBehaviour _enemyHealthBehaviour;
@@ -25,6 +26,7 @@ namespace Scripts.Items
 
         public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
+            AudioManager.Play(LifeStealSFX, 0.9f, false);
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
         }
 

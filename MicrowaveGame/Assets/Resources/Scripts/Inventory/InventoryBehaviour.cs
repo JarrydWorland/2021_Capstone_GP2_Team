@@ -10,8 +10,6 @@ namespace Scripts.Inventory
 {
 	public class InventoryBehaviour : MonoBehaviour
 	{
-		public AudioClip PickupItemAudioClip;
-
 		private InventorySlotBehaviour[] _slots;
 		private int _currentSlotIndex;
 
@@ -78,8 +76,6 @@ namespace Scripts.Inventory
 			selectedItem.gameObject.SetActive(false);
 
 			UpdateSlotIndicator(nextAvailableSlot);
-
-			AudioManager.Play(PickupItemAudioClip);
 		}
 
 		/// <summary>

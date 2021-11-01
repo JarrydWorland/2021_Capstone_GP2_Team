@@ -68,6 +68,7 @@ MonoBehaviour:
   Description: Slighty increase movement speed
   IncreaseValue: 0.075
   ItemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
+  SpeedUp: {fileID: 8300000, guid: f1b44806f3713b44aa8ccf1b8f0fe034, type: 3}
 --- !u!1001 &8036875327095706385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,11 +142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.42
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.43
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold

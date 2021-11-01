@@ -129,6 +129,7 @@ MonoBehaviour:
   IncreaseValue: 1
   ItemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
   HealthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
+  LifeStealSFX: {fileID: 8300000, guid: 81875c4b5fdf6f642aa13c689e67351d, type: 3}
 --- !u!1001 &1110792912450544423
 PrefabInstance:
   m_ObjectHideFlags: 0
