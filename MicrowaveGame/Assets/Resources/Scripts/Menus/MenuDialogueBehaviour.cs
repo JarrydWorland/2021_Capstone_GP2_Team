@@ -74,6 +74,8 @@ namespace Scripts.Menus
 				if (_onDialogueComplete != null) _onDialogueComplete();
 				return;
 			}
+			
+			_currentSentence.Value = _sentences.Dequeue();
 
 			//AudioManager.Play(textWrite, 1f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 		}
