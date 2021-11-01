@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf3d6d692da5c64f9bd9ee6cfad5c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 1
+  SpawnProbability: 0.25
   Name: Homing Shot
   Description: Adds a homing effect to bullets
   DropItemAudioClip: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
