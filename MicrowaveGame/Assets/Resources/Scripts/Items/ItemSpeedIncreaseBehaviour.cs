@@ -13,6 +13,7 @@ namespace Scripts.Items
 		public float IncreaseValue;
 
 		public AudioClip ItemDrop;
+		public AudioClip SpeedUp;
 
 		private PlayerMovementBehaviour _playerMovementBehaviour;
 
@@ -25,6 +26,7 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
+			AudioManager.Play(SpeedUp, 0.75f, false);
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 

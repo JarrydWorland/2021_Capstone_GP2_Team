@@ -8,6 +8,7 @@ namespace Scripts.Items
     {
         public AudioClip ItemDrop;
         public AudioClip HealthSFX;
+        public AudioClip ItemPickup;
 
         private bool _isUsed;
 
@@ -22,6 +23,7 @@ namespace Scripts.Items
 
         public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
+            AudioManager.Play(ItemPickup, 0.75f, false);
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
         }
 
