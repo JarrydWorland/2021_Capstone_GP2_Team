@@ -990,11 +990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320034224967612566, guid: d72c20df0fb14f34aabdcb7f89034a42, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7320034224967612566, guid: d72c20df0fb14f34aabdcb7f89034a42, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7320034224967612566, guid: d72c20df0fb14f34aabdcb7f89034a42, type: 3}
       propertyPath: ShapeModule.type
