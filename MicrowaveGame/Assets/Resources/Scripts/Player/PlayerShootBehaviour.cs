@@ -36,6 +36,9 @@ namespace Scripts.Player
 		[Range(0.0f, 360.0f)]
 		public float AimAssistConeAngle = 45.0f;
 
+		[Range(0.0f, 360.0f)]
+		public float HomingShotConeAngle = 90.0f;
+
 		private Vector2 _direction = Vector2.up;
 
 		/// <summary>
@@ -70,6 +73,11 @@ namespace Scripts.Player
 		/// </summary>
 		public int AdditionalDamage { get; set; }
 
+		/// <summary>
+		/// The strength that the projectiles should home in on its taget.
+		/// </summary>
+		public int HomingStrength { get; set; } = 0;
+
 		private const float AimDeadzone = 0.1f;
 
 		private GameObject _projectilePrefab;
@@ -94,6 +102,13 @@ namespace Scripts.Player
 
 		private void Update()
 		{
+			Vector3 position = transform.position;
+			List<GameObject> enemies = TagBehaviour.FindWithTag("Enemy").ToList();
+
+			enemies.Sort((lhs, rhs) =>
+				Vector3.Distance(position, lhs.transform.position)
+					.CompareTo(Vector3.Distance(position, rhs.transform.position)));
+
 			if (_isCurrentInputMouse)
 			{
 				_aimIndicatorTransform.gameObject.SetActive(false);
@@ -106,18 +121,10 @@ namespace Scripts.Player
 			else
 			{
 				float aimAssistConeAngle = AimAssistConeAngle.MapBetween(0.0f, 360.0f, 1.0f, -1.0f);
-				Vector3 position = transform.position;
-
-				List<GameObject> enemies = TagBehaviour.FindWithTag("Enemy").ToList();
-
-				enemies.Sort((lhs, rhs) =>
-					Vector3.Distance(position, lhs.transform.position)
-						.CompareTo(Vector3.Distance(position, rhs.transform.position)));
 
 				foreach (GameObject enemy in enemies)
 				{
 					Vector3 enemyPosition = enemy.transform.position;
-
 					Vector3 enemyDirection = (enemyPosition - _projectileSpawnTransform.position).normalized;
 					Vector3 enemyInputDirection = (enemyPosition - transform.position).normalized;
 
@@ -133,6 +140,26 @@ namespace Scripts.Player
 				_aimIndicatorTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right, RawDirection);
 			}
 
+
+			// find targetedEnemy for homing shot
+			GameObject targetedEnemy = null;
+			{
+				float homingConeAngle = HomingShotConeAngle.MapBetween(0.0f, 360.0f, 1.0f, -1.0f);
+
+				foreach (GameObject enemy in enemies)
+				{
+					Vector3 enemyPosition = enemy.transform.position;
+					Vector3 enemyDirection = (enemyPosition - _projectileSpawnTransform.position).normalized;
+					Vector3 enemyInputDirection = (enemyPosition - transform.position).normalized;
+
+					if (Vector3.Dot(RawDirection, enemyInputDirection) > homingConeAngle)
+					{
+						targetedEnemy = enemy;
+						break;
+					}
+				}
+			}
+
 			_time += Time.deltaTime;
 
 			if (Shooting && _time >= 1.0f / FireRate)
@@ -140,7 +167,7 @@ namespace Scripts.Player
 				AudioManager.Play(ShootAudioClip, 0.75f, false, Random.Range(0.55f, 1.35f));
 
 				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction,
-					ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy");
+					ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy", targetedEnemy, HomingStrength);
 
 				_time = 0;
 			}
