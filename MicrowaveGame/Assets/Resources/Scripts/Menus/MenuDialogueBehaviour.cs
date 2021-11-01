@@ -75,9 +75,6 @@ namespace Scripts.Menus
 				return;
 			}
 
-			if (_sentences.Count == 1) _continueButtonText.text = "Begin >>";
-			_currentSentence.Value = _sentences.Dequeue();
-
 			//AudioManager.Play(textWrite, 1f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 		}
 
