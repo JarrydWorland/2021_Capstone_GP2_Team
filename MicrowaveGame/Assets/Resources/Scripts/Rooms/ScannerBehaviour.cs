@@ -17,10 +17,16 @@ public class ScannerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_hubCount != true)
+        if (_hubCount != true)CardCount = Scripts.Persistent.CollectedKeycardCount;
+        if (CardCount == 3)
         {
-            CardCount = Scripts.Persistent.CollectedKeycardCount;
+            if (gameObject.name == "Chevron") gameObject.SetActive(true);
+            if ((gameObject.name == "ChevronEast") || (gameObject.name == "ChevronWest") || (gameObject.name == "ChevronSouth")) gameObject.SetActive(false);
         }
-
+        else
+        {
+            if (gameObject.name == "Chevron") gameObject.SetActive(false);
+            if ((gameObject.name == "ChevronEast") || (gameObject.name == "ChevronWest") || (gameObject.name == "ChevronSouth")) gameObject.SetActive(true);
+        }
     }
 }
