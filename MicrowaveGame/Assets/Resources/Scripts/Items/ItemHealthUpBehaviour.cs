@@ -34,7 +34,7 @@ namespace Scripts.Items
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 
             _healthBehaviour.MaxHealth += IncreaseValue;
-            _healthBarBehaviour.AddCells(IncreaseValue, _healthBehaviour.MaxHealth);
+            _healthBarBehaviour.AddCells(IncreaseValue);
 
             AudioManager.Play(healthSFX, 0.75f, false);
         }

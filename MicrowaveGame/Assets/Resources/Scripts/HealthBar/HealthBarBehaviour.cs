@@ -30,7 +30,7 @@ namespace Scripts.HealthBar
 			CreateCells();
 		}
 
-		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
+        private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
 
 		private void CreateCells()
 		{
@@ -51,6 +51,8 @@ namespace Scripts.HealthBar
 		{
 			if (eventArgs.GameObject.name != "Player") return;
 
+			_targetHealthBehaviour.MaxHealth = GameObject.Find("Player").GetComponent<HealthBehaviour>().MaxHealth;
+
 			for (int i=0; i<_targetHealthBehaviour.MaxHealth; i++)
 			{
 				if (i < eventArgs.NewValue) _cellAnimators[i].SetBool("Full", true);
@@ -58,21 +60,21 @@ namespace Scripts.HealthBar
 			}
 		}
 
-		public void AddCells(int IncreaseValue, int newMaxHealth)
-        {
+		public void AddCells(int IncreaseValue)
+		{
 			const float margin = 0.9f;
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
 			CellPrefab.GetComponent<SpriteRenderer>().color = setColor;
 
-			for (int i = _targetHealthBehaviour.MaxHealth; i < (_targetHealthBehaviour.MaxHealth + IncreaseValue); i++)
-			{
-				GameObject obj = Instantiate(CellPrefab, transform);
-				obj.transform.position += new Vector3((cellHeight * margin * i), 0, 0);
-				makeColor = obj.GetComponent<SpriteRenderer>().color;
-				obj.GetComponent<SpriteRenderer>().color = setColor;
-				_cellAnimators.Add(obj.GetComponent<Animator>());
-				_cellAnimators[i].SetBool("Full", false);
+				for (int i = _targetHealthBehaviour.MaxHealth; i < (_targetHealthBehaviour.MaxHealth + IncreaseValue); i++)
+				{
+					GameObject obj = Instantiate(CellPrefab, transform);
+					obj.transform.position += new Vector3((cellHeight * margin * i), 0, 0);
+					makeColor = obj.GetComponent<SpriteRenderer>().color;
+					obj.GetComponent<SpriteRenderer>().color = setColor;
+					_cellAnimators.Add(obj.GetComponent<Animator>());
+					_cellAnimators[i].SetBool("Full", false);
+				}
 			}
-		}
 	}
 }
