@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialSpriteSwapper : MonoBehaviour
+public class TutorialSpriteSwapperBehaviour : MonoBehaviour
 {
     public GameObject[] xboxControllerIcons;
     public GameObject[] keyboardControllerIcons;
