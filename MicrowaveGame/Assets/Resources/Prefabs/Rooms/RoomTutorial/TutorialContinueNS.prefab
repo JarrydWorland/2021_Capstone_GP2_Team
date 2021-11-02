@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: aec45e4829eed1140abc2d56838d5e6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 35ad8004b6a719f47a85892f45066f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -820,7 +820,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3272446553708812542
+--- !u!114 &1977642672211054219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7534383917623226600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363d4a7d503d3e5428f1d91a6e5dbcb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e557f96fe54f774b8c6947b9cf87ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xboxControllerIcons:
@@ -838,7 +838,6 @@ MonoBehaviour:
   keyboardControllerIcons:
   - {fileID: 7288178589307794534}
   - {fileID: 5323904323603499826}
-  debugControllerIconSwapped: 0
 --- !u!1001 &318594412475755193
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -410,7 +410,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6782072907793410357
+--- !u!114 &6038530556882786269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,14 +419,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8758730427532638330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363d4a7d503d3e5428f1d91a6e5dbcb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e557f96fe54f774b8c6947b9cf87ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xboxControllerIcons:
   - {fileID: 1810445677201104572}
   keyboardControllerIcons:
   - {fileID: 1856973256190180532}
-  debugControllerIconSwapped: 0
 --- !u!1001 &3348281903371456237
 PrefabInstance:
   m_ObjectHideFlags: 0
