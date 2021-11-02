@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Scripts.Audio;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Scripts.Menus
 
 			float effectVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
 
-			_effectVolumeObject ??= GameObject.Find("EffectVolume");
+			_effectVolumeObject ??= GameObject.Find("EffectVolumeSlider");
 			_effectVolumeValueText = _effectVolumeObject.GetComponentsInChildren<Text>().First(x => x.name == "Value");
 
 			UpdateValueText(_effectVolumeValueText, effectVolume);
@@ -24,7 +25,7 @@ namespace Scripts.Menus
 
 			float musicVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
 
-			_musicVolumeObject ??= GameObject.Find("MusicVolume");
+			_musicVolumeObject ??= GameObject.Find("MusicVolumeSlider");
 			_musicVolumeValueText = _musicVolumeObject.GetComponentsInChildren<Text>().First(x => x.name == "Value");
 
 			UpdateValueText(_musicVolumeValueText, musicVolume);
@@ -61,7 +62,11 @@ namespace Scripts.Menus
 
 		private void UpdateValueText(Text text, float volume)
 		{
-			if (text != null) text.text = $"{(int) (volume * 100.0f)}%";
+			if (text != null)
+			{
+				volume = (int) Math.Round(volume * 100.0f, 2);
+				text.text = $"{volume}%";
+			}
 		}
 	}
 }
