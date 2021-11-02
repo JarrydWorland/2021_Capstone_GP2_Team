@@ -5,21 +5,49 @@ using UnityEngine.UI;
 
 namespace Scripts.Menus
 {
-    /// <summary>
-    /// The base menu behaviour to extend off of.
-    /// </summary>
-    public abstract class MenuBehaviour : MonoBehaviour
+	/// <summary>
+	/// The base menu behaviour to extend off of.
+	/// </summary>
+	public abstract class MenuBehaviour : MonoBehaviour
 	{
+		private Selectable _currentSelectable;
 
-		public Selectable CurrentSelectable { get; set; }
+		/// <summary>
+		/// The currently selected object.
+		/// </summary>
+		public Selectable CurrentSelectable
+		{
+			get => _currentSelectable;
+			set
+			{
+				_currentSelectable = value;
+				UpdateIndicatorPosition();
+			}
+		}
 
-		private Transform _buttonIndicatorTransform;
+		private RectTransform _indicatorTransform;
+		private RectTransform _indicatorImageLeftTransform;
+		private RectTransform _indicatorImageRightTransform;
+
+		private Vector3 _indicatorPosition;
+		private Vector3 _indicatorImageLeftPosition;
+		private Vector3 _indicatorImageRightPosition;
 
 		private void Update()
 		{
-			if (_buttonIndicatorTransform != null)
+			if (_indicatorTransform != null)
+				_indicatorTransform.position = Vector3.Lerp(_indicatorTransform.position, _indicatorPosition, 0.075f);
+
+			if (_indicatorImageLeftTransform != null)
 			{
-				_buttonIndicatorTransform.position = Vector3.Lerp(_buttonIndicatorTransform.position, CurrentSelectable.transform.position, 0.075f);
+				_indicatorImageLeftTransform.localPosition = Vector3.Lerp(_indicatorImageLeftTransform.localPosition,
+					_indicatorImageLeftPosition, 0.075f);
+			}
+
+			if (_indicatorImageRightTransform != null)
+			{
+				_indicatorImageRightTransform.localPosition = Vector3.Lerp(_indicatorImageRightTransform.localPosition,
+					_indicatorImageRightPosition, 0.075f);
 			}
 		}
 
@@ -32,8 +60,8 @@ namespace Scripts.Menus
 
 			if (CurrentSelectable != null)
 			{
-				InitButtonIndicator(CurrentSelectable.transform.position);
 				CurrentSelectable.Select();
+				UpdateIndicatorPosition(true);
 			}
 		}
 
@@ -53,30 +81,43 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnReturn()
 		{
-			if (CurrentSelectable != null) CurrentSelectable.Select();
+			if (CurrentSelectable != null)
+			{
+				CurrentSelectable.Select();
+				UpdateIndicatorPosition(true);
+			}
 		}
 
-		private void InitButtonIndicator(Vector3 initialPosition)
+		private void UpdateIndicatorPosition(bool immediate = false)
 		{
-			if (_buttonIndicatorTransform != null) return;
+			if (_indicatorTransform == null)
+				_indicatorTransform = transform.Find("MenuSelectableIndicator").GetComponent<RectTransform>();
 
-			_buttonIndicatorTransform = transform.Find("MenuButtonIndicator");
-			if (_buttonIndicatorTransform == null) return;
+			if (_indicatorImageLeftTransform == null)
+				_indicatorImageLeftTransform = _indicatorTransform.Find("ImageLeft").GetComponent<RectTransform>();
 
-			Button[] buttons = GetComponentsInChildren<Button>();
-			float maximumButtonWidth = float.MinValue;
+			if (_indicatorImageRightTransform == null)
+				_indicatorImageRightTransform = _indicatorTransform.Find("ImageRight").GetComponent<RectTransform>();
 
-			foreach (Button button in buttons)
+			RectTransform currentSelectableTransform = _currentSelectable.GetComponent<RectTransform>();
+
+			Vector3 offset = new Vector3(
+				currentSelectableTransform.rect.width / 2.0f * currentSelectableTransform.localScale.x,
+				0.0f,
+				0.0f);
+
+			if (immediate)
 			{
-				float width = button.GetComponent<RectTransform>().rect.width;
-				if (width > maximumButtonWidth) maximumButtonWidth = width;
+				_indicatorTransform.position = CurrentSelectable.transform.position;
+				_indicatorImageLeftTransform.localPosition = _indicatorImageLeftPosition;
+				_indicatorImageRightTransform.localPosition = _indicatorImageRightPosition;
 			}
-
-			Vector3 offset = new Vector3(maximumButtonWidth / 2.0f, 0.0f, 0.0f);
-
-			_buttonIndicatorTransform.Find("ImageLeft").GetComponent<RectTransform>().localPosition -= offset;
-			_buttonIndicatorTransform.Find("ImageRight").GetComponent<RectTransform>().localPosition += offset;
-			_buttonIndicatorTransform.position = initialPosition;
+			else
+			{
+				_indicatorPosition = CurrentSelectable.transform.position;
+				_indicatorImageLeftPosition = currentSelectableTransform.position - offset;
+				_indicatorImageRightPosition = currentSelectableTransform.position + offset;
+			}
 		}
 	}
 }

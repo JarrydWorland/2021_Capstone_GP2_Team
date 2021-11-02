@@ -747,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490496494141429358, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_Name
-      value: MenuButtonIndicator
+      value: MenuSelectableIndicator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
