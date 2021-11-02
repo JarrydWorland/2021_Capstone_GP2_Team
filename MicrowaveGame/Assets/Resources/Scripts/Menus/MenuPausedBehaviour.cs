@@ -15,10 +15,10 @@ namespace Scripts.Menus
 		public void OnResumeButtonPressed() => MenuManager.GoBack();
 
 		/// <summary>
-		/// Sets the current menu to the "Controls" menu.
-		/// Called when the "Controls" button is pressed.
+		/// Sets the current menu to the "Settings" menu.
+		/// Called when the "Settings" button is pressed.
 		/// </summary>
-		public void OnControlsButtonPressed() => MenuManager.GoInto("MenuControls");
+		public void OnSettingsButtonPressed() => MenuManager.GoInto("MenuSettings");
 
 		/// <summary>
 		/// Sets the current scene to the "Menu" scene.

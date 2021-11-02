@@ -20,7 +20,7 @@ namespace Scripts.StatusEffects
 			_rateInverse = 1.0f / rate;
 			_clip = clip;
 
-			AudioManager.Play(_clip);
+			AudioManager.Play(_clip, AudioCategory.Effect);
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 

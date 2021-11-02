@@ -56,7 +56,7 @@ namespace Scripts
 				
 				if (oldValue >= _value)
 				{
-					AudioManager.Play(DamageAudioClip, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
+					AudioManager.Play(DamageAudioClip, AudioCategory.Effect, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 					DamageParticleSystem.Play();
 					_flashTimer = 0.0f;
 				}

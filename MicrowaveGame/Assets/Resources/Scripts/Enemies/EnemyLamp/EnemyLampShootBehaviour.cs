@@ -68,7 +68,7 @@ namespace Scripts.Enemies.EnemyLamp
 					null,
 					0
 				);
-				AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
+				AudioManager.Play(weaponSfx, AudioCategory.Effect, 0.55f, false, Random.Range(0.85f, 1.25f));
 			}
 		}
 	}
