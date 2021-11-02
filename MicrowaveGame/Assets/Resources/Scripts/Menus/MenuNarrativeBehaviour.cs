@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Scripts.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
 
@@ -9,12 +10,7 @@ namespace Scripts.Menus
 		/// <summary>
 		/// The background music.
 		/// </summary>
-		public AudioClip BackgroundMusicAudioClip;
-
-		/// <summary>
-		/// A debug flag to disable the background music.
-		/// </summary>
-		public bool DebugDisableBackgroundMusic;
+		public AudioClip HubLoopAudioClip;
 
 		[SerializeField]
 		[TextArea(3, 10)]
@@ -49,6 +45,8 @@ namespace Scripts.Menus
 
 			MenuManager.Init(this);
 			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
+			
+			AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
 		}
 
 		/// <summary>
