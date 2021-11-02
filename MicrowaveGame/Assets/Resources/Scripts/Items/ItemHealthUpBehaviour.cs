@@ -7,6 +7,14 @@ using UnityEngine;
 
 namespace Scripts.Items
 {
+    /// <summary>
+    /// Known Issues:
+    ///     - If the Player heals and then closes the game after increasing max health, the health bar will have the added cell on subsequent plays even though the Max Health starts at 5 in the inspector
+    ///         - This is related to Line 54 in HealthBarBehaviour that updates _targetHealthBehaviour's MaxHealth variable, but the script's reference to the player's max health doesn't change without it
+    ///     - An error related to an animator will trigger if the player drops a HealthUp item then tries to pick it up again
+    ///         - This is creating duplicates of the item on the ground that can be picked up until all inventory slots are filled.
+    /// </summary>
+
     public class ItemHealthUpBehaviour : ItemBehaviour
     {
         /// <summary>
