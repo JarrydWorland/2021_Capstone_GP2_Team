@@ -64,9 +64,6 @@ namespace Scripts.HealthBar
 			float cellHeight = CellPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
 			CellPrefab.GetComponent<SpriteRenderer>().color = setColor;
 
-			//if (_targetHealthBehaviour.MaxHealth != newMaxHealth)
-			//	_targetHealthBehaviour.MaxHealth = newMaxHealth;
-
 			for (int i = _targetHealthBehaviour.MaxHealth; i < (_targetHealthBehaviour.MaxHealth + IncreaseValue); i++)
 			{
 				GameObject obj = Instantiate(CellPrefab, transform);

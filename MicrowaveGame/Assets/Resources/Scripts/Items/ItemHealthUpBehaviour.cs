@@ -17,8 +17,6 @@ namespace Scripts.Items
         private HealthBehaviour _healthBehaviour;
         private HealthBarBehaviour _healthBarBehaviour;
 
-        private bool _isUsed;
-
         public AudioClip itemDrop;
         public AudioClip healthSFX;
 
