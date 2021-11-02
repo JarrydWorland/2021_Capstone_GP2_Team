@@ -59,12 +59,14 @@ namespace Scripts.Enemies.EnemyLamp
 			else
 			{
 				InstanceFactory.InstantiateProjectile(
-				ProjectilePrefab,
-				_projectileSpawn.position,
-				_shootingDirection,
-				ProjectileSpeed,
-				ProjectileDamage,
-				"Player"
+					ProjectilePrefab,
+					_projectileSpawn.position,
+					_shootingDirection,
+					ProjectileSpeed,
+					ProjectileDamage,
+					"Player",
+					null,
+					0
 				);
 				AudioManager.Play(weaponSfx, AudioCategory.Effect, 0.55f, false, Random.Range(0.85f, 1.25f));
 			}

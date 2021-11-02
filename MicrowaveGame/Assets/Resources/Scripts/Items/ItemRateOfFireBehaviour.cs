@@ -19,7 +19,9 @@ namespace Scripts.Items
 		/// </summary>
 		public AudioClip DropItemAudioClip;
 
-		private void Start()
+		public AudioClip RateOfFireSFX;
+
+		public override void Start()
 		{
 			base.Start();
 			_playerShootBehaviour = GameObject.Find("Player").GetComponent<PlayerShootBehaviour>();
@@ -27,6 +29,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
+			AudioManager.Play(RateOfFireSFX, AudioCategory.Effect);
 			_playerShootBehaviour.FireRate += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}

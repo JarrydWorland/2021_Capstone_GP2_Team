@@ -15,6 +15,7 @@ namespace Scripts.Items
 		private PlayerShootBehaviour _playerShootBehaviour;
 
 		public AudioClip itemDrop;
+		public AudioClip WeaponDamageSFX;
 
 		public override void Start()
 		{
@@ -26,6 +27,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
+			AudioManager.Play(WeaponDamageSFX, AudioCategory.Effect);
 			_playerShootBehaviour.AdditionalDamage += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}

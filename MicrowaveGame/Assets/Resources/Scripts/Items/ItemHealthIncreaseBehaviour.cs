@@ -17,6 +17,7 @@ namespace Scripts.Items
 
 		public AudioClip itemDrop;
 		public AudioClip healthSFX;
+		public AudioClip ItemPickup;
 
 		public override void Start()
 		{
@@ -26,8 +27,12 @@ namespace Scripts.Items
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
+        {
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
+			AudioManager.Play(ItemPickup, AudioCategory.Effect);
+		}
+			
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
