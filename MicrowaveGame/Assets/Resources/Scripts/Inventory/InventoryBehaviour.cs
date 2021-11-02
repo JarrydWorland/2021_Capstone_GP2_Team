@@ -10,8 +10,6 @@ namespace Scripts.Inventory
 {
 	public class InventoryBehaviour : MonoBehaviour
 	{
-		public AudioClip PickupItemAudioClip;
-
 		private InventorySlotBehaviour[] _slots;
 		private int _currentSlotIndex;
 
@@ -67,7 +65,7 @@ namespace Scripts.Inventory
 			{
 				// All inventory slots are taken.
 				// Swap the current item with the nearby item.
-				OnDropItem(context);
+				OnDropItem(context, false);
 				OnPickupItem(context);
 
 				return;
@@ -78,24 +76,29 @@ namespace Scripts.Inventory
 			selectedItem.gameObject.SetActive(false);
 
 			UpdateSlotIndicator(nextAvailableSlot);
-
-			AudioManager.Play(PickupItemAudioClip);
 		}
 
 		/// <summary>
 		/// Drops an item if one is in the slot.
 		/// Called by the "drop item" input action.
+		/// <param name="context">The context of the input action.</param>
+		/// </summary>
+		public void OnDropItem(InputAction.CallbackContext context) => OnDropItem(context, true);
+
+		/// <summary>
+		/// Drops an item if one is in the slot.
 		/// </summary>
 		/// <param name="context">The context of the input action.</param>
-		public void OnDropItem(InputAction.CallbackContext context)
+		/// <param name="swapping">Whether or not the current slot is performing a swap behaviour.</param>
+		private void OnDropItem(InputAction.CallbackContext context, bool swapping)
 		{
 			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed) return;
 
-			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem();
+			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem(swapping);
 			if (itemBehaviour == null) return;
 
-			UpdateSlotIndicator();
+			if (swapping) UpdateSlotIndicator();
 
 			itemBehaviour.transform.position = _player.transform.position;
 			itemBehaviour.gameObject.SetActive(true);

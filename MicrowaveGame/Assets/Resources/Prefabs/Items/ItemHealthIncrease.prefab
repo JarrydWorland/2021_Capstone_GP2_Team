@@ -40,7 +40,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 870af9455acd4f640b88a91299e9bb33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bfc65e5767700846833895c3c01391c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   IncreaseValue: 2
   itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
   healthSFX: {fileID: 8300000, guid: 4a38517e9f642094289d793586a90767, type: 3}
+  ItemPickup: {fileID: 8300000, guid: 60d5fe67f7ae1d048a87eaaa4d9d1b49, type: 3}
 --- !u!1001 &1277662029549524865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,11 +143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.42
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.43
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
