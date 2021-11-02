@@ -17,7 +17,6 @@ namespace Scripts.Projectiles
 				Destroy(gameObject);
 				AudioManager.Play(ttlSfx, 0.55f);
 			}
-			
 		}
 	}
 }
