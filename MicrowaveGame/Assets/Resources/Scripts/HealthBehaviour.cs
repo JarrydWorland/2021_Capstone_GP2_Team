@@ -60,7 +60,6 @@ namespace Scripts
 					DamageParticleSystem.Play();
 					_flashTimer = 0.0f;
 				}
-				
 				EventManager.Emit(new HealthChangedEventArgs
 				{
 					GameObject = gameObject,
