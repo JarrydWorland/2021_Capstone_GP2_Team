@@ -68,8 +68,10 @@ namespace Scripts.Config
 		/// </summary>
 		/// <param name="path">The configuration file to load.</param>
 		/// <returns>A <see cref="Configuration"/> object containing the given configuration file's content.</returns>
-		public static Configuration Load(string path = "config.ini")
+		public static Configuration Load(string path = null)
 		{
+			path ??= Application.persistentDataPath + "/config.ini";
+			
 			Configuration configuration = new Configuration
 			{
 				_path = path
