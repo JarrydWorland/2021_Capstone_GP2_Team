@@ -11,6 +11,9 @@ namespace Scripts.Menus
 		private GameObject _effectVolumeObject, _musicVolumeObject;
 		private Text _effectVolumeValueText, _musicVolumeValueText;
 
+		private AudioClip _scrollAudioClip;
+		private AudioId _scrollAudioId;
+
 		public override void OnEnter()
 		{
 			base.OnEnter();
@@ -23,13 +26,18 @@ namespace Scripts.Menus
 			UpdateValueText(_effectVolumeValueText, effectVolume);
 			_effectVolumeObject.GetComponentInChildren<Slider>().value = effectVolume;
 
-			float musicVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
+			float musicVolume = AudioManager.GetCategoryVolume(AudioCategory.Music);
 
 			_musicVolumeObject ??= GameObject.Find("MusicVolumeSlider");
 			_musicVolumeValueText = _musicVolumeObject.GetComponentsInChildren<Text>().First(x => x.name == "Value");
 
 			UpdateValueText(_musicVolumeValueText, musicVolume);
 			_musicVolumeObject.GetComponentInChildren<Slider>().value = musicVolume;
+		}
+
+		private void Start()
+		{
+			_scrollAudioClip = Resources.Load<AudioClip>("Audio/Effects/UI/Scroll");
 		}
 
 		/// <summary>
@@ -41,6 +49,9 @@ namespace Scripts.Menus
 		{
 			AudioManager.SetCategoryVolume(AudioCategory.Effect, volume);
 			UpdateValueText(_effectVolumeValueText, volume);
+
+			if (!AudioManager.IsPlaying(_scrollAudioId))
+				_scrollAudioId = AudioManager.Play(_scrollAudioClip, AudioCategory.Effect);
 		}
 
 		/// <summary>

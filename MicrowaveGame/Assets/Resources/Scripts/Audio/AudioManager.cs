@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using Scripts.Utilities;
 
 namespace Scripts.Audio
@@ -74,6 +75,16 @@ namespace Scripts.Audio
 		{
 			AudioEntry audioEntry = AudioEntries.Find(entry => entry.Id == audioId);
 			if (audioEntry != null) audioEntry.AudioSource.Stop();
+		}
+
+		/// <summary>
+		/// Gets the playing state for a given audio ID's audio source.
+		/// </summary>
+		/// <param name="id">The audio ID to match against.</param>
+		/// <returns>Returns true if the audio source exists and is playing, otherwise false.</returns>
+		public static bool IsPlaying(AudioId id)
+		{
+			return AudioEntries.FirstOrDefault(entry => entry.Id == id)?.AudioSource.isPlaying ?? false;
 		}
 
 		/// <summary>
