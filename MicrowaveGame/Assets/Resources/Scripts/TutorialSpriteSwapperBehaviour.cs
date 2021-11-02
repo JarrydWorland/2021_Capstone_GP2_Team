@@ -6,12 +6,16 @@ public class TutorialSpriteSwapperBehaviour : MonoBehaviour
 {
     public GameObject[] xboxControllerIcons;
     public GameObject[] keyboardControllerIcons;
-    [SerializeField] private bool debugControllerIconSwapped = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetString("ControllerType") == "Keyboard" || debugControllerIconSwapped)
+        if(!PlayerPrefs.HasKey("ControllerType"))
+        {
+            PlayerPrefs.SetString("ControllerType", "Keyboard");
+        }
+
+        if (PlayerPrefs.GetString("ControllerType") == "Keyboard")
         {
             foreach (GameObject g in xboxControllerIcons)
             {
@@ -22,11 +26,22 @@ public class TutorialSpriteSwapperBehaviour : MonoBehaviour
                 g.SetActive(true);
             }
         }
+        else if(PlayerPrefs.GetString("ControllerType") == "Xbox")
+        {
+            foreach (GameObject g in keyboardControllerIcons)
+            {
+                g.SetActive(false);
+            }
+            foreach (GameObject g in xboxControllerIcons)
+            {
+                g.SetActive(true);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
