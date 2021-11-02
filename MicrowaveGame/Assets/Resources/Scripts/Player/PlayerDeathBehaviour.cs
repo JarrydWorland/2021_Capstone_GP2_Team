@@ -15,6 +15,10 @@ namespace Scripts.Player
 		private CameraShakeBehaviour _cameraShakeBehaviour;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
+		/// <summary>
+		/// The particle system to play when damage is healed.
+		/// </summary>
+		public ParticleSystem HealthParticleSystem;
 		public ParticleSystem deathParticles;
 		public AudioClip PlayerDeath;
 
@@ -30,7 +34,7 @@ namespace Scripts.Player
 			{
 				Time.timeScale = 0.0f;
 				Explode();
-				AudioManager.Play(PlayerDeath, 1f);
+				AudioManager.Play(PlayerDeath, AudioCategory.Effect, 1.0f);
 
 				Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
 				foreach (Collider2D collider in colliders) collider.enabled = false;
@@ -41,10 +45,15 @@ namespace Scripts.Player
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
 			}
-			else if(eventArgs.GameObject.name == "Player" && eventArgs.NewValue <= eventArgs.OldValue)
-            {
+			else if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue <= eventArgs.OldValue)
+			{
 				_cameraShakeBehaviour.Shake(CameraShakeStrength, CameraShakeDuration);
 			}
+			else if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue >  eventArgs.OldValue)
+			{
+				HealthParticleSystem.Play();
+			}
+
 		}
 
 		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);
