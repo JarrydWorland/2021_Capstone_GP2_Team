@@ -3,6 +3,7 @@ using System.Linq;
 using Scripts.Audio;
 using UnityEngine;
 using UnityEngine.UI;
+using Scripts.Config;
 
 namespace Scripts.Menus
 {
@@ -17,6 +18,10 @@ namespace Scripts.Menus
 		public override void OnEnter()
 		{
 			base.OnEnter();
+
+			_scrollAudioClip ??= Resources.Load<AudioClip>("Audio/Effects/UI/Scroll");
+
+			Configuration.Instance = Configuration.Load();
 
 			float effectVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
 
@@ -35,9 +40,10 @@ namespace Scripts.Menus
 			_musicVolumeObject.GetComponentInChildren<Slider>().value = musicVolume;
 		}
 
-		private void Start()
+		public override void OnLeave()
 		{
-			_scrollAudioClip = Resources.Load<AudioClip>("Audio/Effects/UI/Scroll");
+			Configuration.Instance.Save();
+			base.OnLeave();
 		}
 
 		/// <summary>
@@ -47,8 +53,8 @@ namespace Scripts.Menus
 		/// </summary>
 		public void OnEffectVolumeSliderChanged(float volume)
 		{
-			AudioManager.SetCategoryVolume(AudioCategory.Effect, volume);
-			UpdateValueText(_effectVolumeValueText, volume);
+			Configuration.Instance.EffectVolume = volume;
+			UpdateValueText(_effectVolumeValueText, Configuration.Instance.EffectVolume);
 
 			if (!AudioManager.IsPlaying(_scrollAudioId))
 				_scrollAudioId = AudioManager.Play(_scrollAudioClip, AudioCategory.Effect);
@@ -61,8 +67,8 @@ namespace Scripts.Menus
 		/// </summary>
 		public void OnMusicVolumeSliderChanged(float volume)
 		{
-			AudioManager.SetCategoryVolume(AudioCategory.Music, volume);
-			UpdateValueText(_musicVolumeValueText, volume);
+			Configuration.Instance.MusicVolume = volume;
+			UpdateValueText(_musicVolumeValueText, Configuration.Instance.MusicVolume);
 		}
 
 		/// <summary>
