@@ -29,6 +29,10 @@ namespace Scripts.Menus
 			if (SceneManager.GetActiveScene().name == "Gameplay")
 			{
 				MenuManager.Init(this);
+				
+				// Bug causing audio to not be played first time it is called, so doing redundant call.
+				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f, false);
+
 				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.4f, true);
 			}
 		}

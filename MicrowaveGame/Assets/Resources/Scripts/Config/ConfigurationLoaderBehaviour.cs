@@ -7,7 +7,6 @@ namespace Scripts.Config
 		private void Start()
 		{
 			Configuration.Instance = Configuration.Load();
-			Application.quitting += () => Configuration.Instance.Save();
 		}
 	}
 }

@@ -10,6 +10,11 @@ namespace Scripts.Items
 		private PlayerShootBehaviour _playerShootBehaviour;
 
 		/// <summary>
+		/// The pickup item audio clip.
+		/// </summary>
+		public AudioClip PickupItemAudioCip;
+		
+		/// <summary>
 		/// The drop item audio clip.
 		/// </summary>
 		public AudioClip DropItemAudioClip;
@@ -23,6 +28,8 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerShootBehaviour.HomingStrength += 1;
+
+			AudioManager.Play(PickupItemAudioCip, AudioCategory.Effect);
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 

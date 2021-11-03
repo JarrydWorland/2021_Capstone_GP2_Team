@@ -20,7 +20,6 @@ namespace Scripts.Projectiles
 				float strength = (HomingStrength / Vector3.Distance(transform.position, HomingTarget.transform.position)) * HomingStrengthScale;
 				Vector3 targetDirection = HomingTarget.transform.position -  transform.position;
 				Direction = Vector3.RotateTowards(Direction, targetDirection, strength * Mathf.Deg2Rad * Time.deltaTime, 0.0f);
-				print(strength * Mathf.Deg2Rad * Time.deltaTime);
 			}
 
 			if (distance.sqrMagnitude > 1000)

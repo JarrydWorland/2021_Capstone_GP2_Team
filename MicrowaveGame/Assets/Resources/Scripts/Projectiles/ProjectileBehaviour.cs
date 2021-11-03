@@ -52,7 +52,11 @@ namespace Scripts.Projectiles
 
 		protected virtual void Update()
 		{
-			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
+			if (HomingTarget != null && HomingStrength > 0)
+			{
+				transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
+			}
+
 			Vector2 distance = _startingPosition - transform.position;
 			if (distance.sqrMagnitude > 1000) Destroy(gameObject);
 		}
