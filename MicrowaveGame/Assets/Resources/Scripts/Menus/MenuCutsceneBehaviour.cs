@@ -8,8 +8,7 @@ namespace Scripts.Menus
 {
     public class MenuCutsceneBehaviour : MenuBehaviour
     {
-        private VideoPlayer _videoPlayer;
-
+        public VideoPlayer VideoPlayer;
 
         /// <summary>
         /// Adds this to the history and sets up the transition to Hub
@@ -17,15 +16,15 @@ namespace Scripts.Menus
         private void Start()
         {
             MenuManager.Init(this);
-            _videoPlayer.loopPointReached += MoveToNextScene;
-        }
-
-        private void Awake()
-        {
-            _videoPlayer = GetComponent<VideoPlayer>();
+            VideoPlayer.loopPointReached += MoveToNextScene;
         }
 
         void MoveToNextScene(VideoPlayer _videoPlayer)
+        {
+            SceneFaderBehaviour.Instance.FadeInto("Hub");
+        }
+
+        public void SkipCutscene()
         {
             SceneFaderBehaviour.Instance.FadeInto("Hub");
         }
