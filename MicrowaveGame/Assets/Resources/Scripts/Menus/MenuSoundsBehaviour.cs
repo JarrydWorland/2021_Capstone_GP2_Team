@@ -21,8 +21,6 @@ namespace Scripts.Menus
 
 			_scrollAudioClip ??= Resources.Load<AudioClip>("Audio/Effects/UI/Scroll");
 
-			Configuration.Instance = Configuration.Load();
-
 			float effectVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
 
 			_effectVolumeObject ??= GameObject.Find("EffectVolumeSlider");
