@@ -66,6 +66,7 @@ MonoBehaviour:
   SpawnProbability: 1
   Name: ItemProjectileSize
   Description: Increases projectile size
+  IncreaseValue: 1.5
   itemDrop: {fileID: 8300000, guid: de9efefb18faa6948be43037f07b07ca, type: 3}
 --- !u!1001 &8036875327095706385
 PrefabInstance:
