@@ -77,7 +77,7 @@ namespace Scripts.Rooms
 					doorConnectionBehaviour.Close();
 					if (!onceShut)
 					{
-						AudioManager.Play(DoorLock, 0.75f, false);
+						AudioManager.Play(DoorLock, AudioCategory.Effect);
 						onceShut = true;
 					}
 				}
@@ -96,7 +96,7 @@ namespace Scripts.Rooms
 				randomItem.transform.position = transform.position;
 			}
 
-			AudioManager.Play(DoorOpen);
+			AudioManager.Play(DoorOpen, AudioCategory.Effect);
 
 			foreach (var doorConnectionBehaviour in _doorConnectionBehaviours)
 			{

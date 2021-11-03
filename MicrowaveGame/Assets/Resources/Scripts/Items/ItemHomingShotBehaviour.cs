@@ -35,7 +35,7 @@ namespace Scripts.Items
 			_playerShootBehaviour.HomingStrength -= 1;
 
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(DropItemAudioClip, 0.55f);
+			AudioManager.Play(DropItemAudioClip, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}
