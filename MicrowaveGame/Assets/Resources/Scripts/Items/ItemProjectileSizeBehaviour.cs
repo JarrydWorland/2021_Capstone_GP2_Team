@@ -5,19 +5,16 @@ using UnityEngine;
 
 namespace Scripts.Items
 {
-	public class ItemHomingShotBehaviour : ItemBehaviour
-	{
+    public class ItemProjectileSizeBehaviour : ItemBehaviour
+    {
+		/// <summary>
+		/// The amount the size should be increased when the item is active.
+		/// </summary>
+		public float IncreaseValue;
+
 		private PlayerShootBehaviour _playerShootBehaviour;
 
-		/// <summary>
-		/// The pickup item audio clip.
-		/// </summary>
-		public AudioClip PickupItemAudioCip;
-		
-		/// <summary>
-		/// The drop item audio clip.
-		/// </summary>
-		public AudioClip DropItemAudioClip;
+		public AudioClip itemDrop;
 
 		public override void Start()
 		{
@@ -27,9 +24,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_playerShootBehaviour.HomingStrength += 1;
-
-			AudioManager.Play(PickupItemAudioCip, AudioCategory.Effect);
+			_playerShootBehaviour.ProjectileScale += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
@@ -39,12 +34,11 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_playerShootBehaviour.HomingStrength -= 1;
-
+			_playerShootBehaviour.ProjectileScale -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(DropItemAudioClip, AudioCategory.Effect, 0.55f);
+			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}
-	}
+    }
 }

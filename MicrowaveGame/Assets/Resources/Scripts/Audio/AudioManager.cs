@@ -111,7 +111,7 @@ namespace Scripts.Audio
 		{
 			AudioEntry audioEntry = new AudioEntry
 			{
-				AudioSource = Camera.AddComponent<AudioSource>()
+				AudioSource = Camera.AddComponent<AudioSource>(),
 			};
 
 			AudioEntries.Add(audioEntry);

@@ -22,6 +22,11 @@ namespace Scripts.Enemies.EnemyLamp
 		/// </summary>
 		public int ProjectileDamage;
 
+		/// <summary>
+		/// The scale of the projectile.
+		/// </summary>
+		public float ProjectileScale = 1.0f;
+
 		private GameObject _player;
 		private Transform _projectileSpawn;
 		private Animator _animator;
@@ -62,6 +67,7 @@ namespace Scripts.Enemies.EnemyLamp
 					ProjectilePrefab,
 					_projectileSpawn.position,
 					_shootingDirection,
+					ProjectileScale,
 					ProjectileSpeed,
 					ProjectileDamage,
 					"Player",

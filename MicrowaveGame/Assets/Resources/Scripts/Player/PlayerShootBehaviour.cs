@@ -74,6 +74,11 @@ namespace Scripts.Player
 		public int AdditionalDamage { get; set; }
 
 		/// <summary>
+		/// Additional scale to apply to the projectile.
+		/// </summary>
+		public float ProjectileScale { get; set; } = 1.0f;
+
+		/// <summary>
 		/// The strength that the projectiles should home in on its taget.
 		/// </summary>
 		public int HomingStrength { get; set; } = 0;
@@ -166,8 +171,7 @@ namespace Scripts.Player
 			{
 				AudioManager.Play(ShootAudioClip, AudioCategory.Effect, 0.75f, false, Random.Range(0.55f, 1.35f));
 
-				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction,
-					ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy", targetedEnemy, HomingStrength);
+				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction, ProjectileScale, ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy", targetedEnemy, HomingStrength);
 
 				_time = 0;
 			}
