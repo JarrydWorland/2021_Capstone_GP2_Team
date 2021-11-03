@@ -77,21 +77,6 @@ namespace Scripts.Utilities
 		public static bool HasComponent<T>(this GameObject gameObject) => gameObject.GetComponent<T>() != null;
 
 		/// <summary>
-		/// Given a name, find the corresponding inactive object.
-		/// </summary>
-		/// <param name="name">The name of the object.</param>
-		/// <returns>Returns the game object that has the given name.</returns>
-		public static GameObject FindInactiveObjectByName(string name)
-		{
-			foreach (var transform in Resources.FindObjectsOfTypeAll<Transform>())
-			{
-				if (transform.hideFlags == HideFlags.None && transform.name == name) return transform.gameObject;
-			}
-
-			return null;
-		}
-
-		/// <summary>
 		/// Convert a Vector2 into a Direction
 		/// </summary>
 		/// <param name="vector2">The Vector2.</param>
