@@ -88,7 +88,7 @@ namespace Scripts.Player
 
 			_projectileSpawnTransform = transform.Find("ProjectileSpawn");
 			_aimIndicatorTransform = transform.Find("AimIndicator");
-			_projectilePrefab.transform.localScale = new Vector3(0.1f, 0.1f, 0);
+			_projectilePrefab.transform.localScale = new Vector3(0.1f, 0.1f, 1);
 
 			_time = 1.0f / FireRate;
 		}

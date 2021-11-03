@@ -11,7 +11,7 @@ namespace Scripts.Items
 
 		private GameObject _projectilePrefab;
 
-		private Vector3 AddScale = new Vector3(0.05f,0.05f,0);
+		private Vector3 _addScale = new Vector3(0.05f,0.05f,0);
 		public AudioClip itemDrop;
 
 		public override void Start()
@@ -25,7 +25,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_projectilePrefab.transform.localScale += AddScale;
+			_projectilePrefab.transform.localScale += _addScale;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
@@ -35,7 +35,7 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_projectilePrefab.transform.localScale -= AddScale;
+			_projectilePrefab.transform.localScale -= _addScale;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			AudioManager.Play(itemDrop, 0.55f);
 
