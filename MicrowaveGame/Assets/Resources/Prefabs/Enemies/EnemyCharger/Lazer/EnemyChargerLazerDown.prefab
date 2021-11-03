@@ -189,6 +189,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122279864369897781, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a71419de66fec40b857233ecf775bd, type: 3}
 --- !u!4 &8024214755747160349 stripped
