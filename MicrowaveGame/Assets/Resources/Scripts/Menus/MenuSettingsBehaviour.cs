@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 namespace Scripts.Menus
 {
 	public class MenuSettingsBehaviour : MenuBehaviour
@@ -19,5 +22,27 @@ namespace Scripts.Menus
 		/// Called when the "Done" button is pressed.
 		/// </summary>
 		public void OnDoneButtonPressed() => MenuManager.GoBack();
+
+		public void OnControllerTypePressed(Text controllerType)
+		{
+			if(!PlayerPrefs.HasKey("ControllerType"))
+			{
+				PlayerPrefs.SetString("ControllerType", "Keyboard");
+				controllerType.text = "Controller Type: Keyboard";
+			}
+
+			if(PlayerPrefs.GetString("ControllerType") == "Keyboard")
+			{
+				PlayerPrefs.SetString("ControllerType", "Xbox");
+				controllerType.text = "Controller Type: Xbox";
+			}
+			else if(PlayerPrefs.GetString("ControllerType") == "Xbox")
+			{
+				PlayerPrefs.SetString("ControllerType", "Keyboard");
+				controllerType.text = "Controller Type: Keyboard";
+			}
+
+			Debug.Log("LACHLAN: " + PlayerPrefs.GetString("ControllerType"));
+		}
 	}
 }
