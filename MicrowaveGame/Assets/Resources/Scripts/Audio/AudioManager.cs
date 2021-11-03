@@ -8,7 +8,7 @@ namespace Scripts.Audio
 {
 	public static class AudioManager
 	{
-		private static AudioId _idCounter = 1;
+		private static AudioId _idCounter = 0;
 		private static readonly List<AudioEntry> AudioEntries = new List<AudioEntry>();
 
 		private static float[] _audioCategoryVolumes;
