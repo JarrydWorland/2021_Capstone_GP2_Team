@@ -59,8 +59,8 @@ namespace Scripts.Audio
 		{
 			AudioEntry audioEntry = new AudioEntry
 			{
-				Id = _idCounter++,
 				AudioSource = Camera.AddComponent<AudioSource>(),
+				Id = _idCounter++,
 			};
 			_audioEntries.Add(audioEntry);
 			Log.Info($"Adding additional audio entry (there are now {Log.Cyan(_audioEntries.Count)} audio entries).", LogCategory.AudioManager);
