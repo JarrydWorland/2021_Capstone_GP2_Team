@@ -75,7 +75,7 @@ namespace Scripts.Levels
 			// Freeze time while changing room.
 			Time.timeScale = 0.0f;
 			
-			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
+			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip, AudioCategory.Effect);
 
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);

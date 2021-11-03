@@ -36,7 +36,7 @@ namespace Scripts.Items
 		{
 			_playerShootBehaviour.ProjectileScale -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}

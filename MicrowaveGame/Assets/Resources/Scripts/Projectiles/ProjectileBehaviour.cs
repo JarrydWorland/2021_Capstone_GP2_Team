@@ -27,6 +27,16 @@ namespace Scripts.Projectiles
 		public string TargetTag { get; protected set; }
 
 		/// <summary>
+		/// The specific game object that is being homed in on if any.
+		/// </summary>
+		public GameObject HomingTarget { get; protected set; }
+
+		/// <summary>
+		/// The strength that the projectiles should home in on its taget. null for none.
+		/// </summary>
+		public int HomingStrength { get; protected set; }
+
+		/// <summary>
 		/// The audio clip to play when wall is hit.
 		/// </summary>
 
@@ -42,11 +52,12 @@ namespace Scripts.Projectiles
 
 		protected virtual void Update()
 		{
+			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg);
 			Vector2 distance = _startingPosition - transform.position;
 			if (distance.sqrMagnitude > 1000) Destroy(gameObject);
 		}
 
-		public virtual void Init(Vector2 position, Vector2 direction, float scale, float speed, int damage, string targetTag)
+		public virtual void Init(Vector2 position, Vector2 direction, float scale, float speed, int damage, string targetTag, GameObject homingTarget, int homingStrength)
 		{
 			transform.position = position;
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
@@ -56,6 +67,8 @@ namespace Scripts.Projectiles
 			Speed = speed;
 			Damage = damage;
 			TargetTag = targetTag;
+			HomingTarget = homingTarget;
+			HomingStrength = homingStrength;
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)

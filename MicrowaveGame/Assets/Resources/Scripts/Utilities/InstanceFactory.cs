@@ -53,6 +53,12 @@ namespace Scripts.Utilities
 		/// <param name="targetTag">
 		/// The TagBehaviour tag the projectile will target.
 		/// </param>
+		/// <param name="homingTarget">
+		/// The specific game object that is being homed in on if any. null for none.
+		/// </param>
+		/// <param name="homingStrength">
+		/// The strength that the projectiles should home in on its taget.
+		/// </param>
 		/// <returns> Returns an instantiated and initialised room gameobject instance.</returns>
 		public static GameObject InstantiateProjectile(
 			GameObject projectilePrefab,
@@ -61,10 +67,12 @@ namespace Scripts.Utilities
 			float scale,
 			float speed,
 			int damage,
-			string targetTag)
+			string targetTag,
+			GameObject homingTarget,
+			int homingStrength)
 		{
 			GameObject projectile = GameObject.Instantiate(projectilePrefab);
-			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, scale, speed, damage, targetTag);
+			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, scale, speed, damage, targetTag, homingTarget, homingStrength);
 			return projectile;
 		}
 	}

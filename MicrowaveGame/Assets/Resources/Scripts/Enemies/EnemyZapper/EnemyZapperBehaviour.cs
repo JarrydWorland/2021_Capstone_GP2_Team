@@ -76,7 +76,7 @@ namespace Scripts.Enemies.EnemyZapper
 			else
 			{
 				Instantiate(_shockGameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-				AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
+				AudioManager.Play(weaponSfx, AudioCategory.Effect, 0.55f, false, Random.Range(0.85f, 1.25f));
 			}
 		}
 
