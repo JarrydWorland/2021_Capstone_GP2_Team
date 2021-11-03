@@ -7,19 +7,20 @@ namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
-		public AudioClip Pause;
-		public AudioClip Unpause;
+		public AudioClip GameplayLoopAudioClip;
+		public AudioClip PauseAudioClip;
+
 		public override void OnEnter()
 		{
 			base.OnEnter();
 			GameState.Resume();
-			//AudioManager.Play(Unpause);
 		}
 
 		public override void OnLeave()
 		{
 			GameState.Pause();
-			AudioManager.Play(Pause);
+			AudioManager.Play(PauseAudioClip, AudioCategory.Effect);
+
 			base.OnLeave();
 		}
 
@@ -28,6 +29,11 @@ namespace Scripts.Menus
 			if (SceneManager.GetActiveScene().name == "Gameplay")
 			{
 				MenuManager.Init(this);
+				
+				// Bug causing audio to not be played first time it is called, so doing redundant call.
+				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f, false);
+
+				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.4f, true);
 			}
 		}
 

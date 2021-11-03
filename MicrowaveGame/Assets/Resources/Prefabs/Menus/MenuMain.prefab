@@ -220,7 +220,7 @@ RectTransform:
   - {fileID: 7561948071883836025}
   - {fileID: 6068145080473907087}
   - {fileID: 8768202696041653289}
-  - {fileID: 8857597145664578087}
+  - {fileID: 9221311596279486261}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -366,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932733, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_Name
-      value: ControlsButton
+      value: SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932735, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -386,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932735, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnControlsButtonPressed
+      value: OnSettingsButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932735, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859569659326029379, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_Text
-      value: Controls
+      value: Settings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
@@ -571,7 +571,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6859569658975932732, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
   m_PrefabInstance: {fileID: 8037075652981605431}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8951617990330827547
+--- !u!1001 &8732099815583675913
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -608,11 +608,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 32.42
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 20.06
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -664,12 +664,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490496494141429358, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_Name
-      value: MenuButtonIndicator
+      value: MenuSelectableIndicator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
---- !u!224 &8857597145664578087 stripped
+--- !u!224 &9221311596279486261 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
-  m_PrefabInstance: {fileID: 8951617990330827547}
+  m_PrefabInstance: {fileID: 8732099815583675913}
   m_PrefabAsset: {fileID: 0}
