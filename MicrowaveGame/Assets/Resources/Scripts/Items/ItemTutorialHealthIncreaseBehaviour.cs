@@ -28,13 +28,11 @@ namespace Scripts.Items
 			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(OnRoomTraversedEvent);
 
 			Description = string.Format(Description, IncreaseValue);
-			print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
 		}
 
 		private void OnDestroy()
 		{
 			EventManager.Unregister(_roomTraversedEventId);
-			print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		}
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
