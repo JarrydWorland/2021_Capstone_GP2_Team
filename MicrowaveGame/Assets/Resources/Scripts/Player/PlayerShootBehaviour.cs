@@ -70,6 +70,11 @@ namespace Scripts.Player
 		/// </summary>
 		public int AdditionalDamage { get; set; }
 
+		/// <summary>
+		/// Additional scale to apply to the projectile.
+		/// </summary>
+		public float ProjectileScale { get; set; } = 1.0f;
+
 		private const float AimDeadzone = 0.1f;
 
 		private GameObject _projectilePrefab;
@@ -88,7 +93,6 @@ namespace Scripts.Player
 
 			_projectileSpawnTransform = transform.Find("ProjectileSpawn");
 			_aimIndicatorTransform = transform.Find("AimIndicator");
-			_projectilePrefab.transform.localScale = new Vector3(0.1f, 0.1f, 1);
 
 			_time = 1.0f / FireRate;
 		}
@@ -140,8 +144,7 @@ namespace Scripts.Player
 			{
 				AudioManager.Play(ShootAudioClip, 0.75f, false, Random.Range(0.55f, 1.35f));
 
-				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction,
-					ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy");
+				InstanceFactory.InstantiateProjectile(_projectilePrefab, _projectileSpawnTransform.position, Direction, ProjectileScale, ProjectileSpeed, ProjectileDamage + AdditionalDamage, "Enemy");
 
 				_time = 0;
 			}

@@ -41,6 +41,9 @@ namespace Scripts.Utilities
 		/// <param name="direction">
 		/// The direction the projectile should travel towards.
 		/// </param>
+		/// <param name="scale">
+		/// The scale of the projectile.
+		/// </param>
 		/// <param name="speed">
 		/// The speed the projectile should travel at.
 		/// </param>
@@ -55,12 +58,13 @@ namespace Scripts.Utilities
 			GameObject projectilePrefab,
 			Vector2 position,
 			Vector2 direction,
+			float scale,
 			float speed,
 			int damage,
 			string targetTag)
 		{
 			GameObject projectile = GameObject.Instantiate(projectilePrefab);
-			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, speed, damage, targetTag);
+			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, scale, speed, damage, targetTag);
 			return projectile;
 		}
 	}

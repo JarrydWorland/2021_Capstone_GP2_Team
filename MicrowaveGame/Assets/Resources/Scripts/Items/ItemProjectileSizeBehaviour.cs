@@ -7,25 +7,24 @@ namespace Scripts.Items
 {
     public class ItemProjectileSizeBehaviour : ItemBehaviour
     {
+		/// <summary>
+		/// The amount the size should be increased when the item is active.
+		/// </summary>
+		public float IncreaseValue;
+
 		private PlayerShootBehaviour _playerShootBehaviour;
 
-		private GameObject _projectilePrefab;
-
-		private Vector3 _addScale = new Vector3(0.05f,0.05f,0);
 		public AudioClip itemDrop;
 
 		public override void Start()
 		{
 			base.Start();
-
-			Description = string.Format(Description);
-			_projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectiles/ProjectileBullet");
 			_playerShootBehaviour = GameObject.Find("Player").GetComponent<PlayerShootBehaviour>();
 		}
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_projectilePrefab.transform.localScale += _addScale;
+			_playerShootBehaviour.ProjectileScale += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
@@ -35,7 +34,7 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_projectilePrefab.transform.localScale -= _addScale;
+			_playerShootBehaviour.ProjectileScale -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			AudioManager.Play(itemDrop, 0.55f);
 

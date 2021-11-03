@@ -46,10 +46,11 @@ namespace Scripts.Projectiles
 			if (distance.sqrMagnitude > 1000) Destroy(gameObject);
 		}
 
-		public virtual void Init(Vector2 position, Vector2 direction, float speed, int damage, string targetTag)
+		public virtual void Init(Vector2 position, Vector2 direction, float scale, float speed, int damage, string targetTag)
 		{
 			transform.position = position;
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+			transform.localScale *= scale;
 			_startingPosition = position;
 			Direction = direction;
 			Speed = speed;
