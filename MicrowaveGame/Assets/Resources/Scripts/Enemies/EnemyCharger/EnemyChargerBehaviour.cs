@@ -56,9 +56,9 @@ namespace Scripts.Enemies.EnemyCharger
 
 			if (lazerActive)
 			{
-				
 				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
                 {
+					_lazerDownInstance.GetComponentsInChildren<TrailRenderer>(true)[0].gameObject.SetActive(true);
 					_dischargeSfxId = AudioManager.Play(dischargeSfx, AudioCategory.Effect);
 				}
 
