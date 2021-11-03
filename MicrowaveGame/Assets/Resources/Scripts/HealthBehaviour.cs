@@ -12,7 +12,23 @@ namespace Scripts
 		/// <summary>
 		/// How much health the object has in total.
 		/// </summary>
-		public int MaxHealth = 5;
+		public int MaxHealth
+		{
+			get => _maxHealth;
+			set
+			{
+				int oldMax = _maxHealth;
+				_maxHealth = value;
+				EventManager.Emit(new HealthMaxChangedEventArgs
+				{
+					GameObject = gameObject,
+					OldMax = oldMax,
+					NewMax = _maxHealth,
+				});
+			}
+		}
+		[SerializeField]
+		private int _maxHealth = 5;
 
 		/// <summary>
 		/// Prevents the health from becoming less than one.
@@ -70,7 +86,7 @@ namespace Scripts
 		}
 		private int _value;
 
-		private void Start()
+		private void Awake()
 		{
 			_value = MaxHealth;
 		}
@@ -91,5 +107,12 @@ namespace Scripts
 		public GameObject GameObject;
 		public int OldValue;
 		public int NewValue;
+	}
+
+	public class HealthMaxChangedEventArgs : EventArgs
+	{
+		public GameObject GameObject;
+		public int OldMax;
+		public int NewMax;
 	}
 }

@@ -619,10 +619,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
-      propertyPath: MaxHealth
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7607394142230256565, guid: 71a2878986dd1e048b0d34eac7a690b9, type: 3}
       propertyPath: Invincible
       value: 1
       objectReference: {fileID: 0}
@@ -1741,6 +1737,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4069131339252000218, guid: 4142fadb8f297f54bafc4787bb655120, type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 547911201}
     - target: {fileID: 9174107821542761618, guid: 4142fadb8f297f54bafc4787bb655120, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.16862746
