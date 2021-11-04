@@ -45,8 +45,8 @@ namespace Scripts.Menus
 
 			_statisticsTextContent.Value = string.Format(_statisticsText.text, timeTaken.Minutes, timeTaken.Seconds,
 				statisticsTrackerBehaviour.EnemiesDefeated, statisticsTrackerBehaviour.DamageDealt,
-				statisticsTrackerBehaviour.DamageTaken, totalRooms,
-				statisticsTrackerBehaviour.RoomsExplored, roomsExploredPercentage);
+				statisticsTrackerBehaviour.DamageTaken, statisticsTrackerBehaviour.RoomsExplored, totalRooms,
+				roomsExploredPercentage);
 
 			_statisticsText.text = string.Empty;
 		}
