@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using Scripts.Utilities;
+using Scripts.Dialogue;
 using UnityEngine;
 
 namespace Scripts.Menus
@@ -24,10 +25,9 @@ namespace Scripts.Menus
 
 		private void Start()
 		{
-			if (SceneManager.GetActiveScene().name == "Gameplay")
-			{
-				MenuManager.Init(this);
-			}
+			MenuManager.Init(this);
+			if (Persistent.CollectedKeycardCount >= Persistent.RequiredKeycardCount)
+				MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
 		}
 
 		public override void OnReturn() => GameState.Resume();
