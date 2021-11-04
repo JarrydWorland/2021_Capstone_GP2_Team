@@ -401,8 +401,10 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - Look! The door to the power room is open!
-    - I can now restore power to Light City!
+    - Thank goodness, that should be enough keycards to take the load off of the
+      emergency generators.
+    - But my work isn't done. The Lightbulb Gang still has more stolen key cards.
+    - I need to get every last card back to the power grid as soon as possible
 --- !u!1 &223219233
 GameObject:
   m_ObjectHideFlags: 0
