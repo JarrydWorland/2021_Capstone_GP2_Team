@@ -29,38 +29,7 @@ namespace Scripts.Config
 			set
 			{
 				_controlScheme = Enum.IsDefined(typeof(ControlScheme), value) ? value : ControlScheme.KeyboardAndMouse;
-
-				if (SceneManager.GetActiveScene().name != "Hub") return;
-
-				GameObject[] controlsXboxObjects =
-					Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
-						.Where(room => room.name.StartsWith("Tutorial"))
-						.Select(room => room.transform.Find("ControlsXbox").gameObject)
-						.ToArray();
-
-				foreach (GameObject controlsXboxObject in controlsXboxObjects)
-					controlsXboxObject.SetActive(false);
-
-				GameObject[] controlsKeyboardAndMouseObjects =
-					Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
-						.Where(room => room.name.StartsWith("Tutorial"))
-						.Select(room => room.transform.Find("ControlsKeyboardAndMouse").gameObject)
-						.ToArray();
-
-				foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
-					controlsKeyboardAndMouseObject.SetActive(false);
-
-				switch (_controlScheme)
-				{
-					case ControlScheme.Xbox:
-						foreach (GameObject controlsXboxObject in controlsXboxObjects)
-							controlsXboxObject.SetActive(true);
-						break;
-					default:
-						foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
-							controlsKeyboardAndMouseObject.SetActive(true);
-						break;
-				}
+				if (SceneManager.GetActiveScene().name == "Hub") UpdateTutorialSprites();
 			}
 		}
 
@@ -136,7 +105,11 @@ namespace Scripts.Config
 				_path = path
 			};
 
-			if (!File.Exists(path)) return configuration;
+			if (!File.Exists(path))
+			{
+				if (SceneManager.GetActiveScene().name == "Hub") configuration.UpdateTutorialSprites();
+				return configuration;
+			}
 
 			using FileStream stream = File.OpenRead(path);
 			using StreamReader reader = new StreamReader(stream);
@@ -176,6 +149,8 @@ namespace Scripts.Config
 				}
 			}
 
+			if (SceneManager.GetActiveScene().name == "Hub") configuration.UpdateTutorialSprites();
+
 			Log.Info($"Loaded {Log.Blue(path)} configuration file.");
 			return configuration;
 		}
@@ -199,6 +174,39 @@ namespace Scripts.Config
 					break;
 				case "MusicVolume" when float.TryParse(value, out float musicVolume):
 					configuration.MusicVolume = Mathf.Clamp((float) Math.Round(musicVolume, 2), 0.0f, 1.0f);
+					break;
+			}
+		}
+
+		private void UpdateTutorialSprites()
+		{
+			GameObject[] controlsXboxObjects =
+				Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+					.Where(room => room.name.StartsWith("Tutorial"))
+					.Select(room => room.transform.Find("ControlsXbox").gameObject)
+					.ToArray();
+
+			foreach (GameObject controlsXboxObject in controlsXboxObjects)
+				controlsXboxObject.SetActive(false);
+
+			GameObject[] controlsKeyboardAndMouseObjects =
+				Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+					.Where(room => room.name.StartsWith("Tutorial"))
+					.Select(room => room.transform.Find("ControlsKeyboardAndMouse").gameObject)
+					.ToArray();
+
+			foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+				controlsKeyboardAndMouseObject.SetActive(false);
+
+			switch (ControlScheme)
+			{
+				case ControlScheme.Xbox:
+					foreach (GameObject controlsXboxObject in controlsXboxObjects)
+						controlsXboxObject.SetActive(true);
+					break;
+				default:
+					foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+						controlsKeyboardAndMouseObject.SetActive(true);
 					break;
 			}
 		}
