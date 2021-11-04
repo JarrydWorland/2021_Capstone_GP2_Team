@@ -8,6 +8,7 @@ namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
+		public AudioClip HubLoopAudioClip;
 		public AudioClip GameplayLoopAudioClip;
 		public AudioClip PauseAudioClip;
 
@@ -27,16 +28,23 @@ namespace Scripts.Menus
 
 		private void Start()
 		{
-			MenuManager.Init(this);
-
-			if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount)
-				MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
-
-			if (SceneManager.GetActiveScene().name == "Gameplay")
+			if (SceneManager.GetActiveScene().name == "Hub")
 			{
-				// Bug causing audio to not be played first time it is called, so doing redundant call.
-				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f, false);
+				MenuManager.Init(this);
 
+				// Bug causing audio to not be played first time it is called, so doing redundant call.
+				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.0f);
+				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
+
+				if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount)
+					MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
+			}
+			else if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+
+				// Bug causing audio to not be played first time it is called, so doing redundant call.
+				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f);
 				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.4f, true);
 			}
 		}
