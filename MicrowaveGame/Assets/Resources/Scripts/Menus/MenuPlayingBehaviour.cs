@@ -32,8 +32,6 @@ namespace Scripts.Menus
 			{
 				MenuManager.Init(this);
 
-				// Bug causing audio to not be played first time it is called, so doing redundant call.
-				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.0f);
 				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
 
 				if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount)

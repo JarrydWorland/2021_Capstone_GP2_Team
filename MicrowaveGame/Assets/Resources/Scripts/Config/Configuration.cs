@@ -41,7 +41,7 @@ namespace Scripts.Config
 			get => AudioManager.GetCategoryVolume(AudioCategory.Effect);
 			set
 			{
-				value = (float) Math.Round(value, 2);
+				value = Mathf.Clamp((float) Math.Round(value, 2), 0.0f, 1.0f);
 				AudioManager.SetCategoryVolume(AudioCategory.Effect, value);
 			}
 		}
@@ -54,7 +54,7 @@ namespace Scripts.Config
 			get => AudioManager.GetCategoryVolume(AudioCategory.Music);
 			set
 			{
-				value = (float) Math.Round(value, 2);
+				value = Mathf.Clamp((float) Math.Round(value, 2), 0.0f, 1.0f);
 				AudioManager.SetCategoryVolume(AudioCategory.Music, value);
 			}
 		}

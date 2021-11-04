@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6580432558772047829, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6580432558772047829, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_AnchorMax.x
@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 1942861387}
   - component: {fileID: 1942861386}
   - component: {fileID: 1942861385}
+  - component: {fileID: 1942861389}
   - component: {fileID: 1942861388}
   m_Layer: 0
   m_Name: Main Camera
@@ -519,6 +520,18 @@ MonoBehaviour:
   height: 540
   onAwake: 1
   onUpdate: 1
+--- !u!114 &1942861389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942861384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f938e8e0f0e44099800f3cb1330d915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100758353
 GameObject:
   m_ObjectHideFlags: 0

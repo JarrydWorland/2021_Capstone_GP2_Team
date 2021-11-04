@@ -13,7 +13,7 @@ namespace Scripts.Menus
 		private Text _effectVolumeValueText, _musicVolumeValueText;
 
 		private AudioClip _scrollAudioClip;
-		private AudioId _scrollAudioId;
+		private AudioId? _scrollAudioId;
 
 		public override void OnEnter()
 		{
@@ -21,18 +21,18 @@ namespace Scripts.Menus
 
 			_scrollAudioClip ??= Resources.Load<AudioClip>("Audio/Effects/UI/Scroll");
 
-			float effectVolume = AudioManager.GetCategoryVolume(AudioCategory.Effect);
-
 			_effectVolumeObject ??= GameObject.Find("EffectVolumeSlider");
 			_effectVolumeValueText = _effectVolumeObject.GetComponentsInChildren<Text>().First(x => x.name == "Value");
+
+			float effectVolume = Configuration.Instance.EffectVolume;
 
 			UpdateValueText(_effectVolumeValueText, effectVolume);
 			_effectVolumeObject.GetComponentInChildren<Slider>().value = effectVolume;
 
-			float musicVolume = AudioManager.GetCategoryVolume(AudioCategory.Music);
-
 			_musicVolumeObject ??= GameObject.Find("MusicVolumeSlider");
 			_musicVolumeValueText = _musicVolumeObject.GetComponentsInChildren<Text>().First(x => x.name == "Value");
+
+			float musicVolume = Configuration.Instance.MusicVolume;
 
 			UpdateValueText(_musicVolumeValueText, musicVolume);
 			_musicVolumeObject.GetComponentInChildren<Slider>().value = musicVolume;
@@ -54,7 +54,7 @@ namespace Scripts.Menus
 			Configuration.Instance.EffectVolume = volume;
 			UpdateValueText(_effectVolumeValueText, Configuration.Instance.EffectVolume);
 
-			if (!AudioManager.IsPlaying(_scrollAudioId))
+			if (!_scrollAudioId.HasValue || !AudioManager.IsPlaying(_scrollAudioId.Value))
 				_scrollAudioId = AudioManager.Play(_scrollAudioClip, AudioCategory.Effect);
 		}
 
