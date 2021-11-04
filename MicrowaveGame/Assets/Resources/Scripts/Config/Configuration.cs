@@ -18,7 +18,7 @@ namespace Scripts.Config
 		/// </summary>
 		public static Configuration Instance;
 
-		private ControlScheme _controlScheme;
+		private ControlScheme _controlScheme = ControlScheme.KeyboardAndMouse;
 
 		/// <summary>
 		/// The current control scheme.
