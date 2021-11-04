@@ -14,7 +14,15 @@ namespace Scripts.Items
 
 		private PlayerShootBehaviour _playerShootBehaviour;
 
-		public AudioClip itemDrop;
+		/// <summary>
+		/// The pickup item audio clip.
+		/// </summary>
+		public AudioClip PickupItemAudioCip;
+		
+		/// <summary>
+		/// The drop item audio clip.
+		/// </summary>
+		public AudioClip DropItemAudioClip;
 
 		public override void Start()
 		{
@@ -26,6 +34,7 @@ namespace Scripts.Items
 		{
 			_playerShootBehaviour.ProjectileScale += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
+			AudioManager.Play(PickupItemAudioCip, AudioCategory.Effect);
 		}
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
@@ -36,7 +45,7 @@ namespace Scripts.Items
 		{
 			_playerShootBehaviour.ProjectileScale -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
+			AudioManager.Play(DropItemAudioClip, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}
