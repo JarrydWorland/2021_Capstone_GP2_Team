@@ -1,9 +1,13 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Scripts.Audio;
+using Scripts.Rooms;
 using Scripts.Utilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Scripts.Config
 {
@@ -13,6 +17,52 @@ namespace Scripts.Config
 		/// The configuration instance.
 		/// </summary>
 		public static Configuration Instance;
+
+		private ControlScheme _controlScheme;
+
+		/// <summary>
+		/// The current control scheme.
+		/// </summary>
+		public ControlScheme ControlScheme
+		{
+			get => _controlScheme;
+			set
+			{
+				_controlScheme = Enum.IsDefined(typeof(ControlScheme), value) ? value : ControlScheme.KeyboardAndMouse;
+
+				if (SceneManager.GetActiveScene().name != "Hub") return;
+
+				GameObject[] controlsXboxObjects =
+					Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+						.Where(room => room.name.StartsWith("Tutorial"))
+						.Select(room => room.transform.Find("ControlsXbox").gameObject)
+						.ToArray();
+
+				foreach (GameObject controlsXboxObject in controlsXboxObjects)
+					controlsXboxObject.SetActive(false);
+
+				GameObject[] controlsKeyboardAndMouseObjects =
+					Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+						.Where(room => room.name.StartsWith("Tutorial"))
+						.Select(room => room.transform.Find("ControlsKeyboardAndMouse").gameObject)
+						.ToArray();
+
+				foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+					controlsKeyboardAndMouseObject.SetActive(false);
+
+				switch (_controlScheme)
+				{
+					case ControlScheme.Xbox:
+						foreach (GameObject controlsXboxObject in controlsXboxObjects)
+							controlsXboxObject.SetActive(true);
+						break;
+					default:
+						foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+							controlsKeyboardAndMouseObject.SetActive(true);
+						break;
+				}
+			}
+		}
 
 		/// <summary>
 		/// The effect volume.
@@ -50,10 +100,19 @@ namespace Scripts.Config
 			using FileStream stream = File.OpenWrite(_path);
 			using StreamWriter writer = new StreamWriter(stream);
 
+			SaveControls(writer);
+			writer.WriteLine();
+
 			SaveSounds(writer);
 			writer.Flush();
 
 			Log.Info($"Saved {Log.Blue(_path)} configuration file.");
+		}
+
+		private void SaveControls(StreamWriter writer)
+		{
+			writer.WriteLine("[Controls]");
+			writer.WriteLine($"ControlScheme={(int) ControlScheme}");
 		}
 
 		private void SaveSounds(StreamWriter writer)
@@ -71,7 +130,7 @@ namespace Scripts.Config
 		public static Configuration Load(string path = null)
 		{
 			path ??= Application.persistentDataPath + "/config.ini";
-			
+
 			Configuration configuration = new Configuration
 			{
 				_path = path
@@ -108,6 +167,9 @@ namespace Scripts.Config
 
 				switch (section)
 				{
+					case "Controls":
+						LoadControls(configuration, name, value);
+						break;
 					case "Sounds":
 						LoadSounds(configuration, name, value);
 						break;
@@ -116,6 +178,16 @@ namespace Scripts.Config
 
 			Log.Info($"Loaded {Log.Blue(path)} configuration file.");
 			return configuration;
+		}
+
+		private static void LoadControls(Configuration configuration, string name, string value)
+		{
+			switch (name)
+			{
+				case "ControlScheme" when Enum.TryParse(value, out ControlScheme controlScheme):
+					configuration.ControlScheme = controlScheme;
+					break;
+			}
 		}
 
 		private static void LoadSounds(Configuration configuration, string name, string value)
