@@ -9,6 +9,7 @@ namespace Scripts.Items
 	public class ItemRevengeBehaviour : ItemBehaviour
 	{
 		public int IncreaseValue;
+		private int _damage;
 		private PlayerShootBehaviour _playerShootBehaviour;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
@@ -21,6 +22,7 @@ namespace Scripts.Items
 
 			Description = string.Format(Description);
 			_playerShootBehaviour = GameObject.Find("Player").GetComponent<PlayerShootBehaviour>();
+			_damage = _playerShootBehaviour.AdditionalDamage;
 		}
 
 		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
@@ -31,6 +33,7 @@ namespace Scripts.Items
             {
 				 IncreaseValue += eventArgs.OldValue - eventArgs.NewValue;
 				_playerShootBehaviour.AdditionalDamage += IncreaseValue;
+				_damage += IncreaseValue;
 			}
         }
 
@@ -48,7 +51,8 @@ namespace Scripts.Items
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			EventManager.Unregister(_healthChangedEventId);
-			_playerShootBehaviour.AdditionalDamage = 0;
+			_playerShootBehaviour.AdditionalDamage -= _damage;
+			_damage = 0;
 			IncreaseValue = 0;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
 			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
