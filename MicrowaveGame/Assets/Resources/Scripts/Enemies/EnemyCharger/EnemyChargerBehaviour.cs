@@ -16,12 +16,14 @@ namespace Scripts.Enemies.EnemyCharger
 		private Animator _animator;
 		private GameObject _lazerUpPrefab;
 		private GameObject _lazerDownPrefab;
+		private GameObject _lazerScorchTrail;
 		private GameObject _player;
 		private Vector3 _lazerUpOffset;
 		private Vector3 _lazerDownOffset;
 
 		private GameObject _lazerUpInstance;
 		private GameObject _lazerDownInstance;
+		private GameObject _lazerScorchInstance;
 
 		public AudioClip chargeSfx;
 		public AudioClip dischargeSfx;
@@ -36,6 +38,7 @@ namespace Scripts.Enemies.EnemyCharger
 			_animator = GetComponent<Animator>();
 			_lazerUpPrefab = Resources.Load<GameObject>("Prefabs/Enemies/EnemyCharger/Lazer/EnemyChargerLazerUp");
 			_lazerDownPrefab = Resources.Load<GameObject>("Prefabs/Enemies/EnemyCharger/Lazer/EnemyChargerLazerDown");
+			_lazerScorchTrail = Resources.Load<GameObject>("Prefabs/Enemies/EnemyCharger/Lazer/TrailObject");
 			_lazerUpOffset = new Vector3(0, _lazerUpPrefab.GetComponent<SpriteRenderer>().bounds.extents.y, 0);
 			_lazerDownOffset = new Vector3(0, _lazerDownPrefab.GetComponent<SpriteRenderer>().bounds.extents.y - 1.0f, 0);
 			_player = GameObject.Find("Player");
@@ -48,7 +51,7 @@ namespace Scripts.Enemies.EnemyCharger
 			// move lazer towards player
 			Vector3 targetPosition = _player.transform.position + _lazerDownOffset;
 			_lazerDownInstance.transform.position = Vector3.MoveTowards(_lazerDownInstance.transform.position, targetPosition, LazerSpeed * Time.deltaTime);
-
+			_lazerScorchInstance.transform.position = Vector3.MoveTowards(_lazerDownInstance.transform.position, targetPosition, LazerSpeed * Time.deltaTime);
 			// determine lazer state from animation
 			Animator lazerDownAnimator = _lazerDownInstance.GetComponent<Animator>();_lazerDownInstance.GetComponent<Animator>();
 			bool lazerActive = lazerDownAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= LazerActiveFrame;
@@ -56,9 +59,10 @@ namespace Scripts.Enemies.EnemyCharger
 
 			if (lazerActive)
 			{
-				
 				if(_lazerDownInstance.GetComponent<BoxCollider2D>().enabled == false)
                 {
+					//_lazerDownInstance.GetComponentsInChildren<TrailRenderer>(true)[0].gameObject.SetActive(true);
+					_lazerScorchInstance.GetComponentInChildren<TrailRenderer>(true).gameObject.SetActive(true);
 					_dischargeSfxId = AudioManager.Play(dischargeSfx, AudioCategory.Effect);
 				}
 
@@ -107,6 +111,12 @@ namespace Scripts.Enemies.EnemyCharger
 				_lazerDownInstance = GameObject.Instantiate(_lazerDownPrefab, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 				_lazerDownInstance.AddComponent<LazerDownDamageBehaviour>();
 				_chargeSfxId = AudioManager.Play(chargeSfx, AudioCategory.Effect);
+				if (_lazerScorchInstance != null)
+                {
+					Destroy(_lazerScorchInstance);
+					_lazerScorchInstance = GameObject.Instantiate(_lazerScorchTrail, _player.transform.position + _lazerDownOffset, Quaternion.identity);
+				}
+				else _lazerScorchInstance = GameObject.Instantiate(_lazerScorchTrail, _player.transform.position + _lazerDownOffset, Quaternion.identity);
 			}
 
 		}
