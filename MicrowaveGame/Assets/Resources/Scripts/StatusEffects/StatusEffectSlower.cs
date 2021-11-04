@@ -29,7 +29,7 @@ namespace Scripts.StatusEffects
 			_frictionFactor = frictionFactor;
 			_clip = clip;
 
-			AudioManager.Play(_clip, AudioCategory.Effect);
+			AudioManager.Play(_clip);
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 			_playerMovementBehaviour.Acceleration *= _accelerationFactor;
 			_playerMovementBehaviour.Friction *= _frictionFactor;

@@ -106,7 +106,7 @@ RectTransform:
   - {fileID: 2251424064203843026}
   - {fileID: 2251424065532064426}
   - {fileID: 1252593779400485330}
-  - {fileID: 7351810186440371120}
+  - {fileID: 8576527837644811141}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0958d462df714ecabea166f68fc0eb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HubLoopAudioClip: {fileID: 8300000, guid: 0c8c7646bc6db8d449eee698f9ba9c10, type: 3}
+  BackgroundMusicAudioClip: {fileID: 8300000, guid: 9a2a50801f45f5a46a19412712e328ad, type: 3}
+  DebugDisableBackgroundMusic: 0
   _strings:
   - 'Welcome to the LED: Light Extraction Droid demo! You play as Merlin, a futuristic
     robot detective of Light City.'
@@ -292,7 +293,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6859569658975932732, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
   m_PrefabInstance: {fileID: 5643024785765660910}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6976331903554275980
+--- !u!1001 &8202174422004714169
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -329,11 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.42
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20.06
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,12 +386,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490496494141429358, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_Name
-      value: MenuSelectableIndicator
+      value: MenuButtonIndicator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
---- !u!224 &7351810186440371120 stripped
+--- !u!224 &8576527837644811141 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
-  m_PrefabInstance: {fileID: 6976331903554275980}
+  m_PrefabInstance: {fileID: 8202174422004714169}
   m_PrefabAsset: {fileID: 0}

@@ -27,7 +27,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			AudioManager.Play(WeaponDamageSFX, AudioCategory.Effect);
+			AudioManager.Play(WeaponDamageSFX, 0.75f, false);
 			_playerShootBehaviour.AdditionalDamage += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
@@ -40,7 +40,7 @@ namespace Scripts.Items
 		{
 			_playerShootBehaviour.AdditionalDamage -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
+			AudioManager.Play(itemDrop, 0.55f);
 
 			return true;
 		}

@@ -43,7 +43,7 @@ namespace Scripts.Scenes
 		public void FadeInto(string name)
 		{
 			_targetScene = name;
-			AudioManager.Play(SceneTrans, AudioCategory.Effect);
+			AudioManager.Play(SceneTrans);
 			FadeOut();
 		}
 

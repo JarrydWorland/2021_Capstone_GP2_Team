@@ -23,7 +23,7 @@ namespace Scripts.Items
 
         public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            AudioManager.Play(ItemPickup, AudioCategory.Effect);
+            AudioManager.Play(ItemPickup, 0.75f, false);
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
         }
 
@@ -34,7 +34,7 @@ namespace Scripts.Items
             	_isUsed = true;
                 _playerHealthBehaviour.Value = _playerHealthBehaviour.MaxHealth;
                 Debug.Log($"{_playerHealthBehaviour.transform.name}'s Health Reset to Max");
-                AudioManager.Play(HealthSFX, AudioCategory.Effect);
+                AudioManager.Play(HealthSFX, 0.75f, false);
                 inventorySlotBehaviour.DropItem();
                 Destroy(gameObject);
             } 
@@ -47,7 +47,7 @@ namespace Scripts.Items
             if (!_isUsed)
             {
             	inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-            	AudioManager.Play(ItemDrop, AudioCategory.Effect, 0.55f);
+            	AudioManager.Play(ItemDrop, 0.55f);
             }
             return true;
         }

@@ -40,7 +40,7 @@ namespace Scripts.Enemies
 			
 			//play it
 			explosionEffect.Play();
-			AudioManager.Play(_explosionSFX, AudioCategory.Effect);
+			AudioManager.Play(_explosionSFX, 0.75f, false);
 
 			//destroy the particle system when its duration is up
 			Destroy(explosionEffect.gameObject, explosionEffect.main.duration);

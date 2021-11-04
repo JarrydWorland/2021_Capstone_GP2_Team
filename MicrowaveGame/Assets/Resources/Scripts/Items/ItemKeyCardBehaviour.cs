@@ -21,8 +21,8 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			Persistent.CollectedKeyCardCount += 1;
-			AudioManager.Play(ItemPickup, AudioCategory.Effect, 0.9f);
+			Persistent.CollectedKeycardCount += 1;
+			AudioManager.Play(ItemPickup, 0.9f, false);
 			MenuManager.ShowDialogue(_dialogueContentBehaviour.DialogueContent, () =>
 			{
 				SceneManager.LoadScene("Hub");

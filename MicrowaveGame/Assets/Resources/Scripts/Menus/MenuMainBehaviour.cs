@@ -29,7 +29,7 @@ namespace Scripts.Menus
 
 			if (!DebugDisableBackgroundMusic)
 			{
-				AudioManager.Play(BackgroundMusicAudioClip, AudioCategory.Music, 0.7f, true);
+				AudioManager.Play(BackgroundMusicAudioClip, 0.7f, true);
 			}
 		}
 
@@ -40,10 +40,10 @@ namespace Scripts.Menus
 		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
 
 		/// <summary>
-		/// Sets the current menu to the "Settings" menu.
-		/// Called when the "Settings" button is pressed.
+		/// Sets the current menu to the "Controls" menu.
+		/// Called when the "Controls" button is pressed.
 		/// </summary>
-		public void OnSettingsButtonPressed() => MenuManager.GoInto("MenuSettings");
+		public void OnControlsButtonPressed() => MenuManager.GoInto("MenuControls");
 
 		/// <summary>
 		/// Sets the current menu to the "Credits" menu.

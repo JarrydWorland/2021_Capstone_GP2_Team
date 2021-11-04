@@ -1,42 +1,25 @@
-﻿using System;
-using Scripts.Config;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Scripts.Menus
+﻿namespace Scripts.Menus
 {
 	public class MenuControlsBehaviour : MenuBehaviour
 	{
-		private GameObject _keyboardAndMouseSectionObject;
-		private GameObject _xboxSectionObject;
-		private Text _modeButtonText;
-
-		public override void OnLeave()
+		/// <summary>
+		/// Deactivates the keyboard & mouse section and activates the controller section.
+		/// Called when the "Controller" button is pressed.
+		/// </summary>
+		public void OnControllerButtonPressed()
 		{
-			Configuration.Instance.Save();
-			base.OnLeave();
-		}
-
-		private void Start()
-		{
-			_keyboardAndMouseSectionObject = transform.Find("SectionKeyboardAndMouse").gameObject;
-			_xboxSectionObject = transform.Find("SectionXbox").gameObject;
-			_modeButtonText = transform.Find("ModeButton").GetComponentInChildren<Text>();
-
-			UpdateContent();
+			MenuManager.Current.transform.Find("ControllerSection").gameObject.SetActive(true);
+			MenuManager.Current.transform.Find("KeyboardMouseSection").gameObject.SetActive(false);
 		}
 
 		/// <summary>
-		/// Sets the control scheme.
-		/// Called when the "Mode" button is pressed.
+		/// Deactivates the controller section and activates the keyboard & mouse section.
+		/// Called when the "Keyboard & Mouse" button is pressed.
 		/// </summary>
-		public void OnModeButtonPressed()
+		public void OnKeyboardMouseButtonPressed()
 		{
-			ControlScheme controlScheme = Configuration.Instance.ControlScheme + 1;
-			if ((int) controlScheme >= Enum.GetValues(typeof(ControlScheme)).Length) controlScheme = 0;
-			Configuration.Instance.ControlScheme = controlScheme;
-
-			UpdateContent();
+			MenuManager.Current.transform.Find("ControllerSection").gameObject.SetActive(false);
+			MenuManager.Current.transform.Find("KeyboardMouseSection").gameObject.SetActive(true);
 		}
 
 		/// <summary>
@@ -44,23 +27,5 @@ namespace Scripts.Menus
 		/// Called when the "Done" button is pressed.
 		/// </summary>
 		public void OnDoneButtonPressed() => MenuManager.GoBack();
-
-		private void UpdateContent()
-		{
-			_keyboardAndMouseSectionObject.SetActive(false);
-			_xboxSectionObject.SetActive(false);
-
-			switch (Configuration.Instance.ControlScheme)
-			{
-				case ControlScheme.Xbox:
-					_xboxSectionObject.SetActive(true);
-					_modeButtonText.text = "Mode: Xbox";
-					break;
-				default:
-					_keyboardAndMouseSectionObject.SetActive(true);
-					_modeButtonText.text = "Mode: Keyboard & Mouse";
-					break;
-			}
-		}
 	}
 }

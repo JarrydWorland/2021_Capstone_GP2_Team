@@ -26,7 +26,7 @@ namespace Scripts.Items
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			_playerMovementBehaviour.MaxVelocity += IncreaseValue;
-			AudioManager.Play(SpeedUp, AudioCategory.Effect);
+			AudioManager.Play(SpeedUp, 0.75f, false);
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
@@ -38,7 +38,7 @@ namespace Scripts.Items
 		{
 			_playerMovementBehaviour.MaxVelocity -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(ItemDrop, AudioCategory.Effect, 0.55f);
+			AudioManager.Play(ItemDrop, 0.55f);
 			return true;
 		}
 	}

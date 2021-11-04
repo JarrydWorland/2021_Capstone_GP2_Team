@@ -34,7 +34,7 @@ namespace Scripts.Player
 			{
 				Time.timeScale = 0.0f;
 				Explode();
-				AudioManager.Play(PlayerDeath, AudioCategory.Effect, 1.0f);
+				AudioManager.Play(PlayerDeath, 1f);
 
 				Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
 				foreach (Collider2D collider in colliders) collider.enabled = false;

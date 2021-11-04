@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scripts.Rooms;
 using Scripts.Camera;
-using Scripts.Utilities;
 
 
 namespace Scripts.Levels
@@ -65,10 +64,9 @@ namespace Scripts.Levels
 			if (SceneManager.GetActiveScene().name == "Hub")
 			{
 				// Keep ending door locked until win conditions are met
-				if (Persistent.CollectedKeyCardCount < Persistent.RequiredKeyCardCount)
+				if (Persistent.CollectedKeycardCount < 3)
 				{
 					LockEndingDoor();
-					StartingRoom.transform.Find("EndingDoorChevron").GetComponent<SpriteRenderer>().enabled = false;
 				}
 
 				if (Persistent.FirstTimeInHub) SetupTutorial();

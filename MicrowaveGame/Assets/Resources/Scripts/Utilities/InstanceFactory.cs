@@ -41,9 +41,6 @@ namespace Scripts.Utilities
 		/// <param name="direction">
 		/// The direction the projectile should travel towards.
 		/// </param>
-		/// <param name="scale">
-		/// The scale of the projectile.
-		/// </param>
 		/// <param name="speed">
 		/// The speed the projectile should travel at.
 		/// </param>
@@ -53,26 +50,17 @@ namespace Scripts.Utilities
 		/// <param name="targetTag">
 		/// The TagBehaviour tag the projectile will target.
 		/// </param>
-		/// <param name="homingTarget">
-		/// The specific game object that is being homed in on if any. null for none.
-		/// </param>
-		/// <param name="homingStrength">
-		/// The strength that the projectiles should home in on its taget.
-		/// </param>
 		/// <returns> Returns an instantiated and initialised room gameobject instance.</returns>
 		public static GameObject InstantiateProjectile(
 			GameObject projectilePrefab,
 			Vector2 position,
 			Vector2 direction,
-			float scale,
 			float speed,
 			int damage,
-			string targetTag,
-			GameObject homingTarget,
-			int homingStrength)
+			string targetTag)
 		{
 			GameObject projectile = GameObject.Instantiate(projectilePrefab);
-			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, scale, speed, damage, targetTag, homingTarget, homingStrength);
+			projectile.GetComponent<ProjectileBehaviour>().Init(position, direction, speed, damage, targetTag);
 			return projectile;
 		}
 	}

@@ -1,46 +1,26 @@
 ﻿using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Scripts.Menus
 {
-	/// <summary>
-	/// The base menu behaviour to extend off of.
-	/// </summary>
-	public abstract class MenuBehaviour : MonoBehaviour
+    /// <summary>
+    /// The base menu behaviour to extend off of.
+    /// </summary>
+    public abstract class MenuBehaviour : MonoBehaviour
 	{
-		private Selectable _currentSelectable;
 
-		/// <summary>
-		/// The currently selected object.
-		/// </summary>
-		public Selectable CurrentSelectable
-		{
-			get => _currentSelectable;
-			set
-			{
-				if (value == null) return;
+		public Selectable CurrentSelectable { get; set; }
 
-				_currentSelectable = value;
-				UpdateIndicatorPosition();
-			}
-		}
-
-		private RectTransform _indicatorTransform;
-
-		private Vector3 _indicatorPosition;
-		private Vector2 _indicatorSizeDelta;
-
-		private bool _hasSelectables;
+		private Transform _buttonIndicatorTransform;
 
 		private void Update()
 		{
-			if (!_hasSelectables || _indicatorTransform == null) return;
-
-			_indicatorTransform.position = Vector3.Lerp(_indicatorTransform.position, _indicatorPosition, 0.075f);
-			_indicatorTransform.sizeDelta = Vector3.Lerp(_indicatorTransform.sizeDelta, _indicatorSizeDelta, 0.075f);
+			if (_buttonIndicatorTransform != null)
+			{
+				_buttonIndicatorTransform.position = Vector3.Lerp(_buttonIndicatorTransform.position, CurrentSelectable.transform.position, 0.075f);
+			}
 		}
 
 		/// <summary>
@@ -48,13 +28,13 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnEnter()
 		{
-			_hasSelectables = GetComponentsInChildren<Selectable>().Length > 0;
-			if (!_hasSelectables) return;
+			CurrentSelectable ??= GetComponentsInChildren<Selectable>().FirstOrDefault();
 
-			CurrentSelectable ??= GetComponentsInChildren<Selectable>().First();
-			CurrentSelectable.Select();
-
-			UpdateIndicatorPosition(true);
+			if (CurrentSelectable != null)
+			{
+				InitButtonIndicator(CurrentSelectable.transform.position);
+				CurrentSelectable.Select();
+			}
 		}
 
 		/// <summary>
@@ -62,10 +42,10 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnLeave()
 		{
-			if (!_hasSelectables) return;
-
 			GameObject currentSelectedGameObject = EventSystem.current.currentSelectedGameObject;
-			CurrentSelectable = currentSelectedGameObject.GetComponent<Selectable>();
+
+			if (currentSelectedGameObject != null)
+				CurrentSelectable = currentSelectedGameObject.GetComponent<Selectable>();
 		}
 
 		/// <summary>
@@ -73,39 +53,30 @@ namespace Scripts.Menus
 		/// </summary>
 		public virtual void OnReturn()
 		{
-			if (!_hasSelectables) return;
-
-			CurrentSelectable.Select();
-			UpdateIndicatorPosition(true);
+			if (CurrentSelectable != null) CurrentSelectable.Select();
 		}
 
-		private void UpdateIndicatorPosition(bool immediate = false)
+		private void InitButtonIndicator(Vector3 initialPosition)
 		{
-			if (!_hasSelectables) return;
+			if (_buttonIndicatorTransform != null) return;
 
-			if (_indicatorTransform == null)
-				_indicatorTransform = transform.Find("MenuSelectableIndicator").GetComponent<RectTransform>();
+			_buttonIndicatorTransform = transform.Find("MenuButtonIndicator");
+			if (_buttonIndicatorTransform == null) return;
 
-			RectTransform currentSelectableTransform = _currentSelectable.GetComponent<RectTransform>();
+			Button[] buttons = GetComponentsInChildren<Button>();
+			float maximumButtonWidth = float.MinValue;
 
-			const float padding = 50.0f;
-
-			if (immediate)
+			foreach (Button button in buttons)
 			{
-				_indicatorTransform.position = CurrentSelectable.transform.position;
-
-				_indicatorTransform.sizeDelta = new Vector2(
-					currentSelectableTransform.rect.width * currentSelectableTransform.localScale.x + padding,
-					_indicatorTransform.rect.height);
+				float width = button.GetComponent<RectTransform>().rect.width;
+				if (width > maximumButtonWidth) maximumButtonWidth = width;
 			}
-			else
-			{
-				_indicatorPosition = CurrentSelectable.transform.position;
 
-				_indicatorSizeDelta = new Vector2(
-					currentSelectableTransform.rect.width * currentSelectableTransform.localScale.x + padding,
-					_indicatorTransform.rect.height);
-			}
+			Vector3 offset = new Vector3(maximumButtonWidth / 2.0f, 0.0f, 0.0f);
+
+			_buttonIndicatorTransform.Find("ImageLeft").GetComponent<RectTransform>().localPosition -= offset;
+			_buttonIndicatorTransform.Find("ImageRight").GetComponent<RectTransform>().localPosition += offset;
+			_buttonIndicatorTransform.position = initialPosition;
 		}
 	}
 }

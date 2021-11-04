@@ -26,7 +26,7 @@ namespace Scripts.Items
 
         public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
-            AudioManager.Play(LifeStealSFX, AudioCategory.Effect, 0.9f);
+            AudioManager.Play(LifeStealSFX, 0.9f, false);
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
         }
 
@@ -43,7 +43,7 @@ namespace Scripts.Items
                     if (_healthBehaviour.Value < _healthBehaviour.MaxHealth)
                     {
                         _healthBehaviour.Value += IncreaseValue;
-                        AudioManager.Play(HealthSFX, AudioCategory.Effect);
+                        AudioManager.Play(HealthSFX, 0.75f);
                     }
                 }
             }
@@ -52,7 +52,7 @@ namespace Scripts.Items
         public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-            AudioManager.Play(ItemDrop, AudioCategory.Effect, 0.45f);
+            AudioManager.Play(ItemDrop, 0.45f);
             return true;
         }
     }

@@ -66,7 +66,7 @@ namespace Scripts.Player
 			if (!SceneManager.GetActiveScene().isLoaded) return;
 
 			Direction = context.ReadValue<Vector2>();
-			AudioManager.Play(moveSfx, AudioCategory.Effect, 0.07f);
+			AudioManager.Play(moveSfx, 0.07f);
 		}
 
 		public void OnTriggerEnter2D(Collider2D other)

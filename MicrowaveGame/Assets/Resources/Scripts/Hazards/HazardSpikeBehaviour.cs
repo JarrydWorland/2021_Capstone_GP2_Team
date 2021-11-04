@@ -51,7 +51,7 @@ namespace Scripts.Hazards
 				{
 					_healthBehaviour.Value -= Damage;
 					_time -= _damageRateInverse;
-					AudioManager.Play(sfx, AudioCategory.Effect, 0.5f);
+					AudioManager.Play(sfx, 0.5f);
 				}
 			}
 		}
