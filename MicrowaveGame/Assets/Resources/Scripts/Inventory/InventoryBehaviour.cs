@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Scripts.Audio;
 using Scripts.Items;
-using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,8 +10,6 @@ namespace Scripts.Inventory
 {
 	public class InventoryBehaviour : MonoBehaviour
 	{
-		public AudioClip PickupItemAudioClip;
-
 		private InventorySlotBehaviour[] _slots;
 		private int _currentSlotIndex;
 
@@ -67,7 +65,7 @@ namespace Scripts.Inventory
 			{
 				// All inventory slots are taken.
 				// Swap the current item with the nearby item.
-				OnDropItem(context);
+				OnDropItem(context, false);
 				OnPickupItem(context);
 
 				return;
@@ -77,50 +75,30 @@ namespace Scripts.Inventory
 			nextAvailableSlot.PickupItem(selectedItem);
 			selectedItem.gameObject.SetActive(false);
 
-			// If the slot indicator is invisible, make it visible and move it to the new slot.
-			if (!_inventorySlotIndicatorBehaviour.Visible)
-			{
-				_inventorySlotIndicatorBehaviour.MoveTo(nextAvailableSlot.transform.localPosition, true);
-				_inventorySlotIndicatorBehaviour.Visible = true;
-			}
-
-			AudioManager.Play(PickupItemAudioClip);
+			UpdateSlotIndicator(nextAvailableSlot);
 		}
 
 		/// <summary>
 		/// Drops an item if one is in the slot.
 		/// Called by the "drop item" input action.
+		/// <param name="context">The context of the input action.</param>
+		/// </summary>
+		public void OnDropItem(InputAction.CallbackContext context) => OnDropItem(context, true);
+
+		/// <summary>
+		/// Drops an item if one is in the slot.
 		/// </summary>
 		/// <param name="context">The context of the input action.</param>
-		public void OnDropItem(InputAction.CallbackContext context)
+		/// <param name="swapping">Whether or not the current slot is performing a swap behaviour.</param>
+		private void OnDropItem(InputAction.CallbackContext context, bool swapping)
 		{
 			if (!SceneManager.GetActiveScene().isLoaded) return;
 			if (!context.performed) return;
 
-			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem();
+			ItemBehaviour itemBehaviour = _slots[_currentSlotIndex].DropItem(swapping);
 			if (itemBehaviour == null) return;
 
-			int nextSlotIndex = -1;
-
-			for (int i = 0; i < _slots.Length; i++)
-			{
-				if (_slots[i].ItemBehaviour != null)
-				{
-					nextSlotIndex = i;
-					break;
-				}
-			}
-
-			// If there's a slot with an item, set it as the current slot and move the indicator to it.
-			// Otherwise hide the indicator.
-			if (nextSlotIndex != -1)
-			{
-				_currentSlotIndex = nextSlotIndex;
-
-				_inventorySlotIndicatorBehaviour.Visible = true;
-				_inventorySlotIndicatorBehaviour.MoveTo(_slots[_currentSlotIndex].transform.localPosition);
-			}
-			else _inventorySlotIndicatorBehaviour.Visible = false;
+			if (swapping) UpdateSlotIndicator();
 
 			itemBehaviour.transform.position = _player.transform.position;
 			itemBehaviour.gameObject.SetActive(true);
@@ -223,6 +201,48 @@ namespace Scripts.Inventory
 		public void RemoveNearbyItem(ItemBehaviour itemBehaviour)
 		{
 			if (itemBehaviour != null && _nearbyItems.Contains(itemBehaviour)) _nearbyItems.Remove(itemBehaviour);
+		}
+
+
+		/// <summary>
+		/// Updates the slot indicator's visibility and position.
+		/// </summary>
+		/// <param name="inventorySlotBehaviour">If one is given, assume we're picking up an item. Otherwise, assume we're dropping an item.</param>
+		public void UpdateSlotIndicator(InventorySlotBehaviour inventorySlotBehaviour = null)
+		{
+			if (inventorySlotBehaviour != null && !_inventorySlotIndicatorBehaviour.Visible)
+			{
+				// If the slot indicator is invisible, make it visible and move it to the new slot.
+				_inventorySlotIndicatorBehaviour.MoveTo(inventorySlotBehaviour.transform.localPosition, true);
+				_inventorySlotIndicatorBehaviour.Visible = true;
+			}
+			else
+			{
+				// If the current slot has an item, then don't attempt to find another slot.
+				if (_slots[_currentSlotIndex].ItemBehaviour != null) return;
+
+				int nextSlotIndex = -1;
+
+				for (int i = 0; i < _slots.Length; i++)
+				{
+					if (_slots[i].ItemBehaviour != null)
+					{
+						nextSlotIndex = i;
+						break;
+					}
+				}
+
+				// If there's a slot with an item, set it as the current slot and move the indicator to it.
+				// Otherwise hide the indicator.
+				if (nextSlotIndex != -1)
+				{
+					_currentSlotIndex = nextSlotIndex;
+
+					_inventorySlotIndicatorBehaviour.Visible = true;
+					_inventorySlotIndicatorBehaviour.MoveTo(_slots[_currentSlotIndex].transform.localPosition);
+				}
+				else _inventorySlotIndicatorBehaviour.Visible = false;
+			}
 		}
 	}
 }

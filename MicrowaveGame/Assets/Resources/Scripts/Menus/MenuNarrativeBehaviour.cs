@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Scripts.Audio;
+using Scripts.Dialogue;
+using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
 
@@ -9,12 +11,7 @@ namespace Scripts.Menus
 		/// <summary>
 		/// The background music.
 		/// </summary>
-		public AudioClip BackgroundMusicAudioClip;
-
-		/// <summary>
-		/// A debug flag to disable the background music.
-		/// </summary>
-		public bool DebugDisableBackgroundMusic;
+		public AudioClip HubLoopAudioClip;
 
 		[SerializeField]
 		[TextArea(3, 10)]
@@ -48,7 +45,16 @@ namespace Scripts.Menus
 			UpdateTexts();
 
 			MenuManager.Init(this);
-			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
+
+			if (!Persistent.FirstTimeInHub)
+			{
+				MenuManager.GoInto("MenuPlaying");
+
+				if (Persistent.CollectedKeyCardCount == Persistent.RequiredKeyCardCount)
+					MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
+			}
+			
+			AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
 		}
 
 		/// <summary>

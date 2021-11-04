@@ -1,40 +1,59 @@
-﻿using Scripts.Events;
-using Scripts.Menus;
-using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Camera;
+using Scripts.Menus;
 
 namespace Scripts.Player
 {
-	public class PlayerDeathBehaviour : MonoBehaviour
+    public class PlayerDeathBehaviour : MonoBehaviour
 	{
+		private const float CameraShakeStrength = 1.5f;
+		private const float CameraShakeDuration = 0.2f;
+
+		private CameraShakeBehaviour _cameraShakeBehaviour;
 		private EventId<HealthChangedEventArgs> _healthChangedEventId;
 
+		/// <summary>
+		/// The particle system to play when damage is healed.
+		/// </summary>
+		public ParticleSystem HealthParticleSystem;
 		public ParticleSystem deathParticles;
 		public AudioClip PlayerDeath;
 
 		private void Start()
 		{
+			_cameraShakeBehaviour = UnityEngine.Camera.main.GetComponent<CameraShakeBehaviour>();
 			_healthChangedEventId = EventManager.Register<HealthChangedEventArgs>(OnHealthChanged);
-			transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
-			transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-			transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
 		}
 
-		private void OnHealthChanged(HealthChangedEventArgs eventArgs)
+        private void OnHealthChanged(HealthChangedEventArgs eventArgs)
 		{
 			if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue == 0)
 			{
 				Time.timeScale = 0.0f;
 				Explode();
-				AudioManager.Play(PlayerDeath, 1f);
-				GameObject.Find("Player").GetComponent<Collider2D>().enabled = false;
-				transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-				transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
-				transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+				AudioManager.Play(PlayerDeath, AudioCategory.Effect, 1.0f);
+
+				Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+				foreach (Collider2D collider in colliders) collider.enabled = false;
+
+				SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+				foreach (SpriteRenderer spriteRenderer in spriteRenderers) spriteRenderer.enabled = false;
+
 				GameObject.Find("Player").GetComponent<PlayerInput>().actions.Disable();
 				MenuManager.GoInto("MenuDeath");
 			}
+			else if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue <= eventArgs.OldValue)
+			{
+				_cameraShakeBehaviour.Shake(CameraShakeStrength, CameraShakeDuration);
+			}
+			else if (eventArgs.GameObject.name == "Player" && eventArgs.NewValue >  eventArgs.OldValue)
+			{
+				HealthParticleSystem.Play();
+			}
+
 		}
 
 		private void OnDestroy() => EventManager.Unregister(_healthChangedEventId);

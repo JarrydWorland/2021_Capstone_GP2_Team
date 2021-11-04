@@ -3,45 +3,55 @@ using Scripts.Utilities;
 
 namespace Scripts.Player
 {
-	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(PlayerWeaponBehaviour), typeof(Animator))]
+	[RequireComponent(typeof(PlayerMovementBehaviour), typeof(PlayerShootBehaviour), typeof(Animator))]
 	public class PlayerAnimatorBehaviour : MonoBehaviour
 	{
 		private PlayerMovementBehaviour _playerMovementBehaviour;
-		private PlayerWeaponBehaviour _playerWeaponBehaviour;
+		private PlayerShootBehaviour _playerShootBehaviour;
 		private Animator _animator;
-		private int _animatorShootingLayer;
 
 		private void Start()
 		{
 			_playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
-			_playerWeaponBehaviour = GetComponent<PlayerWeaponBehaviour>();
+			_playerShootBehaviour = GetComponent<PlayerShootBehaviour>();
 			_animator = GetComponent<Animator>();
-			_animatorShootingLayer = _animator.GetLayerIndex("Shooting Layer");
 		}
 
 		private void Update()
 		{
-			UpdateMovementAnimation();
-			UpdateShootingAnimation();
+			UpdateDirection();
+			UpdateSpeed();
+			UpdateShootingState();
 		}
 
-		private void UpdateMovementAnimation()
+		private void UpdateDirection()
 		{
-			float speedPercentage = _playerMovementBehaviour.Direction.sqrMagnitude;
-			_animator.SetFloat("Speed", speedPercentage);
-			if (speedPercentage > 0)
+			float speed = _playerMovementBehaviour.Direction.sqrMagnitude;
+			if (_playerShootBehaviour.Shooting)
 			{
-				_animator.SetFloat("MovementDirectionX", _playerMovementBehaviour.Direction.x);
-				_animator.SetFloat("MovementDirectionY", _playerMovementBehaviour.Direction.y);
+				Vector2 direction = _playerShootBehaviour.RawDirection.ToDirection().ToVector2();
+				_animator.SetFloat("DirectionX", direction.x);
+				_animator.SetFloat("DirectionY", direction.y);
+			}
+			else if (speed > 0.0f)
+			{
+				Vector2 direction = _playerMovementBehaviour.Direction;
+				_animator.SetFloat("DirectionX", direction.x);
+				_animator.SetFloat("DirectionY", direction.y);
 			}
 		}
 
-		private void UpdateShootingAnimation()
+		private void UpdateSpeed()
 		{
-			Vector2 shootingDirection =  _playerWeaponBehaviour.InputDirection.ToDirection().ToVector2();
-			_animator.SetLayerWeight(_animatorShootingLayer, _playerWeaponBehaviour.Shooting ? 1.0f : 0.0f);
-			_animator.SetFloat("ShootingDirectionX", shootingDirection.x);
-			_animator.SetFloat("ShootingDirectionY", shootingDirection.y);
+			// NOTE: speed is normalized between 0.0 and 1.0
+			float speed = _playerMovementBehaviour.Direction.sqrMagnitude;
+			_animator.SetFloat("Speed", speed);
+		}
+
+		private void UpdateShootingState()
+		{
+			_animator.SetBool("Shooting", _playerShootBehaviour.Shooting);
+			_animator.SetFloat("FireRate", _playerShootBehaviour.FireRate);
 		}
 	}
 }

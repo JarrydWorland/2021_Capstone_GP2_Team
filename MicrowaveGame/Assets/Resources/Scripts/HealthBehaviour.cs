@@ -3,6 +3,7 @@ using Scripts.Events;
 using Scripts.Utilities;
 using System;
 using System.Collections.Generic;
+using Scripts.Audio;
 
 namespace Scripts
 {
@@ -11,7 +12,24 @@ namespace Scripts
 		/// <summary>
 		/// How much health the object has in total.
 		/// </summary>
-		public int MaxHealth = 5;
+		public int MaxHealth
+		{
+			get => _maxHealth;
+			set
+			{
+				int oldMax = _maxHealth;
+				_maxHealth = value;
+				EventManager.Emit(new HealthMaxChangedEventArgs
+				{
+					GameObject = gameObject,
+					OldMax = oldMax,
+					NewMax = _maxHealth,
+				});
+				_value = _value.Clamp(Invincible ? 1 : 0, MaxHealth);
+			}
+		}
+		[SerializeField]
+		private int _maxHealth = 5;
 
 		/// <summary>
 		/// Prevents the health from becoming less than one.
@@ -55,11 +73,10 @@ namespace Scripts
 				
 				if (oldValue >= _value)
 				{
-					AudioManager.Play(DamageAudioClip, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
+					AudioManager.Play(DamageAudioClip, AudioCategory.Effect, 0.75f, false, UnityEngine.Random.Range(0.55f, 1.35f));
 					DamageParticleSystem.Play();
 					_flashTimer = 0.0f;
 				}
-				
 				EventManager.Emit(new HealthChangedEventArgs
 				{
 					GameObject = gameObject,
@@ -70,7 +87,7 @@ namespace Scripts
 		}
 		private int _value;
 
-		private void Start()
+		private void Awake()
 		{
 			_value = MaxHealth;
 		}
@@ -91,5 +108,12 @@ namespace Scripts
 		public GameObject GameObject;
 		public int OldValue;
 		public int NewValue;
+	}
+
+	public class HealthMaxChangedEventArgs : EventArgs
+	{
+		public GameObject GameObject;
+		public int OldMax;
+		public int NewMax;
 	}
 }

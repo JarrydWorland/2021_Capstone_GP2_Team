@@ -1,14 +1,12 @@
-using Scripts.Dialogue;
-using Scripts.Menus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Utilities;
-using System;
 using UnityEngine.SceneManagement;
+using Scripts.Audio;
 
 namespace Scripts.Player
 {
-	[RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
 	public class PlayerMovementBehaviour : MonoBehaviour
 	{
 		/// <summary>
@@ -68,7 +66,7 @@ namespace Scripts.Player
 			if (!SceneManager.GetActiveScene().isLoaded) return;
 
 			Direction = context.ReadValue<Vector2>();
-			AudioManager.Play(moveSfx, 0.07f);
+			AudioManager.Play(moveSfx, AudioCategory.Effect, 0.07f);
 		}
 
 		public void OnTriggerEnter2D(Collider2D other)

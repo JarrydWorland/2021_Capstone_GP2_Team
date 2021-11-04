@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 0}
+  m_AnchoredPosition: {x: 250, y: 27.9}
   m_SizeDelta: {x: 500, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5623186482671948352
@@ -207,7 +207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -126}
+  m_AnchoredPosition: {x: 0, y: -98.099976}
   m_SizeDelta: {x: 220, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5623186483124888983
@@ -287,8 +287,9 @@ RectTransform:
   - {fileID: 5623186484038667593}
   - {fileID: 5623186482671948354}
   - {fileID: 5623186483124889001}
+  - {fileID: 7977841377576289095}
   - {fileID: 5394251632613592954}
-  - {fileID: 4437612709042384304}
+  - {fileID: 6104963003565587729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -422,7 +423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 0}
+  m_AnchoredPosition: {x: -250, y: 27.900024}
   m_SizeDelta: {x: 500, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5623186484038667575
@@ -486,6 +487,87 @@ MonoBehaviour:
 
     Melanie
     Avent'
+--- !u!1 &6158577154146504298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7977841377576289095}
+  - component: {fileID: 3618420337691354}
+  - component: {fileID: 8929608627662069949}
+  m_Layer: 5
+  m_Name: Acknowledgement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7977841377576289095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6158577154146504298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5623186483246349086}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 20.655, y: -204.1}
+  m_SizeDelta: {x: 958.69, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3618420337691354
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6158577154146504298}
+  m_CullTransparentMesh: 1
+--- !u!114 &8929608627662069949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6158577154146504298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7c6167e879fc69cd79d23cc3ff3103bb, type: 3}
+    m_FontSize: 24
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 48
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Quasar Monkeys acknowledges that this game was developed on the stolen
+    lands of the Wurundjeri and Bunurong Peoples, members of the Kulin Nations. We
+    pay our respects to their elders, past and present. Sovereignty was never ceded.
 --- !u!1001 &1580250019897794118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932732, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6859569658975932732, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -572,7 +654,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6859569658975932732, guid: b463d0ce4ce4cc59db36125c35cf0a01, type: 3}
   m_PrefabInstance: {fileID: 1580250019897794118}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4270425859804449932
+--- !u!1001 &5940009380280671277
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -589,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -609,11 +691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 32.42
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 20.06
       objectReference: {fileID: 0}
     - target: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -665,12 +747,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490496494141429358, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
       propertyPath: m_Name
-      value: MenuButtonIndicator
+      value: MenuSelectableIndicator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
---- !u!224 &4437612709042384304 stripped
+--- !u!224 &6104963003565587729 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 492590618585047356, guid: 576e97e552371d5fd9e0124f1eaf6fb0, type: 3}
-  m_PrefabInstance: {fileID: 4270425859804449932}
+  m_PrefabInstance: {fileID: 5940009380280671277}
   m_PrefabAsset: {fileID: 0}

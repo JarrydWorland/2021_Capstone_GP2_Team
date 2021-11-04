@@ -1,6 +1,7 @@
 ﻿using Scripts.Scenes;
 using UnityEngine;
 using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Menus
 {
@@ -28,7 +29,7 @@ namespace Scripts.Menus
 
 			if (!DebugDisableBackgroundMusic)
 			{
-				AudioManager.Play(BackgroundMusicAudioClip, 0.7f, true);
+				AudioManager.Play(BackgroundMusicAudioClip, AudioCategory.Music, 0.7f, true);
 			}
 		}
 
@@ -39,10 +40,10 @@ namespace Scripts.Menus
 		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene"); //Hub
 
 		/// <summary>
-		/// Sets the current menu to the "Controls" menu.
-		/// Called when the "Controls" button is pressed.
+		/// Sets the current menu to the "Settings" menu.
+		/// Called when the "Settings" button is pressed.
 		/// </summary>
-		public void OnControlsButtonPressed() => MenuManager.GoInto("MenuControls");
+		public void OnSettingsButtonPressed() => MenuManager.GoInto("MenuSettings");
 
 		/// <summary>
 		/// Sets the current menu to the "Credits" menu.

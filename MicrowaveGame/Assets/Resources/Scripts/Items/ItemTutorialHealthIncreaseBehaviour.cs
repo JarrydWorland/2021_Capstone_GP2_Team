@@ -1,51 +1,54 @@
 ﻿using Scripts.Inventory;
-using Scripts.Utilities;
 using UnityEngine;
 using Scripts.Events;
+using Scripts.Audio;
+using Scripts.Levels;
 
 namespace Scripts.Items
 {
-	public class ItemTutorialHealthIncreaseBehaviour : ItemBehaviour
+    public class ItemTutorialHealthIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of health to heal the player when the item is used.
 		/// </summary>
 		public int IncreaseValue;
 
-		private HealthBehaviour _healthBehaviour;
+		private HealthBehaviour _playerHealthBehaviour;
+		private EventId<RoomTraversedEventArgs> _roomTraversedEventId;
 
 		private bool _isUsed;
 
 		public AudioClip itemDrop;
+		public AudioClip healthSFX;
+		public AudioClip ItemPickup;
 
-		public override void Start()
+		private void Awake()
 		{
-			base.Start();
+			_playerHealthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
+			_roomTraversedEventId = EventManager.Register<RoomTraversedEventArgs>(OnRoomTraversedEvent);
 
 			Description = string.Format(Description, IncreaseValue);
 		}
 
-		private void OnEnable()
+		private void OnDestroy()
 		{
-			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
-			if (_healthBehaviour != null)
-			{
-				int targetHealth = _healthBehaviour.MaxHealth - IncreaseValue;
-				if (_healthBehaviour.Value != targetHealth) _healthBehaviour.Value = targetHealth;
-			}
+			EventManager.Unregister(_roomTraversedEventId);
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
+		{
+			AudioManager.Play(ItemPickup, AudioCategory.Effect);
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
+		}
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (_healthBehaviour.Value < _healthBehaviour.MaxHealth)
+			if (_playerHealthBehaviour.Value < _playerHealthBehaviour.MaxHealth)
 			{
 				_isUsed = true;
 
-				_healthBehaviour.Value += IncreaseValue;
-
+				_playerHealthBehaviour.Value += IncreaseValue;
+				AudioManager.Play(healthSFX, AudioCategory.Effect, 1.0f);
 				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 				inventorySlotBehaviour.DropItem();
 
@@ -65,9 +68,20 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			if (!_isUsed)
+			{
+				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+				AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
+			}
 			return true;
+		}
+
+		private void OnRoomTraversedEvent(RoomTraversedEventArgs args)
+		{
+			if (args.CurrentRoom.gameObject != transform.parent.gameObject) return;
+
+			int targetHealth = _playerHealthBehaviour.MaxHealth - IncreaseValue;
+			if (_playerHealthBehaviour.Value != targetHealth) _playerHealthBehaviour.Value = targetHealth;
 		}
 	}
 }

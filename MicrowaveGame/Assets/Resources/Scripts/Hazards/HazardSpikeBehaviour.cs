@@ -1,10 +1,10 @@
 ﻿using Scripts.Player;
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Hazards
 {
-	public class HazardSpikeBehaviour : HazardBehaviour
+    public class HazardSpikeBehaviour : HazardBehaviour
 	{
 		/// <summary>
 		/// The amount of damage that will be dealt to the player.
@@ -51,7 +51,7 @@ namespace Scripts.Hazards
 				{
 					_healthBehaviour.Value -= Damage;
 					_time -= _damageRateInverse;
-					AudioManager.Play(sfx, 0.5f);
+					AudioManager.Play(sfx, AudioCategory.Effect, 0.5f);
 				}
 			}
 		}

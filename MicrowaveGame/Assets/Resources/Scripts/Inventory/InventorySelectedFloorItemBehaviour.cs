@@ -31,7 +31,7 @@ namespace Scripts.Inventory
 				Vector3 itemPosition = itemBehaviour.transform.position;
 				_itemPickerObject.transform.position = itemPosition + new Vector3(0.0f, 0.75f, 0.0f);
 
-				const float spacing = 2.75f, doubleSpacing = spacing * 2.0f, screenSpacing = 150.0f;
+				const float spacing = 2.75f, doubleSpacing = spacing * 2.0f, screenSpacing = 250.0f;
 
 				Vector3 informationPanelPosition =
 					itemPosition + new Vector3(_playerObject.transform.position.x > itemPosition.x ? -spacing : spacing,

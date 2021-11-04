@@ -1,0 +1,214 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using Scripts.Audio;
+using Scripts.Rooms;
+using Scripts.Utilities;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
+
+namespace Scripts.Config
+{
+	public class Configuration
+	{
+		/// <summary>
+		/// The configuration instance.
+		/// </summary>
+		public static Configuration Instance;
+
+		private ControlScheme _controlScheme = ControlScheme.KeyboardAndMouse;
+
+		/// <summary>
+		/// The current control scheme.
+		/// </summary>
+		public ControlScheme ControlScheme
+		{
+			get => _controlScheme;
+			set
+			{
+				_controlScheme = Enum.IsDefined(typeof(ControlScheme), value) ? value : ControlScheme.KeyboardAndMouse;
+				if (SceneManager.GetActiveScene().name == "Hub") UpdateTutorialSprites();
+			}
+		}
+
+		/// <summary>
+		/// The effect volume.
+		/// </summary>
+		public float EffectVolume
+		{
+			get => AudioManager.GetCategoryVolume(AudioCategory.Effect);
+			set
+			{
+				value = (float) Math.Round(value, 2);
+				AudioManager.SetCategoryVolume(AudioCategory.Effect, value);
+			}
+		}
+
+		/// <summary>
+		/// The music volume.
+		/// </summary>
+		public float MusicVolume
+		{
+			get => AudioManager.GetCategoryVolume(AudioCategory.Music);
+			set
+			{
+				value = (float) Math.Round(value, 2);
+				AudioManager.SetCategoryVolume(AudioCategory.Music, value);
+			}
+		}
+
+		private string _path;
+
+		/// <summary>
+		/// Writes the current configuration settings to a file.
+		/// </summary>
+		public void Save()
+		{
+			using FileStream stream = File.OpenWrite(_path);
+			using StreamWriter writer = new StreamWriter(stream);
+
+			SaveControls(writer);
+			writer.WriteLine();
+
+			SaveSounds(writer);
+			writer.Flush();
+
+			Log.Info($"Saved {Log.Blue(_path)} configuration file.");
+		}
+
+		private void SaveControls(StreamWriter writer)
+		{
+			writer.WriteLine("[Controls]");
+			writer.WriteLine($"ControlScheme={(int) ControlScheme}");
+		}
+
+		private void SaveSounds(StreamWriter writer)
+		{
+			writer.WriteLine("[Sounds]");
+			writer.WriteLine($"EffectVolume={EffectVolume:N2}");
+			writer.WriteLine($"MusicVolume={MusicVolume:N2}");
+		}
+
+		/// <summary>
+		/// Loads a given configuration file and returns its contents in a <see cref="Configuration"/> object.
+		/// </summary>
+		/// <param name="path">The configuration file to load.</param>
+		/// <returns>A <see cref="Configuration"/> object containing the given configuration file's content.</returns>
+		public static Configuration Load(string path = null)
+		{
+			path ??= Application.persistentDataPath + "/config.ini";
+
+			Configuration configuration = new Configuration
+			{
+				_path = path
+			};
+
+			if (!File.Exists(path))
+			{
+				if (SceneManager.GetActiveScene().name == "Hub") configuration.UpdateTutorialSprites();
+				return configuration;
+			}
+
+			using FileStream stream = File.OpenRead(path);
+			using StreamReader reader = new StreamReader(stream);
+
+			string section = string.Empty;
+
+			while (!reader.EndOfStream)
+			{
+				string line = reader.ReadLine()?.Trim();
+				if (string.IsNullOrWhiteSpace(line) || line.StartsWith(";")) continue;
+
+				if (line.StartsWith("[") && line.EndsWith("]"))
+				{
+					section = line.Substring(1, line.Length - 2);
+					continue;
+				}
+
+				string[] tokens = line.Split('=');
+				StringBuilder valueBuilder = new StringBuilder(tokens[1]);
+
+				for (int i = 2; i < tokens.Length; i++)
+				{
+					valueBuilder.Append('=');
+					valueBuilder.Append(tokens[i]);
+				}
+
+				string name = tokens[0], value = valueBuilder.ToString();
+
+				switch (section)
+				{
+					case "Controls":
+						LoadControls(configuration, name, value);
+						break;
+					case "Sounds":
+						LoadSounds(configuration, name, value);
+						break;
+				}
+			}
+
+			if (SceneManager.GetActiveScene().name == "Hub") configuration.UpdateTutorialSprites();
+
+			Log.Info($"Loaded {Log.Blue(path)} configuration file.");
+			return configuration;
+		}
+
+		private static void LoadControls(Configuration configuration, string name, string value)
+		{
+			switch (name)
+			{
+				case "ControlScheme" when Enum.TryParse(value, out ControlScheme controlScheme):
+					configuration.ControlScheme = controlScheme;
+					break;
+			}
+		}
+
+		private static void LoadSounds(Configuration configuration, string name, string value)
+		{
+			switch (name)
+			{
+				case "EffectVolume" when float.TryParse(value, out float effectVolume):
+					configuration.EffectVolume = Mathf.Clamp((float) Math.Round(effectVolume, 2), 0.0f, 1.0f);
+					break;
+				case "MusicVolume" when float.TryParse(value, out float musicVolume):
+					configuration.MusicVolume = Mathf.Clamp((float) Math.Round(musicVolume, 2), 0.0f, 1.0f);
+					break;
+			}
+		}
+
+		private void UpdateTutorialSprites()
+		{
+			GameObject[] controlsXboxObjects =
+				Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+					.Where(room => room.name.StartsWith("Tutorial"))
+					.Select(room => room.transform.Find("ControlsXbox").gameObject)
+					.ToArray();
+
+			foreach (GameObject controlsXboxObject in controlsXboxObjects)
+				controlsXboxObject.SetActive(false);
+
+			GameObject[] controlsKeyboardAndMouseObjects =
+				Object.FindObjectsOfType<RoomConnectionBehaviour>(true)
+					.Where(room => room.name.StartsWith("Tutorial"))
+					.Select(room => room.transform.Find("ControlsKeyboardAndMouse").gameObject)
+					.ToArray();
+
+			foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+				controlsKeyboardAndMouseObject.SetActive(false);
+
+			switch (ControlScheme)
+			{
+				case ControlScheme.Xbox:
+					foreach (GameObject controlsXboxObject in controlsXboxObjects)
+						controlsXboxObject.SetActive(true);
+					break;
+				default:
+					foreach (GameObject controlsKeyboardAndMouseObject in controlsKeyboardAndMouseObjects)
+						controlsKeyboardAndMouseObject.SetActive(true);
+					break;
+			}
+		}
+	}
+}

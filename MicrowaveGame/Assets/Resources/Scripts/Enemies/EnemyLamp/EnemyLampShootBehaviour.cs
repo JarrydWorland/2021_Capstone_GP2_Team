@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.Enemies.EnemyLamp
 {
@@ -20,6 +21,11 @@ namespace Scripts.Enemies.EnemyLamp
 		/// The damage dealt in hitpoints by the fired projectile.
 		/// </summary>
 		public int ProjectileDamage;
+
+		/// <summary>
+		/// The scale of the projectile.
+		/// </summary>
+		public float ProjectileScale = 1.0f;
 
 		private GameObject _player;
 		private Transform _projectileSpawn;
@@ -58,14 +64,17 @@ namespace Scripts.Enemies.EnemyLamp
 			else
 			{
 				InstanceFactory.InstantiateProjectile(
-				ProjectilePrefab,
-				_projectileSpawn.position,
-				_shootingDirection,
-				ProjectileSpeed,
-				ProjectileDamage,
-				"Player"
+					ProjectilePrefab,
+					_projectileSpawn.position,
+					_shootingDirection,
+					ProjectileScale,
+					ProjectileSpeed,
+					ProjectileDamage,
+					"Player",
+					null,
+					0
 				);
-				AudioManager.Play(weaponSfx, 0.55f, false, Random.Range(0.85f, 1.25f));
+				AudioManager.Play(weaponSfx, AudioCategory.Effect, 0.55f, false, Random.Range(0.85f, 1.25f));
 			}
 		}
 	}

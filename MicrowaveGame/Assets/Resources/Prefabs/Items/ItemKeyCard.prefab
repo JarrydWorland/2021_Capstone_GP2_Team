@@ -39,7 +39,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fa25a017579db654fa1049115e0cd699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -65,7 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnProbability: 0
   Name: Key Card
-  Description: Restores power to Light City!
+  Description: Helps restore power to Light City!
+  ItemPickup: {fileID: 8300000, guid: 60d5fe67f7ae1d048a87eaaa4d9d1b49, type: 3}
 --- !u!114 &8614144819129509974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,13 +82,9 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - 'I found it! With this I can restore power to Light City!
-
-      ### Engaging
-      Teleporter ###
-
-      --- Congratulations, you have completed the demo, you''re
-      welcome to play again ---'
+    - This is one of the key cards needed to restore power to Light City!
+    - I should head back to the power station to make sure it's safe.
+    - '### Engaging Teleporter ###'
 --- !u!1001 &1447312555054794971
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,6 +20,13 @@ namespace Scripts.Camera
 		/// </summary>
 		public Lerped<Vector2> Position;
 
+		/// <summary>
+		// Stores the state of isStationary for one additional
+		// update tick so that the position can finish being
+		// applied.
+		/// </summary>
+		private bool _delayedIsStationary;
+
 		private void Start()
 		{
 			Position = new Lerped<Vector2>(transform.position, PanDuration, Easing.EaseInOut, true);
@@ -27,8 +34,13 @@ namespace Scripts.Camera
 
 		private void Update()
 		{
-			Vector2 position = Position.Value;
-			transform.position = new Vector3(position.x, position.y, transform.position.z);
+			bool isStationary = IsStationary;
+			if (!isStationary || !_delayedIsStationary)
+			{
+				Vector2 position = Position.Value;
+				transform.position = new Vector3(position.x, position.y, transform.position.z);
+				_delayedIsStationary = isStationary;
+			}
 		}
 	}
 }

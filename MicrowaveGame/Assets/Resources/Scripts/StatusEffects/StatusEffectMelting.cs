@@ -1,9 +1,9 @@
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.StatusEffects
 {
-	public class StatusEffectMelting : IStatusEffect
+    public class StatusEffectMelting : IStatusEffect
 	{
 		public int Duration { get; }
 		private readonly int _damage;
@@ -20,7 +20,7 @@ namespace Scripts.StatusEffects
 			_rateInverse = 1.0f / rate;
 			_clip = clip;
 
-			AudioManager.Play(_clip);
+			AudioManager.Play(_clip, AudioCategory.Effect);
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 

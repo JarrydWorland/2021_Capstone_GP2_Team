@@ -1,4 +1,5 @@
-﻿using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,7 +43,7 @@ namespace Scripts.Scenes
 		public void FadeInto(string name)
 		{
 			_targetScene = name;
-			AudioManager.Play(SceneTrans);
+			AudioManager.Play(SceneTrans, AudioCategory.Effect);
 			FadeOut();
 		}
 

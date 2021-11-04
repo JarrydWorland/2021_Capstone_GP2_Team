@@ -17,6 +17,8 @@ namespace Scripts.Inventory
 
 		private Animator _animator;
 
+		private static InventoryBehaviour _inventoryBehaviour;
+
 		private void Start()
 		{
 			_inventorySpriteRenderer = transform.Find("Animator/Sprite").GetComponent<SpriteRenderer>();
@@ -25,6 +27,8 @@ namespace Scripts.Inventory
 			_inventorySlotInitialScale = transform.Find("Background").localScale;
 
 			_animator = GetComponentInChildren<Animator>();
+
+			_inventoryBehaviour = GameObject.Find("Inventory").GetComponent<InventoryBehaviour>();
 		}
 
 		private void Update()
@@ -58,8 +62,9 @@ namespace Scripts.Inventory
 		/// <summary>
 		/// Attempt to drop the item if there is one in the slot.
 		/// </summary>
+		/// <param name="swapping">Whether or not the current slot is performing a swap behaviour.</param>
 		/// <returns>The dropped item (null if empty).</returns>
-		public ItemBehaviour DropItem()
+		public ItemBehaviour DropItem(bool swapping = true)
 		{
 			if (ItemBehaviour == null) return null;
 
@@ -70,6 +75,8 @@ namespace Scripts.Inventory
 
 			ItemBehaviour itemBehaviour = ItemBehaviour;
 			ItemBehaviour = null;
+
+			if (swapping) _inventoryBehaviour.UpdateSlotIndicator();
 
 			return itemBehaviour;
 		}
@@ -105,6 +112,14 @@ namespace Scripts.Inventory
 			_inventorySpriteRenderer.sprite = sprite;
 		}
 
-		public void PlayAnimation(string name) => _animator.Play(name);
+		public void PlayAnimation(string name)
+		{
+			// In order to stop the current animation, we must play the given animation
+			// with it starting at the last frame so it immediately finishes.
+			// Then we can play the the given animation normally.
+
+			_animator.Play(name, 0, 1.0f);
+			_animator.Play(name);
+		}
 	}
 }

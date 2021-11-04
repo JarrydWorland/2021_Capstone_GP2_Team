@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Scripts.Rooms;
 using Scripts.Doors;
 using Scripts.Camera;
-using Scripts.Utilities;
 using System;
 using Scripts.Events;
+using Scripts.Audio;
 using Scripts.Menus;
+using Scripts.Utilities;
 
 namespace Scripts.Levels
 {
-	[RequireComponent(typeof(LevelGenerationBehaviour))]
+    [RequireComponent(typeof(LevelGenerationBehaviour))]
 	public class LevelTraversalBehaviour : MonoBehaviour
 	{
 		/// <summary>
@@ -74,7 +75,7 @@ namespace Scripts.Levels
 			// Freeze time while changing room.
 			Time.timeScale = 0.0f;
 			
-			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip);
+			AudioManager.Play(doorConnectionBehaviour.EnterAudioClip, AudioCategory.Effect);
 
 			// queue current room to be disabled
 			_roomsToDisable.Add(CurrentRoom.gameObject);

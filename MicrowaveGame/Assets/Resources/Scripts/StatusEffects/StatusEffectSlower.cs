@@ -1,10 +1,10 @@
 using Scripts.Player;
 using UnityEngine;
-using Scripts.Utilities;
+using Scripts.Audio;
 
 namespace Scripts.StatusEffects
 {
-	public class StatusEffectSlower : IStatusEffect
+    public class StatusEffectSlower : IStatusEffect
 	{
 		public int Duration { get; }
 
@@ -29,7 +29,7 @@ namespace Scripts.StatusEffects
 			_frictionFactor = frictionFactor;
 			_clip = clip;
 
-			AudioManager.Play(_clip);
+			AudioManager.Play(_clip, AudioCategory.Effect);
 			_playerMovementBehaviour = GameObject.Find("Player").GetComponent<PlayerMovementBehaviour>();
 			_playerMovementBehaviour.Acceleration *= _accelerationFactor;
 			_playerMovementBehaviour.Friction *= _frictionFactor;

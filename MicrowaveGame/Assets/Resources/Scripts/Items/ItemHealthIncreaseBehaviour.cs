@@ -1,10 +1,10 @@
-﻿using Scripts.Inventory;
-using Scripts.Utilities;
+﻿using Scripts.Audio;
+using Scripts.Inventory;
 using UnityEngine;
 
 namespace Scripts.Items
 {
-	public class ItemHealthIncreaseBehaviour : ItemBehaviour
+    public class ItemHealthIncreaseBehaviour : ItemBehaviour
 	{
 		/// <summary>
 		/// The amount of health to heal the player when the item is used.
@@ -16,6 +16,8 @@ namespace Scripts.Items
 		private bool _isUsed;
 
 		public AudioClip itemDrop;
+		public AudioClip healthSFX;
+		public AudioClip ItemPickup;
 
 		public override void Start()
 		{
@@ -25,8 +27,12 @@ namespace Scripts.Items
 			_healthBehaviour = GameObject.Find("Player").GetComponent<HealthBehaviour>();
 		}
 
-		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour) =>
+		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
+        {
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
+			AudioManager.Play(ItemPickup, AudioCategory.Effect);
+		}
+			
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
@@ -35,7 +41,7 @@ namespace Scripts.Items
 				_isUsed = true;
 
 				_healthBehaviour.Value += IncreaseValue;
-
+				AudioManager.Play(healthSFX, AudioCategory.Effect);
 				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceExpand");
 				inventorySlotBehaviour.DropItem();
 				Destroy(gameObject);
@@ -46,8 +52,11 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			if (!_isUsed) inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			if (!_isUsed)
+			{
+				inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
+				AudioManager.Play(itemDrop, AudioCategory.Effect, 0.45f);
+			}
 			return true;
 		}
 	}

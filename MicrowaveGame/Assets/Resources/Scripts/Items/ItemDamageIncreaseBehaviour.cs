@@ -1,7 +1,7 @@
 ﻿using Scripts.Inventory;
-using Scripts.Utilities;
 using Scripts.Player;
 using UnityEngine;
+using Scripts.Audio;
 
 namespace Scripts.Items
 {
@@ -12,21 +12,23 @@ namespace Scripts.Items
 		/// </summary>
 		public int IncreaseValue;
 
-		private PlayerWeaponBehaviour _playerWeaponBehaviour;
+		private PlayerShootBehaviour _playerShootBehaviour;
 
 		public AudioClip itemDrop;
+		public AudioClip WeaponDamageSFX;
 
 		public override void Start()
 		{
 			base.Start();
 
 			Description = string.Format(Description, IncreaseValue);
-			_playerWeaponBehaviour = GameObject.Find("Player").GetComponent<PlayerWeaponBehaviour>();
+			_playerShootBehaviour = GameObject.Find("Player").GetComponent<PlayerShootBehaviour>();
 		}
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_playerWeaponBehaviour.AdditionalDamage += IncreaseValue;
+			AudioManager.Play(WeaponDamageSFX, AudioCategory.Effect);
+			_playerShootBehaviour.AdditionalDamage += IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 		}
 
@@ -36,9 +38,9 @@ namespace Scripts.Items
 
 		public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			_playerWeaponBehaviour.AdditionalDamage -= IncreaseValue;
+			_playerShootBehaviour.AdditionalDamage -= IncreaseValue;
 			inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
-			AudioManager.Play(itemDrop, 0.55f);
+			AudioManager.Play(itemDrop, AudioCategory.Effect, 0.55f);
 
 			return true;
 		}

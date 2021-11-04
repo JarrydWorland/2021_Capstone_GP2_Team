@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using Scripts.Audio;
 
 namespace Scripts.Enemies
 {
@@ -9,6 +9,8 @@ namespace Scripts.Enemies
 		private HealthBehaviour _healthBehaviour;
 		public ParticleSystem _deathParticle;
 		public ParticleSystem _smokeParticle;
+
+		public AudioClip _explosionSFX;
 
 		private void Start()
 		{
@@ -38,6 +40,7 @@ namespace Scripts.Enemies
 			
 			//play it
 			explosionEffect.Play();
+			AudioManager.Play(_explosionSFX, AudioCategory.Effect);
 
 			//destroy the particle system when its duration is up
 			Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
