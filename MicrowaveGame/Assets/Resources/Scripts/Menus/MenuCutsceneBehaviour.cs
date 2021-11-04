@@ -1,33 +1,36 @@
+using Scripts.Audio;
 using Scripts.Scenes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace Scripts.Menus
 {
-    public class MenuCutsceneBehaviour : MenuBehaviour
-    {
-        public VideoPlayer VideoPlayer;
+	public class MenuCutsceneBehaviour : MenuBehaviour
+	{
+		public GameObject VideoObject;
 
-        /// <summary>
-        /// Adds this to the history and sets up the transition to Hub
-        /// </summary>
-        private void Start()
-        {
-            MenuManager.Init(this);
-            VideoPlayer.loopPointReached += MoveToNextScene;
-        }
+		private void Start()
+		{
+			MenuManager.Init(this);
 
-        void MoveToNextScene(VideoPlayer _videoPlayer)
-        {
-            SceneFaderBehaviour.Instance.FadeInto("Hub");
-        }
+			VideoPlayer videoPlayer = VideoObject.GetComponent<VideoPlayer>();
+			videoPlayer.loopPointReached += _ => PerformPostVideo();
 
-        public void SkipCutscene()
-        {
-            SceneFaderBehaviour.Instance.FadeInto("Hub");
-        }
-    }
+			videoPlayer.SetDirectAudioVolume(0, AudioManager.GetCategoryVolume(AudioCategory.Music));
+			videoPlayer.Play();
+		}
+
+		/// <summary>
+		/// Skips the cutscene by loading into the hub scene.
+		/// Called when the "Skip" button is pressed.
+		/// </summary>
+		public void OnSkipButtonPressed() => PerformPostVideo();
+
+		private void PerformPostVideo()
+		{
+			if (SceneManager.GetActiveScene().name == "OpeningCutscene")
+				SceneFaderBehaviour.Instance.FadeInto("Hub");
+		}
+	}
 }
-
