@@ -29,7 +29,6 @@ namespace Scripts.Items
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceLoop");
 
             _healthBehaviour.MaxHealth += IncreaseValue;
-			_healthBehaviour.Value += IncreaseValue;
 
             AudioManager.Play(healthSFX, AudioCategory.Effect, 0.75f, false);
         }
@@ -42,7 +41,6 @@ namespace Scripts.Items
         public override bool OnDropItem(InventorySlotBehaviour inventorySlotBehaviour)
         {
             _healthBehaviour.MaxHealth -= IncreaseValue;
-			_healthBehaviour.Value -= IncreaseValue;
 
             inventorySlotBehaviour.PlayAnimation("InventorySlotBounceContract");
             AudioManager.Play(itemDrop, AudioCategory.Effect, 0.45f);

@@ -25,6 +25,7 @@ namespace Scripts
 					OldMax = oldMax,
 					NewMax = _maxHealth,
 				});
+				_value = _value.Clamp(Invincible ? 1 : 0, MaxHealth);
 			}
 		}
 		[SerializeField]
