@@ -82,13 +82,9 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - 'I found it! With this I can restore power to Light City!
-
-      ### Engaging
-      Teleporter ###
-
-      --- Congratulations, you have completed the demo, you''re
-      welcome to play again ---'
+    - This is one of the key cards needed to restore power to Light City!
+    - I should head back to the power station to make sure it's safe.
+    - '### Engaging Teleporter ###'
 --- !u!1001 &1447312555054794971
 PrefabInstance:
   m_ObjectHideFlags: 0

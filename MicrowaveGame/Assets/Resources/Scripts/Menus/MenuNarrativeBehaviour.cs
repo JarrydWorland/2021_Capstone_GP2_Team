@@ -1,4 +1,5 @@
 ﻿using Scripts.Audio;
+using Scripts.Dialogue;
 using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Utilities;
@@ -44,7 +45,14 @@ namespace Scripts.Menus
 			UpdateTexts();
 
 			MenuManager.Init(this);
-			if (!Persistent.FirstTimeInHub) MenuManager.GoInto("MenuPlaying");
+
+			if (!Persistent.FirstTimeInHub)
+			{
+				MenuManager.GoInto("MenuPlaying");
+
+				if (Persistent.CollectedKeyCardCount == Persistent.RequiredKeyCardCount)
+					MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
+			}
 			
 			AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
 		}

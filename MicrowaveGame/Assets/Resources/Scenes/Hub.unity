@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136599201}
   - component: {fileID: 136599202}
+  - component: {fileID: 136599203}
   m_Layer: 5
   m_Name: CardCountDisplay
   m_TagString: Untagged
@@ -385,6 +386,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bf0aff5b874b39bda3a6db525d7457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &136599203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136599200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ef6fa20fd045b1a129b63a45eab395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueContent:
+    Speaker: Merlin
+    Sentences:
+    - Look! The door to the power room is open!
+    - I can now restore power to Light City!
 --- !u!1 &223219233
 GameObject:
   m_ObjectHideFlags: 0
