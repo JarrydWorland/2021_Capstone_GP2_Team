@@ -40,7 +40,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: c626102db11b13bd28a942fcc1bfa3f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6be2a8800aaa5349bce70b81cb233d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.28
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8446930914954336495, guid: ca9db7506454c344e8f1b6a1207bd884, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
