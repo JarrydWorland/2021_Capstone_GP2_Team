@@ -287,12 +287,15 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Took {0} minute(s), {1} second(s)
 
+
     Defeated {2} enemies
+
 
     Dealt
     {3} damage
 
     Took {4} damage
+
 
     Explored {5} of {6} rooms ({7}%)'
 --- !u!1001 &555244664365642073
