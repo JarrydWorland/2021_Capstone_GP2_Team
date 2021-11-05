@@ -32,6 +32,10 @@ namespace Scripts.Menus
 		{
 			if (SceneManager.GetActiveScene().name == "OpeningCutscene")
 				SceneFaderBehaviour.Instance.FadeInto("Hub");
+			if (SceneManager.GetActiveScene().name == "EndingCutscene")
+				SceneFaderBehaviour.Instance.FadeInto("Menu");
+			if (SceneManager.GetActiveScene().name == "TeamCredits")
+				SceneFaderBehaviour.Instance.FadeInto("Menu");
 		}
 	}
 }
