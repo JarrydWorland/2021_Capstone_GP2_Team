@@ -17,7 +17,8 @@ namespace Scripts.Menus
 			VideoPlayer videoPlayer = VideoObject.GetComponent<VideoPlayer>();
 			videoPlayer.loopPointReached += _ => PerformPostVideo();
 
-			videoPlayer.SetDirectAudioVolume(0, AudioManager.GetCategoryVolume(AudioCategory.Music));
+			videoPlayer.SetDirectAudioVolume(0, AudioManager.GetCategoryVolume(AudioCategory.Music) * 0.4f);
+			videoPlayer.SetDirectAudioVolume(1, AudioManager.GetCategoryVolume(AudioCategory.Music) * 0.4f);
 			videoPlayer.Play();
 		}
 
