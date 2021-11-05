@@ -401,8 +401,11 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - Look! The door to the power room is open!
-    - I can now restore power to Light City!
+    - Thank goodness, that should be enough keycards to get Light City up and running
+      again
+    - I'm sure my job is done, although if the Lightbulbs still have some keycards
+      left...
+    - Running out of charge though...maybe that can come later after some rest
 --- !u!1 &223219233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6289347686327385834, guid: eb9f20cc5db92c54090e74a5a059e5dc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6289347686327385835, guid: eb9f20cc5db92c54090e74a5a059e5dc, type: 3}
       propertyPath: m_Pivot.x
@@ -2016,6 +2019,10 @@ PrefabInstance:
     - target: {fileID: 2251424065116161676, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
       propertyPath: m_Name
       value: MenuNarrative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251424065116161676, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2251424065116161677, guid: de6e6edbe76606a4f935e4398727deba, type: 3}
       propertyPath: m_Pivot.x

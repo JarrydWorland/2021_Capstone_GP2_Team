@@ -37,6 +37,7 @@ namespace Scripts.Rooms
 
 			_ending = true;
      		SceneFaderBehaviour.Instance.FadeInto("Menu");
+			//TODO: Play ending cutscene
 		}
 	}
 }

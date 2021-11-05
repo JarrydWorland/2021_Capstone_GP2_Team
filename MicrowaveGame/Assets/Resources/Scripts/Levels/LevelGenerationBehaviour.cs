@@ -88,8 +88,13 @@ namespace Scripts.Levels
 			StartingRoom.SetActive(false);
 			StartingRoom = transform.Find("TutorialStartN").gameObject;
 			StartingRoom.SetActive(true);
+			
 			GameObject.Find("Player").transform.position = StartingRoom.transform.position;
+			
 			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Value = StartingRoom.transform.position;
+			UnityEngine.Camera.main.GetComponent<CameraPanBehaviour>().Position.Finish();
+
+			Persistent.FirstTimeInHub = false;
 		}
 
 		private void LockEndingDoor() => StartingRoom
