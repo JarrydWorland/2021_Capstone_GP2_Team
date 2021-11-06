@@ -25,10 +25,25 @@ namespace Scripts.Inventory
 
 			_textName.text = itemBehaviour.Name;
 			_textDescription.text = itemBehaviour.Description;
-
-			_informationPanelObject.SetActive(true);
+			
+			// set z to 0
+			_informationPanelObject.transform.position = new Vector3
+			{
+				x = _informationPanelObject.transform.position.x,
+				y = _informationPanelObject.transform.position.y,
+				z = 0,
+			};
 		}
 
-		public void Hide() => _informationPanelObject.SetActive(false);
+		public void Hide()
+		{
+			// set z to above camera
+			_informationPanelObject.transform.position = new Vector3
+			{
+				x = _informationPanelObject.transform.position.x,
+				y = _informationPanelObject.transform.position.y,
+				z = -100,
+			};
+		}
 	}
 }
