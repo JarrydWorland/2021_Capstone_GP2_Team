@@ -1,5 +1,4 @@
 ﻿using Scripts.Scenes;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace Scripts.Menus
@@ -24,7 +23,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Gameplay" scene.
 		/// Called when the "Try Again" button is pressed.
 		/// </summary>
-		public void OnAgainButtonPressed() => SceneManager.LoadScene("Gameplay");
+		public void OnAgainButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Gameplay");
 
 		/// <summary>
 		/// Sets the current scene to the "Hub" scene.
