@@ -37,7 +37,17 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "OpeningCutscene" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene"); //OpeningCutScene then Hub
+		public void OnStartButtonPressed() 
+		{
+			if (Persistent.FirstTimeInHub)
+			{
+				SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene");
+			}
+			else
+			{
+				SceneFaderBehaviour.Instance.FadeInto("Hub");
+			}
+		}
 
 		/// <summary>
 		/// Sets the current menu to the "Settings" menu.
