@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnProbability: 0
-  Name: Key Card
+  Name: Key card
   Description: Helps restore power to Light City!
   ItemPickup: {fileID: 8300000, guid: 60d5fe67f7ae1d048a87eaaa4d9d1b49, type: 3}
 --- !u!114 &8614144819129509974
@@ -82,8 +82,9 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - This is one of the key cards needed to restore power to Light City!
-    - I should head back to the power station to make sure it's safe.
+    - A keycard! Thank goodness, I thought I'd never find one in this maze!
+    - Let's get you back to the power grid before more of the Lightbulb gang turn
+      up.
     - '### Engaging Teleporter ###'
 --- !u!1001 &1447312555054794971
 PrefabInstance:

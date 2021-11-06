@@ -34,8 +34,11 @@ namespace Scripts.Menus
 
 				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
 
-				if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount)
+				if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount && !Persistent.HadEnoughCards)
+				{
 					MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
+					Persistent.HadEnoughCards = true;
+				}
 			}
 			else if (SceneManager.GetActiveScene().name == "Gameplay")
 			{

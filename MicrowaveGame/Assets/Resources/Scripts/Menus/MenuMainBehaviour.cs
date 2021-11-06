@@ -34,10 +34,10 @@ namespace Scripts.Menus
 		}
 
 		/// <summary>
-		/// Sets the current scene to the "Gameplay" scene.
+		/// Sets the current scene to the "OpeningCutscene" scene.
 		/// Called when the "Start" button is pressed.
 		/// </summary>
-		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene"); //Hub
+		public void OnStartButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("OpeningCutscene"); //OpeningCutScene then Hub
 
 		/// <summary>
 		/// Sets the current menu to the "Settings" menu.
@@ -46,10 +46,10 @@ namespace Scripts.Menus
 		public void OnSettingsButtonPressed() => MenuManager.GoInto("MenuSettings");
 
 		/// <summary>
-		/// Sets the current menu to the "Credits" menu.
+		/// Sets the current scene to the "TeamCredits" scene.
 		/// Called when the "Credits" button is pressed.
 		/// </summary>
-		public void OnCreditsButtonPressed() => MenuManager.GoInto("MenuCredits");
+		public void OnCreditsButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("TeamCredits"); //TeamCredits
 
 		/// <summary>
 		/// Quits the game or exits the playing mode of the editor depending on the current executing context.

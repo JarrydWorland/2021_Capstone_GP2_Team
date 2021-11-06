@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -81,7 +81,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3901343488212456701}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 6a897dc4be23eb6af97d09c4e3d5ab0c, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 057aca0d693d97b4ab90183896fa73f7, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -96,12 +96,14 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
+  - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 0101
+  m_DirectAudioMutes: 0000
+  m_ControlledAudioTrackCount: 2
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
