@@ -3,7 +3,6 @@ using Scripts.Dialogue;
 using Scripts.Menus;
 using Scripts.Audio;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.Items
 {
@@ -16,17 +15,16 @@ namespace Scripts.Items
 		public override void Start()
 		{
 			base.Start();
- 			_dialogueContentBehaviour = GetComponent<DialogueContentBehaviour>();
+			_dialogueContentBehaviour = GetComponent<DialogueContentBehaviour>();
 		}
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
 			Persistent.CollectedKeyCardCount += 1;
 			AudioManager.Play(ItemPickup, AudioCategory.Effect, 0.9f);
-			MenuManager.ShowDialogue(_dialogueContentBehaviour.DialogueContent, () =>
-			{
-				SceneManager.LoadScene("Hub");
-			});
+
+			MenuManager.ShowDialogue(_dialogueContentBehaviour.DialogueContent,
+				() => { MenuManager.GoInto("MenuGameOver"); });
 		}
 
 		public override void OnUseItem(InventorySlotBehaviour inventorySlotBehaviour) { }
