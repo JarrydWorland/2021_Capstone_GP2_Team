@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scripts.Audio;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -71,9 +73,25 @@ namespace Scripts.Menus
 		public void OnCancel(InputAction.CallbackContext context)
 		{
 			if (!SceneManager.GetActiveScene().isLoaded) return;
+			if (!context.performed) return;
 
-			if (context.performed && MenuManager.Current.name != "MenuPlaying" &&
-			    MenuManager.Current.name != "MenuPaused")
+			if (Keyboard.current.escapeKey.wasPressedThisFrame)
+			{
+				if (MenuManager.Current.name == "MenuPlaying")
+				{
+					MenuManager.GoInto("MenuPaused");
+					return;
+				}
+
+				if (MenuManager.Current.name == "MenuPaused")
+				{
+					MenuManager.GoInto("MenuPlaying");
+					return;
+				}
+			}
+
+			if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||
+			    MenuManager.Current.name == "MenuSettings" || MenuManager.Current.name == "MenuSounds")
 			{
 				string lastMenuName = MenuManager.Current.name;
 
@@ -147,17 +165,16 @@ namespace Scripts.Menus
 		}
 
 		/// <summary>
-		/// Called by unity's input system when the pause button is pressed.
+		/// Called by unity's input system when the controller pause button is pressed.
 		/// </summary>
-		public void OnPause(InputAction.CallbackContext context)
+		public void OnPauseGamepad(InputAction.CallbackContext context)
 		{
 			if (!SceneManager.GetActiveScene().isLoaded) return;
 
 			if (context.performed)
 			{
 				if (MenuManager.Current.name == "MenuPlaying") MenuManager.GoInto("MenuPaused");
-				else if (MenuManager.Current.name == "MenuControls" || MenuManager.Current.name == "MenuCredits" ||
-				         MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
+				else if (MenuManager.Current.name == "MenuPaused") MenuManager.GoBack();
 			}
 		}
 

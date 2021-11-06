@@ -166,7 +166,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8728712095345465179}
         m_TargetAssemblyTypeName: Scripts.Menus.MenuInputBehaviour, Assembly-CSharp
-        m_MethodName: OnPause
+        m_MethodName: OnPauseGamepad
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
