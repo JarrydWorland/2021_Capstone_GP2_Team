@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5794048396616728324, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5794048396616728324, guid: 144c13c09b1619746941aa827c09675c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6580432558772047829, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6580432558772047829, guid: 833e5478a5f7093468a4d5ec2a5e8e53, type: 3}
       propertyPath: m_AnchorMax.x
@@ -401,11 +401,9 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - Thank goodness, that should be enough keycards to get Light City up and running
-      again
-    - I'm sure my job is done, although if the Lightbulbs still have some keycards
-      left...
-    - Running out of charge though...maybe that can come later after some rest
+    - Thank goodness! That should be enough key cards to get Light City up and running
+      again!
+    - Although if the Lightbulb Gang still has some key cards left...
 --- !u!1 &223219233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +2031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772921886234655895, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4772921886234655895, guid: 43dde89c4b7a90540a71d2a9c371a685, type: 3}
       propertyPath: m_AnchorMax.x

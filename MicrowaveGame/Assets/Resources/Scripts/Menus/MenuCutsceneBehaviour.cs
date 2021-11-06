@@ -30,11 +30,9 @@ namespace Scripts.Menus
 
 		private void PerformPostVideo()
 		{
-			if (SceneManager.GetActiveScene().name == "OpeningCutscene")
+			if (SceneManager.GetActiveScene().name == "OpeningCutscene" || SceneManager.GetActiveScene().name == "EndingCutscene")
 				SceneFaderBehaviour.Instance.FadeInto("Hub");
-			if (SceneManager.GetActiveScene().name == "EndingCutscene")
-				SceneFaderBehaviour.Instance.FadeInto("Menu");
-			if (SceneManager.GetActiveScene().name == "TeamCredits")
+			else if (SceneManager.GetActiveScene().name == "TeamCredits")
 				SceneFaderBehaviour.Instance.FadeInto("Menu");
 		}
 	}
