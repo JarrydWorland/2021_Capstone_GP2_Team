@@ -79,19 +79,67 @@ MonoBehaviour:
     m_ActionId: 41e3c485-6d9e-43fe-90fa-f2d68656b380
     m_ActionName: Menu/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8728712095345465179}
+        m_TargetAssemblyTypeName: Scripts.Menus.MenuInputBehaviour, Assembly-CSharp
+        m_MethodName: OnSubmit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9a02c0c4-27f6-4227-8d2b-84b45ee079b9
     m_ActionName: Menu/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8728712095345465179}
+        m_TargetAssemblyTypeName: Scripts.Menus.MenuInputBehaviour, Assembly-CSharp
+        m_MethodName: OnCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e78de144-be1b-4322-b8bb-a8f709d1cc5e
     m_ActionName: Menu/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8728712095345465179}
+        m_TargetAssemblyTypeName: Scripts.Menus.MenuInputBehaviour, Assembly-CSharp
+        m_MethodName: OnPoint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: adc7c2c1-cd20-4062-8cc2-109ec8318ee9
     m_ActionName: Menu/Point[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8728712095345465179}
+        m_TargetAssemblyTypeName: Scripts.Menus.MenuInputBehaviour, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 927b191d-84e2-418b-adaa-b58504179db0
     m_ActionName: Menu/Click[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -187,3 +235,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a017f43c103746288fe0883b50955e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScrollAudioClip: {fileID: 8300000, guid: 2947fd6b7a5743e4ebe91a143b9bc327, type: 3}
