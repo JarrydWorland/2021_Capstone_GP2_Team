@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using Scripts.Utilities;
+using Scripts.Dialogue;
 using UnityEngine;
 using Scripts.Audio;
 
@@ -7,6 +8,7 @@ namespace Scripts.Menus
 {
 	public class MenuPlayingBehaviour : MenuBehaviour
 	{
+		public AudioClip HubLoopAudioClip;
 		public AudioClip GameplayLoopAudioClip;
 		public AudioClip PauseAudioClip;
 
@@ -26,13 +28,24 @@ namespace Scripts.Menus
 
 		private void Start()
 		{
-			if (SceneManager.GetActiveScene().name == "Gameplay")
+			if (SceneManager.GetActiveScene().name == "Hub")
 			{
 				MenuManager.Init(this);
-				
-				// Bug causing audio to not be played first time it is called, so doing redundant call.
-				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f, false);
 
+				AudioManager.Play(HubLoopAudioClip, AudioCategory.Music, 0.4f, true);
+
+				if (Persistent.CollectedKeyCardCount >= Persistent.RequiredKeyCardCount && !Persistent.HadEnoughCards)
+				{
+					MenuManager.ShowDialogue(GameObject.Find("CardCountDisplay").GetComponent<DialogueContentBehaviour>().DialogueContent);
+					Persistent.HadEnoughCards = true;
+				}
+			}
+			else if (SceneManager.GetActiveScene().name == "Gameplay")
+			{
+				MenuManager.Init(this);
+
+				// Bug causing audio to not be played first time it is called, so doing redundant call.
+				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.0f);
 				AudioManager.Play(GameplayLoopAudioClip, AudioCategory.Music, 0.4f, true);
 			}
 		}
