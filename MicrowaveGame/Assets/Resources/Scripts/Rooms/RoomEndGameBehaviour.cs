@@ -36,8 +36,7 @@ namespace Scripts.Rooms
 			if (args.CurrentRoom.gameObject != gameObject) return;
 
 			_ending = true;
-     		SceneFaderBehaviour.Instance.FadeInto("Menu");
-			//TODO: Play ending cutscene
+     		SceneFaderBehaviour.Instance.FadeInto("EndingCutscene");
 		}
 	}
 }
