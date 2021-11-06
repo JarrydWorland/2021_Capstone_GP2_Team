@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8866083d223d4af41a1839ccd46a5939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 1
+  SpawnProbability: 0
   Name: Projectile size
   Description: Increases projectile size
   IncreaseValue: 0.5

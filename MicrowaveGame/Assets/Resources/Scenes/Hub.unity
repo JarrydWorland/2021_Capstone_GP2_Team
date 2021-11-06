@@ -401,8 +401,11 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - Look! The door to the power room is open!
-    - I can now restore power to Light City!
+    - Thank goodness, that should be enough keycards to get Light City up and running
+      again
+    - I'm sure my job is done, although if the Lightbulbs still have some keycards
+      left...
+    - Running out of charge though...maybe that can come later after some rest
 --- !u!1 &223219233
 GameObject:
   m_ObjectHideFlags: 0
