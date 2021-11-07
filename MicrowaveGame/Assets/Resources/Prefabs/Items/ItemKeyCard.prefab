@@ -82,8 +82,8 @@ MonoBehaviour:
   DialogueContent:
     Speaker: Merlin
     Sentences:
-    - A keycard! Thank goodness, I thought I'd never find one in this maze!
-    - Let's get you back to the power grid before more of the Lightbulb gang turn
+    - A key card! Thank goodness! I thought I'd never find one in this maze!
+    - Let's get you back to the power grid before more of the Lightbulb Gang turn
       up.
     - '### Engaging Teleporter ###'
 --- !u!1001 &1447312555054794971

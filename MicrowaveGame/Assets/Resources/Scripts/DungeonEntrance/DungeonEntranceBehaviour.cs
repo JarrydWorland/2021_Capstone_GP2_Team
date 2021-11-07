@@ -1,5 +1,6 @@
+using Scripts.Scenes;
+using Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.DungeonEntrance
 {
@@ -8,7 +9,9 @@ namespace Scripts.DungeonEntrance
 		private void OnCollisionEnter2D(Collision2D other)
 		{
 			if (other.gameObject.name != "Player") return;
-			SceneManager.LoadScene("Gameplay");
+
+			GameState.Pause();
+			SceneFaderBehaviour.Instance.FadeInto("Gameplay");
 		}
 	}
 }

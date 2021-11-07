@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -35,12 +34,27 @@ namespace Scripts.Menus
 
 		private bool _hasSelectables;
 
+		private Vector2? _lastScreenSize;
+
+		private const float MenuIndicatorLerpStrength = 12.5f;
+
 		private void Update()
 		{
+			_lastScreenSize ??= new Vector2(Screen.width, Screen.height);
+
+			Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+			if (_lastScreenSize != screenSize) UpdateIndicatorPosition();
+			_lastScreenSize = screenSize;
+
 			if (!_hasSelectables || _indicatorTransform == null) return;
 
-			_indicatorTransform.position = Vector3.Lerp(_indicatorTransform.position, _indicatorPosition, 0.075f);
-			_indicatorTransform.sizeDelta = Vector3.Lerp(_indicatorTransform.sizeDelta, _indicatorSizeDelta, 0.075f);
+			float unscaledDeltaTime = Time.unscaledDeltaTime;
+
+			_indicatorTransform.position = Vector3.Lerp(_indicatorTransform.position, _indicatorPosition,
+				unscaledDeltaTime * MenuIndicatorLerpStrength);
+
+			_indicatorTransform.sizeDelta = Vector3.Lerp(_indicatorTransform.sizeDelta, _indicatorSizeDelta,
+				unscaledDeltaTime * MenuIndicatorLerpStrength);
 		}
 
 		/// <summary>
