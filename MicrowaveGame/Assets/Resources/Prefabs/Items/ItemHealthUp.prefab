@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac50515d70452cc4ba1c5eb06732fa92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 1
+  SpawnProbability: 0
   Name: Health Up
   Description: Increases maximum health by {0}
   IncreaseValue: 1

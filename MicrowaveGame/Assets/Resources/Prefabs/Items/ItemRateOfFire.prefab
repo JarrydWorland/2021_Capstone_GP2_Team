@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f6afa42e5e4f2b81425a455653bdc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 1
+  SpawnProbability: 0
   Name: Rate Of Fire
   Description: Increases the player's fire rate
   IncreaseValue: 1

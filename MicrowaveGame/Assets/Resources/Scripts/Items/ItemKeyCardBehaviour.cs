@@ -20,7 +20,7 @@ namespace Scripts.Items
 
 		public override void OnPickupItem(InventorySlotBehaviour inventorySlotBehaviour)
 		{
-			Persistent.CollectedKeyCardCount += 1;
+			//Persistent.CollectedKeyCardCount += 1;
 			AudioManager.Play(ItemPickup, AudioCategory.Effect, 0.9f);
 
 			MenuManager.ShowDialogue(_dialogueContentBehaviour.DialogueContent,

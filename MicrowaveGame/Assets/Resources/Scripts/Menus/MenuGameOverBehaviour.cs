@@ -18,7 +18,7 @@ namespace Scripts.Menus
 		/// Sets the current scene to the "Hub" scene.
 		/// Called when the "Done" button is pressed.
 		/// </summary>
-		public void OnDoneButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Hub");
+		public void OnDoneButtonPressed() => SceneFaderBehaviour.Instance.FadeInto("Menu");
 
 		private void OnEnable()
 		{

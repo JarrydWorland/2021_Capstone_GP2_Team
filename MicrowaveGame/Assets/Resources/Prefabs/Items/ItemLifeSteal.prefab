@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbd9433c13ddff4db741e4cfa58e6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnProbability: 0.5
+  SpawnProbability: 0
   Name: Life Steal
   Description: Steals some life from the enemy
   IncreaseValue: 1
