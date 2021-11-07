@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WASD / Arrow Keys
+  m_Text: 'WASD Keys
 
     Mouse
 
@@ -86,16 +86,16 @@ MonoBehaviour:
 
     TAB
 
-    Q or Scroll
-    Up
+    Q or Scroll Up
 
-    E or Scroll Down
+    E
+    or Scroll Down
 
     F
 
     G
 
-    Space or RMB
+    Space or Right Click
 
     Escape'
 --- !u!1 &2564488589942413394
