@@ -83,7 +83,7 @@ namespace Scripts.Projectiles
 			// Destroy when impacting solid objects
 			if (tagBehaviour.HasTag("Solid"))
 			{
-				if (gameObject.name == "ProjectileBullet(Clone)") Sparks();
+				Sparks();
 				Destroy(gameObject);
 			}
 
